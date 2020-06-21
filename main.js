@@ -57,7 +57,7 @@ function init() {
     mesh.receiveShadow = true;
     scene.add( mesh );
     
-	// model
+	//model
 	{
 		const objLoader = new OBJLoader2();
 		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
