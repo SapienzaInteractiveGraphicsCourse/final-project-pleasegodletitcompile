@@ -15,6 +15,7 @@ function init() {
     // scene
 	scene = new THREE.Scene();
 
+    // cube
 	geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
 	material = new THREE.MeshNormalMaterial();
 
