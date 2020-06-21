@@ -9,12 +9,11 @@ init();
 animate();
 
 function init() {
-
 	// renderer
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild( renderer.domElement );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
 
     // scene
     scene = new THREE.Scene();
@@ -57,13 +56,11 @@ function init() {
     scene.add( mesh );
     
 	// model
-	{
-		const objLoader = new OBJLoader2();
-		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
-            root.position.x = -10;
-	        scene.add(root);
-		});
-    }
+    const objLoader = new OBJLoader2();
+    objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
+        root.position.x = -10;
+        scene.add(root);
+    });
     
     window.addEventListener( 'resize', onWindowResize, false );
 }
