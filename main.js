@@ -52,12 +52,10 @@ function init() {
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
 
     var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
-    mesh.position.y = - 1;
-    mesh.rotation.x = - Math.PI / 2;
     mesh.receiveShadow = true;
     scene.add( mesh );
     
-	//model
+	// model
 	{
 		const objLoader = new OBJLoader2();
 		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
