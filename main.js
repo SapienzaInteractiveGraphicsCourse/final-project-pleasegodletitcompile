@@ -25,7 +25,7 @@ function init() {
     camera.position.y = 1;
 	camera.lookAt(0, 0, 0)	
 	
-	//control camera
+	// control camera
 	const controls = new OrbitControls(camera, renderer.domElement);
   	controls.target.set(0, 5, 0);
   	controls.update();
@@ -46,7 +46,7 @@ function init() {
     var groundTexture = loader.load( 'textures/ground.png' );
     groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
     groundTexture.repeat.set( 2000, 2000 );
-    // groundTexture.anisotropy = 16;
+    groundTexture.anisotropy = 16;
     groundTexture.encoding = THREE.sRGBEncoding;
 
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
