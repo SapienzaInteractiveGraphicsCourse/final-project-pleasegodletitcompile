@@ -48,7 +48,7 @@ function init() {
     groundTexture.anisotropy = 16;
     groundTexture.encoding = THREE.sRGBEncoding;
 
-    var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
+    var groundMaterial = new THREE.MeshBasicMaterial( { map: groundTexture, side: THREE.DoubleSide } );
 
     var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
     mesh.rotation.x = - Math.PI / 2;
