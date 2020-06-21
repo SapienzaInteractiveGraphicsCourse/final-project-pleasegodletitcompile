@@ -1,5 +1,5 @@
-import * as THREE from './threejs/three.module.js';
-//import {OBJLoader2} from './threejs/Loaders/OBJLoader2.js';
+import * as THREE from './threejs/build/three.module.js';
+import {OBJLoader2} from './threejs/examples/jsm/loaders/OBJLoader2.js';
 
 var camera, scene, renderer;
 var geometry, material, mesh;
@@ -9,7 +9,7 @@ animate();
 
 function init() {
     // camera
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 100 );
 	camera.position.z = 1;
 
     // scene
@@ -39,15 +39,15 @@ function init() {
 		scene.add(light.target);
 	}
 
-/*
+
 	// model
 	{
 		const objLoader = new OBJLoader2();
-		objLoader.load('resources/models/windmill/windmill.obj', (root) => {
+		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
 		  scene.add(root);
 		});
 	}
-*/
+
 
 }
 
