@@ -1,4 +1,5 @@
 import * as THREE from './threejs/three.module.js';
+import {OBJLoader2} from './threejs/Loaders/OBJLoader2.js';
 
 var camera, scene, renderer;
 var geometry, material, mesh;
@@ -21,6 +22,26 @@ function init() {
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
+
+	//Add light
+	{
+		const color = 0xFFFFFF;
+		const intensity = 1;
+		const light = new THREE.DirectionalLight(color, intensity);
+		light.position.set(0, 10, 0);
+		light.target.position.set(-5, 0, 0);
+		scene.add(light);
+		scene.add(light.target);
+	}
+
+	//Add model
+	{
+		const objLoader = new OBJLoader2();
+		objLoader.load('resources/models/windmill/windmill.obj', (root) => {
+		  scene.add(root);
+		});
+	}
+
 }
 
 function animate() {
