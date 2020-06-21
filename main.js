@@ -8,12 +8,36 @@ init();
 animate();
 
 function init() {
+    // scene
+    scene = new THREE.Scene();
+    
     // camera
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
-	camera.position.z = 1;
+    camera.position.z = 1;
 
-    // scene
-	scene = new THREE.Scene();
+    // light
+		const color = 0xFFFFFF;
+		const intensity = 1;
+		const light = new THREE.DirectionalLight(color, intensity);
+		light.position.set(0, 10, 0);
+		light.target.position.set(-5, 0, 0);
+		scene.add(light);
+		scene.add(light.target);
+    
+    // ground
+    var groundTexture = loader.load( 'textures/ground.png' );
+    groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+    groundTexture.repeat.set( 64, 64 );
+    groundTexture.anisotropy = 16;
+    groundTexture.encoding = THREE.sRGBEncoding;
+
+    var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
+
+    var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+    mesh.position.y = - 250;
+    mesh.rotation.x = - Math.PI / 2;
+    mesh.receiveShadow = true;
+    scene.add( mesh );
 
     // cube
 	geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
@@ -28,17 +52,6 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 
-	// light
-	{
-		const color = 0xFFFFFF;
-		const intensity = 1;
-		const light = new THREE.DirectionalLight(color, intensity);
-		light.position.set(0, 10, 0);
-		light.target.position.set(-5, 0, 0);
-		scene.add(light);
-		scene.add(light.target);
-	}
-
 	// model
 	{
 		const objLoader = new OBJLoader2();
@@ -46,7 +59,7 @@ function init() {
 		  scene.add(root);
 		});
 	}
-*/
+
 }
 
 function animate() {
