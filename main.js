@@ -2,7 +2,7 @@ import * as THREE from './threejs/three.module.js';
 //import {OBJLoader2} from './threejs/Loaders/OBJLoader2.js';
 
 var camera, scene, renderer;
-var geometry, material, mesh;
+var geometry, material;
 
 init();
 animate();
@@ -13,18 +13,23 @@ function init() {
     
     // camera
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
-    camera.position.z = 1;
+    camera.position.z = 2;
+    camera.position.y = 1;
+    camera.lookAt(0, 0, 0)
+    
 
     // light
-		const color = 0xFFFFFF;
-		const intensity = 1;
-		const light = new THREE.DirectionalLight(color, intensity);
-		light.position.set(0, 10, 0);
-		light.target.position.set(-5, 0, 0);
-		scene.add(light);
-		scene.add(light.target);
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(0, 10, 0);
+    light.target.position.set(-5, 0, 0);
+    scene.add(light);
+    scene.add(light.target);
     
     // ground
+    var loader = new THREE.TextureLoader();
+
     var groundTexture = loader.load( 'textures/ground.png' );
     groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
     groundTexture.repeat.set( 64, 64 );
@@ -34,7 +39,7 @@ function init() {
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
 
     var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
-    mesh.position.y = - 250;
+    mesh.position.y = - 1;
     mesh.rotation.x = - Math.PI / 2;
     mesh.receiveShadow = true;
     scene.add( mesh );
@@ -43,7 +48,7 @@ function init() {
 	geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
 	material = new THREE.MeshNormalMaterial();
 
-	mesh = new THREE.Mesh( geometry, material );
+	var mesh = new THREE.Mesh( geometry, material );
 	scene.add( mesh );
 
     // renderer
@@ -52,6 +57,7 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 
+    /*
 	// model
 	{
 		const objLoader = new OBJLoader2();
@@ -59,7 +65,7 @@ function init() {
 		  scene.add(root);
 		});
 	}
-*/
+    */
 
 }
 
@@ -67,8 +73,8 @@ function animate() {
 
 	requestAnimationFrame( animate );
 
-	mesh.rotation.x += 0.01;
-	mesh.rotation.y += 0.02;
+	// mesh.rotation.x += 0.01;
+	// mesh.rotation.y += 0.02;
 
 	renderer.render( scene, camera );
 
