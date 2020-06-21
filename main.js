@@ -28,7 +28,7 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 
-	//Add light
+	// light
 	{
 		const color = 0xFFFFFF;
 		const intensity = 1;
@@ -39,7 +39,7 @@ function init() {
 		scene.add(light.target);
 	}
 
-	//Add model
+	// model
 	{
 		const objLoader = new OBJLoader2();
 		objLoader.load('resources/models/windmill/windmill.obj', (root) => {
