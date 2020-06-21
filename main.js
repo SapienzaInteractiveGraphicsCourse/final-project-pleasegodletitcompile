@@ -20,7 +20,7 @@ function init() {
 	scene = new THREE.Scene();
     
     // camera
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 100 );
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 100 );
     camera.position.z = 15;
     camera.position.y = 1;
 	camera.lookAt(0, 0, 0)	
