@@ -30,7 +30,6 @@ function init() {
   	controls.target.set(0, 5, 0);
   	controls.update();
     
-
     // light
     const color = 0xFFFFFF;
     const intensity = 1;
@@ -52,6 +51,7 @@ function init() {
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
 
     var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+    mesh.rotation.x = - Math.PI / 2;
     mesh.receiveShadow = true;
     scene.add( mesh );
     
