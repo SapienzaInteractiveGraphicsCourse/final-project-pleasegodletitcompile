@@ -15,7 +15,7 @@ function init() {
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 100 );
     camera.position.z = 15;
     camera.position.y = 1;
-    camera.lookAt(0, 0, 0)
+    camera.lookAt(0, 0, 0);
 
     // light
     const color = 0xFFFFFF;
@@ -43,13 +43,6 @@ function init() {
     mesh.receiveShadow = true;
     scene.add( mesh );
 
-    // cube
-	// geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-	// material = new THREE.MeshNormalMaterial();
-
-	// var mesh = new THREE.Mesh( geometry, material );
-	// scene.add( mesh );
-
     // renderer
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
@@ -68,9 +61,6 @@ function init() {
 function animate() {
 
 	requestAnimationFrame( animate );
-
-	// mesh.rotation.x += 0.01;
-	// mesh.rotation.y += 0.02;
 
 	renderer.render( scene, camera );
 
