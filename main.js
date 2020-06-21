@@ -17,7 +17,8 @@ function init() {
 	document.body.appendChild( renderer.domElement );
 
     // scene
-	scene = new THREE.Scene();
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0x0000ff );
     
     // camera
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 100 );
@@ -48,7 +49,7 @@ function init() {
     groundTexture.anisotropy = 16;
     groundTexture.encoding = THREE.sRGBEncoding;
 
-    var groundMaterial = new THREE.MeshBasicMaterial( { map: groundTexture, side: THREE.DoubleSide } );
+    var groundMaterial = new THREE.MeshPhongMaterial( { map: groundTexture, side: THREE.DoubleSide } );
 
     var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
     mesh.rotation.x = - Math.PI / 2;
@@ -59,7 +60,8 @@ function init() {
 	{
 		const objLoader = new OBJLoader2();
 		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
-		  scene.add(root);
+            root.position.x = -10;
+	        scene.add(root);
 		});
     }
     
