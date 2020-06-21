@@ -63,19 +63,18 @@ function init() {
 		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
 		  scene.add(root);
 		});
-	}
+    }
+    
+    window.addEventListener( 'resize', onWindowResize, false );
 }
 
 function animate() {
-
 	requestAnimationFrame( animate );
 
 	renderer.render( scene, camera );
-
 }
 
 function onWindowResize() {
-
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
