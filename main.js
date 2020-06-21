@@ -60,6 +60,7 @@ function init() {
 	{
 		const objLoader = new OBJLoader2();
 		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
+            root.position.x = -10;
 	        scene.add(root);
 		});
     }
