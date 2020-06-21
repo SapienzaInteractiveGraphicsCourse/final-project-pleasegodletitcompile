@@ -56,12 +56,25 @@ function init() {
     mesh.receiveShadow = true;
     scene.add( mesh );
     
-	// model
+	// models
 	{
 		const objLoader = new OBJLoader2();
 		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
             root.position.x = -10;
 	        scene.add(root);
+		});
+    }
+
+    {
+		const objLoader = new OBJLoader2();
+		objLoader.load('./threejs/Models/the-cartoon-knight.obj', (root) => {
+            root.position.x = 2;
+            scene.add(root);
+            const box = new THREE.Box3().setFromObject(root);
+            const boxSize = box.getSize(new THREE.Vector3()).length();
+            const boxCenter = box.getCenter(new THREE.Vector3());
+            console.log(boxSize);
+            console.log(boxCenter);
 		});
     }
     
