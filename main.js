@@ -21,7 +21,7 @@ function init() {
     
     // camera
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 100 );
-    camera.position.z = 2;
+    camera.position.z = 15;
     camera.position.y = 1;
 	camera.lookAt(0, 0, 0)	
 	
@@ -45,8 +45,8 @@ function init() {
 
     var groundTexture = loader.load( 'textures/ground.png' );
     groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
-    groundTexture.repeat.set( 64, 64 );
-    groundTexture.anisotropy = 16;
+    groundTexture.repeat.set( 2000, 2000 );
+    // groundTexture.anisotropy = 16;
     groundTexture.encoding = THREE.sRGBEncoding;
 
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
@@ -56,16 +56,7 @@ function init() {
     mesh.rotation.x = - Math.PI / 2;
     mesh.receiveShadow = true;
     scene.add( mesh );
-
-    // cube
-	geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-	material = new THREE.MeshNormalMaterial();
-
-	var mesh = new THREE.Mesh( geometry, material );
-	scene.add( mesh );
-
     
-
 	// model
 	{
 		const objLoader = new OBJLoader2();
@@ -78,9 +69,6 @@ function init() {
 function animate() {
 
 	requestAnimationFrame( animate );
-
-	// mesh.rotation.x += 0.01;
-	// mesh.rotation.y += 0.02;
 
 	renderer.render( scene, camera );
 
