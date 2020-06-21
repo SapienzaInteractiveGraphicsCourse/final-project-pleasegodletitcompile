@@ -10,13 +10,13 @@ animate();
 
 function init() {
 
-	// renderer
+	//renderer
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 
-    // scene
+    //scene
 	scene = new THREE.Scene();
     
     // camera
@@ -46,7 +46,7 @@ function init() {
     var groundTexture = loader.load( 'textures/ground.png' );
     groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
     groundTexture.repeat.set( 2000, 2000 );
-    // groundTexture.anisotropy = 16;
+    //groundTexture.anisotropy = 16;
     groundTexture.encoding = THREE.sRGBEncoding;
 
     var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
@@ -57,7 +57,7 @@ function init() {
     mesh.receiveShadow = true;
     scene.add( mesh );
     
-	// model
+	//model
 	{
 		const objLoader = new OBJLoader2();
 		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
