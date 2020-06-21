@@ -1,5 +1,6 @@
 import * as THREE from './threejs/build/three.module.js';
 import {OBJLoader2} from './threejs/examples/jsm/loaders/OBJLoader2.js';
+import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
 
 var camera, scene, renderer;
 var geometry, material;
@@ -8,14 +9,26 @@ init();
 animate();
 
 function init() {
+
+	// renderer
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+
     // scene
-    scene = new THREE.Scene();
+	scene = new THREE.Scene();
     
     // camera
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 100 );
     camera.position.z = 2;
     camera.position.y = 1;
-    camera.lookAt(0, 0, 0)
+	camera.lookAt(0, 0, 0)	
+	
+	//control camera
+	const controls = new OrbitControls(camera, renderer.domElement);
+  	controls.target.set(0, 5, 0);
+  	controls.update();
     
 
     // light
@@ -51,11 +64,7 @@ function init() {
 	var mesh = new THREE.Mesh( geometry, material );
 	scene.add( mesh );
 
-    // renderer
-    renderer = new THREE.WebGLRenderer( { antialias: true } );
-    renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild( renderer.domElement );
+    
 
 	// model
 	{
@@ -82,6 +91,5 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
-
+	renderer.setSize( window.innerWidth, window.innerHeight );
 }
