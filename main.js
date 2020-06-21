@@ -39,6 +39,7 @@ function init() {
 		scene.add(light.target);
 	}
 
+/*
 	// model
 	{
 		const objLoader = new OBJLoader2();
@@ -47,6 +48,7 @@ function init() {
 		});
 	}
 */
+
 }
 
 function animate() {
