@@ -59,6 +59,7 @@ function init() {
 		  scene.add(root);
 		});
 	}
+*/
 
 }
 
