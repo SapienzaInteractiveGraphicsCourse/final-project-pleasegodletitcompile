@@ -1,5 +1,5 @@
 import * as THREE from './threejs/three.module.js';
-import {OBJLoader2} from './threejs/Loaders/OBJLoader2.js';
+//import {OBJLoader2} from './threejs/Loaders/OBJLoader2.js';
 
 var camera, scene, renderer;
 var geometry, material, mesh;
@@ -33,7 +33,7 @@ function init() {
 		scene.add(light);
 		scene.add(light.target);
 	}
-
+/*
 	//Add model
 	{
 		const objLoader = new OBJLoader2();
@@ -41,7 +41,7 @@ function init() {
 		  scene.add(root);
 		});
 	}
-
+*/
 }
 
 function animate() {
