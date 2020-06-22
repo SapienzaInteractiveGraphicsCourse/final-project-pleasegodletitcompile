@@ -4,8 +4,12 @@ import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
 import { Sky } from './threejs/examples/jsm/objects/Sky.js';
 import { PointerLockControls } from './threejs/examples/jsm/controls/PointerLockControls.js';
+import { GUI } from './threejs/examples/jsm/libs/dat.gui.module.js';
 
 var camera, scene, renderer;
+
+// Lights
+var hemiLight, dirLight;
 
 // Sky
 var sky, sunSphere;
@@ -163,28 +167,28 @@ function init() {
 		});
   }
   */
- {
-  const objLoader = new OBJLoader2();
-  objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
-    root.scale.set( 10, 10, 10);
-    root.position.z = -60;
-    root.position.y = 1;
-    
-    
-    root.traverse( function ( child ) {
-      if ( child.isMesh ) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
-    });
-    
-    scene.add(root);
-    });
-  }
+	{
+	const objLoader = new OBJLoader2();
+	objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
+		root.scale.set( 10, 10, 10);
+		root.position.z = -60;
+		root.position.y = 1;
+		
+		
+		root.traverse( function ( child ) {
+		if ( child.isMesh ) {
+			child.castShadow = true;
+			child.receiveShadow = true;
+		}
+		});
+		
+		scene.add(root);
+		});
+	}
 
 	initSky();
 	initLights();
-
+	
 	window.addEventListener( 'resize', onWindowResize, false );
 }
 
@@ -252,16 +256,16 @@ function onWindowResize() {
 
 function initLights() {
 	// hemisphere light 
-	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+	hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.4 );
 	hemiLight.position.set( 0, 100, 0 );
 	scene.add( hemiLight );
 
 	// directional light
-	var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+	dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
 	dirLight.position.set( sunSphere.position.x, sunSphere.position.y, sunSphere.position.z);
 	dirLight.castShadow = true;
 	dirLight.shadow.mapSize.set( 1024, 1024 );
-	var d = 500;
+	const d = 500;
 	dirLight.shadow.camera.left = - d;
 	dirLight.shadow.camera.right = d;
 	dirLight.shadow.camera.top = d;
@@ -271,10 +275,9 @@ function initLights() {
 	scene.add( dirLight );
 
 	// shadow camera helper
-	var shadowCameraHelper = new THREE.CameraHelper(dirLight.shadow.camera);
+	const shadowCameraHelper = new THREE.CameraHelper(dirLight.shadow.camera);
 	shadowCameraHelper.visible = true;
 	scene.add( shadowCameraHelper );
-
 }
 
 function initSky() {
