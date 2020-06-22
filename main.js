@@ -6,7 +6,10 @@ import { Sky } from './threejs/examples/jsm/objects/Sky.js';
 import { PointerLockControls } from './threejs/examples/jsm/controls/PointerLockControls.js';
 
 var camera, scene, renderer;
+
+// Sky
 var sky, sunSphere;
+const distance = 400000;
 
 // Controls variables
 var controls;
@@ -179,7 +182,7 @@ function init() {
     });
   }
 
-	// initSky();
+	initSky();
 	initLights();
 
 	window.addEventListener( 'resize', onWindowResize, false );
@@ -255,20 +258,22 @@ function initLights() {
 
 	// directional light
 	var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-	dirLight.position.set( 50, 100, 0);
+	dirLight.position.set( sunSphere.position.x, sunSphere.position.y, sunSphere.position.z);
 	dirLight.castShadow = true;
-	dirLight.shadow.mapSize.width = 1024;
-	dirLight.shadow.mapSize.height = 1024;
-	var d = 100;
+	dirLight.shadow.mapSize.set( 1024, 1024 );
+	var d = 500;
 	dirLight.shadow.camera.left = - d;
 	dirLight.shadow.camera.right = d;
 	dirLight.shadow.camera.top = d;
 	dirLight.shadow.camera.bottom = - d;
-	dirLight.shadow.camera.near = 10;
-	dirLight.shadow.camera.far = 1000;
+	dirLight.shadow.camera.near = distance - 500;
+	dirLight.shadow.camera.far = distance + 500;
 	scene.add( dirLight );
+
+	// shadow camera helper
 	var shadowCameraHelper = new THREE.CameraHelper(dirLight.shadow.camera);
 	shadowCameraHelper.visible = true;
+	scene.add( shadowCameraHelper );
 
 }
 
@@ -285,8 +290,6 @@ function initSky() {
 	);
 	sunSphere.visible = false;
 	scene.add( sunSphere );
-
-	var distance = 400000;
 
 	// Controls of the sun position and effect
 	var effectController = {
