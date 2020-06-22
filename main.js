@@ -137,7 +137,8 @@ function init() {
 	mesh.receiveShadow = true;
 	scene.add( mesh );
 		
-	// models
+  // models
+  /*
 	{    
 		const gltfLoader = new GLTFLoader();
 		const url = './threejs/Models/cartoon_lowpoly_small_city_free_pack/scene.gltf';
@@ -156,8 +157,28 @@ function init() {
 			
 			scene.add(gltf.scene);
       objects.push(gltf.scene);
+      
 		});
-	}
+  }
+  */
+ {
+  const objLoader = new OBJLoader2();
+  objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
+    root.scale.set( 10, 10, 10);
+    root.position.z = -60;
+    root.position.y = 1;
+    
+    
+    root.traverse( function ( child ) {
+      if ( child.isMesh ) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+    
+    scene.add(root);
+    });
+  }
 
 	initSky();
 	initLights();
@@ -171,11 +192,11 @@ function animate() {
 	if ( controls.isLocked === true ) {
 
 		raycaster.ray.origin.copy( controls.getObject().position );
-		raycaster.ray.origin.y -= 10;
+		raycaster.ray.origin.y -= 0;
 
 		var intersections = raycaster.intersectObjects( objects );
 
-		var onObject = intersections.length > 0;
+    var onObject = intersections.length > 0;
 
 		var time = performance.now();
 		var delta = ( time - prevTime ) / 1000;
@@ -202,7 +223,7 @@ function animate() {
 		controls.moveRight( - velocity.x * delta );
 		controls.moveForward( - velocity.z * delta );
 
-		controls.getObject().position.y += ( velocity.y * delta ); // new behavior
+    controls.getObject().position.y += ( velocity.y * delta ); // new behavior
 
 		if ( controls.getObject().position.y < 10 ) {
 
