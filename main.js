@@ -17,7 +17,7 @@ const distance = 400000;
 
 // Controls variables
 var controls;
-var raycaster;
+var raycasterXplus, raycasterYplus, raycasterZplus, raycasterXminus, raycasterYminus, raycasterZminus;
 var objects = [];
 
 var moveForward = false;
@@ -54,7 +54,12 @@ function init() {
 	camera.position.z = 0;
   camera.lookAt(0, 0, 0);	
   
-  raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 0, 10 );
+  raycasterXplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(1, 0, 0), 0, 10 );
+  raycasterYplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 1, 0), 0, 10 );
+  raycasterZplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, 1), 0, 10 );
+  raycasterXminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 0, 10 );
+  raycasterYminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10 );
+  raycasterZminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, -1), 0, 10 );
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
@@ -183,12 +188,41 @@ function init() {
 		
     scene.add(root);
     objects.push(root);
-
-    var windmillbox = new THREE.BoundingBoxHelper( root );
-    scene.add(windmillbox);
-
 		});
   }
+
+  // objects
+
+  var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
+  boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
+
+  var position = boxGeometry.attributes.position;
+  var colors = [];
+
+  for ( var i = 0, l = position.count; i < l; i ++ ) {
+
+    color.setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
+    colors.push( color.r, color.g, color.b );
+
+  }
+
+  boxGeometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
+
+  for ( var i = 0; i < 10; i ++ ) {
+
+    var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true, vertexColors: true } );
+    boxMaterial.color.setHSL( Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
+
+    var box = new THREE.Mesh( boxGeometry, boxMaterial );
+    box.position.x = Math.floor( Math.random() * 20 - 10 ) * 20;
+    box.position.y = 0;
+    box.position.z = Math.floor( Math.random() * 20 - 10 ) * 20;
+
+    scene.add( box );
+    objects.push( box );
+
+  }
+
 
 	initSky();
 	initLights();
@@ -201,14 +235,39 @@ function animate() {
 
 	if ( controls.isLocked === true ) {
 
-		raycaster.ray.origin.copy( controls.getObject().position );
-    raycaster.ray.origin.y -= 10;
+		raycasterXplus.ray.origin.copy( controls.getObject().position );
+    raycasterXplus.ray.origin.y -= 10;
 
-		var intersections = raycaster.intersectObjects( objects );
+    raycasterYplus.ray.origin.copy( controls.getObject().position );
+    raycasterYplus.ray.origin.y -= 10;
 
-    var onObject = intersections.length > 0;
+    raycasterZplus.ray.origin.copy( controls.getObject().position );
+    raycasterZplus.ray.origin.y -= 10;
 
-    console.log(intersections.length)
+    raycasterXminus.ray.origin.copy( controls.getObject().position );
+    raycasterXminus.ray.origin.y -= 10;
+
+    raycasterYminus.ray.origin.copy( controls.getObject().position );
+    raycasterYminus.ray.origin.y -= 10;
+
+    raycasterZminus.ray.origin.copy( controls.getObject().position );
+    raycasterZminus.ray.origin.y -= 10;
+
+    var intersectionsXplus = raycasterXplus.intersectObjects( objects );
+    var intersectionsYplus = raycasterYplus.intersectObjects( objects );
+    var intersectionsZplus = raycasterZplus.intersectObjects( objects );
+    var intersectionsXminus = raycasterXminus.intersectObjects( objects );
+    var intersectionsYminus = raycasterYminus .intersectObjects( objects );
+    var intersectionsZminus = raycasterZminus.intersectObjects( objects );
+
+    var onObjectXplus = intersectionsXplus.length > 0;
+    var onObjectYplus = intersectionsYplus.length > 0;
+    var onObjectZplus = intersectionsZplus.length > 0;
+    var onObjectXminus = intersectionsXminus.length > 0;
+    var onObjectYminus = intersectionsYminus.length > 0;
+    var onObjectZminus = intersectionsZminus.length > 0;
+
+    console.log(onObjectXplus)
 
 		var time = performance.now();
 		var delta = ( time - prevTime ) / 1000;
@@ -225,12 +284,53 @@ function animate() {
 		if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
 		if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
 
-		if ( onObject === true ) {
+		if ( onObjectXplus == true ) {
 
-		velocity.y = Math.max( 0, velocity.y );
-		canJump = true;
+      velocity.z = 0;
+      velocity.x = 0;
+      moveRight = false;
+      moveForward = false;
+    }
 
-		}
+    if ( onObjectXminus == true ) {
+
+      velocity.z = 0;
+      velocity.x = 0;
+      canJump = true;
+      moveLeft = false;
+      moveBackward = false;
+    }
+  
+
+    if ( onObjectYplus == true ) {
+
+      velocity.z = 0;
+      velocity.y = 0;
+      canJump = true;  
+      moveForward = false;
+    }
+
+    if ( onObjectYminus == true ) {
+
+      velocity.z = 0;
+      velocity.y = 0;
+      canJump = false;  
+      moveBackward = false;
+    }
+
+    if ( onObjectZplus == true ) {
+
+      velocity.z = 0;
+      moveForward = false;
+    
+    }
+
+    if ( onObjectZminus == true ) {
+
+      velocity.z = 0;
+      moveBackward = false;
+  
+  }
 
 		controls.moveRight( - velocity.x * delta );
 		controls.moveForward( - velocity.z * delta );
