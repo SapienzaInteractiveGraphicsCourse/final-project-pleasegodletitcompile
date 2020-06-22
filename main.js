@@ -1,5 +1,6 @@
 import * as THREE from './threejs/build/three.module.js';
 import {OBJLoader2} from './threejs/examples/jsm/loaders/OBJLoader2.js';
+import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
 
 var camera, scene, renderer;
@@ -76,6 +77,14 @@ function init() {
             console.log(boxCenter);
 		});
     }
+
+    {
+    const gltfLoader = new GLTFLoader();
+    const path = './threejs/Models/cartoon_lowpoly_small_city_free_pack/scene.gltf';
+    gltfLoader.load(path, (gltf) => {
+      const root = gltf.scene;
+      scene.add(root);
+    });
     
     window.addEventListener( 'resize', onWindowResize, false );
 }
