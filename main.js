@@ -148,7 +148,7 @@ function init() {
       root.position.z = 0;
       root.position.y = 12;
       scene.add(root);
-      objects.push(root);
+      console.log(dumpObject(root).join('\n'));      
     });
   }
   
@@ -169,6 +169,8 @@ function animate() {
     var intersections = raycaster.intersectObjects( objects );
 
     var onObject = intersections.length > 0;
+
+    console.log(onObject);
 
     var time = performance.now();
     var delta = ( time - prevTime ) / 1000;
@@ -278,4 +280,16 @@ function initSky() {
 	sunSphere.visible = effectController.sun;
 
 	uniforms[ "sunPosition" ].value.copy( sunSphere.position );
+}
+
+function dumpObject(obj, lines = [], isLast = true, prefix = '') {
+  const localPrefix = isLast ? '└─' : '├─';
+  lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
+  const newPrefix = prefix + (isLast ? '  ' : '│ ');
+  const lastNdx = obj.children.length - 1;
+  obj.children.forEach((child, ndx) => {
+    const isLast = ndx === lastNdx;
+    dumpObject(child, lines, isLast, newPrefix);
+  });
+  return lines;
 }
