@@ -3,6 +3,7 @@ import {OBJLoader2} from './threejs/examples/jsm/loaders/OBJLoader2.js';
 import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
 import { Sky } from './threejs/examples/jsm/objects/Sky.js';
+import {F}
 
 var camera, scene, renderer;
 var geometry, material;
@@ -17,22 +18,38 @@ function init() {
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
+    
 
     // scene
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0x0000ff );
     
-    // camera
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 2000 );
-    camera.position.z = 1000;
-    camera.position.y = 1;
-	camera.lookAt(0, 0, 0)	
-	
+  // camera, position it and point 
+  camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+  camera.position.y = 1;
+  camera.position.y = 1;
+  camera.position.z = 100;
+  camera.lookAt(0, 0, 0)	
+  
+  // Control camera
+  var camControls = new THREE.FirstPersonControls(camera);
+  camControls.lookSpeed = 0.4;
+  camControls.movementSpeed = 20;
+  camControls.noFly = true;
+  camControls.lookVertical = true;
+  camControls.constrainVertical = true;
+  camControls.verticalMin = 1.0;
+  camControls.verticalMax = 2.0;
+  camControls.lon = -150;
+  camControls.lat = 120;
+  
+  /*
 	// control camera
 	const controls = new OrbitControls(camera, renderer.domElement);
-  	controls.target.set(0, 5, 0);
+  	controls.target.set(0, 0, 0);
   	controls.update();
-    
+  */
+  
     // light
     const color = 0xFFFFFF;
     const intensity = 1;
@@ -64,8 +81,9 @@ function init() {
       const url = './threejs/Models/cartoon_lowpoly_small_city_free_pack/scene.gltf';
       gltfLoader.load(url, (gltf) => {
         const root = gltf.scene;
-        root.position.z = -50;
-        root.position.y = 150;
+        root.scale.set( 0.1, 0.1, 0.1);
+        root.position.z = 0;
+        root.position.y = 12;
         scene.add(root);
       });
     }
