@@ -2,9 +2,11 @@ import * as THREE from './threejs/build/three.module.js';
 import {OBJLoader2} from './threejs/examples/jsm/loaders/OBJLoader2.js';
 import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
+import { Sky } from './threejs/examples/jsm/objects/Sky.js';
 
 var camera, scene, renderer;
 var geometry, material;
+var sky, sunSphere;
 
 init();
 animate();
@@ -78,6 +80,8 @@ function init() {
 		});
     }
     
+    initSky();
+
     window.addEventListener( 'resize', onWindowResize, false );
 }
 
@@ -92,4 +96,20 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
 	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function initSky() {
+  // sky
+  sky = new Sky();
+  sky.scale.setScalar( 450000 );
+  scene.add( sky );
+
+  // Add Sun Helper
+  sunSphere = new THREE.Mesh(
+    new THREE.SphereBufferGeometry( 20000, 16, 8 ),
+    new THREE.MeshBasicMaterial( { color: 0xffffff } )
+  );
+  sunSphere.position.y = - 700000;
+  sunSphere.visible = false;
+  scene.add( sunSphere );
 }
