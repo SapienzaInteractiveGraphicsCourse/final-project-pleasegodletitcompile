@@ -29,6 +29,7 @@ var canJump = false;
 var prevTime = performance.now();
 var velocity = new THREE.Vector3();
 var direction = new THREE.Vector3();
+var color = new THREE.Color();
 
 init();
 animate();
@@ -46,10 +47,13 @@ function init() {
 	scene.background = new THREE.Color( 0xbfd1e5 );
 		
 	// camera, position it and point 
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
+  camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
+  camera.position.x = 0;
 	camera.position.y = 1;
-	camera.position.z = 100;
-	camera.lookAt(0, 0, 0);	
+	camera.position.z = 0;
+  camera.lookAt(0, 0, 0);	
+  
+  raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 0, 10 );
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
@@ -142,7 +146,7 @@ function init() {
 	document.addEventListener( 'keydown', onKeyDown, false );
 	document.addEventListener( 'keyup', onKeyUp, false );
 
-	raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
+	
 	
 	// ground
 	var loader = new THREE.TextureLoader();
@@ -161,28 +165,6 @@ function init() {
 	scene.add( mesh );
 		
   // models
-  /*
-	{    
-		const gltfLoader = new GLTFLoader();
-		const url = './threejs/Models/cartoon_lowpoly_small_city_free_pack/scene.gltf';
-		gltfLoader.load(url, function (gltf) {
-			gltf.scene.scale.set( 0.1, 0.1, 0.1);
-			gltf.scene.position.z = 0;
-			gltf.scene.position.y = 12;		
-
-			gltf.scene.traverse( function ( child ) {
-				if ( child.isMesh ) {
-					child.castShadow = true;
-					child.receiveShadow = true;
-				}
-			});
-			
-			scene.add(gltf.scene);
-      objects.push(gltf.scene);
-      
-		});
-  }
-  */
 	{
 	const objLoader = new OBJLoader2();
 	objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
@@ -198,9 +180,14 @@ function init() {
 		}
 		});
 		
-		scene.add(root);
+    scene.add(root);
+    objects.push(root);
+
+    var windmillbox = new THREE.BoundingBoxHelper( root );
+    scene.add(windmillbox);
+
 		});
-	}
+  }
 
 	initSky();
 	initLights();
@@ -214,11 +201,13 @@ function animate() {
 	if ( controls.isLocked === true ) {
 
 		raycaster.ray.origin.copy( controls.getObject().position );
-		raycaster.ray.origin.y -= 0;
+    raycaster.ray.origin.y -= 10;
 
 		var intersections = raycaster.intersectObjects( objects );
 
     var onObject = intersections.length > 0;
+
+    console.log(intersections.length)
 
 		var time = performance.now();
 		var delta = ( time - prevTime ) / 1000;
