@@ -50,15 +50,6 @@ function init() {
   	controls.update();
   */
   
-    // light
-    const color = 0xFFFFFF;
-    const intensity = 1;
-    const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(0, 10, 0);
-    light.target.position.set(-5, 0, 0);
-    scene.add(light);
-    scene.add(light.target);
-    
     // ground
     var loader = new THREE.TextureLoader();
 
@@ -107,17 +98,61 @@ function onWindowResize() {
 }
 
 function initSky() {
-  // sky
-  sky = new Sky();
-  sky.scale.setScalar( 450000 );
-  scene.add( sky );
+	// sky
+	sky = new Sky();
+	sky.scale.setScalar( 450000 );
+	scene.add( sky );
 
-  // Add Sun Helper
-  sunSphere = new THREE.Mesh(
-    new THREE.SphereBufferGeometry( 20000, 16, 8 ),
-    new THREE.MeshBasicMaterial( { color: 0xffffff } )
-  );
-  sunSphere.position.y = - 700000;
-  sunSphere.visible = false;
-  scene.add( sunSphere );
+	// Add Sun Helper
+	sunSphere = new THREE.Mesh(
+		new THREE.SphereBufferGeometry( 20000, 16, 8 ),
+		new THREE.MeshBasicMaterial( { color: 0xffffff } )
+	);
+	sunSphere.position.y = - 700000;
+	sunSphere.visible = false;
+	scene.add( sunSphere );
+
+	var distance = 400000;
+
+	var effectController = {
+		turbidity: 10,
+		rayleigh: 2,
+		mieCoefficient: 0.005,
+		mieDirectionalG: 0.8,
+		luminance: 1,
+		inclination: 0.3, // elevation / inclination
+		azimuth: 0.25, // Facing front,
+		sun: ! true
+	};
+
+	var uniforms = sky.material.uniforms;
+	uniforms[ "turbidity" ].value = effectController.turbidity;
+	uniforms[ "rayleigh" ].value = effectController.rayleigh;
+	uniforms[ "mieCoefficient" ].value = effectController.mieCoefficient;
+	uniforms[ "mieDirectionalG" ].value = effectController.mieDirectionalG;
+	uniforms[ "luminance" ].value = effectController.luminance;
+
+	var theta = Math.PI * ( effectController.inclination - 0.5 );
+	var phi = 2 * Math.PI * ( effectController.azimuth - 0.5 );
+
+	sunSphere.position.x = distance * Math.cos( phi );
+	sunSphere.position.y = distance * Math.sin( phi ) * Math.sin( theta );
+	sunSphere.position.z = distance * Math.sin( phi ) * Math.cos( theta );
+
+	sunSphere.visible = effectController.sun;
+
+	uniforms[ "sunPosition" ].value.copy( sunSphere.position );
+
+	// light
+	const color = 0xFFFFFF;
+	const intensity = 1;
+	const light = new THREE.DirectionalLight(color, intensity);
+	light.position.set(sunSphere.position.x, sunSphere.position.y, sunSphere.position.z);
+	light.target.position.set(0, 0, 0);
+	scene.add(light);
+	scene.add(light.target);
+
+	// ambient light 
+	var ambientLight = new THREE.AmbientLight(0x777777);
+	scene.add(ambientLight);
 }
