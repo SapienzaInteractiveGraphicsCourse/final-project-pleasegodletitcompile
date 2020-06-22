@@ -20,10 +20,10 @@ function init() {
 
     // scene
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0x0000ff );
-    
+	 scene.background = new THREE.Color( 0xbfd1e5 );
+
     // camera
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 2000 );
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
     camera.position.z = 1000;
     camera.position.y = 1;
 	camera.lookAt(0, 0, 0)	
@@ -61,9 +61,10 @@ function init() {
       });
     }
     
-    initSky();
+ 	initSky();
+	initLights();
 
-    window.addEventListener( 'resize', onWindowResize, false );
+	window.addEventListener( 'resize', onWindowResize, false );
 }
 
 function animate() {
@@ -77,6 +78,18 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
 	renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
+function initLights() {
+	// hemisphere light 
+	var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+	hemiLight.position.set( 0, 50, 0 );
+	scene.add( hemiLight );
+
+	// directional light
+	var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+	dirLight.position.set( sunSphere.position.x, sunSphere.position.y, sunSphere.position.z);
+	scene.add( dirLight );
 }
 
 function initSky() {
@@ -96,6 +109,7 @@ function initSky() {
 
 	var distance = 400000;
 
+	// Controls of the sun position and effect
 	var effectController = {
 		turbidity: 10,
 		rayleigh: 2,
@@ -124,17 +138,4 @@ function initSky() {
 	sunSphere.visible = effectController.sun;
 
 	uniforms[ "sunPosition" ].value.copy( sunSphere.position );
-
-	// light
-	const color = 0xFFFFFF;
-	const intensity = 1;
-	const light = new THREE.DirectionalLight(color, intensity);
-	light.position.set(sunSphere.position.x, sunSphere.position.y, sunSphere.position.z);
-	light.target.position.set(0, 0, 0);
-	scene.add(light);
-	scene.add(light.target);
-
-	// ambient light 
-	var ambientLight = new THREE.AmbientLight(0x777777);
-	scene.add(ambientLight);
 }
