@@ -23,8 +23,8 @@ function init() {
     scene.background = new THREE.Color( 0x0000ff );
     
     // camera
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 100 );
-    camera.position.z = 15;
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 2000 );
+    camera.position.z = 1000;
     camera.position.y = 1;
 	camera.lookAt(0, 0, 0)	
 	
@@ -59,25 +59,15 @@ function init() {
     scene.add( mesh );
     
 	// models
-	{
-		const objLoader = new OBJLoader2();
-		objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
-            root.position.x = -10;
-	        scene.add(root);
-		});
-    }
-
-    {
-		const objLoader = new OBJLoader2();
-		objLoader.load('./threejs/Models/the-cartoon-knight.obj', (root) => {
-            root.position.x = 2;
-            scene.add(root);
-            const box = new THREE.Box3().setFromObject(root);
-            const boxSize = box.getSize(new THREE.Vector3()).length();
-            const boxCenter = box.getCenter(new THREE.Vector3());
-            console.log(boxSize);
-            console.log(boxCenter);
-		});
+    {    
+      const gltfLoader = new GLTFLoader();
+      const url = './threejs/Models/cartoon_lowpoly_small_city_free_pack/scene.gltf';
+      gltfLoader.load(url, (gltf) => {
+        const root = gltf.scene;
+        root.position.z = -50;
+        root.position.y = 150;
+        scene.add(root);
+      });
     }
     
     initSky();
