@@ -139,14 +139,7 @@ function init() {
 	document.addEventListener( 'keyup', onKeyUp, false );
 
 	raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
-	/*
-	// control camera
-	const controls = new OrbitControls(camera, renderer.domElement);
-	controls.target.set(0, 0, 0);
-	controls.update();
-	*/
-
-
+	
 	// ground
 	var loader = new THREE.TextureLoader();
 
