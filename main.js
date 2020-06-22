@@ -53,7 +53,30 @@ function init() {
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
-	controls.isLocked = true;
+
+  var blocker = document.getElementById( 'blocker' );
+  var instructions = document.getElementById( 'instructions' );
+  
+  instructions.addEventListener( 'click', function () {
+
+					controls.lock();
+
+				}, false );
+
+				controls.addEventListener( 'lock', function () {
+
+					instructions.style.display = 'none';
+					blocker.style.display = 'none';
+
+				} );
+
+				controls.addEventListener( 'unlock', function () {
+
+					blocker.style.display = 'block';
+					instructions.style.display = '';
+
+				} );
+
 	scene.add( controls.getObject() );
 	var onKeyDown = function ( event ) {
 
@@ -120,14 +143,7 @@ function init() {
 	document.addEventListener( 'keyup', onKeyUp, false );
 
 	raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
-	/*
-	// control camera
-	const controls = new OrbitControls(camera, renderer.domElement);
-	controls.target.set(0, 0, 0);
-	controls.update();
-	*/
-
-
+	
 	// ground
 	var loader = new THREE.TextureLoader();
 
