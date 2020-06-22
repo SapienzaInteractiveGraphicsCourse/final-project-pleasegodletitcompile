@@ -141,20 +141,21 @@ function init() {
 	{    
 		const gltfLoader = new GLTFLoader();
 		const url = './threejs/Models/cartoon_lowpoly_small_city_free_pack/scene.gltf';
-		gltfLoader.load(url, (gltf) => {
-			const root = gltf.scene;
-			root.scale.set( 0.1, 0.1, 0.1);
-			root.position.z = 0;
-			root.position.y = 12;
-			scene.add(root);
-			objects.push(root);
+		gltfLoader.load(url, function (gltf) {
+			gltf.scene.scale.set( 0.1, 0.1, 0.1);
+			gltf.scene.position.z = 0;
+			gltf.scene.position.y = 12;
+			
 
-			gltfModel.scene.traverse( function ( child ) {
+			gltf.scene.traverse( function ( child ) {
 				if ( child.isMesh ) {
 					child.castShadow = true;
 					child.receiveShadow = true;
 				}
 			});
+			
+			scene.add(gltf.scene);
+			objects.push(gltf.scene);
 		});
 	}
 
@@ -234,15 +235,13 @@ function initLights() {
 
 	// directional light
 	var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-	dirLight.position.set( sunSphere.position.x, sunSphere.position.y, sunSphere.position.z);
+	dirLight.position.set( 10, 10, 10);
 	dirLight.castShadow = true;
-	dirLight.shadow.camera.top = 50;
-	dirLight.shadow.camera.bottom = - 25;
-	dirLight.shadow.camera.left = - 25;
-	dirLight.shadow.camera.right = 25;
-	dirLight.shadow.camera.near = 0.1;
-	dirLight.shadow.camera.far = 200;
-	dirLight.shadow.mapSize.set( 1024, 1024 );
+	var d = 300;
+	dirLight.shadow.camera.left = - d;
+	dirLight.shadow.camera.right = d;
+	dirLight.shadow.camera.top = d;
+	dirLight.shadow.camera.bottom = - d;
 	scene.add( dirLight );
 }
 
@@ -257,7 +256,6 @@ function initSky() {
 		new THREE.SphereBufferGeometry( 20000, 16, 8 ),
 		new THREE.MeshBasicMaterial( { color: 0xffffff } )
 	);
-	sunSphere.position.y = - 700000;
 	sunSphere.visible = false;
 	scene.add( sunSphere );
 
