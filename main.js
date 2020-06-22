@@ -144,8 +144,7 @@ function init() {
 		gltfLoader.load(url, function (gltf) {
 			gltf.scene.scale.set( 0.1, 0.1, 0.1);
 			gltf.scene.position.z = 0;
-			gltf.scene.position.y = 12;
-			
+			gltf.scene.position.y = 12;		
 
 			gltf.scene.traverse( function ( child ) {
 				if ( child.isMesh ) {
@@ -159,7 +158,7 @@ function init() {
 		});
 	}
 
-	initSky();
+	// initSky();
 	initLights();
 
 	window.addEventListener( 'resize', onWindowResize, false );
@@ -235,14 +234,21 @@ function initLights() {
 
 	// directional light
 	var dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-	dirLight.position.set( 10, 10, 10);
+	dirLight.position.set( 50, 100, 0);
 	dirLight.castShadow = true;
-	var d = 300;
+	dirLight.shadow.mapSize.width = 1024;
+	dirLight.shadow.mapSize.height = 1024;
+	var d = 100;
 	dirLight.shadow.camera.left = - d;
 	dirLight.shadow.camera.right = d;
 	dirLight.shadow.camera.top = d;
 	dirLight.shadow.camera.bottom = - d;
+	dirLight.shadow.camera.near = 10;
+	dirLight.shadow.camera.far = 1000;
 	scene.add( dirLight );
+	var shadowCameraHelper = new THREE.CameraHelper(dirLight.shadow.camera);
+	shadowCameraHelper.visible = true;
+
 }
 
 function initSky() {
