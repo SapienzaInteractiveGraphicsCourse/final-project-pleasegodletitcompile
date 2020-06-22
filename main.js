@@ -49,7 +49,30 @@ function init() {
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
-	controls.isLocked = true;
+
+  var blocker = document.getElementById( 'blocker' );
+  var instructions = document.getElementById( 'instructions' );
+  
+  instructions.addEventListener( 'click', function () {
+
+					controls.lock();
+
+				}, false );
+
+				controls.addEventListener( 'lock', function () {
+
+					instructions.style.display = 'none';
+					blocker.style.display = 'none';
+
+				} );
+
+				controls.addEventListener( 'unlock', function () {
+
+					blocker.style.display = 'block';
+					instructions.style.display = '';
+
+				} );
+
 	scene.add( controls.getObject() );
 	var onKeyDown = function ( event ) {
 
