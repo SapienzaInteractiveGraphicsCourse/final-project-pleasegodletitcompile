@@ -8,6 +8,7 @@ import { PointerLockControls } from './threejs/examples/jsm/controls/PointerLock
 
 var camera, scene, renderer;
 
+// Variables to animate objects
 var mill;
 
 // Lights
@@ -27,6 +28,9 @@ var moveBackward = false;
 var moveLeft = false;
 var moveRight = false;
 var canJump = false;
+
+//Single variable to the collisions
+var execute = true;
 
 var vector = new THREE.Vector3();
 
@@ -103,26 +107,31 @@ function init() {
 		case 38: // up
 		case 87: // w
 			moveForward = true;
+			execute = true;
 			break;
 
 		case 37: // left
 		case 65: // a
 			moveLeft = true;
+			execute = true;
 			break;
 
 		case 40: // down
 		case 83: // s
 			moveBackward = true;
+			execute = true;
 			break;
 
 		case 39: // right
 		case 68: // d
 			moveRight = true;
+			execute = true;
 			break;
 
 		case 32: // space
 			if ( canJump === true ) velocity.y += 350;
 			canJump = false;
+			execute = true;
 			break;
 
 		}
@@ -178,7 +187,6 @@ function init() {
 	scene.add( mesh );
 		
 	  // Models
-	/*
 	{
 	const objLoader = new OBJLoader2();
 	objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
@@ -200,7 +208,7 @@ function init() {
 		console.log(dumpObject(root).join('\n'));
 		});
 	}
-	*/
+	/*
 	{
 	const gltfLoader = new GLTFLoader();
 	const url = './threejs/Models/low-poly-scenery-hills-and-lake.gltf';
@@ -223,7 +231,7 @@ function init() {
 		});
 	
 	}
-	
+	*/
 	  
 
 	// objects
@@ -335,7 +343,7 @@ function animate() {
 		if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
 
 		if ( onObjectXplus == true ) {
-			velocity.x = 0;
+			velocity.x = 0; 
 			moveRight = false;
 		}
 
@@ -347,7 +355,7 @@ function animate() {
 
 		if ( onObjectYplus == true ) {
 			velocity.y = 0;
-			canJump = false;  
+			canJump = true;  
 		}
 
 		if ( onObjectYminus == true ) {
@@ -356,12 +364,18 @@ function animate() {
 		}
 
 		if ( onObjectZplus == true ) {
-			velocity.z = 0;
+			if(execute == true){
+				velocity.z = 0;
+				execute = false;
+			}
 			moveBackward = false;
 		}
 
 		if ( onObjectZminus == true ) {
-			velocity.z = 0;
+			if(execute == true){
+				velocity.z = 0;
+				execute = false;
+			}
 			moveForward = false;
 		}		
 
@@ -375,6 +389,8 @@ function animate() {
 			controls.getObject().position.y = 10;
 			canJump = true;
 		}
+		console.log(moveForward)
+		console.log(moveBackward)
 
 		prevTime = time;
 	}
