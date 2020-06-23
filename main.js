@@ -208,7 +208,6 @@ function init() {
 		});
 		scene.add(root);
 		mill = root.getObjectByName('lopatky');
-		console.log(dumpObject(root).join('\n'));
 		});
 
 
@@ -263,23 +262,24 @@ function animate() {
 
 		// Set origin of the ray at the camera position
 		// Set direction w.r.t. the world coordinates
-		raycasterXplus.ray.origin.copy( controls.getObject().position );
-		raycasterXplus.ray.direction.copy( -vector)
+		raycasterZminus.ray.origin.copy( controls.getObject().position );
+		raycasterZminus.ray.direction.copy( vector );
 
-		raycasterYplus.ray.origin.copy( controls.getObject().position );
-		// raycasterZplus.ray.direction.copy( vector.applyAxisAngle( camera., Math.PI / 2 ) )
+		raycasterXplus.ray.origin.copy( controls.getObject().position );
+		raycasterXplus.ray.direction.copy( vector.applyAxisAngle( new THREE.Vector3(0,1,0), -Math.PI / 2 ));
 
 		raycasterZplus.ray.origin.copy( controls.getObject().position );
-		raycasterZplus.ray.direction.copy( -vector )
+		raycasterZplus.ray.direction.copy( vector.applyAxisAngle( new THREE.Vector3(0,1,0), -Math.PI / 2 ) );
 
 		raycasterXminus.ray.origin.copy( controls.getObject().position );
-		raycasterXminus.ray.direction.copy( vector )
+		raycasterXminus.ray.direction.copy( vector.applyAxisAngle( new THREE.Vector3(0,1,0), -Math.PI / 2 ) );
 
+		raycasterYplus.ray.origin.copy( controls.getObject().position );
+		
 		raycasterYminus.ray.origin.copy( controls.getObject().position );
 		raycasterYminus.ray.origin.y -= 10;
 
-		raycasterZminus.ray.origin.copy( controls.getObject().position );
-		raycasterZminus.ray.direction.copy( vector )
+		
 
 		// Check intesections with the list of objects
 		var intersectionsXplus = raycasterXplus.intersectObjects( objects );
@@ -366,8 +366,6 @@ function animate() {
 			controls.getObject().position.y = 10;
 			canJump = true;
 		}
-		console.log(moveForward)
-		console.log(moveBackward)
 
 		prevTime = time;
 	}
