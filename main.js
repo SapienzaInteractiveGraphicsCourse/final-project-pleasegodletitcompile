@@ -8,6 +8,8 @@ import { PointerLockControls } from './threejs/examples/jsm/controls/PointerLock
 
 var camera, scene, renderer;
 
+var mill;
+
 // Lights
 var hemiLight, dirLight;
 
@@ -180,6 +182,7 @@ function init() {
 		root.scale.set( 10, 10, 10);
 		root.position.z = -60;
 		root.position.y = 1;
+		mill=root;
 		
 		// Traverse functoin, define a mesh for each node 
 		root.traverse( function ( node ) {
@@ -189,7 +192,7 @@ function init() {
 				objects.push(node)
 			}
 		});
-		
+
 		scene.add(root);
 		});
   	}
@@ -235,6 +238,9 @@ function init() {
 
 function animate() {
 	requestAnimationFrame( animate );
+
+	mill.rotation.y+=0.01;
+
 
 	if ( controls.isLocked === true ) {
 
@@ -332,6 +338,7 @@ function animate() {
 
 		prevTime = time;
 	}
+
 
 	renderer.render( scene, camera );
 }
