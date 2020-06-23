@@ -67,10 +67,10 @@ function init() {
   	camera.lookAt(0, 10, -1);	
   
 	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
-	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, 1, 0), 0.5, 5 );
+	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, 1, 0), 0.1, 2 );
 	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
-	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, -1, 0), 0.5, 5 );
+	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, -1, 0), 0.1, 2 );
 	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 
 	// Control camera
@@ -131,7 +131,7 @@ function init() {
 			break;
 
 		case 32: // space
-			if ( canJump === true ) velocity.y += 350;
+			if ( canJump == true ) velocity.y += 350;
 			canJump = false;
 			execute = true;
 			break;
@@ -331,13 +331,14 @@ function animate() {
 	
 
 		if ( onObjectYplus == true ) {
-			velocity.y = 0;
-			canJump = true;  
+			velocity.y = Math.min( 0, velocity.y );;
+			canJump = false;
 		}
 
 		if ( onObjectYminus == true ) {
-			velocity.y = 0;
-			canJump = true;  
+			velocity.y = Math.max( 0, velocity.y );;
+			canJump = true;
+			
 		}
 
 		if ( onObjectZplus == true ) {
@@ -369,7 +370,6 @@ function animate() {
 
 		prevTime = time;
 	}
-
 
 	renderer.render( scene, camera );
 }
