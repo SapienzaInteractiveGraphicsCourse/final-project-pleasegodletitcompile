@@ -220,7 +220,7 @@ function init() {
 		const rootTorre = gltf.scene;
 		rootTorre.scale.set( 5, 5, 5);
 		rootTorre.position.z = -20;
-		rootTorre.position.y = 0;
+		rootTorre.position.y = -4;
 		rootTorre.position.x = -50;
 
 		// Traverse function, define a mesh for each node 
