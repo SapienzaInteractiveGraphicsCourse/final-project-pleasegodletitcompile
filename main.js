@@ -63,12 +63,19 @@ function init() {
 	camera.position.z = 0;
   	camera.lookAt(0, 10, -1);	
   
+
 	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, 1, 0), 0.5, 5 );
 	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, -1, 0), 0.5, 5 );
 	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.1, 7 );
+	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, 1, 0), 0.1, 7 );
+	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.1, 7 );
+	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.1, 7 );
+	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, -1, 0), 0.1, 7 );
+	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.1, 7 );
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
