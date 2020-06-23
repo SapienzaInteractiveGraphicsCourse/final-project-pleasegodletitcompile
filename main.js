@@ -273,80 +273,68 @@ function animate() {
 		//console.log("onObjectYminus " + onObjectYminus);
 		//console.log("onObjectZminus " + onObjectZminus);
 
-			var time = performance.now();
-			var delta = ( time - prevTime ) / 1000;
+		var time = performance.now();
+		var delta = ( time - prevTime ) / 1000;
 
-			velocity.x -= velocity.x * 10.0 * delta;
-			velocity.z -= velocity.z * 10.0 * delta;
+		velocity.x -= velocity.x * 10.0 * delta;
+		velocity.z -= velocity.z * 10.0 * delta;
 
-			velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
+		velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
 
-			direction.z = Number( moveForward ) - Number( moveBackward );
-			direction.x = Number( moveRight ) - Number( moveLeft );
-			direction.normalize(); // this ensures consistent movements in all directions
+		direction.z = Number( moveForward ) - Number( moveBackward );
+		direction.x = Number( moveRight ) - Number( moveLeft );
+		direction.normalize(); // this ensures consistent movements in all directions
 
-			if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
-			if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
+		if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
+		if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
 
-			if ( onObjectXplus == true ) {
-
+		if ( onObjectXplus == true ) {
 			velocity.x = 0;
 			moveRight = false;
-			}
-
-			if ( onObjectXminus == true ) {
-
-			velocity.x = 0;
-			moveLeft = false;
-			}
-		
-
-			if ( onObjectYplus == true ) {
-
-			velocity.y = 0;
-			canJump = false;  
-			}
-
-			if ( onObjectYminus == true ) {
-
-			velocity.y = 0;
-			canJump = true;  
-			}
-
-			if ( onObjectZplus == true ) {
-
-			velocity.z = 0;
-			moveBackward = false;
-			
-			}
-
-			if ( onObjectZminus == true ) {
-
-			velocity.z = 0;
-			moveForward = false;
-		
 		}
 
-			controls.moveRight( - velocity.x * delta );
-			controls.moveForward( - velocity.z * delta );
+		if ( onObjectXminus == true ) {
+			velocity.x = 0;
+			moveLeft = false;
+		}
+	
+
+		if ( onObjectYplus == true ) {
+			velocity.y = 0;
+			canJump = false;  
+		}
+
+		if ( onObjectYminus == true ) {
+			velocity.y = 0;
+			canJump = true;  
+		}
+
+		if ( onObjectZplus == true ) {
+			velocity.z = 0;
+			moveBackward = false;
+		}
+
+		if ( onObjectZminus == true ) {
+			velocity.z = 0;
+			moveForward = false;
+		}		
+
+		controls.moveRight( - velocity.x * delta );
+		controls.moveForward( - velocity.z * delta );
 
 		controls.getObject().position.y += ( velocity.y * delta ); // new behavior
 
-			if ( controls.getObject().position.y < 10 ) {
-
+		if ( controls.getObject().position.y < 10 ) {
 			velocity.y = 0;
 			controls.getObject().position.y = 10;
-
 			canJump = true;
-
-			}
-
-			prevTime = time;
-
 		}
 
-		renderer.render( scene, camera );
+		prevTime = time;
 	}
+
+	renderer.render( scene, camera );
+}
 
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
