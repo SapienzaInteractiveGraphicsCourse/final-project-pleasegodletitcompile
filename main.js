@@ -29,6 +29,9 @@ var moveLeft = false;
 var moveRight = false;
 var canJump = false;
 
+//Single variable to the collisions
+var execute = true;
+
 var vector = new THREE.Vector3();
 
 var prevTime = performance.now();
@@ -63,13 +66,6 @@ function init() {
 	camera.position.z = 0;
   	camera.lookAt(0, 10, -1);	
   
-
-	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
-	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, 1, 0), 0.5, 5 );
-	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
-	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
-	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, -1, 0), 0.5, 5 );
-	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.1, 7 );
 	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, 1, 0), 0.1, 7 );
 	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.1, 7 );
@@ -113,26 +109,31 @@ function init() {
 		case 38: // up
 		case 87: // w
 			moveForward = true;
+			execute = true;
 			break;
 
 		case 37: // left
 		case 65: // a
 			moveLeft = true;
+			execute = true;
 			break;
 
 		case 40: // down
 		case 83: // s
 			moveBackward = true;
+			execute = true;
 			break;
 
 		case 39: // right
 		case 68: // d
 			moveRight = true;
+			execute = true;
 			break;
 
 		case 32: // space
-			if ( canJump === true ) velocity.y += 350;
+			if ( canJump == true ) velocity.y += 350;
 			canJump = false;
+			execute = true;
 			break;
 
 		}
@@ -186,9 +187,9 @@ function init() {
 	mesh.rotation.x = - Math.PI / 2;
 	mesh.receiveShadow = true;
 	scene.add( mesh );
+		
 
 	// Models
-	{
 	const gltfLoader = new GLTFLoader();
 	// const url = './threejs/Models/low-poly-scenery-hills-and-lake.gltf';
 	const url = './threejs/Models/windmill.gltf';
@@ -207,35 +208,8 @@ function init() {
 		});
 		scene.add(root);
 		mill = root.getObjectByName('lopatky');
-		console.log(dumpObject(root).join('\n'));
 		});
-	
-	}
 
-	//torre di vedetta
-	{
-	const gltfLoaderTorre = new GLTFLoader();
-	const urlTorre = './threejs/Models/vedetta/vedetta.gltf';
-	gltfLoaderTorre.load(urlTorre, (gltf) => {
-		const rootTorre = gltf.scene;
-		rootTorre.scale.set( 5, 5, 5);
-		rootTorre.position.z = -20;
-		rootTorre.position.y = -4;
-		rootTorre.position.x = -50;
-
-		// Traverse function, define a mesh for each node 
-		rootTorre.traverse( function ( node ) {
-				
-			if ( node instanceof THREE.Mesh ) {
-				node.castShadow = true;
-				node.receiveShadow = true;
-				objects.push(node);
-			}
-				
-		});
-		scene.add(rootTorre);
-	});	
-	}
 
 	// Boxes
 	var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
@@ -268,6 +242,8 @@ function init() {
 
   }
 
+	var axesHelper = new THREE.AxesHelper( 5 );
+	scene.add( axesHelper );
 	initSky();
 	initLights();
 	
@@ -280,28 +256,30 @@ function animate() {
 	if ( controls.isLocked === true ) {
 		mill.rotation.x += 0.01;
 
+		// vector represents the world space direction in which
+		// the camera is looking (negative z-axis)
 		camera.getWorldDirection( vector );
 
 		// Set origin of the ray at the camera position
 		// Set direction w.r.t. the world coordinates
+		raycasterZminus.ray.origin.copy( controls.getObject().position );
+		raycasterZminus.ray.direction.copy( vector );
+
 		raycasterXplus.ray.origin.copy( controls.getObject().position );
-		// TODO (LEOOOOOO PROVA FINCHE FINISCO DI MANGIARE): ROTATE BY THE RIGHT ANGLE
-		// QUESTO RUOTA RISPETTO AL WOLRD REFERENCE FRAME
-		raycasterXplus.ray.direction.copy( -vector)
+		raycasterXplus.ray.direction.copy( vector.applyAxisAngle( new THREE.Vector3(0,1,0), -Math.PI / 2 ));
+
+		raycasterZplus.ray.origin.copy( controls.getObject().position );
+		raycasterZplus.ray.direction.copy( vector.applyAxisAngle( new THREE.Vector3(0,1,0), -Math.PI / 2 ) );
+
+		raycasterXminus.ray.origin.copy( controls.getObject().position );
+		raycasterXminus.ray.direction.copy( vector.applyAxisAngle( new THREE.Vector3(0,1,0), -Math.PI / 2 ) );
 
 		raycasterYplus.ray.origin.copy( controls.getObject().position );
 		
-		raycasterZplus.ray.origin.copy( controls.getObject().position );
-		raycasterZplus.ray.direction.copy( -vector )
-
-		raycasterXminus.ray.origin.copy( controls.getObject().position );
-		raycasterXminus.ray.direction.copy( vector )
-
 		raycasterYminus.ray.origin.copy( controls.getObject().position );
 		raycasterYminus.ray.origin.y -= 10;
 
-		raycasterZminus.ray.origin.copy( controls.getObject().position );
-		raycasterZminus.ray.direction.copy( vector )
+		
 
 		// Check intesections with the list of objects
 		var intersectionsXplus = raycasterXplus.intersectObjects( objects );
@@ -342,33 +320,46 @@ function animate() {
 		if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
 
 		if ( onObjectXplus == true ) {
-			velocity.x = 0;
+			if(execute == true){
+				velocity.x = 0;
+				execute = false;
+			}
 			moveRight = false;
 		}
 
 		if ( onObjectXminus == true ) {
-			velocity.x = 0;
+			if(execute == true){
+				velocity.x = 0;
+				execute = false;
+			}
 			moveLeft = false;
 		}
 	
 
 		if ( onObjectYplus == true ) {
-			velocity.y = 0;
-			canJump = false;  
+			velocity.y = Math.min( 0, velocity.y );;
+			canJump = false;
 		}
 
 		if ( onObjectYminus == true ) {
-			velocity.y = 0;
-			canJump = true;  
+			velocity.y = Math.max( 0, velocity.y );;
+			canJump = true;
+			
 		}
 
 		if ( onObjectZplus == true ) {
-			velocity.z = 0;
+			if(execute == true){
+				velocity.z = 0;
+				execute = false;
+			}
 			moveBackward = false;
 		}
 
 		if ( onObjectZminus == true ) {
-			velocity.z = 0;
+			if(execute == true){
+				velocity.z = 0;
+				execute = false;
+			}
 			moveForward = false;
 		}		
 
@@ -385,7 +376,6 @@ function animate() {
 
 		prevTime = time;
 	}
-
 
 	renderer.render( scene, camera );
 }
