@@ -208,7 +208,6 @@ function init() {
 	//torre di vedetta
 	{
 		const gltfLoaderTorre = new GLTFLoader();
-		// const url = './threejs/Models/low-poly-scenery-hills-and-lake.gltf';
 		const urlTorre = './threejs/Models/vedetta.gltf';
 		gltfLoaderTorre.load(urlTorre, (gltf) => {
 			const rootTorre = gltf.scene;
@@ -227,8 +226,6 @@ function init() {
 				
 			});
 			scene.add(rootTorre);
-			//mill = root.getObjectByName('lopatky');
-			//console.log(dumpObject(root).join('\n'));
 		});	
 	}
 
