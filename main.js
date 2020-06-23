@@ -1,6 +1,6 @@
 import * as THREE from './threejs/build/three.module.js';
 import {OBJLoader2} from './threejs/examples/jsm/loaders/OBJLoader2.js';
-//import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
+import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
 //import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
 import { Sky } from './threejs/examples/jsm/objects/Sky.js';
 import { PointerLockControls } from './threejs/examples/jsm/controls/PointerLockControls.js';
@@ -177,7 +177,8 @@ function init() {
 	mesh.receiveShadow = true;
 	scene.add( mesh );
 		
-  	// Models
+	  // Models
+	/*
 	{
 	const objLoader = new OBJLoader2();
 	objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
@@ -195,10 +196,35 @@ function init() {
 		});
 
 		scene.add(root);
-		//mill = root.getObjectByName('mlyn_Circle')
+		//mill = root.getObjectByName('lopatky_Circle')
 		console.log(dumpObject(root).join('\n'));
 		});
-  	}
+	}
+	*/
+	{
+	const gltfLoader = new GLTFLoader();
+	const url = './threejs/Models/low-poly-scenery-hills-and-lake.gltf';
+	gltfLoader.load(url, (gltf) => {
+		const root = gltf.scene;
+		root.scale.set( 1000, 1000, 1000);
+		root.position.z = -2000;
+		root.position.y = 4;
+		// Traverse functoin, define a mesh for each node 
+		root.traverse( function ( node ) {
+			if ( node instanceof THREE.Mesh ) {
+				node.castShadow = true;
+				node.receiveShadow = true;
+				objects.push(node)
+			}
+		});
+
+		scene.add(root);
+		console.log(dumpObject(root).join('\n'));
+		});
+	
+	}
+	
+	  
 
 	// objects
 
