@@ -61,10 +61,10 @@ function init() {
   	camera.lookAt(0, 10, -1);	
   
 	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
-	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, 1, 0), 0.5, 5 );
 	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
-	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(0, -1, 0), 0.5, 5 );
 	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 
 	// Control camera
@@ -184,7 +184,6 @@ function init() {
 		root.scale.set( 10, 10, 10);
 		root.position.z = -60;
 		root.position.y = 1;
-		mill=root;
 		
 		// Traverse functoin, define a mesh for each node 
 		root.traverse( function ( node ) {
@@ -196,6 +195,8 @@ function init() {
 		});
 
 		scene.add(root);
+		//mill = root.getObjectByName('mlyn_Circle')
+		console.log(dumpObject(root).join('\n'));
 		});
   	}
 
@@ -241,7 +242,7 @@ function init() {
 function animate() {
 	requestAnimationFrame( animate );
 
-	mill.rotation.y+=0.01;
+	//mill.rotation.y+=0.01;
 
 
 	if ( controls.isLocked === true ) {
@@ -253,20 +254,18 @@ function animate() {
 		raycasterXplus.ray.origin.copy( controls.getObject().position );
 		// TODO (LEOOOOOO PROVA FINCHE FINISCO DI MANGIARE): ROTATE BY THE RIGHT ANGLE
 		// QUESTO RUOTA RISPETTO AL WOLRD REFERENCE FRAME
-		raycasterXplus.ray.direction.copy( vector.applyAxisAngle( (0,1,0), -Math.PI / 2 ) )
+		raycasterXplus.ray.direction.copy( -vector)
 
 		raycasterYplus.ray.origin.copy( controls.getObject().position );
-		raycasterYplus.ray.direction.copy( vector.applyAxisAngle( (1,0,0), Math.PI / 2 ) )
 		
 		raycasterZplus.ray.origin.copy( controls.getObject().position );
 		raycasterZplus.ray.direction.copy( -vector )
 
 		raycasterXminus.ray.origin.copy( controls.getObject().position );
-		raycasterXminus.ray.direction.copy( vector.applyAxisAngle( (0,1,0), Math.PI / 2 ) )
+		raycasterXminus.ray.direction.copy( vector )
 
 		raycasterYminus.ray.origin.copy( controls.getObject().position );
 		raycasterYminus.ray.origin.y -= 10;
-		raycasterYminus.ray.direction.copy( vector.applyAxisAngle( (1,0,0), -Math.PI / 2 ))
 
 		raycasterZminus.ray.origin.copy( controls.getObject().position );
 		raycasterZminus.ray.direction.copy( vector )
