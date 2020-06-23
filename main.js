@@ -28,6 +28,8 @@ var moveLeft = false;
 var moveRight = false;
 var canJump = false;
 
+var vector = new THREE.Vector3();
+
 var prevTime = performance.now();
 var velocity = new THREE.Vector3();
 var direction = new THREE.Vector3();
@@ -56,14 +58,14 @@ function init() {
 	camera.position.x = 0;
 	camera.position.y = 10;
 	camera.position.z = 0;
-  	camera.lookAt(0, 1, -1);	
+  	camera.lookAt(0, 10, -1);	
   
-	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(1, 0, 0), 1, 2 );
-	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 1, 0), 1, 2 );
-	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, 1), 1, 2 );
-	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 1, 2 );
-	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 1, 2 );
-	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, -1), 1, 2 );
+	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
+	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(),  new THREE.Vector3(), 0.5, 5 );
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
@@ -244,33 +246,64 @@ function animate() {
 
 	if ( controls.isLocked === true ) {
 
-		// Try to change origins for every raycaster
+		camera.getWorldDirection( vector );
+
+		// Set origin of the ray at the camera position
+		// Set direction w.r.t. the world coordinates
 		raycasterXplus.ray.origin.copy( controls.getObject().position );
+		// TODO (LEOOOOOO PROVA FINCHE FINISCO DI MANGIARE): ROTATE BY THE RIGHT ANGLE
+		// QUESTO RUOTA RISPETTO AL WOLRD REFERENCE FRAME
+		raycasterXplus.ray.direction.copy( vector.applyAxisAngle( (0,1,0), -Math.PI / 2 ) )
 
 		raycasterYplus.ray.origin.copy( controls.getObject().position );
-
+		raycasterYplus.ray.direction.copy( vector.applyAxisAngle( (1,0,0), Math.PI / 2 ) )
+		
 		raycasterZplus.ray.origin.copy( controls.getObject().position );
+		raycasterZplus.ray.direction.copy( -vector )
 
 		raycasterXminus.ray.origin.copy( controls.getObject().position );
+		raycasterXminus.ray.direction.copy( vector.applyAxisAngle( (0,1,0), Math.PI / 2 ) )
 
 		raycasterYminus.ray.origin.copy( controls.getObject().position );
 		raycasterYminus.ray.origin.y -= 10;
+		raycasterYminus.ray.direction.copy( vector.applyAxisAngle( (1,0,0), -Math.PI / 2 ))
 
 		raycasterZminus.ray.origin.copy( controls.getObject().position );
+		raycasterZminus.ray.direction.copy( vector )
 
+		// Check intesections with the list of objects
 		var intersectionsXplus = raycasterXplus.intersectObjects( objects );
 		var intersectionsYplus = raycasterYplus.intersectObjects( objects );
 		var intersectionsZplus = raycasterZplus.intersectObjects( objects );
 		var intersectionsXminus = raycasterXminus.intersectObjects( objects );
-		var intersectionsYminus = raycasterYminus .intersectObjects( objects );
+		var intersectionsYminus = raycasterYminus.intersectObjects( objects );
 		var intersectionsZminus = raycasterZminus.intersectObjects( objects );
 
-		var onObjectXplus = intersectionsXplus.length > 0;
-		var onObjectYplus = intersectionsYplus.length > 0;
-		var onObjectZplus = intersectionsZplus.length > 0;
-		var onObjectXminus = intersectionsXminus.length > 0;
-		var onObjectYminus = intersectionsYminus.length > 0;
-		var onObjectZminus = intersectionsZminus.length > 0;
+		// Check if the eventual closest intersection is less than threshold
+		var onObjectXplus = false;
+		var onObjectYplus = false;
+		var onObjectZplus = false;
+		var onObjectXminus = false;
+		var onObjectYminus = false;
+		var onObjectZminus = false;
+		if(intersectionsXplus.length > 0) {
+			onObjectXplus = intersectionsXplus[0].distance < 2;
+		}
+		if(intersectionsYplus.length > 0) {
+			onObjectYplus = intersectionsYplus[0].distance < 2;
+		}
+		if(intersectionsZplus.length > 0) {
+			onObjectZplus = intersectionsZplus[0].distance < 2;
+		}
+		if(intersectionsXminus.length > 0) {
+			onObjectXminus = intersectionsXminus[0].distance < 2;
+		}
+		if(intersectionsYminus.length > 0) {
+			onObjectYminus = intersectionsYminus[0].distance < 2;
+		}
+		if(intersectionsZminus.length > 0) {
+			onObjectZminus = intersectionsZminus[0].distance < 2;
+		}
 
 		//console.log("onObjectXplus " + onObjectXplus);
 		//console.log("onObjectYplus " + onObjectYplus);
