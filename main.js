@@ -215,7 +215,7 @@ function init() {
 	//torre di vedetta
 	{
 	const gltfLoaderTorre = new GLTFLoader();
-	const urlTorre = './threejs/Models/vedetta.gltf';
+	const urlTorre = './threejs/Models/vedetta/vedetta.gltf';
 	gltfLoaderTorre.load(urlTorre, (gltf) => {
 		const rootTorre = gltf.scene;
 		rootTorre.scale.set( 5, 5, 5);
