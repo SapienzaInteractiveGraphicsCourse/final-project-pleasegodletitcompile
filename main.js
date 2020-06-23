@@ -320,12 +320,18 @@ function animate() {
 		if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
 
 		if ( onObjectXplus == true ) {
-			velocity.x = 0; 
+			if(execute == true){
+				velocity.x = 0;
+				execute = false;
+			}
 			moveRight = false;
 		}
 
 		if ( onObjectXminus == true ) {
-			velocity.x = 0;
+			if(execute == true){
+				velocity.x = 0;
+				execute = false;
+			}
 			moveLeft = false;
 		}
 	
