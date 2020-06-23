@@ -214,26 +214,27 @@ function init() {
 
 	//torre di vedetta
 	{
-		const gltfLoaderTorre = new GLTFLoader();
-		const urlTorre = './threejs/Models/vedetta.gltf';
-		gltfLoaderTorre.load(urlTorre, (gltf) => {
-			const rootTorre = gltf.scene;
-			rootTorre.scale.set( 5, 5, 5);
-			rootTorre.position.z = -20;
-			rootTorre.position.y = 0;
-			rootTorre.position.x = -50;
-			// Traverse function, define a mesh for each node 
-			rootTorre.traverse( function ( child ) {
+	const gltfLoaderTorre = new GLTFLoader();
+	const urlTorre = './threejs/Models/vedetta.gltf';
+	gltfLoaderTorre.load(urlTorre, (gltf) => {
+		const rootTorre = gltf.scene;
+		rootTorre.scale.set( 5, 5, 5);
+		rootTorre.position.z = -20;
+		rootTorre.position.y = 0;
+		rootTorre.position.x = -50;
+
+		// Traverse function, define a mesh for each node 
+		rootTorre.traverse( function ( child ) {
 				
-				if ( node instanceof THREE.Mesh ) {
-					node.castShadow = true;
-					node.receiveShadow = true;
-					objects.push(node);
-				}
+			if ( node instanceof THREE.Mesh ) {
+				node.castShadow = true;
+				node.receiveShadow = true;
+				objects.push(node);
+			}
 				
-			});
-			scene.add(rootTorre);
-		});	
+		});
+		scene.add(rootTorre);
+	});	
 	}
 
 	// Boxes
