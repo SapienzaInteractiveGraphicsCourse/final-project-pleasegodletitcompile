@@ -224,7 +224,7 @@ function init() {
 		rootTorre.position.x = -50;
 
 		// Traverse function, define a mesh for each node 
-		rootTorre.traverse( function ( child ) {
+		rootTorre.traverse( function ( node ) {
 				
 			if ( node instanceof THREE.Mesh ) {
 				node.castShadow = true;
