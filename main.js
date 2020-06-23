@@ -54,12 +54,12 @@ function init() {
 	camera.position.z = 0;
   camera.lookAt(0, 0, 0);	
   
-  raycasterXplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(1, 0, 0), 0, 10 );
-  raycasterYplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 1, 0), 0, 10 );
-  raycasterZplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, 1), 0, 10 );
-  raycasterXminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 0, 10 );
-  raycasterYminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10 );
-  raycasterZminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, -1), 0, 10 );
+  raycasterXplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(1, 0, 0), 1, 2 );
+  raycasterYplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 1, 0), 1, 2 );
+  raycasterZplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, 1), 1, 2 );
+  raycasterXminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 1, 2 );
+  raycasterYminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 1, 2 );
+  raycasterZminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, -1), 1, 2 );
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
@@ -179,15 +179,15 @@ function init() {
 		root.position.y = 1;
 		
 		
-		root.traverse( function ( child ) {
-		if ( child.isMesh ) {
-			child.castShadow = true;
-			child.receiveShadow = true;
+		root.traverse( function ( node ) {
+		if ( node instanceof THREE.Mesh ) {
+			node.castShadow = true;
+			node.receiveShadow = true;
+			objects.push(node)
 		}
 		});
 		
     scene.add(root);
-    objects.push(root);
 		});
   }
 
@@ -286,51 +286,42 @@ function animate() {
 
 		if ( onObjectXplus == true ) {
 
-      velocity.z = 0;
-      velocity.x = 0;
-      moveRight = false;
-      moveForward = false;
-    }
+		velocity.x = 0;
+		moveRight = false;
+		}
 
-    if ( onObjectXminus == true ) {
+		if ( onObjectXminus == true ) {
 
-      velocity.z = 0;
-      velocity.x = 0;
-      canJump = true;
-      moveLeft = false;
-      moveBackward = false;
-    }
-  
+		velocity.x = 0;
+		moveLeft = false;
+		}
+	
 
-    if ( onObjectYplus == true ) {
+		if ( onObjectYplus == true ) {
 
-      velocity.z = 0;
-      velocity.y = 0;
-      canJump = true;  
-      moveForward = false;
-    }
+		velocity.y = 0;
+		canJump = false;  
+		}
 
-    if ( onObjectYminus == true ) {
+		if ( onObjectYminus == true ) {
 
-      velocity.z = 0;
-      velocity.y = 0;
-      canJump = false;  
-      moveBackward = false;
-    }
+		velocity.y = 0;
+		canJump = true;  
+		}
 
-    if ( onObjectZplus == true ) {
+		if ( onObjectZplus == true ) {
 
-      velocity.z = 0;
-      moveForward = false;
-    
-    }
+		velocity.z = 0;
+		moveBackward = false;
+		
+		}
 
-    if ( onObjectZminus == true ) {
+		if ( onObjectZminus == true ) {
 
-      velocity.z = 0;
-      moveBackward = false;
-  
-  }
+		velocity.z = 0;
+		moveForward = false;
+	
+	}
 
 		controls.moveRight( - velocity.x * delta );
 		controls.moveForward( - velocity.z * delta );
