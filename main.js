@@ -1,10 +1,10 @@
 import * as THREE from './threejs/build/three.module.js';
 import {OBJLoader2} from './threejs/examples/jsm/loaders/OBJLoader2.js';
-import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
-import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
+//import {GLTFLoader} from './threejs/examples/jsm/loaders/GLTFLoader.js';
+//import {OrbitControls} from './threejs/examples/jsm/controls/OrbitControls.js';
 import { Sky } from './threejs/examples/jsm/objects/Sky.js';
 import { PointerLockControls } from './threejs/examples/jsm/controls/PointerLockControls.js';
-import { GUI } from './threejs/examples/jsm/libs/dat.gui.module.js';
+//import { GUI } from './threejs/examples/jsm/libs/dat.gui.module.js';
 
 var camera, scene, renderer;
 
@@ -29,6 +29,8 @@ var canJump = false;
 var prevTime = performance.now();
 var velocity = new THREE.Vector3();
 var direction = new THREE.Vector3();
+
+//Only needed for the debugging cubes 
 var color = new THREE.Color();
 
 init();
@@ -47,46 +49,48 @@ function init() {
 	scene.background = new THREE.Color( 0xbfd1e5 );
 	scene.fog = new THREE.FogExp2( 0xDCDBDF, 0.002 );
 		
-	// camera, position it and point 
-  camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
-  camera.position.x = 0;
-	camera.position.y = 1;
+	// camera, position it and point forward
+	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
+	camera.position.x = 0;
+	camera.position.y = 10;
 	camera.position.z = 0;
-  camera.lookAt(0, 0, 0);	
+  	camera.lookAt(0, 1, -1);	
   
-  raycasterXplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(1, 0, 0), 1, 2 );
-  raycasterYplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 1, 0), 1, 2 );
-  raycasterZplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, 1), 1, 2 );
-  raycasterXminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 1, 2 );
-  raycasterYminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 1, 2 );
-  raycasterZminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, -1), 1, 2 );
+	raycasterXplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(1, 0, 0), 1, 2 );
+	raycasterYplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 1, 0), 1, 2 );
+	raycasterZplus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, 1), 1, 2 );
+	raycasterXminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(-1, 0, 0), 1, 2 );
+	raycasterYminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 1, 2 );
+	raycasterZminus = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3(0, 0, -1), 1, 2 );
 
 	// Control camera
 	controls = new PointerLockControls(camera, document.body);
 
-  var blocker = document.getElementById( 'blocker' );
-  var instructions = document.getElementById( 'instructions' );
-  
-  instructions.addEventListener( 'click', function () {
+	// HTML instructions + click region to play
+	var blocker = document.getElementById( 'blocker' );
+	var instructions = document.getElementById( 'instructions' );
+	
+	instructions.addEventListener( 'click', function () {
 
-					controls.lock();
+		controls.lock();
 
-				}, false );
+	}, false );
 
-				controls.addEventListener( 'lock', function () {
+	controls.addEventListener( 'lock', function () {
 
-					instructions.style.display = 'none';
-					blocker.style.display = 'none';
+		instructions.style.display = 'none';
+		blocker.style.display = 'none';
 
-				} );
+	} );
 
-				controls.addEventListener( 'unlock', function () {
+	controls.addEventListener( 'unlock', function () {
 
-					blocker.style.display = 'block';
-					instructions.style.display = '';
+		blocker.style.display = 'block';
+		instructions.style.display = '';
 
-				} );
+	} );
 
+	// Define the controls
 	scene.add( controls.getObject() );
 	var onKeyDown = function ( event ) {
 
@@ -153,8 +157,7 @@ function init() {
 	document.addEventListener( 'keyup', onKeyUp, false );
 
 	
-	
-	// ground
+	// Ground
 	var loader = new THREE.TextureLoader();
 
 	var groundTexture = loader.load( 'textures/ground.png' );
@@ -163,14 +166,14 @@ function init() {
 	groundTexture.anisotropy = 16;
 	groundTexture.encoding = THREE.sRGBEncoding;
 
-	var groundMaterial = new THREE.MeshPhongMaterial( { map: groundTexture, side: THREE.DoubleSide } );
+	var groundMaterial = new THREE.MeshPhongMaterial( { map: groundTexture } );
 
 	var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
 	mesh.rotation.x = - Math.PI / 2;
 	mesh.receiveShadow = true;
 	scene.add( mesh );
 		
-  // models
+  	// Models
 	{
 	const objLoader = new OBJLoader2();
 	objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
@@ -178,44 +181,44 @@ function init() {
 		root.position.z = -60;
 		root.position.y = 1;
 		
-		
+		// Traverse functoin, define a mesh for each node 
 		root.traverse( function ( node ) {
-		if ( node instanceof THREE.Mesh ) {
-			node.castShadow = true;
-			node.receiveShadow = true;
-			objects.push(node)
-		}
+			if ( node instanceof THREE.Mesh ) {
+				node.castShadow = true;
+				node.receiveShadow = true;
+				objects.push(node)
+			}
 		});
 		
-    scene.add(root);
+		scene.add(root);
 		});
-  }
+  	}
 
-  // objects
+	// objects
 
-  var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
-  boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
+	var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
+	boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
 
-  var position = boxGeometry.attributes.position;
-  var colors = [];
+	var position = boxGeometry.attributes.position;
+	var colors = [];
 
-  for ( var i = 0, l = position.count; i < l; i ++ ) {
+	for ( var i = 0, l = position.count; i < l; i ++ ) {
 
-    color.setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
-    colors.push( color.r, color.g, color.b );
+		color.setHSL( Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
+		colors.push( color.r, color.g, color.b );
 
-  }
+	}
 
-  boxGeometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
+	boxGeometry.setAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
 
-  for ( var i = 0; i < 10; i ++ ) {
+	for ( var i = 0; i < 10; i ++ ) {
 
-    var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true, vertexColors: true } );
+    var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true, vertexColors: true, side: THREE.DoubleSide } );
     boxMaterial.color.setHSL( Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
 
     var box = new THREE.Mesh( boxGeometry, boxMaterial );
     box.position.x = Math.floor( Math.random() * 20 - 10 ) * 20;
-    box.position.y = 0;
+    box.position.y = 10;
     box.position.z = Math.floor( Math.random() * 20 - 10 ) * 20;
 
     scene.add( box );
@@ -235,113 +238,114 @@ function animate() {
 
 	if ( controls.isLocked === true ) {
 
+		// Try to change origins for every raycaster
 		raycasterXplus.ray.origin.copy( controls.getObject().position );
-    raycasterXplus.ray.origin.y -= 10;
 
-    raycasterYplus.ray.origin.copy( controls.getObject().position );
-    raycasterYplus.ray.origin.y -= 10;
+		raycasterYplus.ray.origin.copy( controls.getObject().position );
 
-    raycasterZplus.ray.origin.copy( controls.getObject().position );
-    raycasterZplus.ray.origin.y -= 10;
+		raycasterZplus.ray.origin.copy( controls.getObject().position );
 
-    raycasterXminus.ray.origin.copy( controls.getObject().position );
-    raycasterXminus.ray.origin.y -= 10;
+		raycasterXminus.ray.origin.copy( controls.getObject().position );
 
-    raycasterYminus.ray.origin.copy( controls.getObject().position );
-    raycasterYminus.ray.origin.y -= 10;
+		raycasterYminus.ray.origin.copy( controls.getObject().position );
+		raycasterYminus.ray.origin.y -= 10;
 
-    raycasterZminus.ray.origin.copy( controls.getObject().position );
-    raycasterZminus.ray.origin.y -= 10;
+		raycasterZminus.ray.origin.copy( controls.getObject().position );
 
-    var intersectionsXplus = raycasterXplus.intersectObjects( objects );
-    var intersectionsYplus = raycasterYplus.intersectObjects( objects );
-    var intersectionsZplus = raycasterZplus.intersectObjects( objects );
-    var intersectionsXminus = raycasterXminus.intersectObjects( objects );
-    var intersectionsYminus = raycasterYminus .intersectObjects( objects );
-    var intersectionsZminus = raycasterZminus.intersectObjects( objects );
+		var intersectionsXplus = raycasterXplus.intersectObjects( objects );
+		var intersectionsYplus = raycasterYplus.intersectObjects( objects );
+		var intersectionsZplus = raycasterZplus.intersectObjects( objects );
+		var intersectionsXminus = raycasterXminus.intersectObjects( objects );
+		var intersectionsYminus = raycasterYminus .intersectObjects( objects );
+		var intersectionsZminus = raycasterZminus.intersectObjects( objects );
 
-    var onObjectXplus = intersectionsXplus.length > 0;
-    var onObjectYplus = intersectionsYplus.length > 0;
-    var onObjectZplus = intersectionsZplus.length > 0;
-    var onObjectXminus = intersectionsXminus.length > 0;
-    var onObjectYminus = intersectionsYminus.length > 0;
-    var onObjectZminus = intersectionsZminus.length > 0;
+		var onObjectXplus = intersectionsXplus.length > 0;
+		var onObjectYplus = intersectionsYplus.length > 0;
+		var onObjectZplus = intersectionsZplus.length > 0;
+		var onObjectXminus = intersectionsXminus.length > 0;
+		var onObjectYminus = intersectionsYminus.length > 0;
+		var onObjectZminus = intersectionsZminus.length > 0;
 
-    console.log(onObjectXplus)
+		//console.log("onObjectXplus " + onObjectXplus);
+		//console.log("onObjectYplus " + onObjectYplus);
+		//console.log("onObjectZplus " + onObjectZplus);
+		//console.log("onObjectXminus " + onObjectXminus);
+		//console.log("onObjectYminus " + onObjectYminus);
+		//console.log("onObjectZminus " + onObjectZminus);
 
-		var time = performance.now();
-		var delta = ( time - prevTime ) / 1000;
+			var time = performance.now();
+			var delta = ( time - prevTime ) / 1000;
 
-		velocity.x -= velocity.x * 10.0 * delta;
-		velocity.z -= velocity.z * 10.0 * delta;
+			velocity.x -= velocity.x * 10.0 * delta;
+			velocity.z -= velocity.z * 10.0 * delta;
 
-		velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
+			velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
 
-		direction.z = Number( moveForward ) - Number( moveBackward );
-		direction.x = Number( moveRight ) - Number( moveLeft );
-		direction.normalize(); // this ensures consistent movements in all directions
+			direction.z = Number( moveForward ) - Number( moveBackward );
+			direction.x = Number( moveRight ) - Number( moveLeft );
+			direction.normalize(); // this ensures consistent movements in all directions
 
-		if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
-		if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
+			if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
+			if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
 
-		if ( onObjectXplus == true ) {
+			if ( onObjectXplus == true ) {
 
-		velocity.x = 0;
-		moveRight = false;
-		}
+			velocity.x = 0;
+			moveRight = false;
+			}
 
-		if ( onObjectXminus == true ) {
+			if ( onObjectXminus == true ) {
 
-		velocity.x = 0;
-		moveLeft = false;
-		}
-	
+			velocity.x = 0;
+			moveLeft = false;
+			}
+		
 
-		if ( onObjectYplus == true ) {
+			if ( onObjectYplus == true ) {
 
-		velocity.y = 0;
-		canJump = false;  
-		}
+			velocity.y = 0;
+			canJump = false;  
+			}
 
-		if ( onObjectYminus == true ) {
+			if ( onObjectYminus == true ) {
 
-		velocity.y = 0;
-		canJump = true;  
-		}
+			velocity.y = 0;
+			canJump = true;  
+			}
 
-		if ( onObjectZplus == true ) {
+			if ( onObjectZplus == true ) {
 
-		velocity.z = 0;
-		moveBackward = false;
+			velocity.z = 0;
+			moveBackward = false;
+			
+			}
+
+			if ( onObjectZminus == true ) {
+
+			velocity.z = 0;
+			moveForward = false;
 		
 		}
 
-		if ( onObjectZminus == true ) {
+			controls.moveRight( - velocity.x * delta );
+			controls.moveForward( - velocity.z * delta );
 
-		velocity.z = 0;
-		moveForward = false;
-	
-	}
+		controls.getObject().position.y += ( velocity.y * delta ); // new behavior
 
-		controls.moveRight( - velocity.x * delta );
-		controls.moveForward( - velocity.z * delta );
+			if ( controls.getObject().position.y < 10 ) {
 
-    controls.getObject().position.y += ( velocity.y * delta ); // new behavior
+			velocity.y = 0;
+			controls.getObject().position.y = 10;
 
-		if ( controls.getObject().position.y < 10 ) {
+			canJump = true;
 
-		velocity.y = 0;
-		controls.getObject().position.y = 10;
+			}
 
-		canJump = true;
+			prevTime = time;
 
 		}
 
-		prevTime = time;
-
-	}
-
-	renderer.render( scene, camera );
+		renderer.render( scene, camera );
 	}
 
 function onWindowResize() {
