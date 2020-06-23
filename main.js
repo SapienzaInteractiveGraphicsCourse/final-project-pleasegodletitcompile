@@ -8,7 +8,7 @@ import { PointerLockControls } from './threejs/examples/jsm/controls/PointerLock
 
 var camera, scene, renderer;
 
-// Variables to animate objects
+// Mill
 var mill;
 
 // Lights
@@ -41,8 +41,10 @@ var direction = new THREE.Vector3();
 //Only needed for the debugging cubes 
 var color = new THREE.Color();
 
+
 init();
 animate();
+
 
 function init() {
 	// renderer
@@ -186,56 +188,32 @@ function init() {
 	mesh.receiveShadow = true;
 	scene.add( mesh );
 		
-	  // Models
-	{
-	const objLoader = new OBJLoader2();
-	objLoader.load('./threejs/Models/windmill_001.obj', (root) => {
-		root.scale.set( 10, 10, 10);
-		root.position.z = -60;
-		root.position.y = 1;
-		
-		// Traverse functoin, define a mesh for each node 
-		root.traverse( function ( node ) {
-			if ( node instanceof THREE.Mesh ) {
-				node.castShadow = true;
-				node.receiveShadow = true;
-				objects.push(node)
-			}
-		});
-
-		scene.add(root);
-		//mill = root.getObjectByName('lopatky_Circle')
-		console.log(dumpObject(root).join('\n'));
-		});
-	}
-	/*
+	// Models
 	{
 	const gltfLoader = new GLTFLoader();
-	const url = './threejs/Models/low-poly-scenery-hills-and-lake.gltf';
+	// const url = './threejs/Models/low-poly-scenery-hills-and-lake.gltf';
+	const url = './threejs/Models/windmill.gltf';
 	gltfLoader.load(url, (gltf) => {
 		const root = gltf.scene;
-		root.scale.set( 1000, 1000, 1000);
-		root.position.z = -2000;
+		root.scale.set( 10, 10, 10);
+		root.position.z = -60;
 		root.position.y = 4;
-		// Traverse functoin, define a mesh for each node 
+		// Traverse function, define a mesh for each node 
 		root.traverse( function ( node ) {
 			if ( node instanceof THREE.Mesh ) {
 				node.castShadow = true;
 				node.receiveShadow = true;
-				objects.push(node)
+				objects.push(node);
 			}
 		});
-
 		scene.add(root);
+		mill = root.getObjectByName('lopatky');
 		console.log(dumpObject(root).join('\n'));
 		});
 	
 	}
-	*/
-	  
 
-	// objects
-
+	// Boxes
 	var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
 	boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
 
@@ -266,7 +244,6 @@ function init() {
 
   }
 
-
 	initSky();
 	initLights();
 	
@@ -276,10 +253,8 @@ function init() {
 function animate() {
 	requestAnimationFrame( animate );
 
-	//mill.rotation.y+=0.01;
-
-
 	if ( controls.isLocked === true ) {
+		mill.rotation.x += 0.01;
 
 		camera.getWorldDirection( vector );
 
