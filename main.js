@@ -274,30 +274,12 @@ function animate() {
 		var intersectionsZminus = raycasterZminus.intersectObjects( objects );
 
 		// Check if the eventual closest intersection is less than threshold
-		var onObjectXplus = false;
-		var onObjectYplus = false;
-		var onObjectZplus = false;
-		var onObjectXminus = false;
-		var onObjectYminus = false;
-		var onObjectZminus = false;
-		if(intersectionsXplus.length > 0) {
-			onObjectXplus = intersectionsXplus[0].distance < 2;
-		}
-		if(intersectionsYplus.length > 0) {
-			onObjectYplus = intersectionsYplus[0].distance < 2;
-		}
-		if(intersectionsZplus.length > 0) {
-			onObjectZplus = intersectionsZplus[0].distance < 2;
-		}
-		if(intersectionsXminus.length > 0) {
-			onObjectXminus = intersectionsXminus[0].distance < 2;
-		}
-		if(intersectionsYminus.length > 0) {
-			onObjectYminus = intersectionsYminus[0].distance < 2;
-		}
-		if(intersectionsZminus.length > 0) {
-			onObjectZminus = intersectionsZminus[0].distance < 2;
-		}
+		var onObjectXplus = intersectionsXplus.length > 0;
+		var onObjectYplus = intersectionsYplus.length > 0;
+		var onObjectZplus = intersectionsZplus.length > 0;
+		var onObjectXminus = intersectionsXminus.length > 0;
+		var onObjectYminus = intersectionsYminus.length > 0;
+		var onObjectZminus = intersectionsZminus.length > 0;
 
 		//console.log("onObjectXplus " + onObjectXplus);
 		//console.log("onObjectYplus " + onObjectYplus);
@@ -313,7 +295,7 @@ function animate() {
 		velocity.z -= velocity.z * 10.0 * delta;
 
 		velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
-
+		
 		direction.z = Number( moveForward ) - Number( moveBackward );
 		direction.x = Number( moveRight ) - Number( moveLeft );
 		direction.normalize(); // this ensures consistent movements in all directions
