@@ -188,8 +188,8 @@ function init() {
 	mesh.receiveShadow = true;
 	scene.add( mesh );
 		
+
 	// Models
-	{
 	const gltfLoader = new GLTFLoader();
 	// const url = './threejs/Models/low-poly-scenery-hills-and-lake.gltf';
 	const url = './threejs/Models/windmill.gltf';
@@ -210,8 +210,7 @@ function init() {
 		mill = root.getObjectByName('lopatky');
 		console.log(dumpObject(root).join('\n'));
 		});
-	
-	}
+
 
 	// Boxes
 	var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
@@ -244,6 +243,8 @@ function init() {
 
   }
 
+	var axesHelper = new THREE.AxesHelper( 5 );
+	scene.add( axesHelper );
 	initSky();
 	initLights();
 	
@@ -256,17 +257,18 @@ function animate() {
 	if ( controls.isLocked === true ) {
 		mill.rotation.x += 0.01;
 
+		// vector represents the world space direction in which
+		// the camera is looking (negative z-axis)
 		camera.getWorldDirection( vector );
 
 		// Set origin of the ray at the camera position
 		// Set direction w.r.t. the world coordinates
 		raycasterXplus.ray.origin.copy( controls.getObject().position );
-		// TODO (LEOOOOOO PROVA FINCHE FINISCO DI MANGIARE): ROTATE BY THE RIGHT ANGLE
-		// QUESTO RUOTA RISPETTO AL WOLRD REFERENCE FRAME
 		raycasterXplus.ray.direction.copy( -vector)
 
 		raycasterYplus.ray.origin.copy( controls.getObject().position );
-		
+		// raycasterZplus.ray.direction.copy( vector.applyAxisAngle( camera., Math.PI / 2 ) )
+
 		raycasterZplus.ray.origin.copy( controls.getObject().position );
 		raycasterZplus.ray.direction.copy( -vector )
 
