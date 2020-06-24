@@ -1,4 +1,4 @@
-/// <reference path="../reference/babylon.module.d.ts" />
+/// <reference path="../reference/babylon.d.ts" />
 
 // Canvas
 var canvas = document.getElementById('renderCanvas');
