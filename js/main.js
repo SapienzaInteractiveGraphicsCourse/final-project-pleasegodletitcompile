@@ -45,7 +45,6 @@ var scene = createScene();
 // Render loop
 engine.runRenderLoop(function() {
     scene.render();
-    console.log(scene.cameras[0].position.y)
 });
 
 // Canvas/Window resize event handler
