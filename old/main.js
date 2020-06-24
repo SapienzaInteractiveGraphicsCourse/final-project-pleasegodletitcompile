@@ -131,7 +131,7 @@ function init() {
 			break;
 
 		case 32: // space
-			if ( canJump == true ) velocity.y += 350;
+			if ( canJump == true ) velocity.y += 10;
 			canJump = false;
 			execute = true;
 			break;
