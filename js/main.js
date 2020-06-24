@@ -9,7 +9,7 @@ var createScene = function() {
     scene.gravity = new BABYLON.Vector3(0, -0.98, 0);
 
     // Camera
-    var camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 10,-10), scene);
+    var camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 2,-10), scene);
     camera.setTarget(BABYLON.Vector3.Zero());
     camera.attachControl(canvas, true);
     camera.checkCollisions = true;
@@ -45,6 +45,7 @@ var scene = createScene();
 // Render loop
 engine.runRenderLoop(function() {
     scene.render();
+    console.log(scene.cameras[0].position.y)
 });
 
 // Canvas/Window resize event handler
