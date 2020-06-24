@@ -1,4 +1,4 @@
-import * as BABYLON from '@babylonjs/core/Legacy/legacy';
+/// <reference path="../reference/babylon.module.d.ts" />
 
 // Canvas
 var canvas = document.getElementById('renderCanvas');
