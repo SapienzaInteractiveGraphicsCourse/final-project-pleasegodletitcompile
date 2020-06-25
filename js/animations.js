@@ -10,5 +10,5 @@ player.startJumpAnimation = function(){
     // easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
     // jumpAnimation.setEasingFunction(easingFunction);
     player.animations.push(jumpAnimation);
-    scene.beginAnimation(player, 0, 60, false, 1);
+    scene.beginAnimation(player, 0, 60, false);
 }
