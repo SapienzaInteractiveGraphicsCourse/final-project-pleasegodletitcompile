@@ -6,7 +6,7 @@ scene.actionManager = new BABYLON.ActionManager(scene);
 // Set the key to true on keyDown
 scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyDownTrigger, function (event) {
     inputKeys[event.sourceEvent.key] = event.sourceEvent.type == "keydown"; 
-
+    
 }));
 
 // Set the key to false ok keyUp
