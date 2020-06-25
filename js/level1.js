@@ -4,12 +4,11 @@ var canvas = document.getElementById('renderCanvas');
 var engine = new BABYLON.Engine(canvas, true);
 
 // Set gravity
-var gravity = -0.1;
+var gravity = -0.2;
 
 var createScene = function() {
     // Scene
     var scene = new BABYLON.Scene(engine);
-    // scene.gravity = new BABYLON.Vector3(0, -0.98, 0);
 
     // Camera
     var camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
