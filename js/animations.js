@@ -6,9 +6,9 @@ player.startJumpAnimation = function(){
     keys.push({ frame: 20, value: player.mesh.position.y + 10 });
     // keys.push({ frame: 60, value: player.mesh.position.y });
     jumpAnimation.setKeys(keys);
-    // var easingFunction = new BABYLON.CircleEase();
-    // easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
-    // jumpAnimation.setEasingFunction(easingFunction);
+    var easingFunction = new BABYLON.QuadraticEase();
+    easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
+    jumpAnimation.setEasingFunction(easingFunction);
     player.animations.push(jumpAnimation);
     scene.beginAnimation(player, 0, 60, false);
 }
