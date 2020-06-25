@@ -16,3 +16,5 @@ Animate the character
 
 LEONARDO
 Physics for jumps, impacts, and maybe ice/water.
+
+Finish the structure of the first level
