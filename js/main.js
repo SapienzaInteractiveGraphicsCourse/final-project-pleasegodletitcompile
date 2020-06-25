@@ -16,8 +16,12 @@ engine.runRenderLoop(function() {
     // }
     // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
     player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
+
     if(player.mesh.position.y < -35){
-        player.mesh.position = new BABYLON.Vector3(0,2,0);
+        player.mesh.position = player.checkpoint;
+    }
+    if(Math.abs(player.mesh.position.x - 20) < 1){
+        player.checkpoint= player.mesh.position.clone();
     }
     // console.log(player.mesh.position.y);
 
