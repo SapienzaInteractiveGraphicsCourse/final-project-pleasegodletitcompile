@@ -1,4 +1,5 @@
 /// <reference path="../reference/babylon.d.ts" />
+/// <reference path="../reference/babylonjs.loaders.d.ts" />
 
 // Render loop
 engine.runRenderLoop(function() {
