@@ -2,8 +2,8 @@
 
 [DONE] Collision between player and platform
 
-Multiple platforms at different heights
+[DONE] Multiple platforms at different heights
 
 Make jump animation
 
-Death (restart) when player reches a certain negative y (is falling)
+[DONE] Death (restart) when player reches a certain negative y (is falling)

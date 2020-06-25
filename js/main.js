@@ -65,6 +65,9 @@ engine.runRenderLoop(function() {
     // }
     // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
     player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
+    if(player.mesh.position.y < -35){
+        player.mesh.position = new BABYLON.Vector3(0,2,0);
+    }
     console.log(player.mesh.position.y);
 
     scene.render();
