@@ -19,11 +19,11 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
 scene.registerAfterRender(function () {
 
     if ((inputKeys["a"] || inputKeys["A"])) {
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(-0.1,0,0));
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(-0.1,gravity,0));
     }
 
     if ((inputKeys["d"] || inputKeys["D"])) {
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(0.1,0,0));
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(0.1,gravity,0));
     }
 
     checkCanJump();
