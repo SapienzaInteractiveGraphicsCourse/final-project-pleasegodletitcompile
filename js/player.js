@@ -1,3 +1,4 @@
+// Init player object
 var player = {
     mesh: null,
     verticalSpeed: 0,
