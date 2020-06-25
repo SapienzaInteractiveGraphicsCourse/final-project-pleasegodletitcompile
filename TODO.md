@@ -4,6 +4,12 @@
 
 [DONE] Multiple platforms at different heights
 
-Make jump animation
+[DONE] Make jump animation
 
 [DONE] Death (restart) when player reches a certain negative y (is falling)
+
+Add the loader library
+
+Import a character mesh
+
+Animate the character
