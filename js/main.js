@@ -5,10 +5,7 @@ var canvas = document.getElementById('renderCanvas');
 // 3D Engine
 var engine = new BABYLON.Engine(canvas, true);
 
-// Sphere
-var sphere;
-var velocity = 0;
-var canJump = false;
+var gravity = -0.1;
 
 var createScene = function() {
     // Scene
@@ -24,10 +21,10 @@ var createScene = function() {
 
     // Sphere
     // TODO: make the collision work without hardcode in renderloop
-    sphere = BABYLON.MeshBuilder.CreateSphere('sphere', {segments:16, diameter:2}, scene);
-    sphere.position.y = 1;
-    sphere.checkCollisions = true;
-    camera.lockedTarget = sphere;
+    player.mesh = BABYLON.MeshBuilder.CreateSphere('sphere', {segments:16, diameter:2}, scene);
+    player.mesh.position.y = 1;
+    player.mesh.checkCollisions = true;
+    camera.lockedTarget = player.mesh;
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
@@ -45,18 +42,19 @@ var scene = createScene();
 engine.runRenderLoop(function() {
     delta = engine.getDeltaTime()
     // Render jump / fall
-    if(sphere.position.y < 1.01 && sphere.position.y >= 1.0){
-        canJump = true;
-    } 
-    else if(sphere.position.y >= 1.01) {
-        velocity -= 0.1;
-    }
-    else {
-        sphere.position.y = 1;
-        velocity = 0;
-    }
-    sphere.position.y += 0.01 * velocity * delta;
-    console.log(sphere.position.y);
+    // if(player.mesh.position.y < 1.01 && player.mesh.position.y >= 1.0){
+    //     player.canJump = true;
+    // } 
+    // else if(sphere.position.y >= 1.01) {
+    //     player.verticalSpeed -= 0.1;
+    // }
+    // else {
+    //     player.mesh.position.y = 1;
+    //     player.verticalSpeed = 0;
+    // }
+    // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
+    player.mesh.moveWithCollisions(new BABYLON.Vector3(0,gravity,0));
+    console.log(player.mesh.position.y);
 
     scene.render();
 });

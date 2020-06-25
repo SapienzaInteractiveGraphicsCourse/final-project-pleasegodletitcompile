@@ -1,7 +1,9 @@
-Make a player mesh (sphere mesh is ok but change name)
+[DONE] Make a player object (sphere mesh is ok for now)
 
-Collision between player and platform
+[DONE] Collision between player and platform
 
 Multiple platforms at different heights
+
+Make jump animation
 
 Death (restart) when player reches a certain negative y (is falling)
