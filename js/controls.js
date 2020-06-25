@@ -14,23 +14,28 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
     inputKeys[event.sourceEvent.key] = event.sourceEvent.type == "keydown";
 }));
 
-// Move sphere
+// Move player
 scene.registerAfterRender(function () {
+    // checkCanJump();
 
     if ((inputKeys["a"] || inputKeys["A"])) {
-        // sphere.position.x -= 0.1;
         player.mesh.moveWithCollisions(new BABYLON.Vector3(-0.1,gravity,0));
     }
 
     if ((inputKeys["d"] || inputKeys["D"])) {
-        // sphere.position.x += 0.1;
         player.mesh.moveWithCollisions(new BABYLON.Vector3(0.1,gravity,0));
     }
 
-    /* if (inputKeys[" "] && canJump ) {
-        canJump = false;
-        verticalSpeed += 1;
-        player.mesh.jump();
-    } */
+    if (inputKeys[" "] && player.canJump ) {
+        console.log(player.canJump);
+        player.canJump = false;
+        player.startJumpAnimation();
+    }
 
 });
+
+// Check if the player it touching the ground
+// TODO: check for every ground
+function checkCanJump() {
+    player.canJump = player.mesh.intersectsMesh(scene.getMeshByName("platform1"), false);
+}
