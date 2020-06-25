@@ -6,5 +6,6 @@ var player = {
     canJump: true,
     animations: [],
     startJumpAnimation: null,
-    height: 2
+    height: 2,
+    checkpoint: new BABYLON.Vector3(0, 2, 0)
 };
