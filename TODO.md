@@ -13,3 +13,6 @@ Add the loader library
 Import a character mesh
 
 Animate the character
+
+LEONARDO
+Physics for jumps, impacts, and maybe ice/water.

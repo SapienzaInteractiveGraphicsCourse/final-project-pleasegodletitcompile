@@ -1,4 +1,5 @@
 /// <reference path="../reference/babylon.d.ts" />
+/// <reference path="../reference/babylonjs.loaders.d.ts" />
 
 // Render loop
 engine.runRenderLoop(function() {
@@ -15,8 +16,9 @@ engine.runRenderLoop(function() {
     //     player.verticalSpeed = 0;
     // }
     // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
-    player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
-
+    if(player.canJump == true){
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
+    }
     if(player.mesh.position.y < -35){
         player.mesh.position = player.checkpoint;
     }
