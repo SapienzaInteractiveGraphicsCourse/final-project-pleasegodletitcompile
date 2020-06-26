@@ -35,6 +35,7 @@ var createScene = function() {
 
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:10}, scene);
+    platform1.visibility = 0.2;
     platform1.checkCollisions = true;
     groundObjects.push(platform1);
 
@@ -52,7 +53,7 @@ var createScene = function() {
 
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateBox("player", {width: player.width, height:player.height, depth:player.depth}, scene);
-    player.mesh.visibility = 0.2;
+    player.mesh.visibility = 0.5;
     player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
@@ -60,7 +61,14 @@ var createScene = function() {
 
     console.log(player.mesh.position.y)
 
-    // BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+        player.rootNode = newMeshes[0];
+        player.rootNode.parent = player.mesh;
+        player.rootNode.scaling = new BABYLON.Vector3(1.15*player.width, 1.15*player.height, 1.15*player.depth);
+        player.rootNode.position.y -= player.height/2;
+    });
+
+
     //     newMeshes[0].parent = player.mesh;
     //     newMeshes[0].position.y -= 0.5;
         // newMeshes[0].position.y += 2.0;
@@ -76,53 +84,23 @@ var createScene = function() {
         // newMeshes[0].parent = player.mesh;
         // console.log(newMeshes[0].name)
         // console.log(meshes)
-        // // Get bounding box
-        // var min = null;
-        // var max = null;
+
         // meshes.forEach(function(mesh){
         //     console.log(mesh.name);
         //     mesh.parent = player.mesh;
         //     // console.log(mesh.parent.name)
-
-        //     const boundingBox = mesh.getHierarchyBoundingVectors();
-        //     if(min === null){
-        //         min = new BABYLON.Vector3();
-        //         min.copyFrom(boundingBox.min);
-        //     }
-
-        //     if(max === null){
-        //         max = new BABYLON.Vector3();
-        //         max.copyFrom(boundingBox.max);
-        //     }
-
-        //     min = BABYLON.Vector3.Minimize(min, boundingBox.min);
-        //     max = BABYLON.Vector3.Maximize(max, boundingBox.max);
         // })
 
-        // var min_max = newMeshes[0].getHierarchyBoundingVectors();
-        // // console.log(min_max);
-        // var min = min_max.min;
-        // var max = min_max.max;
-        
-        // var size = new BABYLON.Vector3.One();
-        // size = size.divide(max.subtract(min));
-        // console.log("size: ", size)
-        // const boundingInfo = new BABYLON.BoundingInfo(min,max);
-        // const bbCenterWorld = boundingInfo.boundingBox.centerWorld;
-
-        // player.mesh.scaling.copyFrom(size);
-        // player.mesh.position.copyFrom(bbCenterWorld);
-        // newMeshes[0].parent = player.mesh;
-
-        // console.log("Width: ", size.x);
-        // console.log("Height: ", size.y);
-        // console.log("Depth: ", size.z);
-        // console.log("min: ", min);
-        // console.log("max: ", max);
-        // console.log("center: ", bbCenterWorld);
     // });
 
     return scene;
 }
 
 var scene = createScene();
+
+// scene.beforeRender = function() {
+//     if (player.rootNode) {
+//         console.log("ready async")
+//         console.log(player.rootNode)
+//     }
+// };
