@@ -26,8 +26,9 @@ engine.runRenderLoop(function() {
         player.checkpoint= player.mesh.position.clone();
     }
     // console.log(player.mesh.position.y);
-
-    scene.render();
+    if (scene) {
+        scene.render(); 
+    }
 });
 
 // Canvas/Window resize event handler
