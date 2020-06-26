@@ -1,6 +1,9 @@
 // Object that saves the keyboard events
 var inputKeys = {};
 
+var ResetA = true;
+var ResetD = true;
+
 scene.actionManager = new BABYLON.ActionManager(scene);
 
 // Set the key to true on keyDown
@@ -19,20 +22,48 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
 scene.registerAfterRender(function () {
 
     if ((inputKeys["a"] || inputKeys["A"])) {
-        // player.mesh.moveWithCollisions(new BABYLON.Vector3(-0.1,0,0));
+        if(ResetA == true){
+            timeWalk = 0;
+            ResetA = false;
+        }        
+        player.acceleration.x -= 0.01
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*timeWalk, -0.3),0,0));
     }
 
     if ((inputKeys["d"] || inputKeys["D"])) {
-        // player.mesh.moveWithCollisions(new BABYLON.Vector3(0.1,0,0));
+        if(ResetD == true){
+            timeWalk = 0;
+            ResetD = false;
+        }        
+        player.acceleration.x += 0.01
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*timeWalk, 0.3),0,0));
     }
 
     checkCanJump();
-    if (inputKeys[" "] && player.canJump ) {
+    if (inputKeys[" "] && player.canJump ) {  
         player.canJump = false;
         player.startJumpAnimation();
     }
 
 });
+
+//Reset the acceleration in case the button is released
+window.addEventListener("keyup", handleKeyUp, false);
+function handleKeyUp(evt) {
+    if (evt.keyCode == 65) {
+        player.acceleration.x = 0;
+        time = 0;
+        ResetA = true;
+        
+    }
+    if (evt.keyCode == 68) {
+        player.acceleration.x = 0;
+        ResetD = true;
+    }
+    if (evt.keyCode == 32) {
+        
+    }
+}
 
 // Check if the player it touching the ground
 function checkCanJump() {
