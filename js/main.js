@@ -21,9 +21,9 @@ engine.runRenderLoop(function() {
     //     player.verticalSpeed = 0;
     // }
     // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
-    if(player.canJump == false){
+    // if(player.canJump == false){ // doesn't work well with animation -> it floats sometimes
         player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
-    }
+    // }
     if(player.mesh.position.y < -35){
         player.mesh.position = player.checkpoint;
         timeWalk = 0;

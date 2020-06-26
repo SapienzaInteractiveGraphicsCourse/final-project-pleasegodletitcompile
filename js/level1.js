@@ -9,8 +9,11 @@ var timeJump = 0;
 // Set gravity
 var gravity = -0.1;
 
+var checkpoint = new BABYLON.Vector3(0, 50, 0)
+
 var platformHeight = 2;
 var knight;
+var helmet;
 
 // List of objects that are considered ground
 var groundObjects = [];
@@ -35,9 +38,8 @@ var createScene = function() {
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 
     // Platform 1
-    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:100, height:platformHeight, depth:10}, scene);
+    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:10}, scene);
     platform1.checkCollisions = true;
-    platform1.rotate(new BABYLON.Vector3(0,0,1), 0);
     groundObjects.push(platform1);
 
     // Platform 2
@@ -52,19 +54,62 @@ var createScene = function() {
     platform3.checkCollisions = true;
     groundObjects.push(platform3);
 
-    /*
     // Player
-    player.mesh = new BABYLON.TransformNode("player", scene);
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
-        knight = newMeshes[0];
-        knight.position = new BABYLON.Vector3(0, -1, 0);
-        knight.scaling = new BABYLON.Vector3(2.0, 2.0, 2.0);
-        knight.checkCollisions = true;
-        knight.parent = player.mesh;
-    });
-    */
+    player.mesh = new BABYLON.MeshBuilder.CreateBox("player", {size: player.height}, scene);
+    player.mesh.visibility = 0.2;
+    /* BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+        // newMeshes.forEach(x => scene.addMesh(x))
 
-    console.log(player.mesh);
+        // Get all meshes except __root__
+        var meshes = newMeshes.filter((x) => {
+            return x.parent != null
+        })
+
+        newMeshes[0].parent = player.mesh;
+        // console.log(newMeshes[0].name)
+        console.log(meshes)
+        // Get bounding box
+        var min = null;
+        var max = null;
+        newMeshes.forEach(function(mesh){
+            console.log(mesh.name);
+            mesh.parent = player.mesh;
+            // console.log(mesh.parent.name)
+
+            const boundingBox = mesh.getHierarchyBoundingVectors();
+            if(min === null){
+                min = new BABYLON.Vector3();
+                min.copyFrom(boundingBox.min);
+            }
+
+            if(max === null){
+                max = new BABYLON.Vector3();
+                max.copyFrom(boundingBox.max);
+            }
+
+            min = BABYLON.Vector3.Minimize(min, boundingBox.min);
+            max = BABYLON.Vector3.Maximize(max, boundingBox.max);
+        })
+
+        // var min_max = newMeshes[0].getHierarchyBoundingVectors();
+        // // console.log(min_max);
+        // var min = min_max.min;
+        // var max = min_max.max;
+        
+        const size = max.subtract(min);
+        const boundingInfo = new BABYLON.BoundingInfo(min,max);
+        const bbCenterWorld = boundingInfo.boundingBox.centerWorld;
+
+        player.mesh.scaling.copyFrom(size);
+        player.mesh.position.copyFrom(bbCenterWorld);
+        
+        console.log("Width: ", size.x);
+        console.log("Height: ", size.y);
+        console.log("Depth: ", size.z);
+        console.log("min: ", min);
+        console.log("max: ", max);
+        console.log("center: ", bbCenterWorld);
+    }); */
     player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
