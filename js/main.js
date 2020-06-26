@@ -3,7 +3,9 @@
 
 // Render loop
 engine.runRenderLoop(function() {
-    // delta = engine.getDeltaTime()
+    delta = engine.getDeltaTime();
+    timeWalk += delta / 1000;
+    timeJump += delta;
     // Render jump / fall
     // if(player.mesh.position.y < 1.01 && player.mesh.position.y >= 1.0){
     //     player.canJump = true;
@@ -16,7 +18,7 @@ engine.runRenderLoop(function() {
     //     player.verticalSpeed = 0;
     // }
     // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
-    if(player.canJump == true){
+    if(player.canJump == false){
         player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
     }
     if(player.mesh.position.y < -35){
@@ -25,7 +27,7 @@ engine.runRenderLoop(function() {
     if(Math.abs(player.mesh.position.x - 20) < 1){
         player.checkpoint= player.mesh.position.clone();
     }
-    // console.log(player.mesh.position.y);
+    console.log(player.mesh.position.y);
 
     scene.render();
 });

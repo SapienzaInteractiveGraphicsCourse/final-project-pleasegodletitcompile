@@ -3,8 +3,11 @@ var canvas = document.getElementById('renderCanvas');
 // 3D Engine
 var engine = new BABYLON.Engine(canvas, true);
 
+//Time to try to implement gravity and run
+var timeWalk = 0;
+var timeJump = 0;
 // Set gravity
-var gravity = -0.2;
+var gravity = -0.98;
 
 var platformHeight = 2;
 
@@ -26,8 +29,9 @@ var createScene = function() {
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 
     // Platform 1
-    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:platformHeight, depth:10}, scene);
+    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:100, height:platformHeight, depth:10}, scene);
     platform1.checkCollisions = true;
+    platform1.rotate(new BABYLON.Vector3(0,0,1), 0);
     groundObjects.push(platform1);
 
     // Platform 2
