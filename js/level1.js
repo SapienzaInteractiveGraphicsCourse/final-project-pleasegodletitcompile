@@ -3,6 +3,8 @@ var canvas = document.getElementById('renderCanvas');
 // 3D Engine
 var engine = new BABYLON.Engine(canvas, true);
 
+var camera;
+
 //Time to try to implement gravity and run
 var timeWalk = 0;
 var timeJump = 0;
@@ -26,8 +28,8 @@ var createScene = function() {
     scene.collisionsEnabled = true;
 
     // Camera
-    var camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
-    camera.radius = 20;
+    camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
+    camera.radius = 40;
     camera.heightOffset = 10;
     camera.rotationOffset = 180;
     camera.attachControl(canvas, true);
@@ -37,7 +39,6 @@ var createScene = function() {
 
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:10}, scene);
-    platform1.visibility = 0.2;
     platform1.checkCollisions = true;
     groundObjects.push(platform1);
 
@@ -54,8 +55,8 @@ var createScene = function() {
     groundObjects.push(platform3);
 
     // Player
-    player.mesh = new BABYLON.MeshBuilder.CreateBox("player", {width: player.width, height:player.height, depth:player.depth}, scene);
-    player.mesh.visibility = 0.5;
+    player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
+    player.mesh.visibility = 0;
     player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
@@ -64,7 +65,9 @@ var createScene = function() {
     console.log(player.mesh.position.y)
 
     BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+        newMeshes.forEach(x => console.log(x))
         player.initializeMeshes(newMeshes);
+        
     });
 
 
@@ -73,7 +76,6 @@ var createScene = function() {
         // newMeshes[0].position.y += 2.0;
         // console.log(newMeshes[0].getChildMeshes())
 
-        // newMeshes.forEach(x => scene.addMesh(x))
  
         // // Get all meshes except __root__
         // var meshes = newMeshes.filter((x) => {
