@@ -6,9 +6,8 @@ engine.runRenderLoop(function() {
     delta = engine.getDeltaTime();
     timeWalk += delta / 1000;
     timeJump += delta / 1000;
+    timeFall += delta / 1000;
 
-    player.acceleration.y -= gravity;
-    prePosition = player.position.y
     // Render jump / fall
     // if(player.mesh.position.y < 1.01 && player.mesh.position.y >= 1.0){
     //     player.canJump = true;
@@ -21,9 +20,11 @@ engine.runRenderLoop(function() {
     //     player.verticalSpeed = 0;
     // }
     // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
+
     // if(player.canJump == false){ // doesn't work well with animation -> it floats sometimes
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
+        //player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
     // }
+
     if(player.mesh.position.y < -35){
         player.mesh.position = player.checkpoint;
         timeWalk = 0;
@@ -36,8 +37,9 @@ engine.runRenderLoop(function() {
         player.checkpoint= player.mesh.position.clone();
     }
     */
-   player.acceleration.y += gravity
-    console.log(player.acceleration.y);
+
+
+    console.log(player.canJump);
     if (scene) {
         scene.render(); 
     }

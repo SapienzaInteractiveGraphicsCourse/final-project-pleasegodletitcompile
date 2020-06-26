@@ -6,6 +6,8 @@ var engine = new BABYLON.Engine(canvas, true);
 //Time to try to implement gravity and run
 var timeWalk = 0;
 var timeJump = 0;
+var timeFall = 0;
+
 // Set gravity
 var gravity = -0.1;
 

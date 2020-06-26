@@ -3,7 +3,9 @@ var inputKeys = {};
 
 var ResetA = true;
 var ResetD = true;
-var check;
+var Jump = false;
+var check = false;
+var strength = 10;
 
 scene.actionManager = new BABYLON.ActionManager(scene);
 
@@ -24,20 +26,20 @@ scene.registerAfterRender(function () {
 
     if ((inputKeys["a"] || inputKeys["A"])) {
         if(ResetA == true){
-            timeWalk = 0;
+            timeWalk = 1;
             ResetA = false;
         }        
-        player.acceleration.x -= 0.01
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*timeWalk, -0.3),0,0));
+        player.acceleration.x -= 0.02
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*(timeWalk**2), -0.3),0,0));
     }
 
     if ((inputKeys["d"] || inputKeys["D"])) {
         if(ResetD == true){
-            timeWalk = 0;
+            timeWalk = 1;
             ResetD = false;
         }        
-        player.acceleration.x += 0.01
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*timeWalk, 0.3),0,0));
+        player.acceleration.x += 0.02
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*(timeWalk**2), 0.3),0,0));
     }
 
     if ((inputKeys["d"] && inputKeys["a"])) {
@@ -46,11 +48,28 @@ scene.registerAfterRender(function () {
     }
 
     checkCanJump();
-    if (inputKeys[" "] && player.canJump ) {  
-        timeJump = 0;
-        player.canJump = false;
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(0, 0.3, 0));
+
+    if(player.canJump == false){
+        player.acceleration.y += gravity;
     }
+    
+    if (inputKeys[" "] && player.canJump) {
+        Jump = true;
+        player.canJump = false;
+        timeJump = 1;
+        player.acceleration.y = 3 + gravity;
+        player.position.y = 0;
+    };
+
+    if(player.canJump == true){
+        timeJump = 0;
+        player.position.y = 0;
+    }
+
+
+    player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2)); ; 
+
+    player.mesh.moveWithCollisions(new BABYLON.Vector3(0, player.position.y , 0));
 
 });
 
@@ -59,24 +78,19 @@ window.addEventListener("keyup", handleKeyUp, false);
 function handleKeyUp(evt) {
     if (evt.keyCode == 65) {
         player.acceleration.x = 0;
-        time = 0;
         ResetA = true;
-        
     }
+
     if (evt.keyCode == 68) {
         player.acceleration.x = 0;
         ResetD = true;
-    }
-    if (evt.keyCode == 32) {
-        timeJump = 0;
-        
     }
 }
 
 // Check if the player it touching the ground
 function checkCanJump() {
     player.canJump = false;
-    var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 -0.5, player.mesh.position.z);
+    var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
     var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, groundPoint]}, scene);
     for (obj of groundObjects) {
         if (intersectLine.intersectsMesh(obj, false)) {
