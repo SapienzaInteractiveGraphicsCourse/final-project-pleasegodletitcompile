@@ -3,6 +3,7 @@ var inputKeys = {};
 
 var ResetA = true;
 var ResetD = true;
+var check;
 
 scene.actionManager = new BABYLON.ActionManager(scene);
 
@@ -46,8 +47,9 @@ scene.registerAfterRender(function () {
 
     checkCanJump();
     if (inputKeys[" "] && player.canJump ) {  
+        timeJump = 0;
         player.canJump = false;
-        player.startJumpAnimation();
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(0, 0.3, 0));
     }
 
 });
@@ -66,6 +68,7 @@ function handleKeyUp(evt) {
         ResetD = true;
     }
     if (evt.keyCode == 32) {
+        timeJump = 0;
         
     }
 }

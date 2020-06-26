@@ -5,7 +5,10 @@
 engine.runRenderLoop(function() {
     delta = engine.getDeltaTime();
     timeWalk += delta / 1000;
-    timeJump += delta;
+    timeJump += delta / 1000;
+
+    player.acceleration.y -= gravity;
+    prePosition = player.position.y
     // Render jump / fall
     // if(player.mesh.position.y < 1.01 && player.mesh.position.y >= 1.0){
     //     player.canJump = true;
@@ -23,14 +26,18 @@ engine.runRenderLoop(function() {
     }
     if(player.mesh.position.y < -35){
         player.mesh.position = player.checkpoint;
+        timeWalk = 0;
     }
+
+
     //RECHECK THIS, IS NOT OK
     /*
     if(Math.abs(player.mesh.position.x - 20) < 1){
         player.checkpoint= player.mesh.position.clone();
     }
     */
-    // console.log(player.mesh.position.y);
+   player.acceleration.y += gravity
+    console.log(player.acceleration.y);
     if (scene) {
         scene.render(); 
     }

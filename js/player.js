@@ -1,6 +1,7 @@
 // Init player object
 var player = {
     mesh: null,
+    position: new BABYLON.Vector3(0, 0, 0),
     velocity: new BABYLON.Vector3(0, 0, 0),
     acceleration: new BABYLON.Vector3(0, 0, 0),
     canJump: true,

@@ -7,7 +7,7 @@ var engine = new BABYLON.Engine(canvas, true);
 var timeWalk = 0;
 var timeJump = 0;
 // Set gravity
-var gravity = -0.98;
+var gravity = -0.1;
 
 var platformHeight = 2;
 var knight;
@@ -29,7 +29,7 @@ var createScene = function() {
     
     player.mesh = BABYLON.MeshBuilder.CreateBox("myBox", {height: 2, width: 2, depth: 0.5}, scene);
     player.checkCollisions = true;
-    player.mesh.position.y = 100;
+    player.mesh.position.y = 0;
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
