@@ -11,4 +11,10 @@ var player = {
     canJump: true,
     animations: [],
     startJumpAnimation: null,
+    initializeMeshes: function(newMeshes) {
+        player.rootNode = newMeshes[0];
+        player.rootNode.parent = player.mesh;
+        player.rootNode.scaling = new BABYLON.Vector3(1.15*player.width, 1.15*player.height, 1.15*player.depth);
+        player.rootNode.position.y -= player.height/2;
+    }
 };

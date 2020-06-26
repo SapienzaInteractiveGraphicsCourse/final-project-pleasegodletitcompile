@@ -62,10 +62,7 @@ var createScene = function() {
     console.log(player.mesh.position.y)
 
     BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
-        player.rootNode = newMeshes[0];
-        player.rootNode.parent = player.mesh;
-        player.rootNode.scaling = new BABYLON.Vector3(1.15*player.width, 1.15*player.height, 1.15*player.depth);
-        player.rootNode.position.y -= player.height/2;
+        player.initializeMeshes(newMeshes);
     });
 
 
@@ -100,7 +97,6 @@ var scene = createScene();
 
 // scene.beforeRender = function() {
 //     if (player.rootNode) {
-//         console.log("ready async")
 //         console.log(player.rootNode)
 //     }
 // };
