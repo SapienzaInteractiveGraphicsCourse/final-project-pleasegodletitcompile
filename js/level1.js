@@ -10,6 +10,7 @@ var timeJump = 0;
 var gravity = -0.98;
 
 var platformHeight = 2;
+var knight;
 
 // List of objects that are considered ground
 var groundObjects = [];
@@ -47,7 +48,16 @@ var createScene = function() {
     groundObjects.push(platform3);
 
     // Player
-    player.mesh = BABYLON.MeshBuilder.CreateSphere('sphere', {segments:16, diameter:2}, scene);
+    player.mesh = new BABYLON.TransformNode("player", scene);
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+        knight = newMeshes[0];
+        knight.position = new BABYLON.Vector3(0, -1, 0);
+        knight.scaling = new BABYLON.Vector3(2.0, 2.0, 2.0);
+        knight.checkCollisions = true;
+        knight.parent = player.mesh;
+    });
+
+    console.log(player.mesh);
     player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
