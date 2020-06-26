@@ -19,7 +19,7 @@ engine.runRenderLoop(function() {
     // }
     // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
     // if(player.canJump == false){ // doesn't work well with animation -> it floats sometimes
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
+    player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
     // }
     if(player.mesh.position.y < -35){
         player.mesh.position.copyFrom(checkpoint);
@@ -27,7 +27,7 @@ engine.runRenderLoop(function() {
     // if(Math.abs(player.mesh.position.x - 20) < 1){
     //     player.checkpoint= player.mesh.position.clone();
     // }
-    // console.log(player.mesh.position.y);
+    console.log(player.mesh.position.y);
     if (scene) {
         scene.render(); 
     }
