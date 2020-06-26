@@ -11,7 +11,7 @@ var timeFall = 0;
 // Set gravity
 var gravity = -0.1;
 
-var checkpoint = new BABYLON.Vector3(0, 50, 0)
+var checkpoint = new BABYLON.Vector3(0, 10, 0)
 
 var platformHeight = 2;
 var knight;
@@ -23,6 +23,7 @@ var groundObjects = [];
 var createScene = function() {
     // Scene
     var scene = new BABYLON.Scene(engine);
+    scene.collisionsEnabled = true;
 
     // Camera
     var camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
@@ -31,16 +32,12 @@ var createScene = function() {
     camera.rotationOffset = 180;
     camera.attachControl(canvas, true);
 
-    
-    player.mesh = BABYLON.MeshBuilder.CreateBox("myBox", {height: 2, width: 2, depth: 0.5}, scene);
-    player.checkCollisions = true;
-    player.mesh.position.y = 0;
-
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:10}, scene);
+    platform1.visibility = 0.2;
     platform1.checkCollisions = true;
     groundObjects.push(platform1);
 
@@ -57,66 +54,51 @@ var createScene = function() {
     groundObjects.push(platform3);
 
     // Player
-    player.mesh = new BABYLON.MeshBuilder.CreateBox("player", {size: player.height}, scene);
-    player.mesh.visibility = 0.2;
-    /* BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
-        // newMeshes.forEach(x => scene.addMesh(x))
-
-        // Get all meshes except __root__
-        var meshes = newMeshes.filter((x) => {
-            return x.parent != null
-        })
-
-        newMeshes[0].parent = player.mesh;
-        // console.log(newMeshes[0].name)
-        console.log(meshes)
-        // Get bounding box
-        var min = null;
-        var max = null;
-        newMeshes.forEach(function(mesh){
-            console.log(mesh.name);
-            mesh.parent = player.mesh;
-            // console.log(mesh.parent.name)
-
-            const boundingBox = mesh.getHierarchyBoundingVectors();
-            if(min === null){
-                min = new BABYLON.Vector3();
-                min.copyFrom(boundingBox.min);
-            }
-
-            if(max === null){
-                max = new BABYLON.Vector3();
-                max.copyFrom(boundingBox.max);
-            }
-
-            min = BABYLON.Vector3.Minimize(min, boundingBox.min);
-            max = BABYLON.Vector3.Maximize(max, boundingBox.max);
-        })
-
-        // var min_max = newMeshes[0].getHierarchyBoundingVectors();
-        // // console.log(min_max);
-        // var min = min_max.min;
-        // var max = min_max.max;
-        
-        const size = max.subtract(min);
-        const boundingInfo = new BABYLON.BoundingInfo(min,max);
-        const bbCenterWorld = boundingInfo.boundingBox.centerWorld;
-
-        player.mesh.scaling.copyFrom(size);
-        player.mesh.position.copyFrom(bbCenterWorld);
-        
-        console.log("Width: ", size.x);
-        console.log("Height: ", size.y);
-        console.log("Depth: ", size.z);
-        console.log("min: ", min);
-        console.log("max: ", max);
-        console.log("center: ", bbCenterWorld);
-    }); */
+    player.mesh = new BABYLON.MeshBuilder.CreateBox("player", {width: player.width, height:player.height, depth:player.depth}, scene);
+    player.mesh.visibility = 0.5;
     player.mesh.position.y = (player.height + platformHeight)/2.0;
+    player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
+
+    console.log(player.mesh.position.y)
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+        player.initializeMeshes(newMeshes);
+    });
+
+
+    //     newMeshes[0].parent = player.mesh;
+    //     newMeshes[0].position.y -= 0.5;
+        // newMeshes[0].position.y += 2.0;
+        // console.log(newMeshes[0].getChildMeshes())
+
+        // newMeshes.forEach(x => scene.addMesh(x))
+ 
+        // // Get all meshes except __root__
+        // var meshes = newMeshes.filter((x) => {
+        //     return x.parent != null
+        // })
+
+        // newMeshes[0].parent = player.mesh;
+        // console.log(newMeshes[0].name)
+        // console.log(meshes)
+
+        // meshes.forEach(function(mesh){
+        //     console.log(mesh.name);
+        //     mesh.parent = player.mesh;
+        //     // console.log(mesh.parent.name)
+        // })
+
+    // });
 
     return scene;
 }
 
 var scene = createScene();
+
+// scene.beforeRender = function() {
+//     if (player.rootNode) {
+//         console.log(player.rootNode)
+//     }
+// };
