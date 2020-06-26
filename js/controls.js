@@ -29,7 +29,7 @@ scene.registerAfterRender(function () {
             timeWalk = 1;
             ResetA = false;
         }        
-        player.acceleration.x -= 0.02
+        player.acceleration.x -= 0.03
         player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*(timeWalk**2), -0.3),0,0));
     }
 
@@ -38,7 +38,7 @@ scene.registerAfterRender(function () {
             timeWalk = 1;
             ResetD = false;
         }        
-        player.acceleration.x += 0.02
+        player.acceleration.x += 0.03
         player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*(timeWalk**2), 0.3),0,0));
     }
 
@@ -66,11 +66,10 @@ scene.registerAfterRender(function () {
         player.position.y = 0;
     }
 
-
+    checkSbattiTesta();
     player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2)); ; 
 
     player.mesh.moveWithCollisions(new BABYLON.Vector3(0, player.position.y , 0));
-
 });
 
 //Reset the acceleration in case the button is released
@@ -87,7 +86,7 @@ function handleKeyUp(evt) {
     }
 }
 
-// Check if the player it touching the ground
+// Check if the player is touching the ground
 function checkCanJump() {
     player.canJump = false;
     var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
@@ -95,6 +94,19 @@ function checkCanJump() {
     for (obj of groundObjects) {
         if (intersectLine.intersectsMesh(obj, false)) {
             player.canJump = true;
+        }
+    }
+    intersectLine.dispose();
+}
+
+// Check if the player is sbatting the testa
+function checkSbattiTesta() {
+    player.canJump = false;
+    var headPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y + player.height/2 + 0.1, player.mesh.position.z);
+    var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, headPoint]}, scene);
+    for (obj of groundObjects) {
+        if (intersectLine.intersectsMesh(obj, false)) {
+            player.acceleration.y = gravity;
         }
     }
     intersectLine.dispose();
