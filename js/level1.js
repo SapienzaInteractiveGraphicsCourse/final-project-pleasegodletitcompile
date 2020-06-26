@@ -30,9 +30,9 @@ var createScene = function() {
     camera.attachControl(canvas, true);
 
     
-    player.mesh = BABYLON.MeshBuilder.CreateBox("myBox", {height: 2, width: 2, depth: 0.5}, scene);
-    player.checkCollisions = true;
-    player.mesh.position.y = 100;
+    // player.mesh = BABYLON.MeshBuilder.CreateBox("myBox", {height: 2, width: 2, depth: 0.5}, scene);
+    // player.checkCollisions = true;
+    // player.mesh.position.y = 100;
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
@@ -55,7 +55,7 @@ var createScene = function() {
     groundObjects.push(platform3);
 
     // Player
-    player.mesh = new BABYLON.MeshBuilder.CreateBox("player", scene);
+    player.mesh = new BABYLON.MeshBuilder.CreateBox("player", {size: player.height}, scene);
     player.mesh.visibility = 0.2;
     /* BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
         // newMeshes.forEach(x => scene.addMesh(x))

@@ -27,7 +27,7 @@ scene.registerAfterRender(function () {
             ResetA = false;
         }        
         player.acceleration.x -= 0.01
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*timeWalk, -0.3),gravity,0));
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*timeWalk, -0.3),0,0));
     }
 
     if ((inputKeys["d"] || inputKeys["D"])) {
@@ -36,7 +36,7 @@ scene.registerAfterRender(function () {
             ResetD = false;
         }        
         player.acceleration.x += 0.01
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*timeWalk, 0.3),gravity,0));
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*timeWalk, 0.3),0,0));
     }
 
     if ((inputKeys["d"] && inputKeys["a"])) {
