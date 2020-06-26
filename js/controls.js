@@ -28,7 +28,8 @@ scene.registerAfterRender(function () {
         if(ResetA == true){
             timeWalk = 1;
             ResetA = false;
-        }        
+            player.goLeftAnimation();
+        }
         player.acceleration.x -= 0.03
         player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*(timeWalk**2), -0.3),0,0));
     }
@@ -37,6 +38,7 @@ scene.registerAfterRender(function () {
         if(ResetD == true){
             timeWalk = 1;
             ResetD = false;
+            player.goRightAnimation();
         }        
         player.acceleration.x += 0.03
         player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*(timeWalk**2), 0.3),0,0));
@@ -48,7 +50,6 @@ scene.registerAfterRender(function () {
     }
 
     checkCanJump();
-
     if(player.canJump == false){
         player.acceleration.y += gravity;
     }
@@ -78,11 +79,14 @@ function handleKeyUp(evt) {
     if (evt.keyCode == 65) {
         player.acceleration.x = 0;
         ResetA = true;
+        player.idleAnimation();
     }
 
     if (evt.keyCode == 68) {
         player.acceleration.x = 0;
         ResetD = true;
+        player.idleAnimation();
+
     }
 }
 
