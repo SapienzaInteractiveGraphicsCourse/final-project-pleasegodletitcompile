@@ -39,6 +39,11 @@ scene.registerAfterRender(function () {
         player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*timeWalk, 0.3),gravity,0));
     }
 
+    if ((inputKeys["d"] && inputKeys["a"])) {
+        timeWalk = 0;
+        player.mesh.moveWithCollisions(new BABYLON.Vector3(0,0,0));
+    }
+
     checkCanJump();
     if (inputKeys[" "] && player.canJump ) {  
         player.canJump = false;
