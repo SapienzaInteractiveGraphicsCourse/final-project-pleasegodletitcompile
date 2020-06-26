@@ -26,6 +26,11 @@ var createScene = function() {
     camera.rotationOffset = 180;
     camera.attachControl(canvas, true);
 
+    
+    player.mesh = BABYLON.MeshBuilder.CreateBox("myBox", {height: 2, width: 2, depth: 0.5}, scene);
+    player.checkCollisions = true;
+    player.mesh.position.y = 100;
+
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 
@@ -47,6 +52,7 @@ var createScene = function() {
     platform3.checkCollisions = true;
     groundObjects.push(platform3);
 
+    /*
     // Player
     player.mesh = new BABYLON.TransformNode("player", scene);
     BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
@@ -56,6 +62,7 @@ var createScene = function() {
         knight.checkCollisions = true;
         knight.parent = player.mesh;
     });
+    */
 
     console.log(player.mesh);
     player.mesh.position.y = (player.height + platformHeight)/2.0;
