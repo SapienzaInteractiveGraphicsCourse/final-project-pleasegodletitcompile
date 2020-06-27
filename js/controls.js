@@ -30,6 +30,7 @@ scene.registerAfterRender(function () {
     if ((inputKeys["a"])) {
         if(ResetA == true){
             timeWalk = 0.1;
+            player.goLeftAnimation();
             ResetA = false;
         }
         player.acceleration.x -= walk;
@@ -49,6 +50,7 @@ scene.registerAfterRender(function () {
     if ((inputKeys["d"])) {
         if(ResetD == true){
             timeWalk = 0.1;
+            player.goRightAnimation();
             ResetD = false;
         }        
         player.acceleration.x += walk;
