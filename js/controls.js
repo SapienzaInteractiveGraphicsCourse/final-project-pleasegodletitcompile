@@ -61,7 +61,7 @@ scene.registerAfterRender(function () {
             ResetD = false;
         }
         player.acceleration.x += run;
-        player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6); 
+        player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6);
     }
 
         
@@ -73,11 +73,11 @@ scene.registerAfterRender(function () {
 
     // Jump and gravity falling
     checkCanJump();
-    
+
     if(player.canJump == false){
         player.acceleration.y += gravity;
     }
-    
+
     if (inputKeys[" "] && player.canJump) {
         Jump = true;
         player.canJump = false;
@@ -93,8 +93,6 @@ scene.registerAfterRender(function () {
 
     checkSbattiTesta();
     player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2)); 
-
-    
 
     //Reset the acceleration for walking in case the button is released
     window.addEventListener("keyup", handleKeyUp, false);
@@ -124,7 +122,7 @@ scene.registerAfterRender(function () {
     }
 
     player.mesh.moveWithCollisions(new BABYLON.Vector3(player.position.x, player.position.y , 0));
-    
+
 });
 
 
@@ -132,7 +130,7 @@ scene.registerAfterRender(function () {
 // Check if the player is touching the ground
 function checkCanJump() {
     player.canJump = false;
-    var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.01, player.mesh.position.z);
+    var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
     var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, groundPoint]}, scene);
     for (obj of groundObjects) {
         if (intersectLine.intersectsMesh(obj, false)) {
@@ -146,7 +144,7 @@ function checkCanJump() {
 // Check if the player is sbatting the testa
 function checkSbattiTesta() {
     player.canJump = false;
-    var headPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y + player.height/2 + 0.01, player.mesh.position.z);
+    var headPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y + player.height/2 + 0.1, player.mesh.position.z);
     var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, headPoint]}, scene);
     for (obj of groundObjects) {
         if (intersectLine.intersectsMesh(obj, false)) {
