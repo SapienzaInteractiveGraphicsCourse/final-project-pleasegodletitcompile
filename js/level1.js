@@ -11,7 +11,9 @@ var timeFall = 0;
 // Set gravity
 var gravity = -0.1;
 
-var checkpoint = new BABYLON.Vector3(0, 10, 0)
+
+
+var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
 var platformHeight = 2;
 var knight;
@@ -25,6 +27,15 @@ var createScene = function() {
     var scene = new BABYLON.Scene(engine);
     scene.collisionsEnabled = true;
 
+    //Set platforms materials
+    var ice = new BABYLON.StandardMaterial("ice", scene);
+    ice.diffuseColor = new BABYLON.Color3(0, 1, 1);
+    ice.diffuseTexture = new BABYLON.Texture("../Textures/ice.png", scene)
+
+    var ground = new BABYLON.StandardMaterial("ground", scene);
+    ground.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
+
     // Camera
     var camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
     camera.radius = 20;
@@ -37,19 +48,22 @@ var createScene = function() {
 
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:10}, scene);
-    platform1.visibility = 0.2;
+    //platform1.visibility = 0.2;
     platform1.checkCollisions = true;
+    platform1.material = ground;
     groundObjects.push(platform1);
 
     // Platform 2
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:10}, scene);
     platform2.position = new BABYLON.Vector3(23, -10, 0)
     platform2.checkCollisions = true;
+    platform2.material = ice;
     groundObjects.push(platform2);
 
     // Platform 3
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:20, height:platformHeight, depth:10}, scene);
     platform3.position = new BABYLON.Vector3(0, -20, 0)
+    platform3.material = ice;
     platform3.checkCollisions = true;
     groundObjects.push(platform3);
 

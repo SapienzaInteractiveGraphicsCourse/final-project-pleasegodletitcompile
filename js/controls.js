@@ -6,6 +6,8 @@ var ResetD = true;
 var Jump = false;
 var check = false;
 var strength = 10;
+var walk;
+var run;
 
 scene.actionManager = new BABYLON.ActionManager(scene);
 
@@ -24,31 +26,54 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
 // This function is called after every frame render
 scene.registerAfterRender(function () {
 
-    if ((inputKeys["a"] || inputKeys["A"])) {
+    // Walk left
+    if ((inputKeys["a"])) {
         if(ResetA == true){
-            timeWalk = 1;
+            timeWalk = 0.1;
             ResetA = false;
-        }        
-        player.acceleration.x -= 0.03
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.max(player.acceleration.x*(timeWalk**2), -0.3),0,0));
+        }
+        player.acceleration.x -= walk;
+        player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
     }
 
-    if ((inputKeys["d"] || inputKeys["D"])) {
+    if ((inputKeys["a"] && inputKeys["Shift"])) {
+        if(ResetA == true){
+            timeWalk = 0.1;
+            ResetA = false;
+        }
+        player.acceleration.x -= run;
+        player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.6); 
+    }
+
+    // Walk right
+    if ((inputKeys["d"])) {
         if(ResetD == true){
-            timeWalk = 1;
+            timeWalk = 0.1;
             ResetD = false;
         }        
-        player.acceleration.x += 0.03
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(Math.min(player.acceleration.x*(timeWalk**2), 0.3),0,0));
+        player.acceleration.x += walk;
+        player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.3); 
     }
 
+    if ((inputKeys["d"] && inputKeys["Shift"])) {
+        if(ResetD == true){
+            timeWalk = 0.1;
+            ResetD = false;
+        }
+        player.acceleration.x += run;
+        player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6); 
+    }
+
+        
     if ((inputKeys["d"] && inputKeys["a"])) {
         timeWalk = 0;
-        player.mesh.moveWithCollisions(new BABYLON.Vector3(0,0,0));
+        player.position.x = 0;
+        player.acceleration.x = 0;
     }
 
+    // Jump and gravity falling
     checkCanJump();
-
+    
     if(player.canJump == false){
         player.acceleration.y += gravity;
     }
@@ -57,7 +82,7 @@ scene.registerAfterRender(function () {
         Jump = true;
         player.canJump = false;
         timeJump = 1;
-        player.acceleration.y = 3 + gravity;
+        player.acceleration.y = 2 + gravity;
         player.position.y = 0;
     };
 
@@ -67,33 +92,52 @@ scene.registerAfterRender(function () {
     }
 
     checkSbattiTesta();
-    player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2)); ; 
+    player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2)); 
 
-    player.mesh.moveWithCollisions(new BABYLON.Vector3(0, player.position.y , 0));
+    
+
+    //Reset the acceleration for walking in case the button is released
+    window.addEventListener("keyup", handleKeyUp, false);
+    function handleKeyUp(evt) {
+        if (evt.keyCode == 65) {
+            /*if(obj.material.id == "ice"){
+                player.position.x += 0.001;
+                player.position.x = Math.min(player.position.x, 0); 
+            }
+            else {
+            player.position.x = 0;
+            player.acceleration.x = 0;
+            ResetA = true;
+            }
+            */
+            player.position.x = 0;
+            player.acceleration.x = 0;
+            ResetA = true;
+
+        }
+
+        if (evt.keyCode == 68) {
+            player.position.x = 0;
+            player.acceleration.x = 0;
+            ResetD = true;
+        }
+    }
+
+    player.mesh.moveWithCollisions(new BABYLON.Vector3(player.position.x, player.position.y , 0));
+    
 });
 
-//Reset the acceleration in case the button is released
-window.addEventListener("keyup", handleKeyUp, false);
-function handleKeyUp(evt) {
-    if (evt.keyCode == 65) {
-        player.acceleration.x = 0;
-        ResetA = true;
-    }
 
-    if (evt.keyCode == 68) {
-        player.acceleration.x = 0;
-        ResetD = true;
-    }
-}
 
 // Check if the player is touching the ground
 function checkCanJump() {
     player.canJump = false;
-    var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
+    var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.01, player.mesh.position.z);
     var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, groundPoint]}, scene);
     for (obj of groundObjects) {
         if (intersectLine.intersectsMesh(obj, false)) {
             player.canJump = true;
+            checkMaterial(obj);
         }
     }
     intersectLine.dispose();
@@ -102,7 +146,7 @@ function checkCanJump() {
 // Check if the player is sbatting the testa
 function checkSbattiTesta() {
     player.canJump = false;
-    var headPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y + player.height/2 + 0.1, player.mesh.position.z);
+    var headPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y + player.height/2 + 0.01, player.mesh.position.z);
     var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, headPoint]}, scene);
     for (obj of groundObjects) {
         if (intersectLine.intersectsMesh(obj, false)) {
@@ -110,4 +154,16 @@ function checkSbattiTesta() {
         }
     }
     intersectLine.dispose();
+}
+
+// Manage the velocities, it might not be elegant, but works for sure!
+function checkMaterial(obj) {
+    if(obj.material.id == "ice"){
+        walk = 0.001;
+        run = 0.002;
+    }
+    else{
+        walk = 0.03;
+        run = 0.06;
+    }
 }
