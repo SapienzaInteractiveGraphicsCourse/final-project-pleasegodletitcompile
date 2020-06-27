@@ -78,6 +78,8 @@ scene.registerAfterRender(function () {
 
     if(player.canJump == false){
         player.acceleration.y += gravity;
+        walk = 0.03;
+        run = 0.06;
     }
 
     if (inputKeys[" "] && player.canJump) {
