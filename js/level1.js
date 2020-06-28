@@ -76,11 +76,10 @@ var createScene = function() {
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
-
-    console.log(player.mesh.position.y)
-
+    
     BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
         newMeshes.forEach(x => console.log(x))
+        // newMeshes[1].rotation.y = deg2rad(45)
         player.initializeMeshes(newMeshes);
         // player.body = scene.getMeshByID("Shoulder pads");
         // player.body.position.x = 1;
@@ -113,9 +112,3 @@ var createScene = function() {
 }
 
 var scene = createScene();
-
-// scene.beforeRender = function() {
-//     if (player.rootNode) {
-//         console.log(player.rootNode)
-//     }
-// };

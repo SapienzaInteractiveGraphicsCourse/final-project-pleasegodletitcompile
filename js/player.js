@@ -13,16 +13,15 @@ var player = {
     canJump: true,
     animations: [],
     startJumpAnimation: null,
-    goLeftAnimation: null,
-    goRightAnimation: null,
-    idleAnimation: null,
+    rotateLeftAnimation: null,
+    rotateRightAnimation: null, 
+    rotateIdleAnimation: null,
     initializeMeshes: function(newMeshes) {
         player.rootNode = newMeshes[0];
         player.rootNode.parent = player.mesh;
         player.rootNode.scaling = new BABYLON.Vector3(1.5*player.width, 1.15*player.height, 1.5*player.depth);
         player.rootNode.position.y -= player.height/2;
-        player.rootNode.rotation.y = 90
-        console.log(player.rootNode.rotation)
+        player.rootNode.rotate(new BABYLON.Vector3(0,1,0), deg2rad(25))
     }
 };
 

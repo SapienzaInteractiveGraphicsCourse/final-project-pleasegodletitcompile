@@ -30,7 +30,7 @@ scene.registerAfterRender(function () {
         buttonA = true;
         if(ResetA == true){
             timeWalk =1;
-            player.goLeftAnimation();
+            player.rotateLeftAnimation();
             ResetA = false;
         }
         player.acceleration.x -= walk;
@@ -51,7 +51,7 @@ scene.registerAfterRender(function () {
         buttonD = true;
         if(ResetD == true){
             timeWalk = 1;
-            player.goRightAnimation();
+            player.rotateRightAnimation();
             ResetD = false;
         }        
         player.acceleration.x += walk;
@@ -114,7 +114,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             player.acceleration.x = 0;
             ResetA = true;
             if(buttonA == false && buttonD == false){
-                player.idleAnimation();
+                player.rotateIdleAnimation();
             }
         
         }
@@ -126,7 +126,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             player.acceleration.x = 0;
             ResetD = true;
             if(buttonA == false && buttonD == false){
-                player.idleAnimation();
+                player.rotateIdleAnimation();
             }
         
         }
