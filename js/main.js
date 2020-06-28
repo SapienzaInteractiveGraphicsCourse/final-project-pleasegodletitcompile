@@ -26,7 +26,6 @@ engine.runRenderLoop(function() {
     // }
 
     if(player.mesh.position.y < -35){
-        player.mesh.position = player.checkpoint;
         player.mesh.position.copyFrom(checkpoint);
         timeWalk = 0;
     }

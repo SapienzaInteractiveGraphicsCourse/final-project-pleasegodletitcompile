@@ -29,7 +29,7 @@ scene.registerAfterRender(function () {
     // Walk left
     if ((inputKeys["a"])) {
         if(ResetA == true){
-            timeWalk = 0.1;
+            timeWalk =1;
             player.goLeftAnimation();
             ResetA = false;
         }
@@ -39,7 +39,7 @@ scene.registerAfterRender(function () {
 
     if ((inputKeys["a"] && inputKeys["Shift"])) {
         if(ResetA == true){
-            timeWalk = 0.1;
+            timeWalk = 1;
             ResetA = false;
         }
         player.acceleration.x -= run;
@@ -49,7 +49,7 @@ scene.registerAfterRender(function () {
     // Walk right
     if ((inputKeys["d"])) {
         if(ResetD == true){
-            timeWalk = 0.1;
+            timeWalk = 1;
             player.goRightAnimation();
             ResetD = false;
         }        
@@ -59,7 +59,7 @@ scene.registerAfterRender(function () {
 
     if ((inputKeys["d"] && inputKeys["Shift"])) {
         if(ResetD == true){
-            timeWalk = 0.1;
+            timeWalk = 1;
             ResetD = false;
         }
         player.acceleration.x += run;
@@ -68,12 +68,12 @@ scene.registerAfterRender(function () {
 
         
     if ((inputKeys["d"] && inputKeys["a"])) {
-        timeWalk = 0;
+        timeWalk = 1;
         player.position.x = 0;
         player.acceleration.x = 0;
     }
 
-    // Jump and gravity falling
+    // Jump and gravity falling 
     checkCanJump();
 
     if(player.canJump == false){
@@ -112,7 +112,7 @@ scene.registerAfterRender(function () {
             ResetA = true;
             }
             */
-            timeWalk = 0;
+            timeWalk = 1;
             player.position.x = 0;
             player.acceleration.x = 0;
             ResetA = true;
@@ -120,7 +120,7 @@ scene.registerAfterRender(function () {
         }
 
         if (evt.keyCode == 68) {
-            timeWalk = 0;
+            timeWalk = 1;
             player.position.x = 0;
             player.acceleration.x = 0;
             ResetD = true;
@@ -133,7 +133,7 @@ scene.registerAfterRender(function () {
 
 
 
-// Check if the player is touching the ground
+// Check if the player is touching the ground + go to check the material
 function checkCanJump() {
     player.canJump = false;
     var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
