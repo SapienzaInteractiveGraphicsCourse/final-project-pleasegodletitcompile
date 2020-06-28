@@ -79,9 +79,8 @@ var createScene = function() {
     
     BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
         newMeshes.forEach(x => console.log(x))
-        // newMeshes[1].rotation.y = deg2rad(45)
         player.initializeMeshes(newMeshes);
-        // player.body = scene.getMeshByID("Shoulder pads");
+        player.body = scene.getMeshByID("Body");
         // player.body.position.x = 1;
     });
 

@@ -45,17 +45,19 @@ player.rotateRightAnimation = function() {
 player.rotateIdleAnimation = function() {
     rotateAnimation(0, 180);
 
-    if(player.body){
-        // console.log(player.body)
-        var bodyIdleAnimation = new BABYLON.Animation( "bodyIdleAnimation", "position.y", framerate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
-        keys = [];
-        keys.push({ frame: 0, value: player.body.position.y });
-        keys.push({ frame: framerate/2, value: player.body.position.y - 5 });
-        keys.push({ frame: framerate, value: player.body.position.y });
-        bodyIdleAnimation.setKeys(keys);
-        player.body.animations.push(bodyIdleAnimation);
-        scene.beginAnimation(player.body, 0, framerate, false, 10);
-    }
+    // if(player.body){
+    //     /* // console.log(player.body)
+    //     var bodyIdleAnimation = new BABYLON.Animation( "bodyIdleAnimation", "position.y", framerate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+    //     keys = [];
+    //     keys.push({ frame: 0, value: player.body.position.y });
+    //     keys.push({ frame: framerate/2, value: player.body.position.y - 5 });
+    //     keys.push({ frame: framerate, value: player.body.position.y });
+    //     bodyIdleAnimation.setKeys(keys);
+    //     player.body.animations.push(bodyIdleAnimation);
+    //     scene.beginAnimation(player.body, 0, framerate, false, 10); */
 
-
+    //     // scene.registerBeforeRender(function () {
+    //     //     player.body.position.y += 1; 
+    //     // });
+    // }
 }
