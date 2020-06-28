@@ -71,7 +71,7 @@ var createScene = function() {
 
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
-    player.mesh.visibility = 0;
+    player.mesh.visibility = 0.2;
     player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
@@ -82,9 +82,9 @@ var createScene = function() {
     BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
         newMeshes.forEach(x => console.log(x))
         player.initializeMeshes(newMeshes);
-        
+        // player.body = scene.getMeshByID("Shoulder pads");
+        // player.body.position.x = 1;
     });
-
 
     //     newMeshes[0].parent = player.mesh;
     //     newMeshes[0].position.y -= 0.5;

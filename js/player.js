@@ -3,6 +3,7 @@ var player = {
     mesh: null,
     position: new BABYLON.Vector3(0, 0, 0),
     rootNode: null,
+    body: null,
     sword: null,
     width: 2.8,
     height: 4,
@@ -20,6 +21,8 @@ var player = {
         player.rootNode.parent = player.mesh;
         player.rootNode.scaling = new BABYLON.Vector3(1.5*player.width, 1.15*player.height, 1.5*player.depth);
         player.rootNode.position.y -= player.height/2;
+        player.rootNode.rotation.y = 90
+        console.log(player.rootNode.rotation)
     }
 };
 
