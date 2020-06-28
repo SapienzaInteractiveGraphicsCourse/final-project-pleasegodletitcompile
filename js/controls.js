@@ -112,6 +112,7 @@ scene.registerAfterRender(function () {
             ResetA = true;
             }
             */
+            timeWalk = 0;
             player.position.x = 0;
             player.acceleration.x = 0;
             ResetA = true;
@@ -119,6 +120,7 @@ scene.registerAfterRender(function () {
         }
 
         if (evt.keyCode == 68) {
+            timeWalk = 0;
             player.position.x = 0;
             player.acceleration.x = 0;
             ResetD = true;
