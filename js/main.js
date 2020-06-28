@@ -32,7 +32,6 @@ engine.runRenderLoop(function() {
     // if(Math.abs(player.mesh.position.x - 20) < 1){
     //     player.checkpoint= player.mesh.position.clone();
     // }
-    
 
     if (scene) {
         scene.render(); 
