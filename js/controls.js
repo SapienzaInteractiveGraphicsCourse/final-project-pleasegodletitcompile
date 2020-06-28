@@ -98,40 +98,42 @@ scene.registerAfterRender(function () {
     checkSbattiTesta();
     player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2)); 
 
-    //Reset the acceleration for walking in case the button is released
-    window.addEventListener("keyup", handleKeyUp, false);
-    function handleKeyUp(evt) {
-        if (evt.keyCode == 65) {
-            /*if(obj.material.id == "ice"){
-                player.position.x += 0.001;
-                player.position.x = Math.min(player.position.x, 0); 
-            }
-            else {
-            player.position.x = 0;
-            player.acceleration.x = 0;
-            ResetA = true;
-            }
-            */
-            timeWalk = 0;
-            player.position.x = 0;
-            player.acceleration.x = 0;
-            ResetA = true;
-
-        }
-
-        if (evt.keyCode == 68) {
-            timeWalk = 0;
-            player.position.x = 0;
-            player.acceleration.x = 0;
-            ResetD = true;
-        }
-    }
+   
 
     player.mesh.moveWithCollisions(new BABYLON.Vector3(player.position.x, player.position.y , 0));
 
 });
 
+ // Reset the acceleration for walking in case the button is released
+ window.addEventListener("keyup", handleKeyUp, false);
+ function handleKeyUp(evt) {
+    if (evt.keyCode == 65) {
+        /*if(obj.material.id == "ice"){
+            player.position.x += 0.001;
+            player.position.x = Math.min(player.position.x, 0); 
+        }
+        else {
+        player.position.x = 0;
+        player.acceleration.x = 0;
+        ResetA = true;
+        }
+        */
+        timeWalk = 0;
+        player.position.x = 0;
+        player.acceleration.x = 0;
+        ResetA = true;
+        player.idleAnimation();
+    }
 
+    if (evt.keyCode == 68) {
+        timeWalk = 0;
+        player.position.x = 0;
+        player.acceleration.x = 0;
+        ResetD = true;
+        player.idleAnimation();
+
+    }
+ }
 
 // Check if the player is touching the ground
 function checkCanJump() {
