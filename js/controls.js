@@ -3,9 +3,8 @@ var inputKeys = {};
 
 var ResetA = true;
 var ResetD = true;
-var Jump = false;
-var check = false;
-var strength = 10;
+var buttonA = false;
+var buttonD = false;
 var walk;
 var run;
 
@@ -28,8 +27,9 @@ scene.registerAfterRender(function () {
 
     // Walk left
     if ((inputKeys["a"])) {
+        buttonA = true;
         if(ResetA == true){
-            timeWalk = 0.1;
+            timeWalk =1;
             player.goLeftAnimation();
             ResetA = false;
         }
@@ -39,7 +39,7 @@ scene.registerAfterRender(function () {
 
     if ((inputKeys["a"] && inputKeys["Shift"])) {
         if(ResetA == true){
-            timeWalk = 0.1;
+            timeWalk = 1;
             ResetA = false;
         }
         player.acceleration.x -= run;
@@ -48,8 +48,9 @@ scene.registerAfterRender(function () {
 
     // Walk right
     if ((inputKeys["d"])) {
+        buttonD = true;
         if(ResetD == true){
-            timeWalk = 0.1;
+            timeWalk = 1;
             player.goRightAnimation();
             ResetD = false;
         }        
@@ -59,7 +60,7 @@ scene.registerAfterRender(function () {
 
     if ((inputKeys["d"] && inputKeys["Shift"])) {
         if(ResetD == true){
-            timeWalk = 0.1;
+            timeWalk = 1;
             ResetD = false;
         }
         player.acceleration.x += run;
@@ -68,12 +69,12 @@ scene.registerAfterRender(function () {
 
         
     if ((inputKeys["d"] && inputKeys["a"])) {
-        timeWalk = 0;
+        timeWalk = 1;
         player.position.x = 0;
         player.acceleration.x = 0;
     }
 
-    // Jump and gravity falling
+    // Jump and gravity falling 
     checkCanJump();
 
     if(player.canJump == false){
@@ -83,7 +84,6 @@ scene.registerAfterRender(function () {
     }
 
     if (inputKeys[" "] && player.canJump) {
-        Jump = true;
         player.canJump = false;
         timeJump = 1;
         player.acceleration.y = 2 + gravity;
@@ -98,44 +98,42 @@ scene.registerAfterRender(function () {
     checkSbattiTesta();
     player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2)); 
 
-   
-
     player.mesh.moveWithCollisions(new BABYLON.Vector3(player.position.x, player.position.y , 0));
 
 });
 
  // Reset the acceleration for walking in case the button is released
- window.addEventListener("keyup", handleKeyUp, false);
- function handleKeyUp(evt) {
-    if (evt.keyCode == 65) {
-        /*if(obj.material.id == "ice"){
-            player.position.x += 0.001;
-            player.position.x = Math.min(player.position.x, 0); 
+window.addEventListener("keyup", handleKeyUp, false);
+//window.addEventListener("keydown", handleKeyDown, false);
+
+    function handleKeyUp(evt) {
+        if (evt.keyCode == 65) {
+            buttonA = false;
+            timeWalk = 1;
+            player.position.x = 0;
+            player.acceleration.x = 0;
+            ResetA = true;
+            if(buttonA == false && buttonD == false){
+                player.idleAnimation();
+            }
+        
         }
-        else {
-        player.position.x = 0;
-        player.acceleration.x = 0;
-        ResetA = true;
+
+        if (evt.keyCode == 68) {
+            buttonD = false;
+            timeWalk = 1;
+            player.position.x = 0;
+            player.acceleration.x = 0;
+            ResetD = true;
+            if(buttonA == false && buttonD == false){
+                player.idleAnimation();
+            }
+        
         }
-        */
-        timeWalk = 0;
-        player.position.x = 0;
-        player.acceleration.x = 0;
-        ResetA = true;
-        player.idleAnimation();
     }
 
-    if (evt.keyCode == 68) {
-        timeWalk = 0;
-        player.position.x = 0;
-        player.acceleration.x = 0;
-        ResetD = true;
-        player.idleAnimation();
 
-    }
- }
-
-// Check if the player is touching the ground
+// Check if the player is touching the ground + go to check the material
 function checkCanJump() {
     player.canJump = false;
     var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
