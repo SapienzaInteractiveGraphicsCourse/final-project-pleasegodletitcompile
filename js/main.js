@@ -33,10 +33,11 @@ engine.runRenderLoop(function() {
     // if(Math.abs(player.mesh.position.x - 20) < 1){
     //     player.checkpoint= player.mesh.position.clone();
     // }
-
-    if(player.body.thigh_R){console.log(player.body.thigh_R.rotation);}
-
-    console.log(timeSlide);
+    
+    if(player.loadingComplete){
+        animationGroups();
+        console.log(player.walking);
+    }
 
     if (scene) {
         scene.render(); 

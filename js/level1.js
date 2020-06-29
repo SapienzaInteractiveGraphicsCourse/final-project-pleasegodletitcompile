@@ -81,6 +81,8 @@ var createScene = function() {
         // newMeshes.forEach(x => console.log(x));
         player.initializeRoot(newMeshes[0]);
         player.initializeBody();
+        player.initializeAnimations();
+        player.loadingComplete = true;
     });
 
     return scene;

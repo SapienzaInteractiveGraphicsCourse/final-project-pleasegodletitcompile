@@ -32,7 +32,7 @@ scene.registerAfterRender(function () {
         if(ResetA == true){
             timeWalk =1;
             player.rotateLeftAnimation();
-            player.walkAnimation();
+            player.walking = true;
             ResetA = false;
         }
         player.acceleration.x -= walk;
@@ -54,7 +54,7 @@ scene.registerAfterRender(function () {
         if(ResetD == true){
             timeWalk = 1;
             player.rotateRightAnimation();
-            player.walkAnimation();
+            player.walking = true;
             ResetD = false;
         }        
         player.acceleration.x += walk;
@@ -76,6 +76,7 @@ scene.registerAfterRender(function () {
         player.position.x = 0;
         player.acceleration.x = 0;
         player.rotateIdleAnimation();
+        player.walking = false;
     }
 
     // Jump and gravity falling 
@@ -115,6 +116,8 @@ window.addEventListener("keyup", handleKeyUp, false);
             buttonA = false;
             timeSlide = Math.min(timeWalk, 2);
             ResetA = true;
+            player.walking = false;
+            player.rotateIdleAnimation();
             if(ice == true){
                 player.acceleration.x -= walk;
                 player.position.x = Math.max(0.5 * player.acceleration.x * ((timeSlide) ** 2), -0.6);
@@ -134,6 +137,8 @@ window.addEventListener("keyup", handleKeyUp, false);
             buttonD = false;
             timeSlide = Math.min(timeWalk, 2);
             ResetD = true;
+            player.walking = false;
+            player.rotateIdleAnimation();
             if(ice == true){
                 player.acceleration.x += walk;
                 player.position.x = Math.min(0.5 * player.acceleration.x * ((timeSlide) ** 2), 0.6);
