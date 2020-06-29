@@ -5,6 +5,7 @@ var ResetA = true;
 var ResetD = true;
 var buttonA = false;
 var buttonD = false;
+var ice = false;
 var walk;
 var run;
 
@@ -38,7 +39,7 @@ scene.registerAfterRender(function () {
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
     }
 
-    if ((inputKeys["a"] && inputKeys["Shift"])) {
+    if ((inputKeys["a"] && inputKeys["p"])) {
         if(ResetA == true){
             timeWalk = 1;
             ResetA = false;
@@ -60,7 +61,7 @@ scene.registerAfterRender(function () {
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.3); 
     }
 
-    if ((inputKeys["d"] && inputKeys["Shift"])) {
+    if ((inputKeys["d"] && inputKeys["p"])) {
         if(ResetD == true){
             timeWalk = 1;
             ResetD = false;
@@ -112,22 +113,36 @@ window.addEventListener("keyup", handleKeyUp, false);
     function handleKeyUp(evt) {
         if (evt.keyCode == 65) {
             buttonA = false;
-            timeWalk = 1;
-            player.position.x = 0;
-            player.acceleration.x = 0;
+            timeSlide = Math.min(timeWalk, 2);
             ResetA = true;
+            if(ice == true){
+                player.acceleration.x -= walk;
+                player.position.x = Math.max(0.5 * player.acceleration.x * ((timeSlide) ** 2), -0.6);
+            }
+            else{
+                player.position.x = 0;
+                player.acceleration.x = 0;
+            }
             if(buttonA == false && buttonD == false){
                 player.rotateIdleAnimation();
             }
+            
         
         }
 
         if (evt.keyCode == 68) {
             buttonD = false;
-            timeWalk = 1;
-            player.position.x = 0;
-            player.acceleration.x = 0;
+            timeSlide = Math.min(timeWalk, 2);
             ResetD = true;
+            if(ice == true){
+                player.acceleration.x += walk;
+                player.position.x = Math.min(0.5 * player.acceleration.x * ((timeSlide) ** 2), 0.6);
+            }
+            else{
+                player.position.x = 0;
+                player.acceleration.x = 0;
+            }
+            
             if(buttonA == false && buttonD == false){
                 player.rotateIdleAnimation();
             }
@@ -166,10 +181,12 @@ function checkSbattiTesta() {
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
     if(obj.material.id == "ice"){
+        ice = true;
         walk = 0.001;
         run = 0.002;
     }
     else{
+        ice = false;
         walk = 0.03;
         run = 0.06;
     }
