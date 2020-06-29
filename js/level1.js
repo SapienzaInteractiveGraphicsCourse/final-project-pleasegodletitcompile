@@ -77,10 +77,10 @@ var createScene = function() {
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
     
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes, _, skeletons) {
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
         // newMeshes.forEach(x => console.log(x));
         player.initializeRoot(newMeshes[0]);
-        player.initializeSkeleton(skeletons);
+        player.initializeBody();
     });
 
     return scene;

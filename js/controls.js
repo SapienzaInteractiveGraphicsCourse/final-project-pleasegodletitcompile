@@ -31,6 +31,7 @@ scene.registerAfterRender(function () {
         if(ResetA == true){
             timeWalk =1;
             player.rotateLeftAnimation();
+            player.walkAnimation();
             ResetA = false;
         }
         player.acceleration.x -= walk;
@@ -52,6 +53,7 @@ scene.registerAfterRender(function () {
         if(ResetD == true){
             timeWalk = 1;
             player.rotateRightAnimation();
+            player.walkAnimation();
             ResetD = false;
         }        
         player.acceleration.x += walk;
