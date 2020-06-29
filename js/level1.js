@@ -77,35 +77,11 @@ var createScene = function() {
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
     
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
-        newMeshes.forEach(x => console.log(x))
-        player.initializeMeshes(newMeshes);
-        player.body = scene.getMeshByID("Body");
-        // player.body.position.x = 1;
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes, _, skeletons) {
+        // newMeshes.forEach(x => console.log(x));
+        player.initializeRoot(newMeshes[0]);
+        player.initializeSkeleton(skeletons);
     });
-
-    //     newMeshes[0].parent = player.mesh;
-    //     newMeshes[0].position.y -= 0.5;
-        // newMeshes[0].position.y += 2.0;
-        // console.log(newMeshes[0].getChildMeshes())
-
- 
-        // // Get all meshes except __root__
-        // var meshes = newMeshes.filter((x) => {
-        //     return x.parent != null
-        // })
-
-        // newMeshes[0].parent = player.mesh;
-        // console.log(newMeshes[0].name)
-        // console.log(meshes)
-
-        // meshes.forEach(function(mesh){
-        //     console.log(mesh.name);
-        //     mesh.parent = player.mesh;
-        //     // console.log(mesh.parent.name)
-        // })
-
-    // });
 
     return scene;
 }
