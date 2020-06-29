@@ -36,7 +36,7 @@ engine.runRenderLoop(function() {
 
     // if(player.body.chest){console.log(player.body.chest.position.y);}
 
-    console.log(timeSlide);
+    //console.log(player.position.x);
 
     if (scene) {
         scene.render(); 
