@@ -33,7 +33,7 @@ engine.runRenderLoop(function() {
     //     player.checkpoint= player.mesh.position.clone();
     // }
 
-    // if(player.body.chest){console.log(player.body.chest.position.y);}
+    if(player.body.thigh_R){console.log(player.body.thigh_R.rotation);}
 
     if (scene) {
         scene.render(); 
