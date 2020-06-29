@@ -31,6 +31,8 @@ scene.registerAfterRender(function () {
         buttonA = true;
         if(ResetA == true){
             timeWalk =1;
+            //player.position.x = 0;
+            //player.acceleration.x = 0;
             player.rotateLeftAnimation();
             player.walking = true;
             ResetA = false;
@@ -53,6 +55,8 @@ scene.registerAfterRender(function () {
         buttonD = true;
         if(ResetD == true){
             timeWalk = 1;
+            //player.position.x = 0;
+            //player.acceleration.x = 0;
             player.rotateRightAnimation();
             player.walking = true;
             ResetD = false;
@@ -84,8 +88,8 @@ scene.registerAfterRender(function () {
 
     if(player.canJump == false){
         player.acceleration.y += gravity;
-        walk = 0.03;
-        run = 0.06;
+        //walk = 0.03;
+        //run = 0.03;
     }
 
     if (inputKeys[" "] && player.canJump) {
@@ -120,7 +124,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             player.rotateIdleAnimation();
             if(ice == true){
                 player.acceleration.x -= walk;
-                player.position.x = Math.max(0.5 * player.acceleration.x * ((timeSlide) ** 2), -0.6);
+                player.position.x = Math.max(0.5 * player.acceleration.x * ((timeSlide) ** 2), -0.3);
             }
             else{
                 player.position.x = 0;
@@ -141,7 +145,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             player.rotateIdleAnimation();
             if(ice == true){
                 player.acceleration.x += walk;
-                player.position.x = Math.min(0.5 * player.acceleration.x * ((timeSlide) ** 2), 0.6);
+                player.position.x = Math.min(0.5 * player.acceleration.x * ((timeSlide) ** 2), 0.3);
             }
             else{
                 player.position.x = 0;
@@ -152,6 +156,9 @@ window.addEventListener("keyup", handleKeyUp, false);
                 player.rotateIdleAnimation();
             }
         
+        }
+        if(timeSlide < 0){
+            timeSlide = 0;
         }
     }
 
@@ -187,8 +194,8 @@ function checkSbattiTesta() {
 function checkMaterial(obj) {
     if(obj.material.id == "ice"){
         ice = true;
-        walk = 0.001;
-        run = 0.002;
+        walk = 0.01;
+        run = 0.02;
     }
     else{
         ice = false;
