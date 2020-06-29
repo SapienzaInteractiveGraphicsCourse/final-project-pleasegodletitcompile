@@ -24,9 +24,9 @@ var player = {
     initializeRoot: function(newMesh) {
         player.rootNode = newMesh;
         player.rootNode.parent = player.mesh;
-        player.rootNode.scaling = new BABYLON.Vector3(1.5*player.width, 1.15*player.height, 1.5*player.depth);
+        player.rootNode.scaling = new BABYLON.Vector3(-1.5*player.width, 1.15*player.height, 1.5*player.depth);
         player.rootNode.position.y -= player.height/2;
-        player.rootNode.rotate(new BABYLON.Vector3(0,1,0), deg2rad(25));
+        player.rootNode.rotate(new BABYLON.Vector3(0,1,0), deg2rad(-25));
     },
     initializeSkeleton: function() {
         player.body.chest = scene.getTransformNodeByID("Chest");
