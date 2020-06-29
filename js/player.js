@@ -10,9 +10,9 @@ var player = {
         thigh_R: null,
         thigh_L: null
     },
-    width: 2.8,
-    height: 4,
-    depth: 2.8,
+    width: 2,
+    height: 4.5,
+    depth: 2,
     velocity: new BABYLON.Vector3(0, 0, 0),
     acceleration: new BABYLON.Vector3(0, 0, 0),
     canJump: true,
@@ -25,9 +25,9 @@ var player = {
     initializeRoot: function(newMesh) {
         player.rootNode = newMesh;
         player.rootNode.parent = player.mesh;
-        player.rootNode.scaling = new BABYLON.Vector3(-1.5*player.width, 1.15*player.height, 1.5*player.depth);
-        player.rootNode.position.y -= player.height/2;
-        player.rootNode.rotate(new BABYLON.Vector3(0,1,0), deg2rad(-25));
+        player.rootNode.scaling = new BABYLON.Vector3(-2*player.width, player.height, 2*player.depth);
+        player.rootNode.position.y -= 1.9;
+        player.rootNode.rotate(new BABYLON.Vector3(0,1,0), deg2rad(-30));
     },
     initializeBody: function() {
         player.body.chest = scene.getTransformNodeByID("Chest");
