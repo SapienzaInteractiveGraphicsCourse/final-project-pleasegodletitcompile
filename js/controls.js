@@ -74,6 +74,7 @@ scene.registerAfterRender(function () {
         timeWalk = 1;
         player.position.x = 0;
         player.acceleration.x = 0;
+        player.rotateIdleAnimation();
     }
 
     // Jump and gravity falling 
