@@ -52,9 +52,9 @@ player.rotateIdleAnimation = function() {
     // if(player.body){
         var chestIdle = new BABYLON.Animation( "chestIdle", "position.y", framerate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
         var keys = [];
-        keys.push({ frame: 0, value: player.body.chest.position.y });
-        keys.push({ frame: framerate/2, value: player.body.chest.position.y - 0.01 });
-        keys.push({ frame: framerate, value: player.body.chest.position.y });
+        keys.push({ frame: 0, value: 0.075 });
+        keys.push({ frame: framerate/2, value: 0.065 });
+        keys.push({ frame: framerate, value: 0.075 });
         chestIdle.setKeys(keys);
         player.body.chest.animations.push(chestIdle);
         scene.beginAnimation(player.body.chest, 0, framerate, true, 1);
