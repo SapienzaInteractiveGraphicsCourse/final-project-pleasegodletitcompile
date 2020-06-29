@@ -24,6 +24,16 @@
 	            font-weight: normal;
 	            font-style: normal;
             }
+
+            .myDiv {
+                text-align: center;
+                color:#bd01bd;
+                font-family: PixelFont;
+                bottom:550px; /*bottom:330px;*/ 
+                left:70px;
+                font-size:40px;
+                position:absolute;
+            }
        
 
         </style>
@@ -32,12 +42,10 @@
 
     <body background="img\Neutrino-2-Cell.jpg">
 
+        <div class="myDiv">Sound On/Off</div>
         <div id="allthethings">
-
-            <div id="start" onclick="window.location.href = './level1.html';"><p>START</p></div>
-            <div id="level" onclick="window.location.href = './selectLevel.html';"><p>SELECT LEVEL</p></div>
-            <div id="options" onclick="window.location.href = './options.html';"><p>OPTIONS</p></div>
-            <div id="credits" onclick="window.location.href = './credits.html';"><p>CREDITS</p></div>
+            
+            <div id="sound"></div>
 
         </div>
 
