@@ -36,7 +36,6 @@ engine.runRenderLoop(function() {
     
     if(player.loadingComplete){
         animationGroups();
-        console.log(player.walking);
     }
 
     if (scene) {

@@ -50,7 +50,6 @@ var createScene = function() {
 
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:10}, scene);
-    platform1.visibility = 0.2;
     platform1.checkCollisions = true;
     platform1.material = ground;
     groundObjects.push(platform1);
@@ -71,7 +70,7 @@ var createScene = function() {
 
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
-    player.mesh.visibility = 0.2;
+    player.mesh.visibility = 0;
     player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
