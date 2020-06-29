@@ -1,10 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
 
-body {
-    background:  orange;
-  
-}
 
+/*
 #exit {
     height:30px;
     width:30px;
@@ -66,6 +63,7 @@ body {
   
 }
 
+*/
 
 
 #allthethings {
@@ -80,29 +78,33 @@ body {
     margin:auto;
     top:5px;
     left:2px;
-  
-  
-  
-  
-  
-  
+
 }
 
-#single {
+#start {
   
     position:relative;
-    bottom:330px;
-    right:300px;
+    bottom:270px; /*bottom:330px;*/ 
+    right:700px;
     height:50px;
-    width:600px;
-    background:#006680;
+    width:200px;
+    background:#bd01bd;
     text-align:center;
-    font-size:30px;
+    font-size:40px;
     background-size: 1px 300%;
-    -webkit-transition:0.5s;
-    transition:0.5s;
-    color:orange;
-    font-family:shadows into light;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:white;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);
     
     cursor:pointer;
   
@@ -110,8 +112,8 @@ body {
   
 }
 
-#single:hover {
-    background:#7A0000;
+#start:hover {
+    background:#6220a0;
     color:white;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
@@ -119,8 +121,38 @@ body {
   
 }
 
-#multiplayer:hover {
-    background:#7A0000;
+#level {
+    bottom:270px; /*bottom:330px;*/ 
+    right:700px;
+    height:50px;
+    width:300px;
+    position:relative;
+    background:#bd01bd;
+    /*bottom:375px;*/
+    font-size:40px;
+    /*right:150px;*/
+    text-align:center;
+    font-family:PixelFont;
+    color:white;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+
+    cursor:pointer;
+  
+}
+
+
+#level:hover {
+    background:#6220a0;
     color:white;
     
     -webkit-transform:rotate(-2deg);
@@ -129,99 +161,31 @@ body {
   
 }
 
-#credits:hover {
-    background:#7A0000;
-    color:white;
-    -webkit-transform:rotate(-2deg);
-    transform:rotate(-2deg);
-  
-}
-
-#options:hover {
-    background:#7A0000;
-    color:white;
-    -webkit-transform:rotate(-2deg);
-    transform:rotate(-2deg);
-  
-}
-
-#left {
-    height:100px;
-    width:600px;
-    background:orange;
-    position:absolute;
-    z-index:6;
-    -webkit-transform:rotate(45deg);
-    transform:rotate(45deg);
-    top:-175px;
-    right:-104px;
-    border-top:1px solid white;
-  
-}
-#right {
-    height:100px;
-    width:600px;
-    background:orange;
-    position:absolute;
-    top:-229px;
-    -webkit-transform:rotate(-45deg);
-    transform:rotate(-45deg);
-    z-index:7;
-    left:-56px;
-    border-top:1px solid white;
-  
-  
-}
-
-
-
-#single p {
-    position:relative;
-    top:2px;
-    right:4px;
-  
-  
-}
-
-#multiplayer {
-    height:50px;
-    width:500px;
-    background:#006680;
-    position:relative;
-    bottom:345px;
-    right:240px;
-    text-align:center;
-    font-size:30px;
-    font-family:shadows into light;
-    color:orange;
-    -webkit-transition:0.5s;
-    transition:0.5s;
-    cursor:pointer;
-  
-   
-  
-}
-#multiplayer p {
-    position:relative;
-    top:0px;
-    right:9px;
-  
-}
 
 #options {
   
     height:50px;
-    width:400px;
-    background:#006680;
+    width:200px;
+    background:#bd01bd;
     position:relative;
-    bottom:360px;
-    right:200px;
-    font-size:30px;
+    bottom:270px;
+    right:700px;
+    font-size:40px;
     text-align:center;
-    font-family:shadows into light;
-    color:orange;
-    -webkit-transition:0.5s;
-    transition:0.5s;
+    font-family:Pixelfont;
+    color:white;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+
     cursor:pointer;
   
 }
@@ -233,19 +197,38 @@ body {
   
 }
 
+#options:hover {
+    background:#6220a0;
+    color:white;
+    -webkit-transform:rotate(-2deg);
+    transform:rotate(-2deg);
+  
+}
+
 #credits {
     height:50px;
-    width:300px;
+    width:200px;
     position:relative;
-    background:#006680;
-    bottom:375px;
-    font-size:30px;
-    right:150px;
+    background:#bd01bd;
+    bottom:270px;
+    font-size:40px;
+    right:700px;
     text-align:center;
-    font-family:shadows into light;
-    color:orange;
-    -webkit-transition:0.5s;
-    transition:0.5s;
+    font-family:Pixelfont;
+    color:white;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+
+    /*forma*/
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+
     cursor:pointer;
   
 }
@@ -253,5 +236,93 @@ body {
 #credits p {
     position:relative;
     top:0px;
+  
+}
+
+#credits:hover {
+    background:#6220a0;
+    color:white;
+    -webkit-transform:rotate(-2deg);
+    transform:rotate(-2deg);
+  
+}
+
+#l1 {
+  
+    position:relative;
+    bottom:270px; /*bottom:330px;*/ 
+    right:700px;
+    height:50px;
+    width:200px;
+    background:#bd01bd;
+    text-align:center;
+    font-size:40px;
+    background-size: 1px 300%;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:white;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#l1:hover {
+    background:#6220a0;
+    color:white;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+  
+  
+}
+
+#backmenu {
+  
+    position:relative;
+    bottom:270px; /*bottom:330px;*/ 
+    right:700px;
+    height:50px;
+    width:300px;
+    background:#bd01bd;
+    text-align:center;
+    font-size:40px;
+    background-size: 1px 300%;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:white;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#backmenu:hover {
+    background:#6220a0;
+    color:white;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+  
   
 }
