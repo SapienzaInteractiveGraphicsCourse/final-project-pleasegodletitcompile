@@ -37,7 +37,7 @@ scene.registerAfterRender(function () {
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
     }
 
-    if ((inputKeys["a"] && inputKeys["Shift"])) {
+    if ((inputKeys["a"] && inputKeys["p"])) {
         if(ResetA == true){
             timeWalk = 1;
             ResetA = false;
@@ -58,7 +58,7 @@ scene.registerAfterRender(function () {
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.3); 
     }
 
-    if ((inputKeys["d"] && inputKeys["Shift"])) {
+    if ((inputKeys["d"] && inputKeys["p"])) {
         if(ResetD == true){
             timeWalk = 1;
             ResetD = false;
