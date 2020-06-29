@@ -49,38 +49,39 @@ player.rotateIdleAnimation = function() {
     rotateAnimation(0, 180);
 
     // Breathing animation
-    // if(player.body){
-        var chestIdle = new BABYLON.Animation( "chestIdle", "position.y", framerate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-        var keys = [];
-        keys.push({ frame: 0, value: 0.075 });
-        keys.push({ frame: framerate/2, value: 0.065 });
-        keys.push({ frame: framerate, value: 0.075 });
-        chestIdle.setKeys(keys);
-        player.body.chest.animations.push(chestIdle);
-        scene.beginAnimation(player.body.chest, 0, framerate, true, 1);
-    // }
+    var chestIdle = new BABYLON.Animation( "chestIdle", "position.y", framerate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    var keys = [];
+    keys.push({ frame: 0, value: 0.075 });
+    keys.push({ frame: framerate/2, value: 0.065 });
+    keys.push({ frame: framerate, value: 0.075 });
+    chestIdle.setKeys(keys);
+    player.body.chest.animations.push(chestIdle);
+    scene.beginAnimation(player.body.chest, 0, framerate, true, 1);
 }
 
 player.walkAnimation = function() {
     var walkGroup = new BABYLON.AnimationGroup("walk");
+    var neutralAngle = new BABYLON.Vector3(deg2rad(170),0,0);
+    var forwardAngle = new BABYLON.Vector3(deg2rad(230), 0, 0);
+    var backwardAngle =  new BABYLON.Vector3(deg2rad(110), 0, 0);
 
-    var walkThighR = new BABYLON.Animation("walkThighRight", "rotation.y", framerate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    var walkThighR = new BABYLON.Animation("walkThighRight", "rotation", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     var keys = [];
-    keys.push({ frame: 0, value: player.body.thigh_R.rotation.y });
-    keys.push({ frame: 0.5*framerate, value: player.body.thigh_R.rotation.y + 30 });
-    keys.push({ frame: framerate, value: player.body.thigh_R.rotation.y });
-    keys.push({ frame: 1.5*framerate, value: player.body.thigh_R.rotation.y - 30 });
-    keys.push({ frame: 2*framerate, value: player.body.thigh_R.rotation.y });
+    keys.push({ frame: 0, value: neutralAngle });
+    keys.push({ frame: 0.25*framerate, value: forwardAngle });
+    keys.push({ frame: 0.5*framerate, value: neutralAngle });
+    keys.push({ frame: 0.75*framerate, value: backwardAngle });
+    keys.push({ frame: framerate, value: neutralAngle });
     walkThighR.setKeys(keys);
     walkGroup.addTargetedAnimation(walkThighR, player.body.thigh_R);
 
-    var walkThighL = new BABYLON.Animation("walkThighLeft", "rotation.y", framerate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    var walkThighL = new BABYLON.Animation("walkThighLeft", "rotation", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     keys = [];
-    keys.push({ frame: 0, value: player.body.thigh_L.rotation.y });
-    keys.push({ frame: 0.5*framerate, value: player.body.thigh_L.rotation.y - 30 });
-    keys.push({ frame: framerate, value: player.body.thigh_L.rotation.y });
-    keys.push({ frame: 1.5*framerate, value: player.body.thigh_L.rotation.y + 30 });
-    keys.push({ frame: 2*framerate, value: player.body.thigh_L.rotation.y });
+    keys.push({ frame: 0, value: neutralAngle });
+    keys.push({ frame: 0.25*framerate, value: backwardAngle });
+    keys.push({ frame: 0.5*framerate, value: neutralAngle });
+    keys.push({ frame: 0.75*framerate, value: forwardAngle });
+    keys.push({ frame: framerate, value: neutralAngle });
     walkThighL.setKeys(keys);
     walkGroup.addTargetedAnimation(walkThighL, player.body.thigh_L);
 
