@@ -6,7 +6,8 @@ engine.runRenderLoop(function() {
     delta = engine.getDeltaTime();
     timeWalk += delta / 1000;
     timeJump += delta / 1000;
-    timeFall += delta / 1000;
+    timeSlide -= delta / 500;
+    timeSlide = Math.max(timeSlide, 0);
 
     // Render jump / fall
     // if(player.mesh.position.y < 1.01 && player.mesh.position.y >= 1.0){
@@ -34,6 +35,8 @@ engine.runRenderLoop(function() {
     // }
 
     // if(player.body.chest){console.log(player.body.chest.position.y);}
+
+    console.log(timeSlide);
 
     if (scene) {
         scene.render(); 
