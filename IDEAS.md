@@ -1,4 +1,4 @@
-Start menu with levels selection
+
 
 Create checkpoints for each level
 
