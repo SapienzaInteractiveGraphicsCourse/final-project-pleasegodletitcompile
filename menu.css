@@ -371,7 +371,7 @@
 
 #sound {
     position:relative;
-    bottom:207px;
+    bottom:213px;
     right:400px;
     height:40px;
     width:70px;
@@ -396,10 +396,17 @@
   
 }
 
+
 #sound:hover {
     background:#6220a0;
     color:white;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
+
+}
+
+#sound:focus {
+    background:#6220a0;
+    color:white;
 
 }

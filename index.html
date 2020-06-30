@@ -28,13 +28,15 @@
 
         </style>
 
+        <!-- <iframe src="./sounds/sound.mp3" width="0" height="0" allow></iframe> -->
+
     </head>
 
     <body background="img\Neutrino-2-Cell.jpg">
 
         <div id="allthethings">
 
-            <div id="start" onclick="window.location.href = './level1.html';"><p>START</p></div>
+            <div id="start" onclick="window.location.href = './level1.html';" onmousemove="window.MediaElementAudioSourceNode"><p>START</p></div>
             <div id="level" onclick="window.location.href = './selectLevel.html';"><p>SELECT LEVEL</p></div>
             <div id="options" onclick="window.location.href = './options.html';"><p>OPTIONS</p></div>
             <div id="credits" onclick="window.location.href = './credits.html';"><p>CREDITS</p></div>
@@ -43,6 +45,8 @@
 
         <link rel="stylesheet" href="./menu.css" type="text/css" />
 
+        <iframe id="sound" src="./sounds/music2.mp3" width="0%" height="0%" style="border:none;" allowfullscreen=true></iframe>
+        
         <!--
         <div align="left">
             <button id="start" onclick="window.location.href = './level1.html';">START GAME</button></div>
