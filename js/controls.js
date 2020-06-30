@@ -9,6 +9,8 @@ var ice = false;
 var walk;
 var run;
 
+var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene);
+
 scene.actionManager = new BABYLON.ActionManager(scene);
 
 // Set the key to true on keyDown
@@ -96,6 +98,8 @@ scene.registerAfterRender(function () {
         timeJump = 1;
         player.acceleration.y = 2 + gravity;
         player.position.y = 0;
+
+        jumpsound.play();
     };
 
     if(player.grounded == true){
