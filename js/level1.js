@@ -62,8 +62,8 @@ var createScene = function() {
     groundObjects.push(platform2);
 
     // Platform 3
-    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:20, height:platformHeight, depth:10}, scene);
-    platform3.position = new BABYLON.Vector3(0, -20, 0)
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:200, height:platformHeight, depth:10}, scene);
+    platform3.position = new BABYLON.Vector3(-80, -20, 0)
     platform3.material = ice;
     platform3.checkCollisions = true;
     groundObjects.push(platform3);

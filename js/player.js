@@ -15,7 +15,7 @@ var player = {
     position: new BABYLON.Vector3(0, 0, 0),
     velocity: new BABYLON.Vector3(0, 0, 0),
     acceleration: new BABYLON.Vector3(0, 0, 0),
-    canJump: true,
+    grounded: true,
     rotateLeftAnimation: null,
     rotateRightAnimation: null, 
     rotateIdleAnimation: null,
