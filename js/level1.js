@@ -87,7 +87,7 @@ var createScene = function() {
         step.material = ground;
     }
 
-    // Platform 9
+    // Platform 5
     var platform9 = BABYLON.MeshBuilder.CreateBox('platform3', {width:20, height:2, depth:10}, scene);
     platform9.position = new BABYLON.Vector3(107, 0, 0);
     platform9.checkCollisions = true;
