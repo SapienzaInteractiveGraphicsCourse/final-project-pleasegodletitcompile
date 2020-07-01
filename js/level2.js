@@ -77,7 +77,6 @@ var createScene = function() {
     camera.lockedTarget = player.mesh;
     
     BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
-        // newMeshes.forEach(x => console.log(x));
         player.initializeRoot(newMeshes[0]);
         player.initializeBody();
         player.initializeAnimations();

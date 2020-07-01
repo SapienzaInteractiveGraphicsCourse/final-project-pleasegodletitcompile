@@ -26,7 +26,7 @@ engine.runRenderLoop(function() {
     //player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
     // }
 
-    if(player.mesh.position.y < -35){
+    if(player.mesh.position.y < -100){
         player.mesh.position.copyFrom(checkpoint);
         timeWalk = 0;
         player.position.x = 0;
@@ -35,7 +35,7 @@ engine.runRenderLoop(function() {
     // if(Math.abs(player.mesh.position.x - 20) < 1){
     //     player.checkpoint= player.mesh.position.clone();
     // }
-    
+
     if(player.loadingComplete){
         animationGroups();
     }

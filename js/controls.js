@@ -9,8 +9,6 @@ var ice = false;
 var walk;
 var run;
 
-var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene);
-
 scene.actionManager = new BABYLON.ActionManager(scene);
 
 // Set the key to true on keyDown
@@ -98,8 +96,6 @@ scene.registerAfterRender(function () {
         timeJump = 1;
         player.acceleration.y = 2 + gravity;
         player.position.y = 0;
-
-        jumpsound.play();
     };
 
     if(player.grounded == true){
@@ -112,6 +108,14 @@ scene.registerAfterRender(function () {
 
     player.mesh.moveWithCollisions(new BABYLON.Vector3(player.position.x, player.position.y , 0));
 
+    // Only for developing
+    if (inputKeys["e"]) {
+        checkpoint.copyFrom(player.mesh.position);
+        timeWalk = 0;
+        player.position.x = 0;
+        player.acceleration.x = 0;
+        console.log(player.mesh.position);
+    }
 });
 
  // Reset the acceleration for walking in case the button is released
