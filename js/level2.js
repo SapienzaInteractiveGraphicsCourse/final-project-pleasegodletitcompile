@@ -68,6 +68,13 @@ var createScene = function() {
     platform3.checkCollisions = true;
     groundObjects.push(platform3);
 
+    //music
+    var musicl2 = new BABYLON.Sound("musicl2", "../sounds/musica3.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+
+    function soundReady(){
+        musicl2.play();
+    }
+
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
     player.mesh.visibility = 0;

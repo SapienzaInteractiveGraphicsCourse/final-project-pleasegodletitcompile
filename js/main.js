@@ -1,6 +1,14 @@
 /// <reference path="../reference/babylon.d.ts" />
 /// <reference path="../reference/babylonjs.loaders.d.ts" />
 
+//BABYLON.Engine.audioEngine.setGlobalVolume(0.5);
+
+//music
+//var musicl1 = new BABYLON.Sound("music", "../sounds/musica3.mp3", {loop:true, autoplay:true}, scene, function(){
+//    musicl1.play();
+//});
+
+
 // Render loop
 engine.runRenderLoop(function() {
     delta = engine.getDeltaTime();

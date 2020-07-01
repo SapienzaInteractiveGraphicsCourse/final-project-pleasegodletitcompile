@@ -3,6 +3,9 @@ var canvas = document.getElementById('renderCanvas');
 // 3D Engine
 var engine = new BABYLON.Engine(canvas, true);
 
+
+var music;
+
 var camera;
 
 //Time to try to implement gravity and run
@@ -24,6 +27,7 @@ var groundObjects = [];
 var createScene = function() {
     // Scene
     var scene = new BABYLON.Scene(engine);
+
     scene.collisionsEnabled = true;
 
     //Set platforms materials
@@ -102,6 +106,12 @@ var createScene = function() {
         groundObjects.push(step);
         step.material = ground;
     }
+
+    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/music2.mp3", scene, soundReady, {loop:true, autoplay:true, volume:0.6, useCustomAttenuation:false});
+
+    function soundReady(){
+        musicl1.play();
+    }
     
 
     // Player
@@ -123,3 +133,8 @@ var createScene = function() {
 }
 
 var scene = createScene();
+
+//music
+//music = new BABYLON.Sound("music", "./sounds/music2.mp3", {volume:1, loop:true, autoplay:true}, scene, function(){
+//    music.play();
+//});
