@@ -11,6 +11,8 @@ var run;
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
+//var runsound = new BABYLON.Sound("runsound", "../sounds/net.wav", scene, {volume:0.8, });
+
 scene.actionManager = new BABYLON.ActionManager(scene);
 
 // Set the key to true on keyDown
@@ -43,6 +45,8 @@ scene.registerAfterRender(function () {
         }
         player.acceleration.x -= walk;
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
+
+        
     }
 
     if ((inputKeys["a"] && inputKeys["p"])) {
@@ -50,6 +54,7 @@ scene.registerAfterRender(function () {
             timeWalk = 1;
             ResetA = false;
         }
+
         player.acceleration.x -= run;
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.6); 
     }
@@ -64,7 +69,8 @@ scene.registerAfterRender(function () {
             player.rotateRightAnimation();
             player.walking = true;
             ResetD = false;
-        }        
+        }
+        
         player.acceleration.x += walk;
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.3); 
     }
@@ -74,6 +80,7 @@ scene.registerAfterRender(function () {
             timeWalk = 1;
             ResetD = false;
         }
+
         player.acceleration.x += run;
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6);
     }
@@ -85,6 +92,7 @@ scene.registerAfterRender(function () {
         player.acceleration.x = 0;
         player.rotateIdleAnimation();
         player.walking = false;
+
     }
 
     if(player.grounded == false){

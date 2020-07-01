@@ -107,11 +107,11 @@ var createScene = function() {
         step.material = ground;
     }
 
-    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/music2.mp3", scene, soundReady, {loop:true, autoplay:true, volume:0.6, useCustomAttenuation:false});
+    //var musicl1 = new BABYLON.Sound("musicl1", "../sounds/music2.mp3", scene, soundReady, {loop:true, autoplay:true, volume:0.6, useCustomAttenuation:false});
 
-    function soundReady(){
-        musicl1.play();
-    }
+    //function soundReady(){
+    //    musicl1.play();
+    //}
     
 
     // Player
