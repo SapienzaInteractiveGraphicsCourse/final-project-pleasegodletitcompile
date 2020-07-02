@@ -290,6 +290,7 @@
 
 #l1:hover {
     background:white;
+    background-image: url("./img/roccia_neve.jpg");
     color:black;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
@@ -305,7 +306,7 @@
     height:50px;
     width:200px;
     background:white;
-    background-image: url("./img/ghiaccio.jpg");
+    background-image: url("./img/texture-invernali-di-brina-e-ghiaccio-su-un-telone-dbpxx0.jpg");
     text-align:center;
     font-size:40px;
     background-size: 1px 300%;
@@ -319,9 +320,9 @@
     border-radius: 8px;
 
     /*ombreggiature*/
-    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
-    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
-    box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
     
     cursor:pointer;
   
@@ -331,6 +332,91 @@
 
 #l2:hover {
     background:white;
+    background-image: url("./img/roccia_neve.jpg");
+    color:black;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+  
+  
+}
+
+#l3 {
+  
+    position:relative;
+    bottom:270px; /*bottom:330px;*/ 
+    left:360px;
+    height:50px;
+    width:200px;
+    background:white;
+    background-image: url("./img/texture-invernali-di-brina-e-ghiaccio-su-un-telone-dbpxx0.jpg");
+    text-align:center;
+    font-size:40px;
+    background-size: 1px 300%;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:black;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#l3:hover {
+    background:white;
+    background-image: url("./img/roccia_neve.jpg");
+    color:black;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+  
+  
+}
+
+#l4 {
+  
+    position:relative;
+    bottom:270px; /*bottom:330px;*/ 
+    left:360px;
+    height:50px;
+    width:200px;
+    background:white;
+    background-image: url("./img/texture-invernali-di-brina-e-ghiaccio-su-un-telone-dbpxx0.jpg");
+    text-align:center;
+    font-size:40px;
+    background-size: 1px 300%;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:black;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#l4:hover {
+    background:white;
+    background-image: url("./img/roccia_neve.jpg");
     color:black;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
@@ -372,6 +458,7 @@
 
 #backmenu:hover {
     background:white;
+    background-image: url("./img/roccia_neve.jpg");
     color:black;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
