@@ -107,10 +107,10 @@ var createScene = function() {
         step.material = ground;
     }
 
-    var musicl2 = new BABYLON.Sound("musicl2", "../sounds/songs/Celtic Music - Callirus .mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+    var musicl1 = new BABYLON.Sound("musicl2", "../sounds/songs/Celtic Music - Callirus .mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
 
     function soundReady(){
-        musicl2.play();
+        musicl1.play();
     }
     
 
