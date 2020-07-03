@@ -94,7 +94,6 @@
     background-image: url("./img/sfondo tasti.jpg");
     text-align:center;
     font-size:40px;
-    background-size: 1px 300%;
     -webkit-transition:0.3s;
     transition:0.3s;
     color:rgb(231, 182, 22);
@@ -269,7 +268,7 @@
     background-image: url("./img/texture-invernali-di-brina-e-ghiaccio-su-un-telone-dbpxx0.jpg");
     text-align:center;
     font-size:40px;
-    background-size: 1px 300%;
+
     -webkit-transition:0.3s;
     transition:0.3s;
     color:black;
