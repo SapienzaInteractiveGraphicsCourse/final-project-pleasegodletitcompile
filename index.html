@@ -35,16 +35,15 @@
 
     <body>
 
-        <div>
 
-        </div>
+        <audio id = "player" src = "./sounds/knob.mp3"></audio>
 
         <div id="allthethings">
 
-            <div id="start" onclick="window.location.href = './level1.html';"><p>START</p></div>
-            <div id="level" onclick="window.location.href = './selectLevel.html';"><p>SELECT LEVEL</p></div>
+            <div id="start" onclick="window.location.href = './level1.html';" onmouseover="document.getElementById('player').play();"><p>START</p></div>
+            <div id="level" onclick="window.location.href = './selectLevel.html';" onmouseover="document.getElementById('player').play();"><p>SELECT LEVEL</p></div>
             <!--<div id="options" onclick="window.location.href = './options.html';"><p>OPTIONS</p></div>-->
-            <div id="credits" onclick="window.location.href = './credits.html';"><p>CREDITS</p></div>
+            <div id="credits" onclick="window.location.href = './credits.html';" onmouseover="document.getElementById('player').play();"><p>CREDITS</p></div>
 
         </div>
 

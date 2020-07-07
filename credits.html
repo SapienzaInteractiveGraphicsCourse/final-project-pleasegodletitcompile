@@ -20,9 +20,7 @@
 
             @font-face{
 	            font-family: 'PixelFont';
-	            src: url('./font/pangolin-v5-latin-regular.eot') format('embedded-opentype'),
-	            url('./font/pangolin-v5-latin-regular.woff') format('woff'),
-	            url('./font/pangolin-v5-latin-regular.ttf') format('truetype');
+	            src: url('./font/Cinzel-Regular.ttf') format('truetype');
 	            font-weight: normal;
 	            font-style: normal;
             }
@@ -41,12 +39,17 @@
 
     <body>
 
-        <div class="myDiv" >
+        <audio id = "playercredits" src = "./sounds/knob.mp3"></audio>
+        <audio id = "soundclicklevel"  src = "./sounds/through-teeth.mp3"></audio>
+
+        <div class="myDiv">
             <p>Course of Interactive Graphics Project</p>
             <p>Group: PleaseGodLetItCompile</p>
             <p>Members: Ionut Motoi, Veronica Romano, Leonardo Saraceni</p>
             <p>Academic Year: 2019/2020</p>
         </div>
+
+        <div id="backmenucredits" onclick="window.location.href = './index.html';" onmouseover="document.getElementById('playercredits').play();"><p>BACK</p></div>
 
         <link rel="stylesheet" href="./menu.css" type="text/css" />
 
