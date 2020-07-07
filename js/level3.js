@@ -30,9 +30,18 @@ var createScene = function() {
     scene.collisionsEnabled = true;
 
     //Set platforms materials
-    var ice = new BABYLON.StandardMaterial("ice", scene);
-    ice.diffuseColor = new BABYLON.Color3(0, 1, 1);
-    ice.diffuseTexture = new BABYLON.Texture("../Textures/ice.png", scene)
+    //var ice = new BABYLON.StandardMaterial("ice", scene);
+    //ice.diffuseColor = new BABYLON.Color3(0, 1, 1);
+    //ice.diffuseTexture = new BABYLON.Texture("../Textures/ice.png", scene)
+
+    //Set platforms materials
+    var ground1 = new BABYLON.StandardMaterial("ground1", scene);
+    ground1.diffuseColor = new BABYLON.Color3(78, 59, 49);
+    ground1.diffuseTexture = new BABYLON.Texture("./img/terra.jpg", scene);
+
+    var ground2 = new BABYLON.StandardMaterial("ground2", scene);
+    ground2.diffuseColor = new BABYLON.Color3(76, 47, 39);
+    ground2.diffuseTexture = new BABYLON.Texture("./img/terra2.jpg", scene);
 
     var ground = new BABYLON.StandardMaterial("ground", scene);
     ground.diffuseColor = new BABYLON.Color3(1, 1, 1);
@@ -55,59 +64,59 @@ var createScene = function() {
     leftWall.material = ground;
 
     // Platform 1
-    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:2, depth:10}, scene);
+    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:45, height:2, depth:10}, scene);
     platform1.checkCollisions = true;
     groundObjects.push(platform1);
-    platform1.material = ground;
+    platform1.material = ground1;
 
     // Platform 2
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:5, height:10, depth:10}, scene);
     platform2.position = new BABYLON.Vector3(25, 4, 0);
     platform2.checkCollisions = true;
     groundObjects.push(platform2);
-    platform2.material = ground;
+    platform2.material = ground1;
 
     // Platform 3
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:20, depth:10}, scene);
     platform3.position = new BABYLON.Vector3(30, 9, 0);
     platform3.checkCollisions = true;
     groundObjects.push(platform3);
-    platform3.material = ground;
+    platform3.material = ground1;
 
     // Platform 4
-    var platform4 = BABYLON.MeshBuilder.CreateBox('platform4', {width:8, height:30, depth:10}, scene);
+    var platform4 = BABYLON.MeshBuilder.CreateBox('platform4', {width:5, height:30, depth:10}, scene);
     platform4.position = new BABYLON.Vector3(35, 14, 0);
     platform4.checkCollisions = true;
     groundObjects.push(platform4);
-    platform4.material = ground;
+    platform4.material = ground1;
 
     // Platform 5
     var platform5 = BABYLON.MeshBuilder.CreateBox('platform5', {width:6, height:2, depth:10}, scene);
     platform5.position = new BABYLON.Vector3(50, 25, 0);
     platform5.checkCollisions = true;
     groundObjects.push(platform5);
-    platform5.material = ground;
+    platform5.material = ground2;
 
     // Platform 6
     var platform6 = BABYLON.MeshBuilder.CreateBox('platform6', {width:6, height:2, depth:10}, scene);
     platform6.position = new BABYLON.Vector3(65, 25, 0);
     platform6.checkCollisions = true;
     groundObjects.push(platform6);
-    platform6.material = ground;
+    platform6.material = ground2;
 
     // Platform 7
     var platform7 = BABYLON.MeshBuilder.CreateBox('platform7', {width:6, height:2, depth:10}, scene);
     platform7.position = new BABYLON.Vector3(80, 25, 0);
     platform7.checkCollisions = true;
     groundObjects.push(platform7);
-    platform7.material = ground;
+    platform7.material = ground2;
 
     // Platform 8
     var platform8 = BABYLON.MeshBuilder.CreateBox('platform8', {width:6, height:2, depth:10}, scene);
     platform8.position = new BABYLON.Vector3(95, 25, 0);
     platform8.checkCollisions = true;
     groundObjects.push(platform8);
-    platform8.material = ground;
+    platform8.material = ground2;
 
     // Platform 9
     var platform9 = BABYLON.MeshBuilder.CreateBox('platform9', {width:30, height:14, depth:10}, scene);
@@ -117,10 +126,10 @@ var createScene = function() {
     platform9.material = ground;
 
     // Platform 10
-    var platform10 = BABYLON.MeshBuilder.CreateBox('platform10', {width:70, height:2, depth:10}, scene);
+    var platform10 = BABYLON.MeshBuilder.CreateBox('platform10', {width:46, height:2, depth:10}, scene);
     platform10.position = new BABYLON.Vector3(150, 6, 0);
     platform10.checkCollisions = true;
-    groundObjects.push(platform9);
+    groundObjects.push(platform10);
     platform10.material = ground;
 
     // Platform 11
@@ -131,11 +140,18 @@ var createScene = function() {
     platform11.material = ground;
 
     // Platform 12
-    var platform12 = BABYLON.MeshBuilder.CreateBox('platform12', {width:10, height:15, depth:10}, scene);
-    platform12.position = new BABYLON.Vector3(180, 14, 0);
+    var platform12 = BABYLON.MeshBuilder.CreateBox('platform12', {width:6, height:15, depth:10}, scene);
+    platform12.position = new BABYLON.Vector3(170, 14, 0);
     platform12.checkCollisions = true;
     groundObjects.push(platform12);
     platform12.material = ground;
+
+    // Platform 13
+    var platform13 = BABYLON.MeshBuilder.CreateBox('platform13', {width:6, height:25, depth:10}, scene);
+    platform13.position = new BABYLON.Vector3(180, 17, 0);
+    platform13.checkCollisions = true;
+    groundObjects.push(platform13);
+    platform13.material = ground;
 
 
 
