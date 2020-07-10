@@ -39,6 +39,7 @@ var createScene = function() {
     ground1.diffuseColor = new BABYLON.Color3(78, 59, 49);
     ground1.diffuseTexture = new BABYLON.Texture("./img/erba2.jpg", scene);
 
+
     var ground2 = new BABYLON.StandardMaterial("ground2", scene);
     ground2.diffuseColor = new BABYLON.Color3(76, 47, 39);
     ground2.diffuseTexture = new BABYLON.Texture("./img/terra2.jpg", scene);
@@ -72,6 +73,13 @@ var createScene = function() {
     platform1.checkCollisions = true;
     groundObjects.push(platform1);
     platform1.material = ground1;
+
+    var albero = BABYLON.SceneLoader.Append("./models/", "flowers.gltf", scene, function (scene) {
+        // do something with the scene
+        albero.position = new BABYLON.Vector3(0, 0, 0);
+        albero.checkCollisions = true;
+        groundObjects.push(albero);
+    })
 
     // Platform 2
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:5, height:10, depth:10}, scene);
@@ -130,7 +138,7 @@ var createScene = function() {
     platform9.material = ground;
 
     // Platform 10
-    var platform10 = BABYLON.MeshBuilder.CreateBox('platform10', {width:46, height:2, depth:10}, scene);
+    var platform10 = BABYLON.MeshBuilder.CreateBox('platform10', {width:42, height:2, depth:10}, scene);
     platform10.position = new BABYLON.Vector3(150, 6, 0);
     platform10.checkCollisions = true;
     groundObjects.push(platform10);
@@ -195,11 +203,19 @@ var createScene = function() {
 */
 
     // Platform 13
-    var platform13 = BABYLON.MeshBuilder.CreateBox('platform13', {width:6, height:25, depth:10}, scene);
-    platform13.position = new BABYLON.Vector3(180, 17, 0);
+    var platform13 = BABYLON.MeshBuilder.CreateBox('platform13', {width:30, height:17, depth:10}, scene);
+    platform13.position = new BABYLON.Vector3(188, 13.5, 0);
     platform13.checkCollisions = true;
     groundObjects.push(platform13);
-    platform13.material = ground1;
+    platform13.material = ground;
+
+
+    //Platform 14
+    var platform14 = BABYLON.MeshBuilder.CreateBox('platform14', {width:70, height:3, depth:10}, scene);
+    platform14.position = new BABYLON.Vector3(245, 6.5, 0);
+    platform14.checkCollisions = true;
+    groundObjects.push(platform14);
+    platform14.material = ground;
 
 
 
