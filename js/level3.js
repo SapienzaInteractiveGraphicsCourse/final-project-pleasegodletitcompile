@@ -73,15 +73,7 @@ var createScene = function() {
     platform1.checkCollisions = true;
     groundObjects.push(platform1);
     platform1.material = ground1;
-
-
-    //rivedere
-    //var albero = BABYLON.SceneLoader.Append("./models/", "flowers.gltf", scene, function (scene) {
-        // do something with the scene
-        //albero.position = new BABYLON.Vector3(0, 0, 0);
-        //albero.checkCollisions = true;
-        //groundObjects.push(albero);
-    //})
+    
 
     // Platform 2
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:5, height:10, depth:10}, scene);
