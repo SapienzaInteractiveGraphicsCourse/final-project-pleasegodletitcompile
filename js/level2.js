@@ -75,16 +75,69 @@ var createScene = function() {
         snowman.scaling = new BABYLON.Vector3(2,2,2)
     });
 
+    //Particles system
+    var particles = new BABYLON.GPUParticleSystem("particles", 20000, scene);
+    //Texture of each particle
+	particles.particleTexture = new BABYLON.Texture("../textures/snowflake.jpg", scene);
+    particles.translationPivot = new BABYLON.Vector3(0, 100,30);
+    //Where the particles come from
+    particles.emitter = camera;
+	particles.minEmitBox = new BABYLON.Vector3(-100, 0, 0); // Starting all from
+    particles.maxEmitBox = new BABYLON.Vector3(100, 0, 0); // To...
+
+    // Colors of all particles
+	particles.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+	particles.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+	particles.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+	// Size of each particle (random between...
+	particles.minSize = 0.1;
+	particles.maxSize = 0.5;
+
+	// Life time of each particle (random between...
+	particles.minLifeTime = 1;
+	particles.maxLifeTime = 25;
+
+	// Emission rate
+	particles.emitRate = 600;
+
+    window.ps = particles;
+	// ps1.manualEmitCount = 100;
+
+	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+	particles.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+	// Set the gravity of all particles
+	particles.gravity = new BABYLON.Vector3(0, 0, -2);
+
+	// Direction of each particle after it has been emitted
+	particles.direction1 = new BABYLON.Vector3(-.5, -1, 1);
+	particles.direction2 = new BABYLON.Vector3(.5, 10, 10);
+
+	// Angular speed, in radians
+	particles.minAngularSpeed = 0;
+	particles.maxAngularSpeed = Math.PI;
+
+	// Speed
+	particles.minEmitPower = .01;
+	particles.maxEmitPower = 30;
+
+	// ps1.updateSpeed = 0.009;
+
+	// Start the particle system
+	particles.start();
+    
+
     /*
     BABYLON.ParticleHelper.CreateAsync("rain", scene, true).then((set) => {
         set.start();
     });
     */
     /*
-    var hdrTexture = new BABYLON.CubeTexture("../Textures/ice.png", scene);
+    var hdrTexture = new BABYLON.HDRCubeTexture("../Textures/ice.png", scene);
     scene.createDefaultSkybox(hdrTexture, true, 10000);
     */
-   
+
     //music
     var musicl2 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
 
