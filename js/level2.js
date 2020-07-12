@@ -68,6 +68,23 @@ var createScene = function() {
     platform3.checkCollisions = true;
     groundObjects.push(platform3);
 
+    // Snowman
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "snowman.gltf", scene, function(newMeshes) {
+        var snowman = newMeshes[0];
+        snowman.position = new BABYLON.Vector3(0,0.9,3);
+        snowman.scaling = new BABYLON.Vector3(2,2,2)
+    });
+
+    /*
+    BABYLON.ParticleHelper.CreateAsync("rain", scene, true).then((set) => {
+        set.start();
+    });
+    */
+    /*
+    var hdrTexture = new BABYLON.CubeTexture("../Textures/ice.png", scene);
+    scene.createDefaultSkybox(hdrTexture, true, 10000);
+    */
+   
     //music
     var musicl2 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
 
