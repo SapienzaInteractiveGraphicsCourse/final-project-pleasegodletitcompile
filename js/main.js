@@ -1,6 +1,14 @@
 /// <reference path="../reference/babylon.d.ts" />
 /// <reference path="../reference/babylonjs.loaders.d.ts" />
 
+//BABYLON.Engine.audioEngine.setGlobalVolume(0.5);
+
+//music
+//var musicl1 = new BABYLON.Sound("music", "../sounds/musica3.mp3", {loop:true, autoplay:true}, scene, function(){
+//    musicl1.play();
+//});
+
+
 // Render loop
 engine.runRenderLoop(function() {
     delta = engine.getDeltaTime();
@@ -26,17 +34,19 @@ engine.runRenderLoop(function() {
     //player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
     // }
 
-    if(player.mesh.position.y < -35){
+    if(player.mesh.position.y < -100){
         player.mesh.position.copyFrom(checkpoint);
         timeWalk = 0;
+        player.position.x = 0;
+        player.acceleration.x = 0;
     }
     // if(Math.abs(player.mesh.position.x - 20) < 1){
     //     player.checkpoint= player.mesh.position.clone();
     // }
 
-    //if(player.body.thigh_R){console.log(player.body.thigh_R.rotation);}
-
-    console.log(player.position.x);
+    if(player.loadingComplete){
+        animationGroups();
+    }
 
     if (scene) {
         scene.render(); 

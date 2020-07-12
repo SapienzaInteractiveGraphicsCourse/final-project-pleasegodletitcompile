@@ -13,14 +13,13 @@
                 height  : 100%;
                 margin  : 0;
                 padding : 0;
+                background-image: url("./img/wallpaper-130463.jpg");
             }
 
 
             @font-face{
 	            font-family: 'PixelFont';
-	            src: url('./font/pangolin-v5-latin-regular.eot') format('embedded-opentype'),
-	            url('./font/pangolin-v5-latin-regular.woff') format('woff'),
-	            url('./font/pangolin-v5-latin-regular.ttf') format('truetype');
+	            src: url('./font/Cinzel-Regular.ttf') format('truetype');
 	            font-weight: normal;
 	            font-style: normal;
             }
@@ -30,12 +29,18 @@
 
     </head>
 
-    <body background="img\Neutrino-2-Cell.jpg">
+    <body>
+
+        <audio id = "playerlevel" src = "./sounds/knob.mp3"></audio>
+        <audio id = "soundclicklevel"  src = "./sounds/through-teeth.mp3"></audio>
 
         <div id="allthethings">
 
-            <div id="l1" onclick="window.location.href = './level1.html';"><p>LEVEL 1</p></div>
-            <div id="backmenu" onclick="window.location.href = './index.html';"><p>TURN BACK</p></div>
+            <div id="l1" onclick="window.location.href = './level1.html';"      onmouseover="document.getElementById('playerlevel').play();"><p>LEVEL 1</p></div>
+            <div id="l2" onclick="window.location.href = './level2.html';"      onmouseover="document.getElementById('playerlevel').play();"><p>LEVEL 2</p></div>
+            <div id="l3" onclick="window.location.href = './level3.html';"      onmouseover="document.getElementById('playerlevel').play();"><p>LEVEL 3</p></div>
+            <div id="l4" onclick="window.location.href = './level4.html';"      onmouseover="document.getElementById('playerlevel').play();"><p>LEVEL 4</p></div>
+            <div id="backmenu" onclick="window.location.href = './index.html';" onmouseover="document.getElementById('playerlevel').play();"><p>BACK</p></div>
 
             <!--
             <div id="l2" onclick="window.location.href = './level1.html';"><p>LEVEL 2</p></div>
@@ -44,7 +49,11 @@
 
         </div>
 
+        <iframe id="sound" src="./sounds/songs/Prophecy.mp3" width="0%" height="0%" style="border:none;" allowfullscreen=true></iframe>
+
         <link rel="stylesheet" href="./menu.css" type="text/css" />
+
+        <!--<iframe id="sound" src="./sounds/musica3.mp3" width="0%" height="0%" style="border:none;" allowfullscreen=true></iframe>-->
 
     </body>
 

@@ -13,21 +13,21 @@
                 height  : 100%;
                 margin  : 0;
                 padding : 0;
+                background-image: url("./img/options.jpg");
+                background-size: cover;
             }
 
 
             @font-face{
 	            font-family: 'PixelFont';
-	            src: url('./font/pangolin-v5-latin-regular.eot') format('embedded-opentype'),
-	            url('./font/pangolin-v5-latin-regular.woff') format('woff'),
-	            url('./font/pangolin-v5-latin-regular.ttf') format('truetype');
+	            src: url('./font/Cinzel-Regular.ttf') format('truetype');
 	            font-weight: normal;
 	            font-style: normal;
             }
 
             .myDiv {
                 text-align: center;
-                color:#bd01bd;
+                color:#200f7c;
                 font-family: PixelFont;
                 bottom:550px; /*bottom:330px;*/ 
                 left:70px;
@@ -38,9 +38,12 @@
 
         </style>
 
+        <!--<audio id="audio" src="./sounds/music2.mp3"></audio> -->
+        <iframe id="sound" src="./sounds/songs/Breath of the forest.mp3" width="0%" height="0%" style="border:none;" allowfullscreen=true></iframe> 
+
     </head>
 
-    <body background="img\Neutrino-2-Cell.jpg">
+    <body>
 
         <div class="myDiv">Sound On/Off</div>
         <div id="allthethings">
@@ -59,6 +62,8 @@
         <div align="left">
             <button onclick="window.location.href = './level1.html';">SELECT LEVEL</button></div>
         </div> -->
+        
+
     </body>
 
 </html

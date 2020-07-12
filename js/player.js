@@ -2,7 +2,6 @@
 var player = {
     mesh: null,
     rootNode: null,
-    position: new BABYLON.Vector3(0, 0, 0),
     body: {
         chest: null,
         upper_arm_R: null,
@@ -13,20 +12,20 @@ var player = {
     width: 2,
     height: 4.5,
     depth: 2,
+    position: new BABYLON.Vector3(0, 0, 0),
     velocity: new BABYLON.Vector3(0, 0, 0),
     acceleration: new BABYLON.Vector3(0, 0, 0),
-    canJump: true,
-    // animations: [],
-    startJumpAnimation: null,
+    grounded: true,
     rotateLeftAnimation: null,
     rotateRightAnimation: null, 
     rotateIdleAnimation: null,
-    walkAnimation: null,
+    walking: false,
+    loadingComplete: false,
     initializeRoot: function(newMesh) {
         player.rootNode = newMesh;
         player.rootNode.parent = player.mesh;
         player.rootNode.scaling = new BABYLON.Vector3(-2*player.width, player.height, 2*player.depth);
-        player.rootNode.position.y -= 1.9;
+        player.rootNode.position.y -= 1.95;
         player.rootNode.rotate(new BABYLON.Vector3(0,1,0), deg2rad(-30));
     },
     initializeBody: function() {
@@ -35,6 +34,12 @@ var player = {
         player.body.upper_arm_L = scene.getTransformNodeByID("upper_arm.L");
         player.body.thigh_R = scene.getTransformNodeByID("thigh.R");
         player.body.thigh_L = scene.getTransformNodeByID("thigh.L");
+
+        player.body.upper_arm_R.rotation = new BABYLON.Vector3(deg2rad(340), deg2rad(90), deg2rad(270));
+        player.body.upper_arm_L.rotation = new BABYLON.Vector3(deg2rad(180), deg2rad(90), deg2rad(270));
+    },
+    initializeAnimations: function() {
+        walkAnimation();
     }
 };
 

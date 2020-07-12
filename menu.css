@@ -73,13 +73,13 @@
     height:0px;
     
     border-left: 300px solid transparent;
-    border-right:300px solid transparent;
-    border-top: 300px solid transparent;
+    border-right:300px  solid transparent;
+    border-top: 300px  solid transparent;
     border-radius: px;
     position:relative;
     margin:auto;
     top:5px;
-    left:2px;
+    left:10px;
 
 }
 
@@ -87,16 +87,16 @@
   
     position:relative;
     bottom:270px; /*bottom:330px;*/ 
-    right:700px;
+    right:650px;
     height:50px;
     width:200px;
-    background:#bd01bd;
+    background:black;
+    background-image: url("./img/sfondo tasti.jpg");
     text-align:center;
     font-size:40px;
-    background-size: 1px 300%;
     -webkit-transition:0.3s;
     transition:0.3s;
-    color:white;
+    color:rgb(231, 182, 22);
     font-family:PixelFont;
 
     -moz-border-radius: 8px;
@@ -115,7 +115,8 @@
 }
 
 #start:hover {
-    background:#6220a0;
+    background:black;
+    background-image: url("./img/cerchio-flame_1160-750.jpg");
     color:white;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
@@ -129,13 +130,14 @@
     height:50px;
     width:300px;
     position:relative;
-    background:#bd01bd;
+    background:black;
+    background-image: url("./img/sfondo tasti.jpg");
     /*bottom:375px;*/
     font-size:40px;
     /*right:150px;*/
     text-align:center;
     font-family:PixelFont;
-    color:white;
+    color:rgb(231, 182, 22);
     -webkit-transition:0.3s;
     transition:0.3s;
 
@@ -154,7 +156,8 @@
 
 
 #level:hover {
-    background:#6220a0;
+    background:black;
+    background-image: url("./img/cerchio-flame_1160-750.jpg");
     color:white;
     
     -webkit-transform:rotate(-2deg);
@@ -168,14 +171,16 @@
   
     height:50px;
     width:200px;
-    background:#bd01bd;
+    background:black;
+    background-image: url("./img/sfondo tasti.jpg");
     position:relative;
     bottom:270px;
-    right:700px;
+    right:650px;
     font-size:40px;
     text-align:center;
+    text-decoration-style: double;
     font-family:Pixelfont;
-    color:white;
+    color:rgb(231, 182, 22);
     -webkit-transition:0.3s;
     transition:0.3s;
 
@@ -200,7 +205,8 @@
 }
 
 #options:hover {
-    background:#6220a0;
+    background:black;
+    background-image: url("./img/cerchio-flame_1160-750.jpg");
     color:white;
     -webkit-transform:rotate(-2deg);
     transform:rotate(-2deg);
@@ -211,13 +217,14 @@
     height:50px;
     width:200px;
     position:relative;
-    background:#bd01bd;
+    background:black;
+    background-image: url("./img/sfondo tasti.jpg");
     bottom:270px;
     font-size:40px;
-    right:700px;
+    right:650px;
     text-align:center;
     font-family:Pixelfont;
-    color:white;
+    color:rgb(231, 182, 22);
     -webkit-transition:0.3s;
     transition:0.3s;
 
@@ -242,7 +249,8 @@
 }
 
 #credits:hover {
-    background:#6220a0;
+    background:black;
+    background-image: url("./img/cerchio-flame_1160-750.jpg");
     color:white;
     -webkit-transform:rotate(-2deg);
     transform:rotate(-2deg);
@@ -253,16 +261,17 @@
   
     position:relative;
     bottom:270px; /*bottom:330px;*/ 
-    right:700px;
+    left:360px;
     height:50px;
     width:200px;
-    background:#bd01bd;
+    background:white;
+    background-image: url("./img/ghiaccio.jpg");
     text-align:center;
     font-size:40px;
-    background-size: 1px 300%;
+
     -webkit-transition:0.3s;
     transition:0.3s;
-    color:white;
+    color:black;
     font-family:PixelFont;
 
     -moz-border-radius: 8px;
@@ -270,9 +279,9 @@
     border-radius: 8px;
 
     /*ombreggiature*/
-    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
     
     cursor:pointer;
   
@@ -281,8 +290,132 @@
 }
 
 #l1:hover {
-    background:#6220a0;
-    color:white;
+    background:white;
+    background-image: url("./img/roccia_neve.jpg");
+    color:black;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+  
+  
+}
+
+#l2 {
+  
+    position:relative;
+    bottom:270px; /*bottom:330px;*/ 
+    left:360px;
+    height:50px;
+    width:200px;
+    background:white;
+    background-image: url("./img/ghiaccio.jpg");
+    text-align:center;
+    font-size:40px;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:black;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#l2:hover {
+    background:white;
+    background-image: url("./img/roccia_neve.jpg");
+    color:black;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+  
+  
+}
+
+#l3 {
+  
+    position:relative;
+    bottom:270px; /*bottom:330px;*/ 
+    left:360px;
+    height:50px;
+    width:200px;
+    background:white;
+    background-image: url("./img/ghiaccio.jpg");
+    text-align:center;
+    font-size:40px;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:black;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#l3:hover {
+    background:white;
+    background-image: url("./img/roccia_neve.jpg");
+    color:black;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+  
+  
+}
+
+#l4 {
+  
+    position:relative;
+    bottom:270px; /*bottom:330px;*/ 
+    left:360px;
+    height:50px;
+    width:200px;
+    background:white;
+    background-image: url("./img/ghiaccio.jpg");
+    text-align:center;
+    font-size:40px;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:black;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.5);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#l4:hover {
+    background:white;
+    background-image: url("./img/roccia_neve.jpg");
+    color:black;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
   
@@ -292,17 +425,17 @@
 #backmenu {
   
     position:relative;
-    bottom:270px; /*bottom:330px;*/ 
-    right:700px;
+    bottom:100px; /*bottom:330px;*/ 
+    left:-650px;
     height:50px;
-    width:300px;
-    background:#bd01bd;
+    width:200px;
+    background:white;
+    background-image: url("./img/ghiaccio.jpg");
     text-align:center;
     font-size:40px;
-    background-size: 1px 300%;
     -webkit-transition:0.3s;
     transition:0.3s;
-    color:white;
+    color:black;
     font-family:PixelFont;
 
     -moz-border-radius: 8px;
@@ -310,9 +443,9 @@
     border-radius: 8px;
 
     /*ombreggiature*/
-    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
     
     cursor:pointer;
   
@@ -321,8 +454,9 @@
 }
 
 #backmenu:hover {
-    background:#6220a0;
-    color:white;
+    background:white;
+    background-image: url("./img/roccia_neve.jpg");
+    color:black;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
 
@@ -369,13 +503,56 @@
 }
 */
 
+#backmenucredits {
+  
+    position: relative;
+    bottom:-380px; /*bottom:330px;*/ 
+    left:100px;
+    height:50px;
+    width:200px;
+    background:white;
+    background-image: url("./img/mattoni.jpg");
+    text-align:center;
+    font-size:40px;
+    -webkit-transition:0.3s;
+    transition:0.3s;
+    color:black;
+    font-family:PixelFont;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+    /*ombreggiature*/
+    -moz-box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
+    -webkit-box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
+    box-shadow: -10px 5px 5px rgba(0,0,0,0.8);
+    
+    cursor:pointer;
+  
+  
+  
+}
+
+#backmenucredits:hover {
+    
+    background:white;
+    background-image: url("./img/neve.jpg");
+    color:black;
+    -webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);
+
+}
+
 #sound {
     position:relative;
-    bottom:207px;
-    right:400px;
+    bottom:213px;
+    right:300px;
     height:40px;
     width:70px;
-    background:#bd01bd;
+    background:#09078d;
+    background-image: url("./img/mattoni.jpg");
+    background-size: auto;
     font-size:40px;
     background-size: 1px 300%;
     -webkit-transition:0.3s;
@@ -388,18 +565,26 @@
     border-radius: 8px;
 
     /*ombreggiature*/
-    -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -moz-box-shadow: 10px 5px 5px rgba(0,0,0,0.8);
+    -webkit-box-shadow: 10px 5px 5px rgba(0,0,0,0.8);
+    box-shadow: 10px 5px 5px rgba(0,0,0,0.8);
     
     cursor:pointer;
   
 }
 
+
 #sound:hover {
-    background:#6220a0;
+    background:#09078d;
+    background-image: url("./img/roccia2.jpg");
     color:white;
     -webkit-transform:rotate(-1deg);
     transform:rotate(-2deg);
+
+}
+
+#sound:focus {
+    background:#6220a0;
+    color:white;
 
 }
