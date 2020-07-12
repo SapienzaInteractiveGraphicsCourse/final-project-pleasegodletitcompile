@@ -44,6 +44,7 @@ scene.registerAfterRender(function () {
             ResetA = false;
         }
         player.acceleration.x -= walk;
+        player.acceleration.x = Math.max(player.acceleration.x, -0.3)
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
 
         
@@ -72,6 +73,7 @@ scene.registerAfterRender(function () {
         }
         
         player.acceleration.x += walk;
+        player.acceleration.x = Math.min(player.acceleration.x, 0.3)
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.3); 
     }
 
@@ -140,7 +142,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             timeSlide = Math.min(timeWalk, 1.2);
             ResetA = true;
             player.walking = false;
-            player.rotateIdleAnimation();
+            //player.rotateIdleAnimation();
             if(ice == true){
                 //player.acceleration.x -= walk;
                 player.position.x = Math.max(0.5 * player.acceleration.x * ((timeSlide) ** 2), -0.3);
@@ -159,7 +161,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             timeSlide = Math.min(timeWalk, 1.2);
             ResetD = true;
             player.walking = false;
-            player.rotateIdleAnimation();
+            //player.rotateIdleAnimation();
             if(ice == true){
                 //player.acceleration.x += walk;
                 player.position.x = Math.min(0.5 * player.acceleration.x * ((timeSlide) ** 2), 0.3);

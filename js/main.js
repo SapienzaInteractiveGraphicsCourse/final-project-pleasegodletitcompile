@@ -51,6 +51,7 @@ engine.runRenderLoop(function() {
     if (scene) {
         scene.render(); 
     }
+    console.log(player.acceleration.x)
 });
 
 // Canvas/Window resize event handler
