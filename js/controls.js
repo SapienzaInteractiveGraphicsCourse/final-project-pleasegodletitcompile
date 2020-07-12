@@ -117,10 +117,10 @@ window.addEventListener("keyup", handleKeyUp, false);
     function handleKeyUp(evt) {
         if (evt.keyCode == 65) {
             buttonA = false;
-            timeSlide = Math.min(timeWalk, 2);
+            timeSlide = Math.min(timeWalk, 1.2);
             ResetA = true;
             if(ice == true){
-                player.acceleration.x -= walk;
+                //player.acceleration.x -= walk;
                 player.position.x = Math.max(0.5 * player.acceleration.x * ((timeSlide) ** 2), -0.3);
             }
             else{
@@ -130,16 +130,14 @@ window.addEventListener("keyup", handleKeyUp, false);
             if(buttonA == false && buttonD == false){
                 player.rotateIdleAnimation();
             }
-            
-        
         }
 
         if (evt.keyCode == 68) {
             buttonD = false;
-            timeSlide = Math.min(timeWalk, 2);
+            timeSlide = Math.min(timeWalk, 1.2);
             ResetD = true;
             if(ice == true){
-                player.acceleration.x += walk;
+                //player.acceleration.x += walk;
                 player.position.x = Math.min(0.5 * player.acceleration.x * ((timeSlide) ** 2), 0.3);
             }
             else{
@@ -151,9 +149,6 @@ window.addEventListener("keyup", handleKeyUp, false);
                 player.rotateIdleAnimation();
             }
         
-        }
-        if(timeSlide < 0){
-            timeSlide = 0;
         }
     }
 

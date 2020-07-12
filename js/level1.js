@@ -13,8 +13,6 @@ var timeSlide = 0;
 // Set gravity
 var gravity = -0.1;
 
-
-
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
 var platformHeight = 2;
