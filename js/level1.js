@@ -121,33 +121,34 @@ var createScene = function() {
     
     //Where the particles come from
     particles.emitter = camera;
-	particles.minEmitBox = new BABYLON.Vector3(-100, 50, 20); // Starting all from
-    particles.maxEmitBox = new BABYLON.Vector3(100, 50, 50); // To...
+	particles.minEmitBox = new BABYLON.Vector3(-100, 40, 20); // Starting all from
+    particles.maxEmitBox = new BABYLON.Vector3(100, 50, 60); // To...
 
-	// Size of each particle (random between...
-	particles.minSize = .02;
-	particles.maxSize = .1;
+	// Size of each particle
+	particles.minSize = .05;
+	particles.maxSize = .07;
 
-	// Life time of each particle (random between...
+	// Life time of each particle
 	particles.minLifeTime = 1;
-	particles.maxLifeTime = 15;
+	particles.maxLifeTime = 2;
 
 	// Emission rate
-	particles.emitRate = 2000;
+	particles.emitRate = 5000;
 
     window.ps = particles;
 
-	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+	// Blend mode
 	particles.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
 	// Set the gravity of all particles
-	particles.gravity = new BABYLON.Vector3(-5, -9.81, 0);
+	particles.gravity = new BABYLON.Vector3(0, -9.81, 0);
 
 	// Direction of each particle after it has been emitted
-	particles.direction1 = new BABYLON.Vector3(-.5, -1, -.1);
-	particles.direction2 = new BABYLON.Vector3(-.4, -1, .1);
+	particles.direction1 = new BABYLON.Vector3(-.4, -1, -.1);
+    particles.direction2 = new BABYLON.Vector3(-.5, -1, .1);
+    
 	// Speed
-	particles.minEmitPower = 30;
+	particles.minEmitPower = 40;
 	particles.maxEmitPower = 50;
 
 	// Start the particle system
