@@ -113,6 +113,45 @@ var createScene = function() {
         musicl1.play();
     }
     
+    //Particles system
+    var particles = new BABYLON.GPUParticleSystem("particles", 100000, scene);
+
+    //Texture of each particle
+    particles.particleTexture = new BABYLON.Texture("../textures/droplet.png", scene);
+    
+    //Where the particles come from
+    particles.emitter = camera;
+	particles.minEmitBox = new BABYLON.Vector3(-100, 50, 20); // Starting all from
+    particles.maxEmitBox = new BABYLON.Vector3(100, 50, 50); // To...
+
+	// Size of each particle (random between...
+	particles.minSize = .02;
+	particles.maxSize = .1;
+
+	// Life time of each particle (random between...
+	particles.minLifeTime = 1;
+	particles.maxLifeTime = 15;
+
+	// Emission rate
+	particles.emitRate = 2000;
+
+    window.ps = particles;
+
+	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+	particles.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+	// Set the gravity of all particles
+	particles.gravity = new BABYLON.Vector3(-5, -9.81, 0);
+
+	// Direction of each particle after it has been emitted
+	particles.direction1 = new BABYLON.Vector3(-.5, -1, -.1);
+	particles.direction2 = new BABYLON.Vector3(-.4, -1, .1);
+	// Speed
+	particles.minEmitPower = 30;
+	particles.maxEmitPower = 50;
+
+	// Start the particle system
+	particles.start();
 
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
