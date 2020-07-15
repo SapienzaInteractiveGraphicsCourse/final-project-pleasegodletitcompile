@@ -3,9 +3,6 @@ var canvas = document.getElementById('renderCanvas');
 // 3D Engine
 var engine = new BABYLON.Engine(canvas, true);
 
-
-var music;
-
 var camera;
 
 //Time to try to implement gravity and run
@@ -18,8 +15,22 @@ var timeAnimation = 0;
 // Set gravity
 var gravity = -0.1;
 
+var snowCyl;
+var snowRA;
+var snowLA;
+
+var snowCyl2;
+var snowRA2;
+var snowLA2;
+
+var snowAnim = false;
+
+
+
+
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
+var platformHeight = 2;
 var knight;
 var helmet;
 

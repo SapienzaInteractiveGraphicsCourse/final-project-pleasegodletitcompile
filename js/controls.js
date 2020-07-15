@@ -219,7 +219,7 @@ function checkMaterial(obj) {
         walk = 0.01;
         run = 0.015;
     }
-    else if(obj.material.id == "multiSnow"){
+    else if(obj.material.id == "multiSnow" || obj.material.id == "ground"){
         ice = false;
         walk = 0.03;
         run = 0.06;

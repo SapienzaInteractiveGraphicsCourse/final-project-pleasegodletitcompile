@@ -23,7 +23,7 @@ var snowCyl2;
 var snowRA2;
 var snowLA2;
 
-var fire = false;
+var snowAnim = true;
 
 
 

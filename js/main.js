@@ -18,9 +18,11 @@ engine.runRenderLoop(function() {
     timeAnimation += delta / 1000;
     timeSlide = Math.max(timeSlide, 0);
 
-    if(timeAnimation > 2){
-        snowMan();
-        timeAnimation = 0;
+    if(snowAnim == true){
+        if(timeAnimation > 2){
+            snowMan();
+            timeAnimation = 0;
+        }
     }
 
     if(player.mesh.position.y < -100){
