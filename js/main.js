@@ -15,24 +15,13 @@ engine.runRenderLoop(function() {
     timeWalk += delta / 1000;
     timeJump += delta / 1000;
     timeSlide -= delta / 500;
+    timeAnimation += delta / 1000;
     timeSlide = Math.max(timeSlide, 0);
 
-    // Render jump / fall
-    // if(player.mesh.position.y < 1.01 && player.mesh.position.y >= 1.0){
-    //     player.canJump = true;
-    // } 
-    // else if(sphere.position.y >= 1.01) {
-    //     player.verticalSpeed -= 0.1;
-    // }
-    // else {
-    //     player.mesh.position.y = 1;
-    //     player.verticalSpeed = 0;
-    // }
-    // player.mesh.position.y += 0.01 * player.verticalSpeed * delta;
-
-    // if(player.canJump == false){ // doesn't work well with animation -> it floats sometimes
-    //player.mesh.moveWithCollisions(new BABYLON.Vector3(0, gravity, 0));
-    // }
+    if(timeAnimation > 2){
+        snowMan();
+        timeAnimation = 0;
+    }
 
     if(player.mesh.position.y < -100){
         player.mesh.position.copyFrom(checkpoint);
@@ -40,9 +29,6 @@ engine.runRenderLoop(function() {
         player.position.x = 0;
         player.acceleration.x = 0;
     }
-    // if(Math.abs(player.mesh.position.x - 20) < 1){
-    //     player.checkpoint= player.mesh.position.clone();
-    // }
 
     if(player.loadingComplete){
         animationGroups();
@@ -50,7 +36,7 @@ engine.runRenderLoop(function() {
 
     if (scene) {
         scene.render(); 
-    }
+    }    
 });
 
 // Canvas/Window resize event handler

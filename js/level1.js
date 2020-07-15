@@ -13,6 +13,8 @@ var timeWalk = 0;
 var timeJump = 0;
 var timeSlide = 0;
 
+var timeAnimation = 0;
+
 // Set gravity
 var gravity = -0.1;
 

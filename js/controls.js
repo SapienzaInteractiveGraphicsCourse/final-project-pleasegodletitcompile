@@ -6,6 +6,7 @@ var ResetD = true;
 var buttonA = false;
 var buttonD = false;
 var ice = false;
+var fire = false;
 var walk;
 var run;
 
@@ -31,9 +32,10 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
 scene.registerAfterRender(function () {
     // Jump and gravity falling 
     isGrounded();
-
+    
     // Walk left
     if ((inputKeys["a"])) {
+        
         buttonA = true;
         if(ResetA == true){
             timeWalk =1;
@@ -209,14 +211,74 @@ function checkSbattiTesta() {
 
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
-    if(obj.material.id == "ice"){
+    if(obj.material.id == "fireM"){
+        fireON();
+    }
+    if(obj.material.id == "multiIce"){
         ice = true;
         walk = 0.01;
-        run = 0.02;
+        run = 0.015;
     }
-    else{
+    else if(obj.material.id == "multiSnow"){
         ice = false;
         walk = 0.03;
         run = 0.06;
     }
+}
+
+function fireON(){
+    checkpoint = new BABYLON.Vector3(-12,-14,0);
+    //Particles system Fire
+    var particles2 = new BABYLON.GPUParticleSystem("particles2", 10000, scene);
+    //Texture of each particle
+    particles2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
+    //Where the particles come from
+    
+    particles2.emitter = new BABYLON.Vector3(-12, -19.1, 0);
+    
+    
+    particles2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles2.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
+    particles2.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
+    particles2.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles2.minSize = 0.1;
+    particles2.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles2.minLifeTime = 0.05;
+    particles2.maxLifeTime = 0.1;
+
+    // Emission rate
+    particles2.emitRate = 600;
+
+    window.ps = particles2;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles2.gravity = new BABYLON.Vector3(0, 0, -2);
+
+    // Direction of each particle after it has been emitted
+    particles2.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
+    particles2.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
+    
+
+    // Angular speed, in radians
+    particles2.minAngularSpeed = 0;
+    particles2.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles2.minEmitPower = .01;
+    particles2.maxEmitPower = 30;
+
+    // Start the particle system
+    particles2.start();
+
 }
