@@ -10,6 +10,8 @@ var fire = false;
 var walk;
 var run;
 
+var fireIsOn = false;
+
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
 //var runsound = new BABYLON.Sound("runsound", "../sounds/net.wav", scene, {volume:0.8, });
@@ -211,7 +213,7 @@ function checkSbattiTesta() {
 
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
-    if(obj.material.id == "fireM"){
+    if(obj.material.id == "fireM" && fireIsOn == false){
         fireON();
     }
     if(obj.material.id == "multiIce"){
@@ -227,6 +229,7 @@ function checkMaterial(obj) {
 }
 
 function fireON(){
+    fireIsOn = true;
     checkpoint = new BABYLON.Vector3(-12,-14,0);
     //Particles system Fire
     var particles2 = new BABYLON.GPUParticleSystem("particles2", 10000, scene);
