@@ -37,7 +37,11 @@ engine.runRenderLoop(function() {
     if(snowAnim == true){
         if(timeAnimation > 2){
             snowMan();
-            Coin();
+            if(coinIsOn == false){
+                Coin();
+            }
+            
+            
             timeAnimation = 0;
         }
     }
