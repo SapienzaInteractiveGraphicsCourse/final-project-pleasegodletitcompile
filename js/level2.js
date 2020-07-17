@@ -12,6 +12,8 @@ var timeSlide = 0;
 
 var timeAnimation = 0;
 
+var timeCoin = 0;
+
 // Set gravity
 var gravity = -0.1;
 
@@ -23,7 +25,9 @@ var snowCyl2;
 var snowRA2;
 var snowLA2;
 
-var snowAnim = true;
+var coin;
+
+var snowAnim = false;
 
 
 
@@ -42,6 +46,25 @@ var createScene = function() {
     scene.collisionsEnabled = true;
 
     //Set platforms materials
+    //Ice Small Platform
+    var iceS = new BABYLON.StandardMaterial("ice", scene);
+    iceS.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene)
+    iceS.bumpTexture.uScale = 0.3;
+    iceS.bumpTexture.vScale = 3;
+    iceS.diffuseColor = new BABYLON.Color3(0, 1, 1);
+    
+    var iceS1 = new BABYLON.StandardMaterial("ice1", scene);
+    iceS1.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceS1.bumpTexture.uScale = 3;
+    iceS1.bumpTexture.vScale = 0.08;
+    iceS1.diffuseColor = new BABYLON.Color3(0, 1, 1);
+
+    var iceS2 = new BABYLON.StandardMaterial("ice2", scene);
+    iceS2.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceS2.bumpTexture.uScale = 0.08;
+    iceS2.bumpTexture.vScale = 0.3;
+    iceS2.diffuseColor = new BABYLON.Color3(0, 1, 1);
+
     //Ice Medium Platform
     var iceM = new BABYLON.StandardMaterial("ice", scene);
     iceM.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene)
@@ -79,7 +102,45 @@ var createScene = function() {
     iceB2.bumpTexture.uScale = 0.08;
     iceB2.bumpTexture.vScale = 0.3;
     iceB2.diffuseColor = new BABYLON.Color3(0, 1, 1);
-   
+    
+    //Snow Small Platform
+    var snowS = new BABYLON.StandardMaterial("snow", scene);
+    snowS.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowS.bumpTexture.uScale = 0.3;
+    snowS.bumpTexture.vScale = 2;
+    snowS.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
+    var snowS1 = new BABYLON.StandardMaterial("snow1", scene);
+    snowS1.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowS1.bumpTexture.uScale = 2;
+    snowS1.bumpTexture.vScale = 0.08;
+    snowS1.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
+    var snowS2 = new BABYLON.StandardMaterial("snow2", scene);
+    snowS2.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowS2.bumpTexture.uScale = 0.08;
+    snowS2.bumpTexture.vScale = 0.3;
+    snowS2.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
+    //Snow Medium Platform
+    var snowM = new BABYLON.StandardMaterial("snow", scene);
+    snowM.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowM.bumpTexture.uScale = 0.3;
+    snowM.bumpTexture.vScale = 2;
+    snowM.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
+    var snowM1 = new BABYLON.StandardMaterial("snow1", scene);
+    snowM1.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowM1.bumpTexture.uScale = 2;
+    snowM1.bumpTexture.vScale = 0.08;
+    snowM1.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
+    var snowM2 = new BABYLON.StandardMaterial("snow2", scene);
+    snowM2.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowM2.bumpTexture.uScale = 0.08;
+    snowM2.bumpTexture.vScale = 0.3;
+    snowM2.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
     //Snow Big Platform
     var snowB = new BABYLON.StandardMaterial("snow", scene);
     snowB.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
@@ -102,6 +163,10 @@ var createScene = function() {
     //Set fire material
     var fireM = new BABYLON.StandardMaterial("fireM", scene);
     fireM.diffuseColor = new BABYLON.Color3(0, 0, 0);
+
+    //Set coin material
+    var coinM = new BABYLON.StandardMaterial("coinM", scene);
+    coinM.diffuseColor = new BABYLON.Color3(0, 0, 0);
     
     // Camera
     camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
@@ -113,6 +178,16 @@ var createScene = function() {
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1,1,0), scene);
 
+    // Snow multimaterial
+    var multimatSnowS = new BABYLON.MultiMaterial("multiSnow", scene);
+    multimatSnowS.subMaterials.push(snowS);
+    multimatSnowS.subMaterials.push(snowS1);
+    multimatSnowS.subMaterials.push(snowS2);
+
+    var multimatSnowM = new BABYLON.MultiMaterial("multiSnow", scene);
+    multimatSnowM.subMaterials.push(snowM);
+    multimatSnowM.subMaterials.push(snowM1);
+    multimatSnowM.subMaterials.push(snowM2);
 
     var multimatSnowB = new BABYLON.MultiMaterial("multiSnow", scene);
     multimatSnowB.subMaterials.push(snowB);
@@ -120,6 +195,11 @@ var createScene = function() {
     multimatSnowB.subMaterials.push(snowB2);
 
     // Ice multimaterial
+    var multimatIceS = new BABYLON.MultiMaterial("multiIce", scene);
+    multimatIceS.subMaterials.push(iceS);
+    multimatIceS.subMaterials.push(iceS1);
+    multimatIceS.subMaterials.push(iceS2);
+
     var multimatIceM = new BABYLON.MultiMaterial("multiIce", scene);
     multimatIceM.subMaterials.push(iceM);
     multimatIceM.subMaterials.push(iceM1);
@@ -128,7 +208,9 @@ var createScene = function() {
     var multimatIceB = new BABYLON.MultiMaterial("multiIce", scene);
     multimatIceB.subMaterials.push(iceB);
     multimatIceB.subMaterials.push(iceB1);
-    multimatIceB.subMaterials.push(iceB1);
+    multimatIceB.subMaterials.push(iceB2);
+
+    
     
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
@@ -196,7 +278,7 @@ var createScene = function() {
     
     groundObjects.push(platform2);
 
-    // Platform 3
+    // Platform 1
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:50, height:platformHeight, depth:15}, scene);
     platform3.position = new BABYLON.Vector3(0, -20, 5)
     platform3.material = multimatIceB;
@@ -393,6 +475,70 @@ var createScene = function() {
         Wolf.checkCollisions = true;
     });
 
+    // Eskimo model
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
+        var eskimo = newMeshes[0];
+        eskimo.position = new BABYLON.Vector3(5,-15,10.5);
+        eskimo.scaling = new BABYLON.Vector3(1,1,1);
+        eskimo.rotate(new BABYLON.Vector3(0,2,0), 45);
+        eskimo.checkCollisions = true;
+    });
+
+    // Bear model
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "bear.gltf", scene, function(newMeshes) {
+        var bear = newMeshes[0];
+        bear.position = new BABYLON.Vector3(-5,-15,14);
+        bear.scaling = new BABYLON.Vector3(1,1,1);
+        bear.rotate(new BABYLON.Vector3(0,2,0), 45);
+        bear.checkCollisions = true;
+    });
+
+    // Tux model 1
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+        var tux = newMeshes[0];
+        tux.position = new BABYLON.Vector3(-18,-19,10);
+        tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
+        tux.rotate(new BABYLON.Vector3(0,2,0), -5.5);
+        tux.checkCollisions = true;
+    });
+
+    // Tux model 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+        var tux = newMeshes[0];
+        tux.position = new BABYLON.Vector3(-20,-19,10);
+        tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
+        tux.rotate(new BABYLON.Vector3(0,2,0), 5.5);
+        tux.checkCollisions = true;
+    });
+
+    // Tux model 3
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+        var tux = newMeshes[0];
+        tux.position = new BABYLON.Vector3(-19,-19,8);
+        tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
+        tux.rotate(new BABYLON.Vector3(0,2,0), 9.5);
+        tux.checkCollisions = true;
+    });
+
+    // Penguins community
+    // Penguin igloo
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "igloopenguin.gltf", scene, function(newMeshes) {
+        var igloopenguin = newMeshes[0];
+        igloopenguin.position = new BABYLON.Vector3(54,-8.2,11);
+        igloopenguin.scaling = new BABYLON.Vector3(2,2,2);
+        igloopenguin.rotate(new BABYLON.Vector3(0,2,0), 1.4);
+        igloopenguin.checkCollisions = true;
+    });
+
+    // Fish bucket
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "fishbucket.gltf", scene, function(newMeshes) {
+        var fishbucket = newMeshes[0];
+        fishbucket.position = new BABYLON.Vector3(48,-12.8,13);
+        fishbucket.scaling = new BABYLON.Vector3(3,3,3);
+        fishbucket.rotate(new BABYLON.Vector3(0,2,0), 0);
+        fishbucket.checkCollisions = true;
+    });
+
     // Fire Log
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
@@ -408,6 +554,24 @@ var createScene = function() {
     fireBox.material = fireM;
     fireBox.position = new BABYLON.Vector3(-12,-19.1,0);
     groundObjects.push(fireBox);
+
+    // COIN 1
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+        coin = newMeshes[0];
+        coin.position = new BABYLON.Vector3(-7,-17.5,0.5);
+        coin.scaling = new BABYLON.Vector3(10,10,10);
+        coin.rotate(new BABYLON.Vector3(1,0,0), 1.6)
+        coin.checkCollisions = true;
+    });
+
+    // Coin collision box
+    var coinBox = BABYLON.MeshBuilder.CreateCylinder('coinBox', {height: 2, diameterTop: 2.3, diameterBottom: 2.3, tessellation: 100, subdivisons: 10}, scene);
+    coinBox.checkCollisions = false;
+    coinBox.visibility = 0;
+    coinBox.material = coinM;
+    coinBox.position = new BABYLON.Vector3(-7,-17,0.5);
+    coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
+    groundObjects.push(coinBox);
 
 
 

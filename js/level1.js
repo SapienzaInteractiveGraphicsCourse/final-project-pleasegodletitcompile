@@ -12,6 +12,8 @@ var timeSlide = 0;
 
 var timeAnimation = 0;
 
+var timeCoin = 0;
+
 // Set gravity
 var gravity = -0.1;
 
@@ -23,7 +25,10 @@ var snowCyl2;
 var snowRA2;
 var snowLA2;
 
-var snowAnim = false;
+var coin;
+
+var snowAnim = true;
+
 
 
 

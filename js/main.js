@@ -17,13 +17,7 @@ engine.runRenderLoop(function() {
     timeSlide -= delta / 500;
     timeAnimation += delta / 1000;
     timeSlide = Math.max(timeSlide, 0);
-
-    if(snowAnim == true){
-        if(timeAnimation > 2){
-            snowMan();
-            timeAnimation = 0;
-        }
-    }
+    
 
     if(player.mesh.position.y < -100){
         player.mesh.position.copyFrom(checkpoint);
@@ -39,6 +33,18 @@ engine.runRenderLoop(function() {
     if (scene) {
         scene.render(); 
     }    
+
+    if(snowAnim == true){
+        if(timeAnimation > 2){
+            snowMan();
+            Coin();
+            timeAnimation = 0;
+        }
+    }
+
+    if(coinIsOn == true){
+        timeCoin += delta / 1000;
+    }
 });
 
 // Canvas/Window resize event handler
