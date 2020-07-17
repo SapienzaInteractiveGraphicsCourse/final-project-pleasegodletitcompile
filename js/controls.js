@@ -256,6 +256,10 @@ function checkMaterial(obj) {
         walk = 0.03;
         run = 0.06;
     }
+    if(obj.material.id == "multiGround"){ 
+        walk = 0.03;
+        run = 0.06;
+    }
 }
 
 function coinON(){
