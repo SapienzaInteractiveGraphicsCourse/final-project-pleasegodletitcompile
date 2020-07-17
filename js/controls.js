@@ -11,8 +11,9 @@ var walk;
 var run;
 
 var fireIsOn = false;
+var fireIsOn2 = false;
 var coinIsOn = false;
-var particles3;
+var particles4;
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
@@ -37,7 +38,7 @@ scene.registerAfterRender(function () {
     // Jump and gravity falling 
     isGrounded();
     if(timeCoin > 1){
-        particles3.stop();
+        particles4.stop();
     }
     
     // Walk left
@@ -225,7 +226,6 @@ function checkFront() {
     for (obj of groundObjects) {
         if (intersectLine2.intersectsMesh(obj, false) || intersectLine3.intersectsMesh(obj, false)) {
             checkMaterial(obj);
-            console.log("gigi")
         }
     }
     intersectLine2.dispose();
@@ -234,8 +234,14 @@ function checkFront() {
 
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
-    if(obj.material.id == "fireM" && fireIsOn == false){
-        fireON();
+    if(obj.material.id == "fireM"){
+        if(obj.id == "fireBox" && fireIsOn == false){
+            fireON();  
+        }
+        if(obj.id == "fireBox2" && fireIsOn2 == false){
+            fireON2();  
+        }
+            
     }
     if(obj.material.id == "coinM" && coinIsOn == false){
         coinON();
@@ -256,58 +262,56 @@ function coinON(){
     CoinDisappear();
     coinIsOn = true;
     //Particles system Fire
-    particles3 = new BABYLON.GPUParticleSystem("particles3", 10000, scene);
+    particles4 = new BABYLON.GPUParticleSystem("particles4", 10000, scene);
     //Texture of each particle
-    particles3.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particles4.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles3.emitter = new BABYLON.Vector3(-7,-17,0);
+    particles4.emitter = new BABYLON.Vector3(-7,-17,0);
     
     
-    particles3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+    particles4.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles4.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
 
     // Colors of all particles
-    particles3.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles3.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles3.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+    particles4.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles4.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles4.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
 
     // Size of each particle (random between...
-    particles3.minSize = 0.1;
-    particles3.maxSize = 0.5;
+    particles4.minSize = 0.1;
+    particles4.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particles3.minLifeTime = 0.01;
-    particles3.maxLifeTime = 0.01;
+    particles4.minLifeTime = 0.01;
+    particles4.maxLifeTime = 0.01;
 
     // Emission rate
-    particles3.emitRate = 100;
+    particles4.emitRate = 100;
 
-    window.ps = particles3;
+    window.ps = particles4;
 
     // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles3.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+    particles4.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles3.gravity = new BABYLON.Vector3(0, 0, -2);
+    particles4.gravity = new BABYLON.Vector3(0, 0, -2);
 
     // Direction of each particle after it has been emitted
-    particles3.direction1 = new BABYLON.Vector3(1, 1, 0.2);
-    particles3.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
-    
-    
+    particles4.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particles4.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
 
     // Angular speed, in radians
-    particles3.minAngularSpeed = 0;
-    particles3.maxAngularSpeed = Math.PI;
+    particles4.minAngularSpeed = 0;
+    particles4.maxAngularSpeed = Math.PI;
 
     // Speed
-    particles3.minEmitPower = 10;
-    particles3.maxEmitPower = 10;
+    particles4.minEmitPower = 10;
+    particles4.maxEmitPower = 10;
 
     // Start the particle system
-    particles3.start();
+    particles4.start();
 
 }
 
@@ -366,5 +370,63 @@ function fireON(){
 
     // Start the particle system
     particles2.start();
+
+}
+
+function fireON2(){
+    fireIsOn2 = true;
+    checkpoint = new BABYLON.Vector3(220,41.1,0.5);
+    //Particles system Fire
+    var particles3 = new BABYLON.GPUParticleSystem("particles3", 10000, scene);
+    //Texture of each particle
+    particles3.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
+    //Where the particles come from
+    
+    particles3.emitter = new BABYLON.Vector3(220, 36.1, 0.5);
+    
+    
+    particles3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles3.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
+    particles3.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
+    particles3.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles3.minSize = 0.1;
+    particles3.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles3.minLifeTime = 0.05;
+    particles3.maxLifeTime = 0.1;
+
+    // Emission rate
+    particles3.emitRate = 600;
+
+    window.ps = particles3;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles3.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles3.gravity = new BABYLON.Vector3(0, 0, -2);
+
+    // Direction of each particle after it has been emitted
+    particles3.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
+    particles3.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
+    
+
+    // Angular speed, in radians
+    particles3.minAngularSpeed = 0;
+    particles3.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles3.minEmitPower = .01;
+    particles3.maxEmitPower = 30;
+
+    // Start the particle system
+    particles3.start();
 
 }
