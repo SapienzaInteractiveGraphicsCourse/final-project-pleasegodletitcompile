@@ -18,20 +18,20 @@ advancedTexture.addControl(panel2);
 var heart = [];
 heart.push(new BABYLON.GUI.Image("heart1", "textures/health.png"));
 heart[0].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-heart[0].height = "50px";
-heart[0].width = "30px";
+heart[0].height = "40px";
+heart[0].width = "40px";
 panel2.addControl(heart[0]); 
 
 heart.push(new BABYLON.GUI.Image("heart2", "textures/health.png"));
 heart[1].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-heart[1].height = "50px";
-heart[1].width = "30px";
+heart[1].height = "40px";
+heart[1].width = "40px";
 panel2.addControl(heart[1]);
 
 heart.push(new BABYLON.GUI.Image("heart3", "textures/health.png"));
 heart[2].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-heart[2].height = "50px";
-heart[2].width = "30px";
+heart[2].height = "40px";
+heart[2].width = "40px";
 panel2.addControl(heart[2]); 
 
 function updateHUD(){
