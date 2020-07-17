@@ -255,12 +255,13 @@ function checkMaterial(obj) {
         walk = 0.03;
         run = 0.06;
     }
-    if(obj.material.id == "multiGround"){ 
+    if(obj.material.id == "multiGrass"){ 
         walk = 0.03;
         run = 0.06;
     }
-}
 
+/*
+}
 function coinON(){
     CoinDisappear();
     coinIsOn = true;
@@ -431,5 +432,7 @@ function fireON2(){
 
     // Start the particle system
     particles3.start();
+    
+*/
 
 }

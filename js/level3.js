@@ -55,76 +55,76 @@ var createScene = function() {
 
     //Set platforms materials
     //Ground Small Platform
-    var groundS = new BABYLON.StandardMaterial("ground", scene);
-    groundS.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
-    groundS.bumpTexture.uScale = 0.3; //0.8;
-    groundS.bumpTexture.vScale = 2; //5;
-    groundS.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassS = new BABYLON.StandardMaterial("grass", scene);
+    grassS.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
+    grassS.bumpTexture.uScale = 0.3; //0.8;
+    grassS.bumpTexture.vScale = 2; //5;
+    grassS.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
-    var groundS1 = new BABYLON.StandardMaterial("ground1", scene);
-    groundS1.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
-    groundS1.bumpTexture.uScale = 2; //5;
-    groundS1.bumpTexture.vScale =0.08; //0.5;
-    groundS1.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassS1 = new BABYLON.StandardMaterial("grass1", scene);
+    grassS1.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
+    grassS1.bumpTexture.uScale = 2; //5;
+    grassS1.bumpTexture.vScale =0.08; //0.5;
+    grassS1.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
-    var groundS2 = new BABYLON.StandardMaterial("ground2", scene);
-    groundS2.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
-    groundS2.bumpTexture.uScale = 0.08; //0.5;
-    groundS2.bumpTexture.vScale =0.3; //0.8;
-    groundS2.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassS2 = new BABYLON.StandardMaterial("grass2", scene);
+    grassS2.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
+    grassS2.bumpTexture.uScale = 0.08; //0.5;
+    grassS2.bumpTexture.vScale =0.3; //0.8;
+    grassS2.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
     //Ground Medium Platform
-    var groundM = new BABYLON.StandardMaterial("ground", scene);
-    groundM.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
-    groundM.bumpTexture.uScale = 1;
-    groundM.bumpTexture.vScale =1.33;
-    groundM.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassM = new BABYLON.StandardMaterial("grass", scene);
+    grassM.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
+    grassM.bumpTexture.uScale = 0.3;
+    grassM.bumpTexture.vScale =2;
+    grassM.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
-    var groundM1 = new BABYLON.StandardMaterial("ground1", scene);
-    groundM1.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
-    groundM1.bumpTexture.uScale = 0.133;
-    groundM1.bumpTexture.vScale =0.06;
-    groundM1.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassM1 = new BABYLON.StandardMaterial("grass1", scene);
+    grassM1.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
+    grassM1.bumpTexture.uScale = 2;
+    grassM1.bumpTexture.vScale =0.08;
+    grassM1.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
-    var groundM2 = new BABYLON.StandardMaterial("ground2", scene);
-    groundM2.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
-    groundM2.bumpTexture.uScale = 0.06;
-    groundM2.bumpTexture.vScale = 0.133;
-    groundM2.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassM2 = new BABYLON.StandardMaterial("grass2", scene);
+    grassM2.bumpTexture = new BABYLON.Texture("../Textures/erba_bump.jpg", scene);
+    grassM2.bumpTexture.uScale = 0.08;
+    grassM2.bumpTexture.vScale = 0.3;
+    grassM2.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
 
     //Ground Big Platform
-    var groundB = new BABYLON.StandardMaterial("ground", scene);
-    groundB.bumpTexture = new BABYLON.Texture("../Textures/grass_bump.jpg", scene);
-    groundB.bumpTexture.uScale = 0.3;
-    groundB.bumpTexture.vScale =2;
-    groundB.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassB = new BABYLON.StandardMaterial("grass", scene);
+    grassB.bumpTexture = new BABYLON.Texture("../Textures/grass_bump.jpg", scene);
+    grassB.bumpTexture.uScale = 0.3;
+    grassB.bumpTexture.vScale =2;
+    grassB.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
-    var groundB1 = new BABYLON.StandardMaterial("ground1", scene);
-    groundB1.bumpTexture = new BABYLON.Texture("../Textures/grass_bump.jpg", scene);
-    groundB1.bumpTexture.uScale = 2;
-    groundB1.bumpTexture.vScale =0.08;
-    groundB1.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassB1 = new BABYLON.StandardMaterial("grass1", scene);
+    grassB1.bumpTexture = new BABYLON.Texture("../Textures/grass_bump.jpg", scene);
+    grassB1.bumpTexture.uScale = 2;
+    grassB1.bumpTexture.vScale =0.08;
+    grassB1.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
 
-    var groundB2 = new BABYLON.StandardMaterial("ground2", scene);
-    groundB2.bumpTexture = new BABYLON.Texture("../Textures/grass_bump.jpg", scene);
-    groundB2.bumpTexture.uScale = 0.08;
-    groundB2.bumpTexture.vScale =0.3;
-    groundB2.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
+    var grassB2 = new BABYLON.StandardMaterial("grass2", scene);
+    grassB2.bumpTexture = new BABYLON.Texture("../Textures/grass_bump.jpg", scene);
+    grassB2.bumpTexture.uScale = 0.08;
+    grassB2.bumpTexture.vScale =0.3;
+    grassB2.diffuseColor = new BABYLON.Color3(0.25, 1, 0.25);
     
 
 
     //var ground2 = new BABYLON.StandardMaterial("ground2", scene);
     //ground2.diffuseColor = new BABYLON.Color3(76, 47, 39);
     //ground2.diffuseTexture = new BABYLON.Texture("./img/terra2.jpg", scene);
-
+/*
     var woodTex = new BABYLON.StandardMaterial("woodTex", scene);
     woodTex.diffuseColor = new BABYLON.Color3(78, 59, 49);
     woodTex.diffuseTexture = new BABYLON.Texture("./img/pexels-photo-326311.jpeg", scene);
 
     var ground = new BABYLON.StandardMaterial("ground", scene);
     ground.diffuseColor = new BABYLON.Color3(1, 1, 1);
-
+*/
 
     // Camera
     camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
@@ -138,22 +138,22 @@ var createScene = function() {
 
     //Ground multimaterial
     //Small Platform MultiMaterial
-    var multimatGroundS = new BABYLON.MultiMaterial("multiGround", scene);
-    multimatGroundS.subMaterials.push(groundS);
-    multimatGroundS.subMaterials.push(groundS1);
-    multimatGroundS.subMaterials.push(groundS2);
+    var multimatGrassS = new BABYLON.MultiMaterial("multiGrass", scene);
+    multimatGrassS.subMaterials.push(grassS);
+    multimatGrassS.subMaterials.push(grassS1);
+    multimatGrassS.subMaterials.push(grassS2);
 
     //Medium Platform MultiMaterial
-    var multimatGroundM = new BABYLON.MultiMaterial("multiGround", scene);
-    multimatGroundM.subMaterials.push(groundM);
-    multimatGroundM.subMaterials.push(groundM1);
-    multimatGroundM.subMaterials.push(groundM2);
+    var multimatGrassM = new BABYLON.MultiMaterial("multiGrass", scene);
+    multimatGrassM.subMaterials.push(grassM);
+    multimatGrassM.subMaterials.push(grassM1);
+    multimatGrassM.subMaterials.push(grassM2);
 
     //Big Platform MultiMaterial
-    var multimatGroundB = new BABYLON.MultiMaterial("multiGround", scene);
-    multimatGroundB.subMaterials.push(groundB);
-    multimatGroundB.subMaterials.push(groundB1);
-    multimatGroundB.subMaterials.push(groundB2);
+    var multimatGrassB = new BABYLON.MultiMaterial("multiGrass", scene);
+    multimatGrassB.subMaterials.push(grassB);
+    multimatGrassB.subMaterials.push(grassB1);
+    multimatGrassB.subMaterials.push(grassB2);
 
 
     // Platform 1 ground
@@ -161,7 +161,7 @@ var createScene = function() {
     platform1.position = new BABYLON.Vector3(0, 0, 5);     //(7.5, 0, 0);
     platform1.checkCollisions = true;
     //groundObjects.push(platform1);
-    platform1.material = multimatGroundB;
+    platform1.material = multimatGrassB;
     platform1.subMeshes = [];
     var verticesCount = platform1.getTotalVertices();
 
@@ -228,7 +228,7 @@ var createScene = function() {
     platform2.position = new BABYLON.Vector3(45, -15, 5);     //(7.5, 0, 0);
     platform2.checkCollisions = true;
     //groundObjects.push(platform1);
-    platform2.material = multimatGroundB;
+    platform2.material = multimatGrassM;
     platform2.subMeshes = [];
     var verticesCount = platform2.getTotalVertices();
 
@@ -254,7 +254,7 @@ var createScene = function() {
     platform3.position = new BABYLON.Vector3(35, 10, 5);     //(7.5, 0, 0);
     platform3.checkCollisions = true;
     //groundObjects.push(platform1);
-    platform3.material = multimatGroundB;
+    platform3.material = multimatGrassS;
     platform3.subMeshes = [];
     var verticesCount = platform3.getTotalVertices();
 
@@ -274,7 +274,7 @@ var createScene = function() {
     platform4.position = new BABYLON.Vector3(50, 20, 5);     //(7.5, 0, 0);
     platform4.checkCollisions = true;
     //groundObjects.push(platform1);
-    platform4.material = multimatGroundB;
+    platform4.material = multimatGrassM;
     platform4.subMeshes = [];
     var verticesCount = platform4.getTotalVertices();
 
@@ -299,7 +299,7 @@ var createScene = function() {
     platform5.position = new BABYLON.Vector3(72, 10, 5);     //(7.5, 0, 0);
     platform5.checkCollisions = true;
     //groundObjects.push(platform1);
-    platform5.material = multimatGroundB;
+    platform5.material = multimatGrassS;
     platform5.subMeshes = [];
     var verticesCount = platform5.getTotalVertices();
 
@@ -318,7 +318,7 @@ var createScene = function() {
     platform6.position = new BABYLON.Vector3(72, 10, 5);     //(7.5, 0, 0);
     platform6.checkCollisions = true;
     //groundObjects.push(platform1);
-    platform6.material = multimatGroundB;
+    platform6.material = multimatGrassS;
     platform6.subMeshes = [];
     var verticesCount = platform6.getTotalVertices();
 
@@ -336,7 +336,7 @@ var createScene = function() {
     platform7.position = new BABYLON.Vector3(90, -5, 5);     //(7.5, 0, 0);
     platform7.checkCollisions = true;
     //groundObjects.push(platform1);
-    platform7.material = multimatGroundB;
+    platform7.material = multimatGrassB;
     platform7.subMeshes = [];
     var verticesCount = platform7.getTotalVertices();
 
