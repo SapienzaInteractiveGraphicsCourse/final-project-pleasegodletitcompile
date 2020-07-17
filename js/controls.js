@@ -241,7 +241,6 @@ function checkMaterial(obj) {
         if(obj.id == "fireBox2" && fireIsOn2 == false){
             fireON2();  
         }
-            
     }
     if(obj.material.id == "coinM" && coinIsOn == false){
         coinON();

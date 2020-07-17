@@ -1,5 +1,6 @@
 // Init player object
 var player = {
+    lives: 3,
     mesh: null,
     rootNode: null,
     body: {

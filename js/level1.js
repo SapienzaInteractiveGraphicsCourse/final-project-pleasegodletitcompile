@@ -27,11 +27,7 @@ var snowLA2;
 
 var coin;
 
-var snowAnim = true;
-
-
-
-
+var snowAnim = false;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 

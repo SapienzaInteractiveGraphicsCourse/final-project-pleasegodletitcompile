@@ -174,19 +174,17 @@ function Coin(){
     keys.push({ frame: framerate, value: new BABYLON.Vector3(-1.6,0,1) });
 
     RotateCoin.setKeys(keys);
-    coin.animations.push(RotateCoin)
+    coin.animations.push(RotateCoin);
     scene.beginAnimation(coin, 0, framerate, false, 1);
 }
 
 function CoinDisappear(){
-    var CoinPuff = new BABYLON.Animation("coinRot", "scaling", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+    var CoinPuff = new BABYLON.Animation("coinDis", "scaling", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     
     keys = [];
     keys.push({ frame: 0, value: new BABYLON.Vector3(8,8,8) });
     keys.push({ frame: 0.5*framerate, value: new BABYLON.Vector3(6,6,6) });
-    keys.push({ frame: framerate, value: new BABYLON.Vector3(4,4,4) });
-    keys.push({ frame: 1.5*framerate, value: new BABYLON.Vector3(2,2,2) });
-    keys.push({ frame: 2*framerate, value: new BABYLON.Vector3(0,0,0) });
+    keys.push({ frame: framerate, value: new BABYLON.Vector3(0,0,0) });
 
     CoinPuff.setKeys(keys);
     coin.animations.push(CoinPuff)
