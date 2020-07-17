@@ -24,8 +24,12 @@ engine.runRenderLoop(function() {
         timeWalk = 0;
         player.position.x = 0;
         player.acceleration.x = 0;
+        if(player.lives>0){
+            player.lives--;
+        }
+        updateHUD();
     }
-
+    // console.log(player.lives)
     if(player.loadingComplete){
         animationGroups();
     }
