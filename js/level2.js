@@ -656,8 +656,10 @@ var createScene = function() {
         coin = newMeshes[0];
         coin.position = new BABYLON.Vector3(-7,-17.5,0.5);
         coin.scaling = new BABYLON.Vector3(10,10,10);
-        coin.rotate(new BABYLON.Vector3(1,0,0), 1.6)
+        // coin.rotate(new BABYLON.Vector3(1,0,0), 1.6)
+        coin.rotation = new BABYLON.Vector3(deg2rad(-90),0,0)
         coin.checkCollisions = true;
+        Coin(); // start animation
     });
 
     // Coin collision box
