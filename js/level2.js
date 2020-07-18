@@ -55,9 +55,10 @@ var createScene = function() {
     scene.collisionsEnabled = true;
 
     var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:1000.0}, scene);
+    skybox.addRotation(0.0, deg2rad(180), 0.0);
     var skyboxMaterial = new BABYLON.StandardMaterial("snowbox", scene);
     skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Textures/snowbox/snowbox", scene);
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Textures/skybox_winter/snowbox", scene);
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
