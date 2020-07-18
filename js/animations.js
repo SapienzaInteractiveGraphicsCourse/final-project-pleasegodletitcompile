@@ -163,6 +163,8 @@ function snowMan(){
     scene.beginAnimation(snowRA2, 0, framerate, false, 1);
 }
 
+
+
 function Coin(obj){
     var RotateCoin = new BABYLON.Animation("coinRot", "rotation", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     
