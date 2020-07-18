@@ -34,10 +34,7 @@ var spikes;
 
 var dmg = false;
 
-
 var snowAnim = true;
-
-
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
@@ -880,11 +877,7 @@ var createScene = function() {
 	// Start the particle system
     particles.start();
 
-    
-
-
-
-    //music
+    // Music
     var musicl2 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
 
     function soundReady(){
