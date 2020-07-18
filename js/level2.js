@@ -746,7 +746,7 @@ var createScene = function() {
         coin1.position = new BABYLON.Vector3(-7,-17.5,0.5);
         coin1.scaling = new BABYLON.Vector3(10,10,10);
         coin1.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
-        Coin(); // start animation
+        Coin(coin1); // start animation
     });
 
     // Coin collision box
@@ -764,6 +764,7 @@ var createScene = function() {
         coin2.scaling = new BABYLON.Vector3(10,10,10);
         coin2.rotate(new BABYLON.Vector3(1,0,0), 1.6)
         coin2.checkCollisions = true;
+        Coin(coin2); //start animation
     });
 
     // Coin collision box 2
@@ -911,7 +912,7 @@ var createScene = function() {
 var scene = createScene();
 
 function coinON(){
-    CoinDisappear();
+    CoinDisappear(coin1);
     
     coinIsOn = true;
     //Particles system Fire
@@ -970,7 +971,7 @@ function coinON(){
 }
 
 function coinON2(){
-    CoinDisappear2();
+    CoinDisappear(coin2);
     
     coinIsOn2 = true;
     //Particles system Fire

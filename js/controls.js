@@ -260,7 +260,8 @@ function checkMaterial(obj) {
     if(obj.material.id == "spikesM"){
         trapON();
         if(dmg == false){
-            player.lives -= 1;
+            player.lives--;
+            updateHealth();
             dmg = true;
         }
     }

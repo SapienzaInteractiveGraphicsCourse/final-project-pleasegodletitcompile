@@ -163,7 +163,7 @@ function snowMan(){
     scene.beginAnimation(snowRA2, 0, framerate, false, 1);
 }
 
-function Coin(){
+function Coin(obj){
     var RotateCoin = new BABYLON.Animation("coinRot", "rotation", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     
     var keys = [];
@@ -174,11 +174,11 @@ function Coin(){
     keys.push({ frame: framerate, value: new BABYLON.Vector3(deg2rad(-90),0,deg2rad(360)) });
 
     RotateCoin.setKeys(keys);
-    coin1.animations.push(RotateCoin);
-    scene.beginAnimation(coin1, 0, framerate, true, 1);
+    obj.animations.push(RotateCoin);
+    scene.beginAnimation(obj, 0, framerate, true, 1);
 }
 
-function CoinDisappear(){
+function CoinDisappear(obj){
     var CoinPuff = new BABYLON.Animation("coinDis", "scaling", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     
     var keys = [];
@@ -187,8 +187,8 @@ function CoinDisappear(){
     keys.push({ frame: framerate, value: new BABYLON.Vector3(0,0,0) });
 
     CoinPuff.setKeys(keys);
-    coin1.animations.push(CoinPuff)
-    scene.beginAnimation(coin1, 0, framerate, false, 1);
+    obj.animations.push(CoinPuff)
+    scene.beginAnimation(obj, 0, framerate, false, 1);
 }
 
 function trapON(){
