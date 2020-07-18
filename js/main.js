@@ -27,7 +27,7 @@ engine.runRenderLoop(function() {
         if(player.lives>0){
             player.lives--;
         }
-        updateHUD();
+        updateHealth();
     }
     // console.log(player.lives)
     if(player.loadingComplete){
@@ -42,7 +42,7 @@ engine.runRenderLoop(function() {
         if(timeAnimation > 2){
             snowMan();
             if(coinIsOn == false){
-                Coin();
+                // Coin();
             }
             if(coinIsOn2 == false){
                 Coin2();
