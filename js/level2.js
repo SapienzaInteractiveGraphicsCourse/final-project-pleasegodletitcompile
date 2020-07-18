@@ -824,8 +824,6 @@ var createScene = function() {
     spikeBox.position = new BABYLON.Vector3(5,1,0.5);
     groundObjects.push(spikeBox);
 
-
-
     //Particles system Snow
     var particles = new BABYLON.GPUParticleSystem("particles", 20000, scene);
 
@@ -878,7 +876,7 @@ var createScene = function() {
     particles.start();
 
     // Music
-    var musicl2 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+    var musicl2 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5});
 
     function soundReady(){
         musicl2.play();
