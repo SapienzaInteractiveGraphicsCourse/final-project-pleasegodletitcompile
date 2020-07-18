@@ -201,8 +201,4 @@ function trapON(){
     SpikesUp.setKeys(keys);
     spikes.animations.push(SpikesUp)
     scene.beginAnimation(spikes, 0, framerate, false, 1);
-    
 }
-
-
-    
