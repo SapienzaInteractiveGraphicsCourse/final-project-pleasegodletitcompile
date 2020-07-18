@@ -244,6 +244,8 @@ function checkMaterial(obj) {
     }
     if(obj.material.id == "coinM" && coinIsOn == false){
         coinON();
+        player.coins++;
+        updateCoins();
     }
     if(obj.material.id == "multiIce"){
         ice = true;
