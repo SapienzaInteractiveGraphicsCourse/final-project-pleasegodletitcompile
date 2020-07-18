@@ -7,11 +7,18 @@
 //var musicl1 = new BABYLON.Sound("music", "../sounds/musica3.mp3", {loop:true, autoplay:true}, scene, function(){
 //    musicl1.play();
 //});
-
+var timeStart =0;
 
 // Render loop
 engine.runRenderLoop(function() {
+
+    // animation : progress indicator
+	engine.displayLoadingUI();
+    engine.loadingUIText = "START...";
+    
+
     delta = engine.getDeltaTime();
+    timeStart += delta / 1000;
     timeWalk += delta / 1000;
     timeJump += delta / 1000;
     timeSlide -= delta / 500;
@@ -44,6 +51,12 @@ engine.runRenderLoop(function() {
     if(coinIsOn2 == true){
         timeCoin2 += delta / 1000;
     }   
+    // hide progress indicator
+    if(timeStart > 5){
+        engine.hideLoadingUI();
+    }
+    console.log(timeStart);
+		
 });
 
 // Canvas/Window resize event handler
