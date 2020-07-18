@@ -265,7 +265,7 @@ function checkMaterial(obj) {
         updateCoins();
     }
     if(obj.material.id == "spikesM"){
-        trapON();
+        trapON(spikes);
         if(dmg == false){
             player.lives--;
             updateHealth();
