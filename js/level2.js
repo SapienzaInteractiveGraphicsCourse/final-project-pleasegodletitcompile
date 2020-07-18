@@ -50,6 +50,15 @@ var createScene = function() {
     var scene = new BABYLON.Scene(engine);
     scene.collisionsEnabled = true;
 
+    var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:1000.0}, scene);
+    var skyboxMaterial = new BABYLON.StandardMaterial("snowbox", scene);
+    skyboxMaterial.backFaceCulling = false;
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Textures/snowbox", scene);
+    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+    skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+    skybox.material = skyboxMaterial;
+
     //Set platforms materials
     //Ice Small Platform
     var iceS = new BABYLON.StandardMaterial("ice", scene);
@@ -468,7 +477,7 @@ var createScene = function() {
 
     // Platform 3 Snow
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(252.5, 25, 5)
+    platform3.position = new BABYLON.Vector3(252.5, 30, 5)
     platform3.material = multimatSnowS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -484,7 +493,7 @@ var createScene = function() {
 
     // Platform 3 Snow
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(240, 15, 5)
+    platform3.position = new BABYLON.Vector3(245, 25, 5)
     platform3.material = multimatSnowS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -501,7 +510,7 @@ var createScene = function() {
 
     // Platform 2 Snow
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
-    platform2.position = new BABYLON.Vector3(215, 10, 5)
+    platform2.position = new BABYLON.Vector3(230, 20, 5)
     platform2.checkCollisions = true;
     platform2.material = multimatSnowM;
     platform2.subMeshes = [];
@@ -757,7 +766,7 @@ var createScene = function() {
     // COIN 2
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
         coin2 = newMeshes[0];
-        coin2.position = new BABYLON.Vector3(220, 13.5, 0.5);
+        coin2.position = new BABYLON.Vector3(220, 23.5, 0.5);
         coin2.scaling = new BABYLON.Vector3(10,10,10);
         coin2.rotate(new BABYLON.Vector3(1,0,0), 1.6)
         coin2.checkCollisions = true;
@@ -769,7 +778,7 @@ var createScene = function() {
     coinBox.checkCollisions = false;
     coinBox.visibility = 0;
     coinBox.material = coinM;
-    coinBox.position = new BABYLON.Vector3(220, 13, 0.5);
+    coinBox.position = new BABYLON.Vector3(220, 23, 0.5);
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
@@ -812,7 +821,6 @@ var createScene = function() {
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
         spikeTrap.checkCollisions = true;
         spikes = spikeTrap._children[0];
-        console.log(spikes)
         //spikes.position.y = -1;
     });
 
@@ -897,10 +905,18 @@ var createScene = function() {
         player.loadingComplete = true;
     });
 
+
     return scene;
 }
 
 var scene = createScene();
+
+scene.registerAfterRender(function () {
+    if(timeAnimation > 4){
+        snowMan();
+        timeAnimation = 0;
+    }
+});
 
 function coinON(){
     CoinDisappear(coin1);

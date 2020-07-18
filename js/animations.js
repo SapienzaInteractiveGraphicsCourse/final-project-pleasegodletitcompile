@@ -193,7 +193,7 @@ function CoinDisappear(obj){
     scene.beginAnimation(obj, 0, framerate, false, 1);
 }
 
-function trapON(){
+function trapON(obj){
     var SpikesUp = new BABYLON.Animation("SpikesUp", "position", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
     
     var keys = [];
@@ -201,6 +201,6 @@ function trapON(){
     keys.push({ frame: framerate, value: new BABYLON.Vector3(0,-2.5,0) });
     spikesON = false;
     SpikesUp.setKeys(keys);
-    spikes.animations.push(SpikesUp)
-    scene.beginAnimation(spikes, 0, framerate, false, 1);
+    obj.animations.push(SpikesUp)
+    scene.beginAnimation(obj, 0, framerate, false, 1);
 }

@@ -55,7 +55,6 @@ engine.runRenderLoop(function() {
     if(timeStart > 5){
         engine.hideLoadingUI();
     }
-    console.log(timeStart);
 		
 });
 
