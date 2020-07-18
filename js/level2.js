@@ -915,7 +915,6 @@ function coinON(){
     
     particles4.emitter = new BABYLON.Vector3(-7,-17,0.5);
     
-    
     particles4.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particles4.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
 
@@ -958,7 +957,6 @@ function coinON(){
 
     // Start the particle system
     particles4.start();
-
 }
 
 function coinON2(){
@@ -973,7 +971,6 @@ function coinON2(){
     //Where the particles come from
     
     particles5.emitter = new BABYLON.Vector3(220, 13, 0.5);
-    
     
     particles5.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particles5.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -1017,7 +1014,6 @@ function coinON2(){
 
     // Start the particle system
     particles5.start();
-
 }
 
 function fireON(){
@@ -1064,7 +1060,6 @@ function fireON(){
     particles2.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
     particles2.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
     
-
     // Angular speed, in radians
     particles2.minAngularSpeed = 0;
     particles2.maxAngularSpeed = Math.PI;
@@ -1075,7 +1070,6 @@ function fireON(){
 
     // Start the particle system
     particles2.start();
-
 }
 
 function fireON2(){
@@ -1089,7 +1083,6 @@ function fireON2(){
     //Where the particles come from
     
     particles3.emitter = new BABYLON.Vector3(220, 36.1, 0.5);
-    
     
     particles3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particles3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -1122,7 +1115,6 @@ function fireON2(){
     particles3.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
     particles3.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
     
-
     // Angular speed, in radians
     particles3.minAngularSpeed = 0;
     particles3.maxAngularSpeed = Math.PI;
@@ -1133,5 +1125,4 @@ function fireON2(){
 
     // Start the particle system
     particles3.start();
-
 }

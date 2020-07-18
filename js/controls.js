@@ -261,6 +261,8 @@ function checkMaterial(obj) {
     if(obj.id == "coinBox2" && coinIsOn2 == false){
         dmg = false
         coinON2();
+        player.coins++;
+        updateCoins();
     }
     if(obj.material.id == "spikesM"){
         trapON();
