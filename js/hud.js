@@ -1,44 +1,74 @@
 var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("HUD");
 
-var panel = new BABYLON.GUI.StackPanel();
-panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-advancedTexture.addControl(panel);   
 
-var image = new BABYLON.GUI.Image("coin", "textures/coin.png");
-image.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-image.height = "50px";
-image.width = "30px";
-panel.addControl(image);
+// Coins
+var panelCoins = new BABYLON.GUI.StackPanel();
+panelCoins.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+panelCoins.isVertical = false;
+advancedTexture.addControl(panelCoins);   
 
-var panel2 = new BABYLON.GUI.StackPanel();
-panel2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-panel2.isVertical = false;
-advancedTexture.addControl(panel2);  
+var coin = [];
+coin.push(new BABYLON.GUI.Image("coin1", "textures/coin.png"));
+coin[0].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+coin[0].height = "40px";
+coin[0].width = "40px";
+coin[0].alpha = 0.25;
+panelCoins.addControl(coin[0]); 
 
-var heart = [];
-heart.push(new BABYLON.GUI.Image("heart1", "textures/health.png"));
-heart[0].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-heart[0].height = "40px";
-heart[0].width = "40px";
-panel2.addControl(heart[0]); 
+coin.push(new BABYLON.GUI.Image("coin2", "textures/coin.png"));
+coin[1].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+coin[1].height = "40px";
+coin[1].width = "40px";
+coin[1].alpha = 0.25;
+panelCoins.addControl(coin[1]);
 
-heart.push(new BABYLON.GUI.Image("heart2", "textures/health.png"));
-heart[1].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-heart[1].height = "40px";
-heart[1].width = "40px";
-panel2.addControl(heart[1]);
+coin.push(new BABYLON.GUI.Image("coin3", "textures/coin.png"));
+coin[2].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+coin[2].height = "40px";
+coin[2].width = "40px";
+coin[2].alpha = 0.25;
+panelCoins.addControl(coin[2]); 
 
-heart.push(new BABYLON.GUI.Image("heart3", "textures/health.png"));
-heart[2].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-heart[2].height = "40px";
-heart[2].width = "40px";
-panel2.addControl(heart[2]); 
 
-function updateHUD(){
+// Health
+var panelHealth = new BABYLON.GUI.StackPanel();
+panelHealth.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+panelHealth.isVertical = false;
+advancedTexture.addControl(panelHealth);  
+
+var health = [];
+health.push(new BABYLON.GUI.Image("heart1", "textures/health.png"));
+health[0].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+health[0].height = "40px";
+health[0].width = "40px";
+panelHealth.addControl(health[0]); 
+
+health.push(new BABYLON.GUI.Image("heart2", "textures/health.png"));
+health[1].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+health[1].height = "40px";
+health[1].width = "40px";
+panelHealth.addControl(health[1]);
+
+health.push(new BABYLON.GUI.Image("heart3", "textures/health.png"));
+health[2].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+health[2].height = "40px";
+health[2].width = "40px";
+panelHealth.addControl(health[2]); 
+
+function updateHealth(){
     for(var i=0; i<player.lives; i++){  
-        heart[i].source = "textures/health.png";
+        health[i].alpha = 1;
     }
     for(var i=player.lives; i<3; i++){
-        heart[i].source = "textures/health_lost.png";
+        health[i].alpha = 0.25;
+    }
+}
+
+function updateCoins(){
+    for(var i=0; i<player.coins; i++){  
+        coin[i].alpha = 0.25;
+    }
+    for(var i=player.coins; i<3; i++){
+        coin[i].alpha = 1;
     }
 }

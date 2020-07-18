@@ -27,7 +27,7 @@ engine.runRenderLoop(function() {
         if(player.lives>0){
             player.lives--;
         }
-        updateHUD();
+        updateHealth();
     }
     // console.log(player.lives)
     if(player.loadingComplete){
