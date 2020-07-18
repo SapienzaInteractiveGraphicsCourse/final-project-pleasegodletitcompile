@@ -174,8 +174,8 @@ function Coin(){
     keys.push({ frame: framerate, value: new BABYLON.Vector3(deg2rad(-90),0,deg2rad(360)) });
 
     RotateCoin.setKeys(keys);
-    coin.animations.push(RotateCoin);
-    scene.beginAnimation(coin, 0, framerate, true, 1);
+    coin1.animations.push(RotateCoin);
+    scene.beginAnimation(coin1, 0, framerate, true, 1);
 }
 
 function CoinDisappear(){
@@ -187,6 +187,6 @@ function CoinDisappear(){
     keys.push({ frame: framerate, value: new BABYLON.Vector3(0,0,0) });
 
     CoinPuff.setKeys(keys);
-    coin.animations.push(CoinPuff)
-    scene.beginAnimation(coin, 0, framerate, false, 1);
+    coin1.animations.push(CoinPuff)
+    scene.beginAnimation(coin1, 0, framerate, false, 1);
 }   

@@ -25,7 +25,9 @@ var snowCyl2;
 var snowRA2;
 var snowLA2;
 
-var coin;
+var coin1;
+var coin2;
+var coin3;
 
 var snowAnim = true;
 
@@ -435,7 +437,6 @@ var createScene = function() {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(-20,5,-20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree1.checkCollisions = true;
     });
 
     // Winter tree 1
@@ -443,7 +444,6 @@ var createScene = function() {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(83,15, -20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree1.checkCollisions = true;
     });
 
     // Winter tree 1
@@ -451,7 +451,6 @@ var createScene = function() {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(108,15, -20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree1.checkCollisions = true;
     });
 
     // Winter tree 2
@@ -459,7 +458,6 @@ var createScene = function() {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(23,5, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree2.checkCollisions = true;
     });
 
     // Winter tree 2
@@ -467,7 +465,6 @@ var createScene = function() {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(98,15, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree2.checkCollisions = true;
     });
 
     // Winter tree 2
@@ -475,7 +472,6 @@ var createScene = function() {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(123,15, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree2.checkCollisions = true;
     });
 
     // Winter tree 3
@@ -483,7 +479,6 @@ var createScene = function() {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(90,15, 29);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree2.checkCollisions = true;
     });
 
     // Winter tree 3
@@ -491,7 +486,6 @@ var createScene = function() {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(115,15, 29);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
-        WinterTree2.checkCollisions = true;
     });
 
     //Small Rock
@@ -499,7 +493,6 @@ var createScene = function() {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(36,-9.5, 6);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
-        WinterRockSmall.checkCollisions = true;
     });
 
     //Medium Rock
@@ -507,7 +500,6 @@ var createScene = function() {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(30,-9.5, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
-        WinterRockSmall.checkCollisions = true;
     });
 
     //Big Rock
@@ -515,7 +507,6 @@ var createScene = function() {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(10,2, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
-        WinterRockSmall.checkCollisions = true;
     });
 
     //Big Rock
@@ -523,7 +514,6 @@ var createScene = function() {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(26,-8, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
-        WinterRockSmall.checkCollisions = true;
     });
 
     //Big Rock
@@ -531,7 +521,6 @@ var createScene = function() {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(18,-8, 4);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
-        WinterRockSmall.checkCollisions = true;
     });
 
 
@@ -540,7 +529,6 @@ var createScene = function() {
         var WinterBridge = newMeshes[0];
         WinterBridge.position = new BABYLON.Vector3(-12,1.1,10.5);
         WinterBridge.scaling = new BABYLON.Vector3(5,5,5);
-        WinterBridge.checkCollisions = true;
     });
 
 
@@ -550,7 +538,6 @@ var createScene = function() {
         Wolf.position = new BABYLON.Vector3(-12,1.1,10.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
         Wolf.rotate(new BABYLON.Vector3(0,2,0), -45);
-        Wolf.checkCollisions = true;
     });
 
     // Winter bridge Platform3
@@ -558,7 +545,6 @@ var createScene = function() {
         var WinterBridge = newMeshes[0];
         WinterBridge.position = new BABYLON.Vector3(16,-19,10.5);
         WinterBridge.scaling = new BABYLON.Vector3(5,5,5);
-        WinterBridge.checkCollisions = true;
     });
 
 
@@ -568,7 +554,6 @@ var createScene = function() {
         Wolf.position = new BABYLON.Vector3(16,-19,10.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
         Wolf.rotate(new BABYLON.Vector3(0,2,0), 45);
-        Wolf.checkCollisions = true;
     });
 
     // Eskimo model
@@ -577,7 +562,6 @@ var createScene = function() {
         eskimo.position = new BABYLON.Vector3(5,-15,10.5);
         eskimo.scaling = new BABYLON.Vector3(1,1,1);
         eskimo.rotate(new BABYLON.Vector3(0,2,0), 45);
-        eskimo.checkCollisions = true;
     });
 
     // Bear model
@@ -586,7 +570,6 @@ var createScene = function() {
         bear.position = new BABYLON.Vector3(-5,-15,14);
         bear.scaling = new BABYLON.Vector3(1,1,1);
         bear.rotate(new BABYLON.Vector3(0,2,0), 45);
-        bear.checkCollisions = true;
     });
 
     // Tux model 1
@@ -595,7 +578,6 @@ var createScene = function() {
         tux.position = new BABYLON.Vector3(-18,-19,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
         tux.rotate(new BABYLON.Vector3(0,2,0), -5.5);
-        tux.checkCollisions = true;
     });
 
     // Tux model 2
@@ -604,7 +586,6 @@ var createScene = function() {
         tux.position = new BABYLON.Vector3(-20,-19,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
         tux.rotate(new BABYLON.Vector3(0,2,0), 5.5);
-        tux.checkCollisions = true;
     });
 
     // Tux model 3
@@ -613,7 +594,6 @@ var createScene = function() {
         tux.position = new BABYLON.Vector3(-19,-19,8);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
         tux.rotate(new BABYLON.Vector3(0,2,0), 9.5);
-        tux.checkCollisions = true;
     });
 
     // Penguins community
@@ -623,7 +603,6 @@ var createScene = function() {
         igloopenguin.position = new BABYLON.Vector3(54,-8.2,11);
         igloopenguin.scaling = new BABYLON.Vector3(2,2,2);
         igloopenguin.rotate(new BABYLON.Vector3(0,2,0), 1.4);
-        igloopenguin.checkCollisions = true;
     });
 
     // Fish bucket
@@ -632,7 +611,6 @@ var createScene = function() {
         fishbucket.position = new BABYLON.Vector3(48,-12.8,13);
         fishbucket.scaling = new BABYLON.Vector3(3,3,3);
         fishbucket.rotate(new BABYLON.Vector3(0,2,0), 0);
-        fishbucket.checkCollisions = true;
     });
 
     // Fire Log
@@ -640,7 +618,6 @@ var createScene = function() {
         var FireLog = newMeshes[0];
         FireLog.position = new BABYLON.Vector3(-12,-19.1,0.5);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
-        FireLog.checkCollisions = true;
     });
 
     // Fire collision box
@@ -653,18 +630,15 @@ var createScene = function() {
 
     // COIN 1
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
-        coin = newMeshes[0];
-        coin.position = new BABYLON.Vector3(-7,-17.5,0.5);
-        coin.scaling = new BABYLON.Vector3(10,10,10);
-        // coin.rotate(new BABYLON.Vector3(1,0,0), 1.6)
-        coin.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
-        coin.checkCollisions = true;
+        coin1 = newMeshes[0];
+        coin1.position = new BABYLON.Vector3(-7,-17.5,0.5);
+        coin1.scaling = new BABYLON.Vector3(10,10,10);
+        coin1.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
         Coin(); // start animation
     });
 
     // Coin collision box
     var coinBox = BABYLON.MeshBuilder.CreateCylinder('coinBox', {height: 2, diameterTop: 2.3, diameterBottom: 2.3, tessellation: 100, subdivisons: 10}, scene);
-    coinBox.checkCollisions = false;
     coinBox.visibility = 0;
     coinBox.material = coinM;
     coinBox.position = new BABYLON.Vector3(-7,-17,0.5);
@@ -823,7 +797,7 @@ function coinON(){
     // Speed
     particles4.minEmitPower = 10;
     particles4.maxEmitPower = 10;
-    coin.visibility = 0;
+    coin1.visibility = 0;
 
     // Start the particle system
     particles4.start();
