@@ -13,6 +13,7 @@ var run;
 var fireIsOn = false;
 var fireIsOn2 = false;
 var coinIsOn = false;
+var coinIsOn2 = false;
 var particles4;
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
@@ -39,6 +40,9 @@ scene.registerAfterRender(function () {
     isGrounded();
     if(timeCoin > 1){
         particles4.stop();
+    }
+    if(timeCoin2 > 1){
+        particles5.stop();
     }
     
     // Walk left
@@ -120,7 +124,7 @@ scene.registerAfterRender(function () {
     }
 
     checkSbattiTesta();
-    player.position.y = (0.5 * player.acceleration.y * ((timeJump) ** 2));
+    player.position.y = (0.5 * player.acceleration.y * ((timeJump)));
 
     player.mesh.moveWithCollisions(new BABYLON.Vector3(player.position.x, player.position.y , 0));
 
@@ -235,6 +239,7 @@ function checkFront() {
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
     if(obj.material.id == "fireM"){
+        dmg = false
         if(obj.id == "fireBox" && fireIsOn == false){
             fireON();  
         }
@@ -242,15 +247,29 @@ function checkMaterial(obj) {
             fireON2();  
         }
     }
-    if(obj.material.id == "coinM" && coinIsOn == false){
+    if(obj.id == "coinBox" && coinIsOn == false){
+        dmg = false
         coinON();
     }
+    if(obj.id == "coinBox2" && coinIsOn2 == false){
+        dmg = false
+        coinON2();
+    }
+    if(obj.material.id == "spikesM"){
+        trapON();
+        if(dmg == false){
+            player.lives -= 1;
+            dmg = true;
+        }
+    }
     if(obj.material.id == "multiIce"){
+        dmg = false
         ice = true;
         walk = 0.01;
         run = 0.015;
     }
     else if(obj.material.id == "multiSnow" || obj.material.id == "ground"){
+        dmg = false
         ice = false;
         walk = 0.03;
         run = 0.06;

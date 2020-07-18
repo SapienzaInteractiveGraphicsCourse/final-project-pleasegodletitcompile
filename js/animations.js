@@ -178,6 +178,21 @@ function Coin(){
     scene.beginAnimation(coin, 0, framerate, false, 1);
 }
 
+function Coin2(){
+    var RotateCoin2 = new BABYLON.Animation("coinRot", "rotation", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    
+    keys = [];
+    keys.push({ frame: 0, value: new BABYLON.Vector3(-1.6,0,1) });
+    keys.push({ frame: 0.25*framerate, value: new BABYLON.Vector3(-1.6,0,4) });
+    keys.push({ frame: 0.5*framerate, value: new BABYLON.Vector3(-1.6,0,8) });
+    keys.push({ frame: 0.75*framerate, value: new BABYLON.Vector3(-1.6,0,4) });
+    keys.push({ frame: framerate, value: new BABYLON.Vector3(-1.6,0,1) });
+
+    RotateCoin2.setKeys(keys);
+    coin2.animations.push(RotateCoin2);
+    scene.beginAnimation(coin2, 0, framerate, false, 1);
+}
+
 function CoinDisappear(){
     var CoinPuff = new BABYLON.Animation("coinDis", "scaling", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     
@@ -190,3 +205,30 @@ function CoinDisappear(){
     coin.animations.push(CoinPuff)
     scene.beginAnimation(coin, 0, framerate, false, 1);
 }
+function CoinDisappear2(){
+    var CoinPuff2 = new BABYLON.Animation("coinDis2", "scaling", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+    
+    keys = [];
+    keys.push({ frame: 0, value: new BABYLON.Vector3(8,8,8) });
+    keys.push({ frame: 0.5*framerate, value: new BABYLON.Vector3(6,6,6) });
+    keys.push({ frame: framerate, value: new BABYLON.Vector3(0,0,0) });
+
+    CoinPuff2.setKeys(keys);
+    coin2.animations.push(CoinPuff2)
+    scene.beginAnimation(coin2, 0, framerate, false, 1);
+}
+
+function trapON(){
+    var SpikesUp = new BABYLON.Animation("SpikesUp", "position", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+    
+    keys = [];
+    keys.push({ frame: 0, value: new BABYLON.Vector3(0,-1,0) });
+    keys.push({ frame: framerate, value: new BABYLON.Vector3(0,-2.5,0) });
+    spikesON = false;
+    SpikesUp.setKeys(keys);
+    spikes.animations.push(SpikesUp)
+    scene.beginAnimation(spikes, 0, framerate, false, 1);
+    
+}
+
+

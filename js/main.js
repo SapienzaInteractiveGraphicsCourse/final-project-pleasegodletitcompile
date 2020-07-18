@@ -44,14 +44,21 @@ engine.runRenderLoop(function() {
             if(coinIsOn == false){
                 Coin();
             }
-            
-            
+            if(coinIsOn2 == false){
+                Coin2();
+            }            
             timeAnimation = 0;
         }
     }
 
     if(coinIsOn == true){
         timeCoin += delta / 1000;
+    }    
+    if(coinIsOn2 == true){
+        timeCoin2 += delta / 1000;
+    }   
+    if(player.lives = 0){
+        console.log("sei morto")
     }
 });
 

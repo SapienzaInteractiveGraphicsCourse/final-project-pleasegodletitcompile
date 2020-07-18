@@ -13,6 +13,7 @@ var timeSlide = 0;
 var timeAnimation = 0;
 
 var timeCoin = 0;
+var timeCoin2 = 0;
 
 // Set gravity
 var gravity = -0.1;
@@ -26,6 +27,11 @@ var snowRA2;
 var snowLA2;
 
 var coin;
+
+var spikes;
+
+var dmg = false;
+
 
 var snowAnim = true;
 
@@ -167,6 +173,11 @@ var createScene = function() {
     //Set coin material
     var coinM = new BABYLON.StandardMaterial("coinM", scene);
     coinM.diffuseColor = new BABYLON.Color3(0, 0, 0);
+
+    //Set spikes material
+    var spikesM = new BABYLON.StandardMaterial("spikesM", scene);
+    spikesM.diffuseColor = new BABYLON.Color3(0, 0, 0);
+
     
     // Camera
     camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
@@ -209,8 +220,6 @@ var createScene = function() {
     multimatIceB.subMaterials.push(iceB);
     multimatIceB.subMaterials.push(iceB1);
     multimatIceB.subMaterials.push(iceB2);
-
-    
     
     // Platform 1 Snow
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
@@ -246,7 +255,7 @@ var createScene = function() {
 
     // Platform 2 Ice
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
-    platform2.position = new BABYLON.Vector3(30, -10, 5)
+    platform2.position = new BABYLON.Vector3(35, -10, 5)
     platform2.checkCollisions = true;
     platform2.material = multimatIceM;
     platform2.subMeshes = [];
@@ -294,9 +303,26 @@ var createScene = function() {
     new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform1);
     groundObjects.push(platform1);
 
+    // Platform 2 Ice
+    var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
+    platform2.position = new BABYLON.Vector3(140, 20, 5)
+    platform2.checkCollisions = true;
+    platform2.material = multimatIceM;
+    platform2.subMeshes = [];
+    var verticesCount2 = platform2.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount2, 0, 6, platform2);
+    new BABYLON.SubMesh(1, 0, verticesCount2, 6, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 12, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 18, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 24, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 30, 6, platform2);
+    
+    groundObjects.push(platform2);
+
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(140, 15, 5)
+    platform3.position = new BABYLON.Vector3(160, 15, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -312,7 +338,7 @@ var createScene = function() {
 
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(150, 20, 5)
+    platform3.position = new BABYLON.Vector3(165, 20, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -328,7 +354,7 @@ var createScene = function() {
 
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(160, 25, 5)
+    platform3.position = new BABYLON.Vector3(170, 25, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -344,7 +370,7 @@ var createScene = function() {
 
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(170, 30, 5)
+    platform3.position = new BABYLON.Vector3(175, 30, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -376,7 +402,7 @@ var createScene = function() {
 
     // Platform 1 Ice
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform3', {width:50, height:platformHeight, depth:15}, scene);
-    platform1.position = new BABYLON.Vector3(220, 35, 5)
+    platform1.position = new BABYLON.Vector3(215, 35, 5)
     platform1.material = multimatIceB;
     platform1.checkCollisions = true;
     platform1.subMeshes = [];
@@ -389,6 +415,107 @@ var createScene = function() {
     new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform1);
     new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform1);
     groundObjects.push(platform1);
+
+    // Platform 1 Snow
+    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
+    platform1.position = new BABYLON.Vector3(256, 0, 5)
+    platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2)
+    platform1.checkCollisions = true;
+    platform1.material = multimatSnowB;
+    platform1.subMeshes = [];
+    var verticesCount = platform1.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount, 0, 6, platform1);
+    new BABYLON.SubMesh(1, 0, verticesCount, 6, 6, platform1);
+    new BABYLON.SubMesh(2, 0, verticesCount, 12, 6, platform1);
+    new BABYLON.SubMesh(2, 0, verticesCount, 18, 6, platform1);
+    new BABYLON.SubMesh(0, 0, verticesCount, 24, 6, platform1);
+    new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, platform1);
+    groundObjects.push(platform1);
+
+
+    // Platform 1 Snow
+    var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
+    platform1.position = new BABYLON.Vector3(256, 50, 5)
+    platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2)
+    platform1.checkCollisions = true;
+    platform1.material = multimatSnowB;
+    platform1.subMeshes = [];
+    var verticesCount = platform1.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount, 0, 6, platform1);
+    new BABYLON.SubMesh(1, 0, verticesCount, 6, 6, platform1);
+    new BABYLON.SubMesh(2, 0, verticesCount, 12, 6, platform1);
+    new BABYLON.SubMesh(2, 0, verticesCount, 18, 6, platform1);
+    new BABYLON.SubMesh(0, 0, verticesCount, 24, 6, platform1);
+    new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, platform1);
+    groundObjects.push(platform1);
+
+    // Platform 3 Snow
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(252.5, 45, 5)
+    platform3.material = multimatSnowS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+    // Platform 3 Snow
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(252.5, 25, 5)
+    platform3.material = multimatSnowS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+    // Platform 3 Snow
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(240, 15, 5)
+    platform3.material = multimatSnowS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+
+    // Platform 2 Snow
+    var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
+    platform2.position = new BABYLON.Vector3(215, 10, 5)
+    platform2.checkCollisions = true;
+    platform2.material = multimatSnowM;
+    platform2.subMeshes = [];
+    var verticesCount2 = platform2.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount2, 0, 6, platform2);
+    new BABYLON.SubMesh(1, 0, verticesCount2, 6, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 12, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 18, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 24, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 30, 6, platform2);
+    
+    groundObjects.push(platform2);
 
     // Snowman 
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
@@ -497,7 +624,7 @@ var createScene = function() {
     //Small Rock
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockSmall.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
-        WinterRockSmall.position = new BABYLON.Vector3(36,-9.5, 6);
+        WinterRockSmall.position = new BABYLON.Vector3(41,-9.5, 6);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
         WinterRockSmall.checkCollisions = true;
     });
@@ -505,7 +632,7 @@ var createScene = function() {
     //Medium Rock
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockMedium.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
-        WinterRockSmall.position = new BABYLON.Vector3(30,-9.5, 5);
+        WinterRockSmall.position = new BABYLON.Vector3(35,-9.5, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
         WinterRockSmall.checkCollisions = true;
     });
@@ -521,7 +648,7 @@ var createScene = function() {
     //Big Rock
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
-        WinterRockSmall.position = new BABYLON.Vector3(26,-8, 5);
+        WinterRockSmall.position = new BABYLON.Vector3(31,-8, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
         WinterRockSmall.checkCollisions = true;
     });
@@ -529,7 +656,7 @@ var createScene = function() {
     //Big Rock
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
-        WinterRockSmall.position = new BABYLON.Vector3(18,-8, 4);
+        WinterRockSmall.position = new BABYLON.Vector3(23,-8, 4);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
         WinterRockSmall.checkCollisions = true;
     });
@@ -635,22 +762,6 @@ var createScene = function() {
         fishbucket.checkCollisions = true;
     });
 
-    // Fire Log
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
-        var FireLog = newMeshes[0];
-        FireLog.position = new BABYLON.Vector3(-12,-19.1,0.5);
-        FireLog.scaling = new BABYLON.Vector3(2,2,2);
-        FireLog.checkCollisions = true;
-    });
-
-    // Fire collision box
-    var fireBox = BABYLON.MeshBuilder.CreateBox('fireBox', {width:2.5, height:2, depth:2}, scene);
-    fireBox.checkCollisions = true;
-    fireBox.visibility = 0;
-    fireBox.material = fireM;
-    fireBox.position = new BABYLON.Vector3(-12,-19.1,0.5);
-    groundObjects.push(fireBox);
-
     // COIN 1
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
         coin = newMeshes[0];
@@ -669,6 +780,40 @@ var createScene = function() {
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
+    // COIN 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+        coin2 = newMeshes[0];
+        coin2.position = new BABYLON.Vector3(220, 13.5, 0.5);
+        coin2.scaling = new BABYLON.Vector3(10,10,10);
+        coin2.rotate(new BABYLON.Vector3(1,0,0), 1.6)
+        coin2.checkCollisions = true;
+    });
+
+    // Coin collision box 2
+    var coinBox = BABYLON.MeshBuilder.CreateCylinder('coinBox2', {height: 2, diameterTop: 2.3, diameterBottom: 2.3, tessellation: 100, subdivisons: 10}, scene);
+    coinBox.checkCollisions = false;
+    coinBox.visibility = 0;
+    coinBox.material = coinM;
+    coinBox.position = new BABYLON.Vector3(220, 13, 0.5);
+    coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
+    groundObjects.push(coinBox);
+
+    // Fire Log
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+        var FireLog = newMeshes[0];
+        FireLog.position = new BABYLON.Vector3(-12,-19.1,0.5);
+        FireLog.scaling = new BABYLON.Vector3(2,2,2);
+        FireLog.checkCollisions = true;
+    });
+
+    // Fire collision box
+    var fireBox = BABYLON.MeshBuilder.CreateBox('fireBox', {width:2.5, height:2, depth:2}, scene);
+    fireBox.checkCollisions = true;
+    fireBox.visibility = 0;
+    fireBox.material = fireM;
+    fireBox.position = new BABYLON.Vector3(-12,-19.1,0.5);
+    groundObjects.push(fireBox);
+
     // Fire Log 2
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
@@ -684,6 +829,25 @@ var createScene = function() {
     fireBox.material = fireM;
     fireBox.position = new BABYLON.Vector3(220,36.1,0.5);
     groundObjects.push(fireBox);
+
+    // Spikes
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(5,1,0.5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
+        spikeTrap.checkCollisions = true;
+        spikes = spikeTrap._children[0];
+        console.log(spikes)
+        //spikes.position.y = -1;
+    });
+
+    // Spikes collision box 
+    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikeBox', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(5,1,0.5);
+    groundObjects.push(spikeBox);
 
 
 
@@ -780,7 +944,7 @@ function coinON(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles4.emitter = new BABYLON.Vector3(-7,-17,0);
+    particles4.emitter = new BABYLON.Vector3(-7,-17,0.5);
     
     
     particles4.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
@@ -808,7 +972,7 @@ function coinON(){
     particles4.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles4.gravity = new BABYLON.Vector3(0, 0, -2);
+    particles4.gravity = new BABYLON.Vector3(0, 0, 0);
 
     // Direction of each particle after it has been emitted
     particles4.direction1 = new BABYLON.Vector3(1, 1, 0.2);
@@ -825,6 +989,65 @@ function coinON(){
 
     // Start the particle system
     particles4.start();
+
+}
+
+function coinON2(){
+    CoinDisappear2();
+    
+    coinIsOn2 = true;
+    //Particles system Fire
+    particles5 = new BABYLON.GPUParticleSystem("particles5", 10000, scene);
+    //Texture of each particle
+    particles5.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
+    //Where the particles come from
+    
+    particles5.emitter = new BABYLON.Vector3(220, 13, 0.5);
+    
+    
+    particles5.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles5.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles5.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles5.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles5.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles5.minSize = 0.1;
+    particles5.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles5.minLifeTime = 0.01;
+    particles5.maxLifeTime = 0.01;
+
+    // Emission rate
+    particles5.emitRate = 100;
+
+    window.ps = particles5;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles5.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles5.gravity = new BABYLON.Vector3(0, 0, -2);
+
+    // Direction of each particle after it has been emitted
+    particles5.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particles5.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
+
+    // Angular speed, in radians
+    particles5.minAngularSpeed = 0;
+    particles5.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles5.minEmitPower = 10;
+    particles5.maxEmitPower = 10;
+    coin2.visibility = 0;
+
+    // Start the particle system
+    particles5.start();
 
 }
 
