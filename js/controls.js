@@ -40,9 +40,14 @@ scene.registerAfterRender(function () {
     isGrounded();
     if(timeCoin > 1){
         particles4.stop();
+        if(timeCoin >2){
+            particles4.dispose();
+        }
     }
     if(timeCoin2 > 1){
-        particles5.stop();
+        if(timeCoin2 >2){
+            particles5.dispose();
+        }
     }
     
     // Walk left
