@@ -5,6 +5,8 @@ var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("HUD
 var panelCoins = new BABYLON.GUI.StackPanel();
 panelCoins.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
 panelCoins.isVertical = false;
+panelCoins.left = "1%";
+panelCoins.top = "1%";
 advancedTexture.addControl(panelCoins);   
 
 var coin = [];
@@ -34,6 +36,8 @@ panelCoins.addControl(coin[2]);
 var panelHealth = new BABYLON.GUI.StackPanel();
 panelHealth.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
 panelHealth.isVertical = false;
+panelHealth.left = "-1%";
+panelHealth.top = "1%";
 advancedTexture.addControl(panelHealth);  
 
 var health = [];
