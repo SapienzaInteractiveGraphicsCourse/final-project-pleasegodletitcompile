@@ -11,12 +11,6 @@ var timeStart =0;
 
 // Render loop
 engine.runRenderLoop(function() {
-
-    // animation : progress indicator
-	engine.displayLoadingUI();
-    engine.loadingUIText = "START...";
-    
-
     delta = engine.getDeltaTime();
     timeStart += delta / 1000;
     timeWalk += delta / 1000;
@@ -50,13 +44,7 @@ engine.runRenderLoop(function() {
     }    
     if(coinIsOn2 == true){
         timeCoin2 += delta / 1000;
-    }   
-    // hide progress indicator
-    if(timeStart > 5){
-        engine.hideLoadingUI();
-    }
-    console.log(timeStart);
-		
+    }   		
 });
 
 // Canvas/Window resize event handler

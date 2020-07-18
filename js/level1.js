@@ -40,6 +40,10 @@ var helmet;
 var groundObjects = [];
 
 var createScene = function() {
+    // Loading UI
+    engine.displayLoadingUI();
+    engine.loadingUIText = "Loading level...";
+
     // Scene
     var scene = new BABYLON.Scene(engine);
 
@@ -182,6 +186,10 @@ var createScene = function() {
         player.initializeBody();
         player.initializeAnimations();
         player.loadingComplete = true;
+    });
+
+    scene.executeWhenReady( function() {
+        engine.hideLoadingUI();
     });
 
     return scene;
