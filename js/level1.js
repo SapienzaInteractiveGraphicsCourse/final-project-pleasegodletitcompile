@@ -268,6 +268,6 @@ scene.registerBeforeRender( function() {
     }
 
     clouds.forEach(p => {
-        p.rotation.z -=0.002;
+        p.rotation.z -= 0.001;
     });
 });
