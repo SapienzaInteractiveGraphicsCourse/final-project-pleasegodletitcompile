@@ -834,7 +834,7 @@ var createScene = function() {
 
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(357.5, 16, 5)
+    platform3.position = new BABYLON.Vector3(367.5, 16, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -850,7 +850,7 @@ var createScene = function() {
 
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(365, 6, 5)
+    platform3.position = new BABYLON.Vector3(375, 6, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -866,7 +866,7 @@ var createScene = function() {
 
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(372.5, -4, 5)
+    platform3.position = new BABYLON.Vector3(382.5, -4, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
@@ -882,7 +882,7 @@ var createScene = function() {
 
     // Platform 3 Ice
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
-    platform3.position = new BABYLON.Vector3(380, 6, 5)
+    platform3.position = new BABYLON.Vector3(390, 6, 5)
     platform3.material = multimatIceS;
     platform3.checkCollisions = true;
     platform3.subMeshes = [];
