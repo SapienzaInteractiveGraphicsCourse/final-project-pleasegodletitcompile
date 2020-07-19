@@ -89,6 +89,7 @@ var createScene = function() {
             Math.random()*200+100
             );
         cloud.rotation.z = Math.random()*360;
+        clouds.push(cloud);
     }
 
     // Left wall
@@ -235,9 +236,10 @@ var createScene = function() {
 
 var scene = createScene();
 
-// Lightning effect
+// Storm animation
 var lightningTimer = 5;
 scene.registerBeforeRender( function() {
+    // Lightnings & thunders
     if(Math.random() > 0.997) {
         flash.intensity = 10 + Math.random() * 100;
         console.log(flash.intensity)
@@ -264,4 +266,8 @@ scene.registerBeforeRender( function() {
         flash.intensity = 0;
         lightningTimer = 5;
     }
+
+    clouds.forEach(p => {
+        p.rotation.z -=0.002;
+    });
 });
