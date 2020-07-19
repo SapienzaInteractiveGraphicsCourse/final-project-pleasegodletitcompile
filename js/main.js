@@ -17,7 +17,7 @@ engine.runRenderLoop(function() {
     timeWalk += delta / 1000;
     timeJump += delta / 1000;
     timeSlide -= delta / 500;
-    timeAnimation += delta / 1000;
+    // timeAnimation += delta / 1000;
     timeSlide = Math.max(timeSlide, 0);
     
 
@@ -45,7 +45,14 @@ engine.runRenderLoop(function() {
     }    
     if(coinIsOn2 == true){
         timeCoin2 += delta / 1000;
-    }   		
+    }
+    
+    if(player.lives == 0 && menuIsOpen == false) {
+        menu(true); // Game Over
+        inputKeys = {};
+        scene.actionManager = null;
+        player.position.x = 0;
+    }
 });
 
 // Canvas/Window resize event handler

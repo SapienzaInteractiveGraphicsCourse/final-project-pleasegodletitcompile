@@ -147,22 +147,10 @@ function snowMan(){
 
     RotateRightArm.setKeys(keys);
     snowRA.animations.push(RotateRightArm)
-    scene.beginAnimation(snowRA, 0, framerate, false, 1);
-
-    var RotateRightArm2 = new BABYLON.Animation("rightArm2", "rotation", framerate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-    
-    keys = [];
-    keys.push({ frame: 0, value: new BABYLON.Vector3(0,0,4.7)});
-    keys.push({ frame: 0.25*framerate, value: new BABYLON.Vector3(0,0,5.1) });
-    keys.push({ frame: 0.5*framerate, value: new BABYLON.Vector3(0,0,5.7) });
-    keys.push({ frame: 0.75*framerate, value: new BABYLON.Vector3(0,0,5.1) });
-    keys.push({ frame: framerate, value: new BABYLON.Vector3(0,0,4.7) });
-
-    RotateRightArm2.setKeys(keys);
-    snowRA2.animations.push(RotateRightArm2)
-    scene.beginAnimation(snowRA2, 0, framerate, false, 1);
+    scene.beginAnimation(snowRA, 0, framerate, true, 1);
+    snowRA2.animations.push(RotateRightArm)
+    scene.beginAnimation(snowRA2, 0, framerate, true, 1);
 }
-
 
 
 function Coin(obj){
