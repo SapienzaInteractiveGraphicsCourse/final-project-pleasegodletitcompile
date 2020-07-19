@@ -837,7 +837,7 @@ var createScene = function() {
     });
 
     // Spikes collision box 
-    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikeBox', {width:5, height:1, depth:5}, scene);
+    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikes', {width:5, height:1, depth:5}, scene);
     spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
     spikeBox.material = spikesM;
@@ -1156,4 +1156,8 @@ function fireON2(){
 
     // Start the particle system
     particles3.start();
+}
+
+function trapActive(name){
+    if(name == "spikes") trapON(spikes);
 }

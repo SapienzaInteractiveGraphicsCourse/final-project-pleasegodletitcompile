@@ -37,6 +37,7 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
 // This function is called after every frame render
 scene.registerAfterRender(function () {
     // Jump and gravity falling 
+
     isGrounded();
     if(timeCoin > 1){
         particles4.stop();
@@ -265,7 +266,7 @@ function checkMaterial(obj) {
         updateCoins();
     }
     if(obj.material.id == "spikesM"){
-        trapON(spikes);
+        trapActive(obj.id);
         if(dmg == false){
             player.lives--;
             updateHealth();
