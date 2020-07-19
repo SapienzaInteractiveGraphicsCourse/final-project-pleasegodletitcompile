@@ -30,6 +30,11 @@ var coin;
 
 var snowAnim = false;
 
+var flash;
+var clouds = [];
+var thunder1;
+var thunder2;
+
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
 var platformHeight = 2;
@@ -46,17 +51,11 @@ var createScene = function() {
 
     // Scene
     var scene = new BABYLON.Scene(engine);
-
     scene.collisionsEnabled = true;
 
-    //Set platforms materials
-    // var ice = new BABYLON.StandardMaterial("ice", scene);
-    // ice.diffuseColor = new BABYLON.Color3(0, 1, 1);
-    // ice.diffuseTexture = new BABYLON.Texture("../Textures/ice.png", scene)
-
+    // Ground material
     var ground = new BABYLON.StandardMaterial("ground", scene);
     ground.diffuseColor = new BABYLON.Color3(1, 1, 1);
-
 
     // Camera
     camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
@@ -67,6 +66,30 @@ var createScene = function() {
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+    light.intensity = 0.5;
+
+    // Fog
+    // scene.fogMode = BABYLON.Scene.FOGMODE_EXP2;
+    // scene.fogColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+    // scene.fogDensity = 0.002;
+
+    // Clouds
+    cloudMaterial = new BABYLON.StandardMaterial("cloudMaterial", scene);
+    cloudMaterial.diffuseTexture = new BABYLON.Texture("../Textures/cloud.png", scene);
+    cloudMaterial.diffuseTexture.hasAlpha = true;
+    cloudMaterial.useAlphaFromDiffuseTexture = true;
+    cloudMaterial.alpha = 0.6;
+
+    for(var i=0; i<10; i++) {
+        var cloud = new BABYLON.MeshBuilder.CreatePlane("cloud", {size:500}, scene);
+        cloud.material = cloudMaterial;
+        cloud.position.set(
+            Math.random()*500-200,
+            Math.random()*200-100,
+            Math.random()*200+100
+            );
+        cloud.rotation.z = Math.random()*360;
+    }
 
     // Left wall
     var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:10}, scene);
@@ -132,11 +155,25 @@ var createScene = function() {
         musicl1.play();
     }
     
+
+    // Lightning
+    flash = new BABYLON.PointLight("flash", new BABYLON.Vector3(0, 0, 0), scene);
+    flash.diffuse = new BABYLON.Color3(0.02, 0.18, 0.54);
+    flash.specular = new BABYLON.Color3(0.02, 0.18, 0.54);
+
+    // Thunder
+    thunder1 = new BABYLON.Sound("thunder1", "../sounds/thunder1.mp3", scene);
+    thunder2 = new BABYLON.Sound("thunder2", "../sounds/thunder2.mp3", scene);
+    thunder3 = new BABYLON.Sound("thunder3", "../sounds/thunder3.mp3", scene);
+    
+    // Rain
     //Particles system
     var particles = new BABYLON.GPUParticleSystem("particles", 100000, scene);
 
     //Texture of each particle
     particles.particleTexture = new BABYLON.Texture("../textures/droplet.png", scene);
+    particles.color1 = new BABYLON.Color4(1,1,1,0.9);
+    particles.color2 = new BABYLON.Color4(1,1,1,1);
     
     //Where the particles come from
     particles.emitter = camera;
@@ -145,14 +182,14 @@ var createScene = function() {
 
 	// Size of each particle
 	particles.minSize = .05;
-	particles.maxSize = .07;
+	particles.maxSize = .1;
 
 	// Life time of each particle
 	particles.minLifeTime = 1;
 	particles.maxLifeTime = 2;
 
 	// Emission rate
-	particles.emitRate = 5000;
+	particles.emitRate = 10000;
 
     window.ps = particles;
 
@@ -172,6 +209,7 @@ var createScene = function() {
 
 	// Start the particle system
 	particles.start();
+
 
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
@@ -197,7 +235,33 @@ var createScene = function() {
 
 var scene = createScene();
 
-//music
-//music = new BABYLON.Sound("music", "./sounds/music2.mp3", {volume:1, loop:true, autoplay:true}, scene, function(){
-//    music.play();
-//});
+// Lightning effect
+var lightningTimer = 5;
+scene.registerBeforeRender( function() {
+    if(Math.random() > 0.997) {
+        flash.intensity = 10 + Math.random() * 100;
+        console.log(flash.intensity)
+        flash.position = new BABYLON.Vector3(
+        Math.random()*500 - 200,
+        Math.random()*500 - 250,
+        100
+        );
+        if(flash.intensity > 80) {
+            thunder1.play();
+        }
+        else if(flash.intensity > 45) {
+            thunder2.play();
+        }
+        else {
+            thunder3.play();
+        }
+        lightningTimer = 5;
+    }
+    else if (lightningTimer > 0) {
+        lightningTimer--;
+    }
+    else {
+        flash.intensity = 0;
+        lightningTimer = 5;
+    }
+});
