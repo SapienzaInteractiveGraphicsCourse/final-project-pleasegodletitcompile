@@ -64,7 +64,7 @@ var createScene = function() {
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(-1,1,1), scene);
     
     // Skybox
-    var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:1000.0}, scene);
+    var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:2000.0}, scene);
     skybox.addRotation(0.0, deg2rad(180), 0.0);
     var skyboxMaterial = new BABYLON.StandardMaterial("snowbox", scene);
     skyboxMaterial.backFaceCulling = false;
@@ -781,6 +781,126 @@ var createScene = function() {
     new BABYLON.SubMesh(0, 0, verticesCount, 24, 6, platform1);
     new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, platform1);
     groundObjects.push(platform1);
+
+    // Platform 3 Snow
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(335, 36, 5)
+    platform3.material = multimatSnowS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+    // Platform 2 Ice
+    var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
+    platform2.position = new BABYLON.Vector3(350, 26, 5)
+    platform2.checkCollisions = true;
+    platform2.material = multimatIceM;
+    platform2.subMeshes = [];
+    var verticesCount2 = platform2.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount2, 0, 6, platform2);
+    new BABYLON.SubMesh(1, 0, verticesCount2, 6, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 12, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 18, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 24, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 30, 6, platform2);
+    
+    groundObjects.push(platform2);
+
+    // Platform 2 Ice
+    var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
+    platform2.position = new BABYLON.Vector3(400, 56, 5)
+    platform2.checkCollisions = true;
+    platform2.material = multimatIceM;
+    platform2.subMeshes = [];
+    var verticesCount2 = platform2.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount2, 0, 6, platform2);
+    new BABYLON.SubMesh(1, 0, verticesCount2, 6, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 12, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 18, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 24, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 30, 6, platform2);
+    
+    groundObjects.push(platform2);
+
+    // Platform 3 Ice
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(357.5, 16, 5)
+    platform3.material = multimatIceS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+    // Platform 3 Ice
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(365, 6, 5)
+    platform3.material = multimatIceS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+    // Platform 3 Ice
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(372.5, -4, 5)
+    platform3.material = multimatIceS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+    // Platform 3 Ice
+    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:5, height:platformHeight, depth:15}, scene);
+    platform3.position = new BABYLON.Vector3(380, 6, 5)
+    platform3.material = multimatIceS;
+    platform3.checkCollisions = true;
+    platform3.subMeshes = [];
+    var verticesCount3 = platform3.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount3, 0, 6, platform3);
+    new BABYLON.SubMesh(1, 0, verticesCount3, 6, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 12, 6, platform3);
+    new BABYLON.SubMesh(2, 0, verticesCount3, 18, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 24, 6, platform3);
+    new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
+    groundObjects.push(platform3);
+
+
+
+
+
+
 
     
 
