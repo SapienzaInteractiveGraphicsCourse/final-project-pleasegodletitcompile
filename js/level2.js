@@ -10,8 +10,6 @@ var timeWalk = 0;
 var timeJump = 0;
 var timeSlide = 0;
 
-var timeAnimation = 0;
-
 var timeCoin = 0;
 var timeCoin2 = 0;
 
@@ -54,7 +52,16 @@ var createScene = function() {
     var scene = new BABYLON.Scene(engine);
     scene.collisionsEnabled = true;
     
+    // Camera
+    camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
+    camera.radius = 40;
+    camera.heightOffset = 10;
+    camera.rotationOffset = 180;
+    camera.attachControl(canvas, true);
 
+    // Light
+    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(-1,1,1), scene);
+    
     // Skybox
     var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:1000.0}, scene);
     skybox.addRotation(0.0, deg2rad(180), 0.0);
@@ -198,16 +205,6 @@ var createScene = function() {
     //Set spikes material
     var spikesM = new BABYLON.StandardMaterial("spikesM", scene);
     spikesM.diffuseColor = new BABYLON.Color3(0, 0, 0);
-
-    // Camera
-    camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
-    camera.radius = 40;
-    camera.heightOffset = 10;
-    camera.rotationOffset = 180;
-    camera.attachControl(canvas, true);
-
-    // Light
-    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(-1,1,1), scene);
 
     // Snow multimaterial
     var multimatSnowS = new BABYLON.MultiMaterial("multiSnow", scene);
@@ -537,7 +534,7 @@ var createScene = function() {
     
     groundObjects.push(platform2);
 
-    // Snowman 
+    // Snowman 1
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(6.5,0.9,10);
@@ -550,7 +547,7 @@ var createScene = function() {
         snowLA._position.x = -0.5;
     });
 
-    // Snowman
+    // Snowman 2
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(102.5,10.9,10);
@@ -559,8 +556,8 @@ var createScene = function() {
         snowRA2 = root._children[1];
         snowLA2 = root._children[2];
         snowCyl2 = root._children[6];
-        snowRA._position.x = 0.4;
-        snowLA._position.x = -0.5;
+        snowRA2._position.x = 0.4;
+        snowLA2._position.x = -0.5;
     });
 
     // Bush
@@ -919,19 +916,13 @@ var createScene = function() {
 
     scene.executeWhenReady( function() {
         engine.hideLoadingUI();
+        snowMan();
     });
 
     return scene;
 }
 
 var scene = createScene();
-
-scene.registerAfterRender(function () {
-    if(timeAnimation > 4){
-        snowMan();
-        timeAnimation = 0;
-    }
-});
 
 function coinON(){
     CoinDisappear(coin1);
