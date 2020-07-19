@@ -114,6 +114,9 @@ function menu(gameOver = false) {
     advancedTexture.addControl(menuPanel);
     
     var menuText = new BABYLON.GUI.TextBlock("menuText", "Menu");
+    if(gameOver) {
+        menuText.text = "Game Over";
+    }
     menuText.fontSize = "30px";
     menuText.height = "60px";
     menuPanel.addControl(menuText);
@@ -132,11 +135,13 @@ function menu(gameOver = false) {
         window.location.href = "../index.html";
     });
 
-    var closeButton = new BABYLON.GUI.Button.CreateSimpleButton("closeButton", "Close");
-    closeButton.height = "40px";
-    menuPanel.addControl(closeButton);
-    closeButton.onPointerClickObservable.add(function() {
-        menuIsOpen = false;
-        advancedTexture.removeControl(menuPanel);
-    });
+    if(gameOver == false){
+        var closeButton = new BABYLON.GUI.Button.CreateSimpleButton("closeButton", "Close");
+        closeButton.height = "40px";
+        menuPanel.addControl(closeButton);
+        closeButton.onPointerClickObservable.add(function() {
+            menuIsOpen = false;
+            advancedTexture.removeControl(menuPanel);
+        });
+    }
 }

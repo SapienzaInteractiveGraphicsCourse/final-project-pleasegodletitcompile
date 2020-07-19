@@ -45,7 +45,11 @@ engine.runRenderLoop(function() {
     }    
     if(coinIsOn2 == true){
         timeCoin2 += delta / 1000;
-    }   		
+    }
+    
+    if(player.lives == 0) {
+        menu(true); // Game Over
+    }
 });
 
 // Canvas/Window resize event handler
