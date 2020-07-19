@@ -82,7 +82,7 @@ function updateHealth(){
 
 // Menu
 var menuIsOpen = false;
-
+var menuPanel;
 // Menu button
 menuButton = new BABYLON.GUI.Button.CreateImageOnlyButton("menuButton", "textures/menu.png");
 menuButton.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
@@ -97,6 +97,10 @@ menuButton.onPointerClickObservable.add(function() {
     if(menuIsOpen == false){
         menu();
     }
+    else {
+        advancedTexture.removeControl(menuPanel);
+        menuIsOpen = false;
+    }
 });
 
 // Display menu
@@ -104,7 +108,7 @@ menuButton.onPointerClickObservable.add(function() {
 function menu(gameOver = false) {
     menuIsOpen = true;
 
-    var menuPanel = new BABYLON.GUI.StackPanel();
+    menuPanel = new BABYLON.GUI.StackPanel();
     menuPanel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
     menuPanel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
     menuPanel.isVertical = true;
