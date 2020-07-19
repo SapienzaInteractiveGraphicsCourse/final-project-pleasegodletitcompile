@@ -72,12 +72,13 @@ var createScene = function() {
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.disableLighting = true;
+    skybox.infiniteDistance = true;
     skybox.material = skyboxMaterial;
 
     // Fog
     scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
     scene.fogColor = new BABYLON.Color3(0.9, 0.9, 0.85);
-    scene.fogDensity = 0.0015;
+    scene.fogDensity = 0.003;
 
     //Set platforms materials
     //Ice Small Platform
