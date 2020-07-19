@@ -54,6 +54,7 @@ var createScene = function() {
     var scene = new BABYLON.Scene(engine);
     scene.collisionsEnabled = true;
 
+    // Skybox
     var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:1000.0}, scene);
     skybox.addRotation(0.0, deg2rad(180), 0.0);
     var skyboxMaterial = new BABYLON.StandardMaterial("snowbox", scene);
@@ -63,6 +64,11 @@ var createScene = function() {
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
     skybox.material = skyboxMaterial;
+
+    // Fog
+    scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
+    scene.fogColor = new BABYLON.Color3(0.9, 0.9, 0.85);
+    scene.fogDensity = 0.002;
 
     //Set platforms materials
     //Ice Small Platform
