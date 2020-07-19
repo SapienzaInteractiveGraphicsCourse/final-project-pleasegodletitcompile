@@ -17,7 +17,6 @@ engine.runRenderLoop(function() {
     timeWalk += delta / 1000;
     timeJump += delta / 1000;
     timeSlide -= delta / 500;
-    // timeAnimation += delta / 1000;
     timeSlide = Math.max(timeSlide, 0);
     
 
