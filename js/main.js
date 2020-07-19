@@ -1,5 +1,6 @@
 /// <reference path="../reference/babylon.d.ts" />
 /// <reference path="../reference/babylonjs.loaders.d.ts" />
+/// <reference path="../reference/babylon.gui.d.ts" />
 
 //BABYLON.Engine.audioEngine.setGlobalVolume(0.5);
 
