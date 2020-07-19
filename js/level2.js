@@ -53,7 +53,7 @@ var createScene = function() {
     // Scene
     var scene = new BABYLON.Scene(engine);
     scene.collisionsEnabled = true;
-
+    
     var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:1000.0}, scene);
     var skyboxMaterial = new BABYLON.StandardMaterial("snowbox", scene);
     skyboxMaterial.backFaceCulling = false;
@@ -62,7 +62,7 @@ var createScene = function() {
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
     skybox.material = skyboxMaterial;
-
+    
     //Set platforms materials
     //Ice Small Platform
     var iceS = new BABYLON.StandardMaterial("ice", scene);
