@@ -53,6 +53,7 @@ var createScene = function() {
     // Scene
     var scene = new BABYLON.Scene(engine);
     scene.collisionsEnabled = true;
+    
 
     // Skybox
     var skybox = BABYLON.MeshBuilder.CreateBox("snowbox", {size:1000.0}, scene);
