@@ -57,7 +57,19 @@ healthHUD.push(new BABYLON.GUI.Image("heart3", "textures/health.png"));
 healthHUD[2].verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
 healthHUD[2].height = "40px";
 healthHUD[2].width = "40px";
-panelHealth.addControl(healthHUD[2]); 
+panelHealth.addControl(healthHUD[2]);
+
+
+// Menu button
+menuButton = new BABYLON.GUI.Button.CreateImageOnlyButton("menuButton", "textures/menu.png");
+menuButton.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+menuButton.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+menuButton.top = "1%";
+menuButton.height = "40px";
+menuButton.width = "40px";
+menuButton.thickness = 0;
+advancedTexture.addControl(menuButton);
+
 
 function updateHealth(){
     for(var i=0; i<player.lives; i++){  
