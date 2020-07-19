@@ -69,7 +69,7 @@ var createScene = function() {
     // Fog
     scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
     scene.fogColor = new BABYLON.Color3(0.9, 0.9, 0.85);
-    scene.fogDensity = 0.002;
+    scene.fogDensity = 0.0015;
 
     //Set platforms materials
     //Ice Small Platform
@@ -198,7 +198,6 @@ var createScene = function() {
     var spikesM = new BABYLON.StandardMaterial("spikesM", scene);
     spikesM.diffuseColor = new BABYLON.Color3(0, 0, 0);
 
-    
     // Camera
     camera = new BABYLON.FollowCamera('camera', new BABYLON.Vector3(0, 0, 0), scene);
     camera.radius = 40;
@@ -207,7 +206,7 @@ var createScene = function() {
     camera.attachControl(canvas, true);
 
     // Light
-    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1,1,0), scene);
+    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(-1,1,1), scene);
 
     // Snow multimaterial
     var multimatSnowS = new BABYLON.MultiMaterial("multiSnow", scene);
