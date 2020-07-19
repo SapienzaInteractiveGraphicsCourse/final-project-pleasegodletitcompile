@@ -119,7 +119,7 @@ scene.registerAfterRender(function () {
     if (inputKeys[" "] && player.grounded) {
         player.grounded = false;
         timeJump = 1;
-        player.acceleration.y = 2 + gravity;
+        player.acceleration.y = 2.5 + gravity;
         player.position.y = 0;
         jumpsound.play();
     };
@@ -205,14 +205,20 @@ window.addEventListener("keyup", handleKeyUp, false);
 function isGrounded() {
     player.grounded = false;
     var groundPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
+    var groundPoint2 = new BABYLON.Vector3(player.mesh.position.x+0.2, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
+    var groundPoint3 = new BABYLON.Vector3(player.mesh.position.x-0.2, player.mesh.position.y - player.height/2 - 0.1, player.mesh.position.z);
     var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, groundPoint]}, scene);
+    var intersectLine2 = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, groundPoint2]}, scene);
+    var intersectLine3 = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, groundPoint3]}, scene);
     for (obj of groundObjects) {
-        if (intersectLine.intersectsMesh(obj, false)) {
+        if (intersectLine.intersectsMesh(obj, false) || intersectLine2.intersectsMesh(obj, false) || intersectLine3.intersectsMesh(obj, false)) {
             player.grounded = true;
             checkMaterial(obj);
         }
     }
     intersectLine.dispose();
+    intersectLine2.dispose();
+    intersectLine3.dispose();
 }
 
 // Check if the player is sbatting the testa
@@ -229,8 +235,8 @@ function checkSbattiTesta() {
 }
 
 function checkFront() {
-    var halfPoint = new BABYLON.Vector3(player.mesh.position.x-1, player.mesh.position.y, player.mesh.position.z);
-    var halfPoint2 = new BABYLON.Vector3(player.mesh.position.x+1, player.mesh.position.y, player.mesh.position.z);
+    var halfPoint = new BABYLON.Vector3(player.mesh.position.x-0.1, player.mesh.position.y, player.mesh.position.z);
+    var halfPoint2 = new BABYLON.Vector3(player.mesh.position.x+0.1, player.mesh.position.y, player.mesh.position.z);
     var intersectLine2 = new BABYLON.MeshBuilder.CreateLines("intersectLine2", {points: [player.mesh.position, halfPoint]}, scene);
     var intersectLine3 = new BABYLON.MeshBuilder.CreateLines("intersectLine3", {points: [player.mesh.position, halfPoint2]}, scene);
     for (obj of groundObjects) {
