@@ -121,10 +121,16 @@ function menu(gameOver = false) {
     var restartButton = new BABYLON.GUI.Button.CreateSimpleButton("restartButton", "Restart");
     restartButton.height = "40px";
     menuPanel.addControl(restartButton);
+    restartButton.onPointerClickObservable.add(function() {
+        location.reload();
+    });
 
     var mainMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("mainMenuButton", "Main Menu");
     mainMenuButton.height = "40px";
     menuPanel.addControl(mainMenuButton);
+    mainMenuButton.onPointerClickObservable.add(function() {
+        window.location.href = "../index.html";
+    });
 
     var closeButton = new BABYLON.GUI.Button.CreateSimpleButton("closeButton", "Close");
     closeButton.height = "40px";
