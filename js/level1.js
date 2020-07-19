@@ -208,7 +208,8 @@ var createScene = function() {
 	particles.minEmitPower = 40;
 	particles.maxEmitPower = 50;
 
-	// Start the particle system
+    // Start the particle system
+    particles.preWarmCycles = 100;
 	particles.start();
 
 
@@ -242,7 +243,6 @@ scene.registerBeforeRender( function() {
     // Lightnings & thunders
     if(Math.random() > 0.997) {
         flash.intensity = 10 + Math.random() * 100;
-        console.log(flash.intensity)
         flash.position = new BABYLON.Vector3(
         Math.random()*500 - 200,
         Math.random()*500 - 250,
