@@ -119,7 +119,7 @@ scene.registerAfterRender(function () {
     if (inputKeys[" "] && player.grounded) {
         player.grounded = false;
         timeJump = 1;
-        player.acceleration.y = 2.5 + gravity;
+        player.acceleration.y = 2.2 + gravity;
         player.position.y = 0;
         jumpsound.play();
     };
