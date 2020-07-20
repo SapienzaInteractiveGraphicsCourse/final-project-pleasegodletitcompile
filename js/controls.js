@@ -53,21 +53,22 @@ scene.registerAfterRender(function () {
     }
     
     // Idle
-    if ((inputKeys["d"] && inputKeys["a"])) {
+    if ((inputKeys["a"] && inputKeys["d"]) || (inputKeys["A"] && inputKeys["D"])) {
         buttonA = true;
         buttonD = true;
-        player.position.x = 0;
-        player.acceleration.x = 0;
+        player.walking = false;
         if (ResetA || ResetD) {
             player.rotateIdleAnimation();
             ResetA = false;
             ResetD = false;
         }
-        player.walking = false;
+        player.position.x = 0;
+        player.acceleration.x = 0;
     }
     // Run left
-    else if ((inputKeys["a"] && inputKeys["p"])) {
+    else if ((inputKeys["a"] && inputKeys["p"]) || (inputKeys["A"] && inputKeys["P"])) {
         player.walking = true;
+        buttonA = true;
         if(ResetA == true){
             player.rotateLeftAnimation();
             timeWalk = 1;
@@ -77,8 +78,9 @@ scene.registerAfterRender(function () {
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.6); 
     }
     // Run right
-    else if ((inputKeys["d"] && inputKeys["p"])) {
+    else if ((inputKeys["d"] && inputKeys["p"]) || (inputKeys["D"] && inputKeys["P"])) {
         player.walking = true;
+        buttonD = true;
         if(ResetD == true){
             player.rotateRightAnimation();
             timeWalk = 1;
@@ -88,7 +90,7 @@ scene.registerAfterRender(function () {
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6);
     }
     // Walk left
-    else if (inputKeys["a"]) {
+    else if ((inputKeys["a"]) || (inputKeys["A"])) {
         player.walking = true;
         buttonA = true;
         if(ResetA == true){
@@ -101,7 +103,7 @@ scene.registerAfterRender(function () {
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
     }
     // Walk right
-    else if ((inputKeys["d"])) {
+    else if ((inputKeys["d"]) || (inputKeys["D"])) {
         player.walking = true;
         buttonD = true;
         if(ResetD == true){
