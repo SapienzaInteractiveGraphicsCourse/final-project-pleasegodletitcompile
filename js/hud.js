@@ -139,6 +139,13 @@ function menu(gameOver = false) {
         window.location.href = "../index.html";
     });
 
+    var levelMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("levelMenuButton", "Select Level");
+    levelMenuButton.height = "40px";
+    menuPanel.addControl(levelMenuButton);
+    levelMenuButton.onPointerClickObservable.add(function() {
+        window.location.href = "../selectLevel.html";
+    });
+
     if(gameOver == false){
         var closeButton = new BABYLON.GUI.Button.CreateSimpleButton("closeButton", "Close");
         closeButton.height = "40px";
