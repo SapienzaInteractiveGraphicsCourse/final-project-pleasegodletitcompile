@@ -149,3 +149,7 @@ function menu(gameOver = false) {
         });
     }
 }
+
+function endLevel(){
+
+};
