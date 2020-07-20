@@ -36,9 +36,10 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
 // Move player
 // This function is called after every frame render
 scene.registerAfterRender(function () {
-    // Jump and gravity falling 
 
+    // Jump and gravity falling 
     isGrounded();
+
     if(timeCoin > 1){
         particles4.stop();
         if(timeCoin >3){
@@ -52,41 +53,63 @@ scene.registerAfterRender(function () {
         }
     }
     
-    // Walk left
-    if ((inputKeys["a"])) {
-        
+    // Idle
+    if ((inputKeys["a"] && inputKeys["d"]) || (inputKeys["A"] && inputKeys["D"])) {
+        buttonA = true;
+        buttonD = true;
+        player.walking = false;
+        if (ResetA || ResetD) {
+            player.rotateIdleAnimation();
+            ResetA = false;
+            ResetD = false;
+        }
+        player.position.x = 0;
+        player.acceleration.x = 0;
+    }
+    // Run left
+    else if ((inputKeys["a"] && inputKeys["p"]) || (inputKeys["A"] && inputKeys["P"])) {
+        player.walking = true;
         buttonA = true;
         if(ResetA == true){
-            timeWalk =1;
-            //player.position.x = 0;
-            //player.acceleration.x = 0;
             player.rotateLeftAnimation();
-            player.walking = true;
-            ResetA = false;
-        }
-        player.acceleration.x -= walk;
-        player.acceleration.x = Math.max(player.acceleration.x, -0.3)
-        player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
-    }
-
-    if ((inputKeys["a"] && inputKeys["p"])) {
-        if(ResetA == true){
             timeWalk = 1;
             ResetA = false;
         }
         player.acceleration.x -= run;
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.6); 
     }
-
-    // Walk right
-    if ((inputKeys["d"])) {
+    // Run right
+    else if ((inputKeys["d"] && inputKeys["p"]) || (inputKeys["D"] && inputKeys["P"])) {
+        player.walking = true;
         buttonD = true;
         if(ResetD == true){
-            timeWalk = 1;
-            //player.position.x = 0;
-            //player.acceleration.x = 0;
             player.rotateRightAnimation();
-            player.walking = true;
+            timeWalk = 1;
+            ResetD = false;
+        }
+        player.acceleration.x += run;
+        player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6);
+    }
+    // Walk left
+    else if ((inputKeys["a"]) || (inputKeys["A"])) {
+        player.walking = true;
+        buttonA = true;
+        if(ResetA == true){
+            player.rotateLeftAnimation();
+            timeWalk = 1;
+            ResetA = false;
+        }
+        player.acceleration.x -= walk;
+        player.acceleration.x = Math.max(player.acceleration.x, -0.3)
+        player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.3); 
+    }
+    // Walk right
+    else if ((inputKeys["d"]) || (inputKeys["D"])) {
+        player.walking = true;
+        buttonD = true;
+        if(ResetD == true){
+            player.rotateRightAnimation();
+            timeWalk = 1;
             ResetD = false;
         }
         player.acceleration.x += walk;
@@ -94,27 +117,8 @@ scene.registerAfterRender(function () {
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.3); 
     }
 
-    if ((inputKeys["d"] && inputKeys["p"])) {
-        if(ResetD == true){
-            timeWalk = 1;
-            ResetD = false;
-        }
-        player.acceleration.x += run;
-        player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6);
-    }
-
-        
-    if ((inputKeys["d"] && inputKeys["a"])) {
-        timeWalk = 1;
-        player.position.x = 0;
-        player.acceleration.x = 0;
-        player.rotateIdleAnimation();
-    }
-
     if(player.grounded == false){
         player.acceleration.y += gravity;
-        //walk = 0.03;
-        //run = 0.03;
     }
 
     if (inputKeys[" "] && player.grounded) {
@@ -148,7 +152,6 @@ scene.registerAfterRender(function () {
 
  // Reset the acceleration for walking in case the button is released
 window.addEventListener("keyup", handleKeyUp, false);
-//window.addEventListener("keydown", handleKeyDown, false);
 
     function handleKeyUp(evt) {
         if (evt.keyCode == 65) { //A
@@ -156,9 +159,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             timeSlide = Math.min(timeWalk, 1.2);
             ResetA = true;
             player.walking = false;
-            //player.rotateIdleAnimation();
             if(ice == true){
-                //player.acceleration.x -= walk;
                 player.position.x = Math.max(0.5 * player.acceleration.x * ((timeSlide) ** 2), -0.3);
             }
             else{
@@ -168,11 +169,9 @@ window.addEventListener("keyup", handleKeyUp, false);
             if(buttonA == false && buttonD == false){
                 player.rotateIdleAnimation();
             }
-            /*
-            if(buttonA == false && buttonD == true){
+            else if (buttonD == true) {
                 player.rotateRightAnimation();
             }
-            */
         }
 
         if (evt.keyCode == 68) { //D
@@ -180,9 +179,7 @@ window.addEventListener("keyup", handleKeyUp, false);
             timeSlide = Math.min(timeWalk, 1.2);
             ResetD = true;
             player.walking = false;
-            //player.rotateIdleAnimation();
             if(ice == true){
-                //player.acceleration.x += walk;
                 player.position.x = Math.min(0.5 * player.acceleration.x * ((timeSlide) ** 2), 0.3);
             }
             else{
@@ -193,11 +190,9 @@ window.addEventListener("keyup", handleKeyUp, false);
             if(buttonA == false && buttonD == false){
                 player.rotateIdleAnimation();
             }
-            /*
-            if(buttonA == true && buttonD == false){
+            else if (buttonA == true) {
                 player.rotateLeftAnimation();
             }
-            */
         }
     }
 
@@ -296,180 +291,4 @@ function checkMaterial(obj) {
         walk = 0.03;
         run = 0.06;
     }
-
-/*
-}
-function coinON(){
-    CoinDisappear();
-    coinIsOn = true;
-    //Particles system Fire
-    particles4 = new BABYLON.GPUParticleSystem("particles4", 10000, scene);
-    //Texture of each particle
-    particles4.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
-    //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
-    //Where the particles come from
-    
-    particles4.emitter = new BABYLON.Vector3(-7,-17,0);
-    
-    
-    particles4.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles4.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
-
-    // Colors of all particles
-    particles4.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles4.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles4.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
-
-    // Size of each particle (random between...
-    particles4.minSize = 0.1;
-    particles4.maxSize = 0.5;
-
-    // Life time of each particle (random between...
-    particles4.minLifeTime = 0.01;
-    particles4.maxLifeTime = 0.01;
-
-    // Emission rate
-    particles4.emitRate = 100;
-
-    window.ps = particles4;
-
-    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles4.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-
-    // Set the gravity of all particles
-    particles4.gravity = new BABYLON.Vector3(0, 0, -2);
-
-    // Direction of each particle after it has been emitted
-    particles4.direction1 = new BABYLON.Vector3(1, 1, 0.2);
-    particles4.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
-
-    // Angular speed, in radians
-    particles4.minAngularSpeed = 0;
-    particles4.maxAngularSpeed = Math.PI;
-
-    // Speed
-    particles4.minEmitPower = 10;
-    particles4.maxEmitPower = 10;
-
-    // Start the particle system
-    particles4.start();
-
-}
-
-function fireON(){
-    fireIsOn = true;
-    checkpoint = new BABYLON.Vector3(-12,-14,0);
-    //Particles system Fire
-    var particles2 = new BABYLON.GPUParticleSystem("particles2", 10000, scene);
-    //Texture of each particle
-    particles2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
-    //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
-    //Where the particles come from
-    
-    particles2.emitter = new BABYLON.Vector3(-12, -19.1, 0);
-    
-    
-    particles2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
-
-    // Colors of all particles
-    particles2.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
-    particles2.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
-    particles2.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
-
-    // Size of each particle (random between...
-    particles2.minSize = 0.1;
-    particles2.maxSize = 0.5;
-
-    // Life time of each particle (random between...
-    particles2.minLifeTime = 0.05;
-    particles2.maxLifeTime = 0.1;
-
-    // Emission rate
-    particles2.emitRate = 600;
-
-    window.ps = particles2;
-
-    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-
-    // Set the gravity of all particles
-    particles2.gravity = new BABYLON.Vector3(0, 0, -2);
-
-    // Direction of each particle after it has been emitted
-    particles2.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
-    particles2.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
-    
-
-    // Angular speed, in radians
-    particles2.minAngularSpeed = 0;
-    particles2.maxAngularSpeed = Math.PI;
-
-    // Speed
-    particles2.minEmitPower = .01;
-    particles2.maxEmitPower = 30;
-
-    // Start the particle system
-    particles2.start();
-
-}
-
-function fireON2(){
-    fireIsOn2 = true;
-    checkpoint = new BABYLON.Vector3(220,41.1,0.5);
-    //Particles system Fire
-    var particles3 = new BABYLON.GPUParticleSystem("particles3", 10000, scene);
-    //Texture of each particle
-    particles3.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
-    //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
-    //Where the particles come from
-    
-    particles3.emitter = new BABYLON.Vector3(220, 36.1, 0.5);
-    
-    
-    particles3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
-
-    // Colors of all particles
-    particles3.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
-    particles3.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
-    particles3.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
-
-    // Size of each particle (random between...
-    particles3.minSize = 0.1;
-    particles3.maxSize = 0.5;
-
-    // Life time of each particle (random between...
-    particles3.minLifeTime = 0.05;
-    particles3.maxLifeTime = 0.1;
-
-    // Emission rate
-    particles3.emitRate = 600;
-
-    window.ps = particles3;
-
-    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles3.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-
-    // Set the gravity of all particles
-    particles3.gravity = new BABYLON.Vector3(0, 0, -2);
-
-    // Direction of each particle after it has been emitted
-    particles3.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
-    particles3.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
-    
-
-    // Angular speed, in radians
-    particles3.minAngularSpeed = 0;
-    particles3.maxAngularSpeed = Math.PI;
-
-    // Speed
-    particles3.minEmitPower = .01;
-    particles3.maxEmitPower = 30;
-
-    // Start the particle system
-    particles3.start();
-    
-*/
-
 }
