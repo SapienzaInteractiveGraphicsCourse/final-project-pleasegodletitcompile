@@ -52,6 +52,7 @@ engine.runRenderLoop(function() {
         scene.actionManager = null;
         player.position.x = 0;
     }
+    
 });
 
 // Canvas/Window resize event handler

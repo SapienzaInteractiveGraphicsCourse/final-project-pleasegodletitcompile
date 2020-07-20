@@ -192,3 +192,6 @@ function trapON(obj){
     obj.animations.push(SpikesUp)
     scene.beginAnimation(obj, 0, framerate, false, 1);
 }
+
+
+
