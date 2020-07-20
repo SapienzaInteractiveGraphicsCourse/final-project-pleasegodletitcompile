@@ -82,7 +82,9 @@ function updateHealth(){
 
 // Menu
 var menuIsOpen = false;
+var endGame = false;
 var menuPanel;
+var endGamePanel;
 // Menu button
 menuButton = new BABYLON.GUI.Button.CreateImageOnlyButton("menuButton", "textures/menu.png");
 menuButton.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
@@ -151,5 +153,44 @@ function menu(gameOver = false) {
 }
 
 function endLevel(){
+
+    endGame = true;
+
+    endGamePanel = new BABYLON.GUI.StackPanel();
+    endGamePanel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+    endGamePanel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+    endGamePanel.isVertical = true;
+    endGamePanel.width = 0.5;
+    endGamePanel.background = "green";
+    endGamePanel.color = "orange";
+    advancedTexture.addControl(endGamePanel);
+    
+    var endText = new BABYLON.GUI.TextBlock("endtext", "Congratulations!!!");
+    endText.text = "Congratulations!!!";
+    
+    endText.fontSize = "30px";
+    endText.height = "60px";
+    endGamePanel.addControl(endText);
+
+    var restartButton = new BABYLON.GUI.Button.CreateSimpleButton("restartButton", "Replay this level");
+    restartButton.height = "40px";
+    endGamePanel.addControl(restartButton);
+    restartButton.onPointerClickObservable.add(function() {
+        location.reload();
+    });
+
+    var nextLevelButton = new BABYLON.GUI.Button.CreateSimpleButton("nextLevelButton", "Next Level");
+    nextLevelButton.height = "40px";
+    endGamePanel.addControl(nextLevelButton);
+    nextLevelButton.onPointerClickObservable.add(function() {
+        window.location.href = "../level3.html";
+    });
+
+    var mainMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("mainMenuButton", "Ionut è ncojo(Main menu)");
+    mainMenuButton.height = "40px";
+    endGamePanel.addControl(mainMenuButton);
+    mainMenuButton.onPointerClickObservable.add(function() {
+        window.location.href = "../index.html";
+    });
 
 };

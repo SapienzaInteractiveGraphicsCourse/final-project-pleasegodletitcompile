@@ -1667,7 +1667,7 @@ var createScene = function() {
     // Ending Portal collision box
     var portalBox = BABYLON.MeshBuilder.CreateBox('portalBox', {width:3, height:5, depth:5}, scene);
     portalBox.checkCollisions = true;
-    portalBox.visibility = 0;
+    portalBox.visibility = 1;
     portalBox.material = portalM;
     portalBox.position = new BABYLON.Vector3(400,61,0);
     groundObjects.push(portalBox);
