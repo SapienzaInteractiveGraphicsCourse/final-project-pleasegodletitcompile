@@ -148,7 +148,7 @@ scene.registerAfterRender(function () {
         console.log(player.mesh.position);
     }
     if (inputKeys["r"]) {
-        player.lives = 999;
+        player.lives = 3;
         console.log(player.lives);
     }
     checkFront();
