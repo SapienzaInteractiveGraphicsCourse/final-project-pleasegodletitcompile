@@ -1386,7 +1386,7 @@ var createScene = function() {
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "northpole.gltf", scene, function(newMeshes) {
         var northpole = newMeshes[0];
         northpole.position = new BABYLON.Vector3(252,65,9);
-        northpole.scaling = new BABYLON.Vector3(3,3,3);
+        northpole.scaling = new BABYLON.Vector3(3,3,-3);
         northpole.rotate(new BABYLON.Vector3(0,1,0), -1);
         
     });
@@ -1395,7 +1395,7 @@ var createScene = function() {
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "southpole.gltf", scene, function(newMeshes) {
         var southpole = newMeshes[0];
         southpole.position = new BABYLON.Vector3(258,17,0);
-        southpole.scaling = new BABYLON.Vector3(3,3,3);
+        southpole.scaling = new BABYLON.Vector3(3,3,-3);
         southpole.rotate(new BABYLON.Vector3(0,1,0), -0.5);
         
     });
