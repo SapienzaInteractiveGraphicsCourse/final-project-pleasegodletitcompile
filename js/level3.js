@@ -1186,7 +1186,7 @@ var createScene = function() {
     //Platform 26
     var platform26= BABYLON.MeshBuilder.CreateBox('platform26', {width:widthS, height:height, depth:depth}, scene);
     
-    platform26.position = new BABYLON.Vector3(470, 68, 0);     
+    platform26.position = new BABYLON.Vector3(466, 68, 0);     
     platform26.checkCollisions = true;
     platform26.material = multimatGrassS;
     platform26.subMeshes = [];
@@ -1358,40 +1358,6 @@ var createScene = function() {
     groundObjects.push(platform31);
 
 
-
-
-/*
-    // box1
-    var box1 = BABYLON.MeshBuilder.CreateBox('box1', {width:4, height:4, depth:4}, scene);
-    box1.rotation.y=6;
-    box1.position = new BABYLON.Vector3(160, 9, 2.5);
-    box1.checkCollisions = true;
-    groundObjects.push(box1);
-    box1.material = woodTex;
-*/
-
-
-
-    /*
-    // Stairs 1
-    for (var i=0; i<4; i++) {
-        var step = BABYLON.MeshBuilder.CreateBox(`step1_${i}`, {width:2, height:2, depth:10}, scene);
-        step.position = new BABYLON.Vector3(78+5*i, 8-2*i, 0);
-        step.checkCollisions = true;
-        groundObjects.push(step);
-        step.material = ground;
-    }
-
-    // Stairs 2
-    for (var i=0; i<5; i++) {
-        var step = BABYLON.MeshBuilder.CreateBox(`step2_${i}`, {width:2, height:3+2*i, depth:10}, scene);
-        step.position = new BABYLON.Vector3(119+3*i, 0.5+i, 0);
-        step.checkCollisions = true;
-        groundObjects.push(step);
-        step.material = ground;
-    }
-    */
-
     //music
     var musicl3 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
 
@@ -1407,10 +1373,10 @@ var createScene = function() {
     player.mesh.visibility = 0;
     
     //Per non ricominciare ogni volta
-    //player.mesh.position.x = 428;
-    //player.mesh.position.y = 49;
+    player.mesh.position.x = 428;
+    player.mesh.position.y = 49;
 
-    player.mesh.position.y = (player.height + platformHeight)/2.0;
+    //player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
@@ -1488,7 +1454,7 @@ function fireON(){
 }
 
 function fireON2(){
-    fireIsOn = true;
+    fireIsOn2 = true;
     checkpoint = new BABYLON.Vector3(315,51,0);
     //Particles system Fire
     var particles3 = new BABYLON.GPUParticleSystem("particles3", 5000, scene);
@@ -1602,7 +1568,7 @@ function coinON(){
 function coinON2(){
     CoinDisappear(coin2);
     
-    coinIsOn = true;
+    coinIsOn2 = true;
     //Particles system Fire
     particles5 = new BABYLON.GPUParticleSystem("particles5", 100, scene);
     //Texture of each particle
@@ -1658,7 +1624,7 @@ function coinON2(){
 function coinON3(){
     CoinDisappear(coin3);
     
-    coinIsOn = true;
+    coinIsOn3 = true;
     //Particles system Fire
     particles6 = new BABYLON.GPUParticleSystem("particles6", 100, scene);
     //Texture of each particle

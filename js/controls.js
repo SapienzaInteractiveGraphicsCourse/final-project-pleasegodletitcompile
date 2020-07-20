@@ -254,7 +254,7 @@ function checkFront() {
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
     if(obj.material.id == "fireM"){
-        dmg = false
+        dmg = false;
         if(obj.id == "fireBox" && fireIsOn == false){
             fireON();  
         }
@@ -263,14 +263,20 @@ function checkMaterial(obj) {
         }
     }
     if(obj.id == "coinBox" && coinIsOn == false){
-        dmg = false
+        dmg = false;
         coinON();
         player.coins++;
         updateCoins();
     }
     if(obj.id == "coinBox2" && coinIsOn2 == false){
-        dmg = false
+        dmg = false;
         coinON2();
+        player.coins++;
+        updateCoins();
+    }
+    if(obj.id == "coinBox3" && coinIsOn3 == false){
+        dmg = false;
+        coinON3();
         player.coins++;
         updateCoins();
     }
@@ -287,13 +293,13 @@ function checkMaterial(obj) {
         endLevel();
     }
     if(obj.material.id == "multiIce"){
-        dmg = false
+        dmg = false;
         ice = true;
         walk = 0.01;
         run = 0.015;
     }
     else if(obj.material.id == "multiGround" || obj.material.id == "ground"){
-        dmg = false
+        dmg = false;
         ice = false;
         walk = 0.03;
         run = 0.06;
