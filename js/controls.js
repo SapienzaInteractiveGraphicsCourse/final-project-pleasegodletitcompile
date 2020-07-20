@@ -237,8 +237,8 @@ function checkSbattiTesta() {
 }
 
 function checkFront() {
-    var halfPoint = new BABYLON.Vector3(player.mesh.position.x-0.1, player.mesh.position.y, player.mesh.position.z);
-    var halfPoint2 = new BABYLON.Vector3(player.mesh.position.x+0.1, player.mesh.position.y, player.mesh.position.z);
+    var halfPoint = new BABYLON.Vector3(player.mesh.position.x-1.5, player.mesh.position.y, player.mesh.position.z);
+    var halfPoint2 = new BABYLON.Vector3(player.mesh.position.x+1.5, player.mesh.position.y, player.mesh.position.z);
     var intersectLine2 = new BABYLON.MeshBuilder.CreateLines("intersectLine2", {points: [player.mesh.position, halfPoint]}, scene);
     var intersectLine3 = new BABYLON.MeshBuilder.CreateLines("intersectLine3", {points: [player.mesh.position, halfPoint2]}, scene);
     for (obj of groundObjects) {
@@ -281,7 +281,8 @@ function checkMaterial(obj) {
             dmg = true;
         }
     }
-    if(obj.material.id == "portalM"){
+    if(obj.id == "portalBox"){
+        console.log("ggwp")
         endLevel();
     }
     if(obj.material.id == "multiIce"){
