@@ -76,6 +76,7 @@ scene.registerAfterRender(function () {
             ResetA = false;
         }
         player.acceleration.x -= run;
+        player.acceleration.x = Math.max(player.acceleration.x, -0.3);
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.6); 
     }
     // Run right
@@ -88,6 +89,7 @@ scene.registerAfterRender(function () {
             ResetD = false;
         }
         player.acceleration.x += run;
+        player.acceleration.x = Math.min(player.acceleration.x, +0.3);
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6);
     }
     // Walk left
@@ -278,6 +280,9 @@ function checkMaterial(obj) {
             updateHealth();
             dmg = true;
         }
+    }
+    if(obj.material.id == "portalM"){
+        endLevel();
     }
     if(obj.material.id == "multiIce"){
         dmg = false

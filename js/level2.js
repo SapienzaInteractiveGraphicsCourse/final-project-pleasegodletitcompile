@@ -216,6 +216,10 @@ var createScene = function() {
     var spikesM = new BABYLON.StandardMaterial("spikesM", scene);
     spikesM.diffuseColor = new BABYLON.Color3(0, 0, 0);
 
+    //Set portal material
+    var portalM = new BABYLON.StandardMaterial("portalM", scene);
+    portalM.diffuseColor = new BABYLON.Color3(0, 0, 0);
+
     // Snow multimaterial
     var multimatSnowS = new BABYLON.MultiMaterial("multiSnow", scene);
     multimatSnowS.subMaterials.push(snowS);
@@ -1651,6 +1655,24 @@ var createScene = function() {
     spikeBox.position = new BABYLON.Vector3(230, 21, 0.5);
     groundObjects.push(spikeBox);
 
+    // Ending Portal
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
+        var portal = newMeshes[0];
+        portal.position = new BABYLON.Vector3(400,56,0);
+        portal.scaling = new BABYLON.Vector3(2,2,2);
+        portal.rotate(new BABYLON.Vector3(0,1,0), 3.6);
+        portal.checkCollisions = true;
+    });
+
+    // Ending Portal collision box
+    var portalBox = BABYLON.MeshBuilder.CreateBox('portalBox', {width:3, height:5, depth:5}, scene);
+    portalBox.checkCollisions = true;
+    portalBox.visibility = 0;
+    portalBox.material = portalM;
+    portalBox.position = new BABYLON.Vector3(400,61,0);
+    groundObjects.push(portalBox);
+
+
     //Particles system Snow
     var particles = new BABYLON.GPUParticleSystem("particles", 20000, scene);
 
@@ -1701,6 +1723,60 @@ var createScene = function() {
 
 	// Start the particle system
     particles.start();
+
+
+
+
+    //Particles system Portal
+    var particles8 = new BABYLON.GPUParticleSystem("particles", 500, scene);
+
+    //Texture of each particle
+	particles8.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
+    
+
+    //Where the particles come from
+    particles8.emitter = new BABYLON.Vector3(400,61,0);
+	particles8.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
+    particles8.maxEmitBox = new BABYLON.Vector3(-0.1, -2.5, -2.5); // To...
+
+    // Colors of all particles
+	particles8.color1 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
+	particles8.color2 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
+	particles8.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+	// Size of each particle (random between...
+	particles8.minSize = 0.1;
+	particles8.maxSize = 0.5;
+
+	// Life time of each particle (random between...
+	particles8.minLifeTime = 0.1;
+	particles8.maxLifeTime = 0.5;
+
+	// Emission rate
+	particles8.emitRate = 50;
+
+    window.ps = particles8;
+
+	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+	particles8.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+	// Set the gravity of all particles
+	particles8.gravity = new BABYLON.Vector3(0, 9.81, 0);
+
+	// Direction of each particle after it has been emitted
+	particles8.direction1 = new BABYLON.Vector3(-1, 2, 1);
+	particles8.direction2 = new BABYLON.Vector3(-1,-2, 1);
+
+	// Angular speed, in radians
+	particles8.minAngularSpeed = 0;
+	particles8.maxAngularSpeed = Math.PI;
+
+	// Speed
+	particles8.minEmitPower = .01;
+	particles8.maxEmitPower = 30;
+
+	// Start the particle system
+    particles8.start();
 
 
     // Moving Clouds
