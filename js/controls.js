@@ -149,6 +149,10 @@ scene.registerAfterRender(function () {
         player.acceleration.x = 0;
         console.log(player.mesh.position);
     }
+    if (inputKeys["r"]) {
+        player.lives = 3;
+        console.log(player.lives);
+    }
     checkFront();
 });
 
