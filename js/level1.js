@@ -5,12 +5,9 @@ var engine = new BABYLON.Engine(canvas, true);
 
 var camera;
 
-//Time to try to implement gravity and run
 var timeWalk = 0;
 var timeJump = 0;
 var timeSlide = 0;
-
-var timeAnimation = 0;
 
 var timeCoin = 0;
 var timeCoin2 = 0;
@@ -18,18 +15,9 @@ var timeCoin2 = 0;
 // Set gravity
 var gravity = -0.1;
 
-var snowCyl;
-var snowRA;
-var snowLA;
-
-var snowCyl2;
-var snowRA2;
-var snowLA2;
-
 var coin;
 
-var snowAnim = false;
-
+// Storm
 var flash;
 var clouds = [];
 var thunder1;
@@ -38,8 +26,6 @@ var thunder2;
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
 var platformHeight = 2;
-var knight;
-var helmet;
 
 // List of objects that are considered ground
 var groundObjects = [];
@@ -69,9 +55,9 @@ var createScene = function() {
     light.intensity = 0.5;
 
     // Fog
-    // scene.fogMode = BABYLON.Scene.FOGMODE_EXP2;
-    // scene.fogColor = new BABYLON.Color3(0.1, 0.1, 0.1);
-    // scene.fogDensity = 0.002;
+    scene.fogMode = BABYLON.Scene.FOGMODE_EXP2;
+    scene.fogColor = new BABYLON.Color3(0.5, 0.5, 0.5);
+    scene.fogDensity = 0.001;
 
     // Clouds
     cloudMaterial = new BABYLON.StandardMaterial("cloudMaterial", scene);
