@@ -16,6 +16,7 @@ var coinIsOn = false;
 var coinIsOn2 = false;
 var particles4;
 
+
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
 //var runsound = new BABYLON.Sound("runsound", "../sounds/net.wav", scene, {volume:0.8, });
@@ -76,6 +77,7 @@ scene.registerAfterRender(function () {
             ResetA = false;
         }
         player.acceleration.x -= run;
+        player.acceleration.x = Math.max(player.acceleration.x, -0.3);
         player.position.x = Math.max(0.5 * player.acceleration.x * ((timeWalk) ** 2), -0.6); 
     }
     // Run right
@@ -88,6 +90,7 @@ scene.registerAfterRender(function () {
             ResetD = false;
         }
         player.acceleration.x += run;
+        player.acceleration.x = Math.min(player.acceleration.x, +0.3);
         player.position.x = Math.min(0.5 * player.acceleration.x * ((timeWalk) ** 2), 0.6);
     }
     // Walk left
@@ -146,6 +149,10 @@ scene.registerAfterRender(function () {
         player.position.x = 0;
         player.acceleration.x = 0;
         console.log(player.mesh.position);
+    }
+    if (inputKeys["r"]) {
+        player.lives = 3;
+        console.log(player.lives);
     }
     checkFront();
 });
@@ -231,8 +238,8 @@ function checkSbattiTesta() {
 }
 
 function checkFront() {
-    var halfPoint = new BABYLON.Vector3(player.mesh.position.x-0.1, player.mesh.position.y, player.mesh.position.z);
-    var halfPoint2 = new BABYLON.Vector3(player.mesh.position.x+0.1, player.mesh.position.y, player.mesh.position.z);
+    var halfPoint = new BABYLON.Vector3(player.mesh.position.x-1.5, player.mesh.position.y, player.mesh.position.z);
+    var halfPoint2 = new BABYLON.Vector3(player.mesh.position.x+1.5, player.mesh.position.y, player.mesh.position.z);
     var intersectLine2 = new BABYLON.MeshBuilder.CreateLines("intersectLine2", {points: [player.mesh.position, halfPoint]}, scene);
     var intersectLine3 = new BABYLON.MeshBuilder.CreateLines("intersectLine3", {points: [player.mesh.position, halfPoint2]}, scene);
     for (obj of groundObjects) {
@@ -275,13 +282,17 @@ function checkMaterial(obj) {
             dmg = true;
         }
     }
+    if(obj.id == "portalBox"){
+        console.log("ggwp")
+        endLevel();
+    }
     if(obj.material.id == "multiIce"){
         dmg = false
         ice = true;
         walk = 0.01;
         run = 0.015;
     }
-    else if(obj.material.id == "multiSnow" || obj.material.id == "ground"){
+    else if(obj.material.id == "multiGround" || obj.material.id == "ground"){
         dmg = false
         ice = false;
         walk = 0.03;
