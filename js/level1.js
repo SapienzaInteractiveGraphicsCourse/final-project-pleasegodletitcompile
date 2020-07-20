@@ -104,12 +104,25 @@ var createScene = function() {
     groundObjects.push(platform1);
     platform1.material = ground;
 
+    // Bush
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush1.gltf", scene, function(newMeshes) {
+        var bush = newMeshes[0];
+        bush.position = new BABYLON.Vector3(10,1,3);
+        bush.scaling = new BABYLON.Vector3(2,2,2);
+    });
+
     // Platform 2
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:10, depth:10}, scene);
     platform2.position = new BABYLON.Vector3(35, 4, 0);
     platform2.checkCollisions = true;
     groundObjects.push(platform2);
     platform2.material = ground;
+
+    // Bush 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush2.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(20,5,3);
+        newMeshes[0].scaling = new BABYLON.Vector3(2,2,2);
+    });
 
     // Platform 3
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:20, height:2, depth:10}, scene);
@@ -167,6 +180,7 @@ var createScene = function() {
     thunder2 = new BABYLON.Sound("thunder2", "../sounds/thunder2.mp3", scene);
     thunder3 = new BABYLON.Sound("thunder3", "../sounds/thunder3.mp3", scene);
     
+
     // Rain
     //Particles system
     var particles = new BABYLON.GPUParticleSystem("particles", 100000, scene);
@@ -210,8 +224,8 @@ var createScene = function() {
 
     // Start the particle system
     particles.preWarmCycles = 100;
-	particles.start();
-
+    particles.start();
+    
 
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
