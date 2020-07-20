@@ -16,6 +16,7 @@ var coinIsOn = false;
 var coinIsOn2 = false;
 var particles4;
 
+
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
 //var runsound = new BABYLON.Sound("runsound", "../sounds/net.wav", scene, {volume:0.8, });
@@ -291,7 +292,7 @@ function checkMaterial(obj) {
         walk = 0.01;
         run = 0.015;
     }
-    else if(obj.material.id == "multiSnow" || obj.material.id == "ground"){
+    else if(obj.material.id == "multiGround" || obj.material.id == "ground"){
         dmg = false
         ice = false;
         walk = 0.03;

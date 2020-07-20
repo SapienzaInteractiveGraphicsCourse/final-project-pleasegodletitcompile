@@ -35,7 +35,7 @@ var Cloud1;
 var Cloud2;
 var Cloud3;
 
-
+var isReady = false;
 
 
 
@@ -221,17 +221,17 @@ var createScene = function() {
     portalM.diffuseColor = new BABYLON.Color3(0, 0, 0);
 
     // Snow multimaterial
-    var multimatSnowS = new BABYLON.MultiMaterial("multiSnow", scene);
+    var multimatSnowS = new BABYLON.MultiMaterial("multiGround", scene);
     multimatSnowS.subMaterials.push(snowS);
     multimatSnowS.subMaterials.push(snowS1);
     multimatSnowS.subMaterials.push(snowS2);
 
-    var multimatSnowM = new BABYLON.MultiMaterial("multiSnow", scene);
+    var multimatSnowM = new BABYLON.MultiMaterial("multiGround", scene);
     multimatSnowM.subMaterials.push(snowM);
     multimatSnowM.subMaterials.push(snowM1);
     multimatSnowM.subMaterials.push(snowM2);
 
-    var multimatSnowB = new BABYLON.MultiMaterial("multiSnow", scene);
+    var multimatSnowB = new BABYLON.MultiMaterial("multiGround", scene);
     multimatSnowB.subMaterials.push(snowB);
     multimatSnowB.subMaterials.push(snowB1);
     multimatSnowB.subMaterials.push(snowB2);
@@ -1544,6 +1544,21 @@ var createScene = function() {
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
+    // Penguin with children
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguinwithchildren.gltf", scene, function(newMeshes) {
+        var peng = newMeshes[0];
+        peng.position = new BABYLON.Vector3(380,37.5, 17);
+        peng.scaling = new BABYLON.Vector3(2,2,2);
+    });
+
+    // Eskimo model
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
+        var eskimo = newMeshes[0];
+        eskimo.position = new BABYLON.Vector3(380,51, 9);
+        eskimo.scaling = new BABYLON.Vector3(1,1,1);
+        eskimo.rotate(new BABYLON.Vector3(0,2,0), 45);
+    });
+
     
 
 
@@ -1667,7 +1682,7 @@ var createScene = function() {
     // Ending Portal collision box
     var portalBox = BABYLON.MeshBuilder.CreateBox('portalBox', {width:3, height:5, depth:5}, scene);
     portalBox.checkCollisions = true;
-    portalBox.visibility = 1;
+    portalBox.visibility = 0;
     portalBox.material = portalM;
     portalBox.position = new BABYLON.Vector3(400,61,0);
     groundObjects.push(portalBox);
@@ -1781,7 +1796,7 @@ var createScene = function() {
 
     // Moving Clouds
     scene.registerAfterRender(function () {
-        if(timeStart>2){
+        if(isReady == true){
             Cloud1.position.x += 0.1;
             Cloud2.position.x += 0.1;
             Cloud3.position.x += 0.1;
@@ -1892,6 +1907,7 @@ var createScene = function() {
     scene.executeWhenReady( function() {
         engine.hideLoadingUI();
         snowMan();
+        isReady = true;
     });
 
     return scene;
