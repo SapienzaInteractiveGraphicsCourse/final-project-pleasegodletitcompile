@@ -34,7 +34,7 @@ panelCoins.addControl(coinsHUD[2]);
 // Updates the coins displayed
 function updateCoins(){
     for(var i=0; i<player.coins; i++){  
-        coinsHUD[0].alpha = 1;
+        coinsHUD[i].alpha = 1;
     }
     for(var i=player.coins; i<3; i++){
         coinsHUD[i].alpha = 0.25;
