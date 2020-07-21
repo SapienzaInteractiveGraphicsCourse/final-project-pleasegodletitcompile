@@ -45,6 +45,9 @@ engine.runRenderLoop(function() {
     if(coinIsOn2 == true){
         timeCoin2 += delta / 1000;
     }
+    if(coinIsOn3 == true){
+        timeCoin3 += delta / 1000;
+    }
     
     if(player.lives == 0 && menuIsOpen == false) {
         menu(true); // Game Over

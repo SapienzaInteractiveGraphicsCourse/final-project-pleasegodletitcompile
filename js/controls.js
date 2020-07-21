@@ -14,7 +14,9 @@ var fireIsOn = false;
 var fireIsOn2 = false;
 var coinIsOn = false;
 var coinIsOn2 = false;
+var coinIsOn3 = false;
 var particles4;
+var end = false;
 
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
@@ -37,7 +39,7 @@ scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionM
 // Move player
 // This function is called after every frame render
 scene.registerAfterRender(function () {
-
+    checkPortal();
     // Jump and gravity falling 
     isGrounded();
 
@@ -51,6 +53,12 @@ scene.registerAfterRender(function () {
         particles5.stop();
         if(timeCoin2 >3){
             particles5.dispose();
+        }
+    }
+    if(timeCoin3 > 1){
+        particles10.stop();
+        if(timeCoin3 >3){
+            particles10.dispose();
         }
     }
     
@@ -288,8 +296,7 @@ function checkMaterial(obj) {
             dmg = true;
         }
     }
-    if(obj.id == "portalBox"){
-        console.log("ggwp")
+    if(obj.id == "portalBox" && end == true){
         endLevel();
     }
     if(obj.material.id == "multiIce"){
@@ -307,5 +314,12 @@ function checkMaterial(obj) {
     if(obj.material.id == "multiGrass"){ 
         walk = 0.03;
         run = 0.06;
+    }
+}
+
+function checkPortal(){
+    if(player.coins == 3){
+        portalON();
+        end = true;
     }
 }
