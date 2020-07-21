@@ -14,6 +14,7 @@ var fireIsOn = false;
 var fireIsOn2 = false;
 var coinIsOn = false;
 var coinIsOn2 = false;
+var coinIsOn3 = false;
 var particles4;
 
 
@@ -51,6 +52,12 @@ scene.registerAfterRender(function () {
         particles5.stop();
         if(timeCoin2 >3){
             particles5.dispose();
+        }
+    }
+    if(timeCoin3 > 1){
+        particles10.stop();
+        if(timeCoin3 >3){
+            particles10.dispose();
         }
     }
     
@@ -274,6 +281,12 @@ function checkMaterial(obj) {
         player.coins++;
         updateCoins();
     }
+    if(obj.id == "coinBox3" && coinIsOn3 == false){
+        dmg = false
+        coinON3();
+        player.coins++;
+        updateCoins();
+    }
     if(obj.material.id == "spikesM"){
         trapActive(obj.id);
         if(dmg == false){
@@ -283,11 +296,10 @@ function checkMaterial(obj) {
         }
     }
     if(obj.id == "portalBox"){
-        console.log("ggwp")
         endLevel();
     }
     if(obj.material.id == "multiIce"){
-        dmg = false
+        dmg = false;
         ice = true;
         walk = 0.01;
         run = 0.015;
