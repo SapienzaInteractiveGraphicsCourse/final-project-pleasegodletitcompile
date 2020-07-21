@@ -32,7 +32,6 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
-checkpoint = new BABYLON.Vector3(430, 55, 0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -295,10 +294,11 @@ var createScene = function() {
     // Platforms, firplaces, coins, portal
     {
     // Left wall
-    var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:15}, scene);
-    leftWall.checkCollisions = true;
-    leftWall.position = new BABYLON.Vector3(-35, 0, 5);
-    leftWall.material = ground;
+    addPlatform(multimatPebblesB, platformWidthBig, -24, 26, true);
+    // var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:15}, scene);
+    // leftWall.checkCollisions = true;
+    // leftWall.position = new BABYLON.Vector3(-35, 0, 5);
+    // leftWall.material = ground;
 
     // Platform ground big
     addPlatform(multimatGroundB, platformWidthBig, 0, 0);
@@ -601,8 +601,8 @@ var createScene = function() {
 	particles.maxSize = .1;
 
 	// Life time of each particle
-	particles.minLifeTime = 1;
-	particles.maxLifeTime = 2;
+	particles.minLifeTime = 1.5;
+	particles.maxLifeTime = 2.5;
 
 	// Emission rate
 	particles.emitRate = 10000;
