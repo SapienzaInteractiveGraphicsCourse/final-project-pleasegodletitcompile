@@ -32,7 +32,7 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
-checkpoint = new BABYLON.Vector3(245, 55, 0);
+checkpoint = new BABYLON.Vector3(385, 55, 0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -491,8 +491,23 @@ var createScene = function() {
     fireBox.visibility = 0;
     fireBox.material = fireM;
     fireBox.position = new BABYLON.Vector3(378.5, 48, 0.5);
-    groundObjects.push(fireBox); 
+    groundObjects.push(fireBox);
 
+    // Platform pebbles small
+    addPlatform(multimatPebblesS, platformWidthSmall, 400, 40);
+    addPlatform(multimatPebblesS, platformWidthSmall, 415, 25);
+    addPlatform(multimatPebblesS, platformWidthSmall, 430, 10);
+    addPlatform(multimatPebblesS, platformWidthSmall, 445, 10);
+    addPlatform(multimatPebblesS, platformWidthSmall, 460, 20);
+    addPlatform(multimatPebblesS, platformWidthSmall, 475, 30);
+    addPlatform(multimatPebblesS, platformWidthSmall, 490, 40);
+    addPlatform(multimatPebblesS, platformWidthSmall, 475, 50);
+    addPlatform(multimatPebblesS, platformWidthSmall, 460, 45);
+
+    // Platform ground medium
+    addPlatform(multimatGroundM, platformWidthMedium, 435, 50);
+
+    
 
     // // Bush
     // BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush1.gltf", scene, function(newMeshes) {
@@ -646,8 +661,11 @@ scene.registerBeforeRender( function() {
         lightningTimer = 5;
     }
 
+    i = 0;
     clouds.forEach(p => {
-        p.rotation.z -= 0.001;
+        if(i%2 == 0) p.rotation.z += 0.001;
+        else p.rotation.z -= 0.001;
+        i++;
     });
 });
 
