@@ -133,6 +133,7 @@ scene.registerAfterRender(function () {
     }
 
     if (inputKeys[" "] && player.grounded) {
+        dmg = false;
         player.grounded = false;
         timeJump = 1;
         player.acceleration.y = 2.2 + gravity;
