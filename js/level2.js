@@ -2009,58 +2009,7 @@ var createScene = function() {
     particles.start();
 
 
-
-
-    //Particles system Portal
-    var particles8 = new BABYLON.GPUParticleSystem("particles", 500, scene);
-
-    //Texture of each particle
-	particles8.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
     
-
-    //Where the particles come from
-    particles8.emitter = new BABYLON.Vector3(400,61,0);
-	particles8.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
-    particles8.maxEmitBox = new BABYLON.Vector3(-0.1, -2.5, -2.5); // To...
-
-    // Colors of all particles
-	particles8.color1 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
-	particles8.color2 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
-	particles8.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
-
-	// Size of each particle (random between...
-	particles8.minSize = 0.1;
-	particles8.maxSize = 0.5;
-
-	// Life time of each particle (random between...
-	particles8.minLifeTime = 0.1;
-	particles8.maxLifeTime = 0.5;
-
-	// Emission rate
-	particles8.emitRate = 50;
-
-    window.ps = particles8;
-
-	// Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-	particles8.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-
-	// Set the gravity of all particles
-	particles8.gravity = new BABYLON.Vector3(0, 9.81, 0);
-
-	// Direction of each particle after it has been emitted
-	particles8.direction1 = new BABYLON.Vector3(-1, 2, 1);
-	particles8.direction2 = new BABYLON.Vector3(-1,-2, 1);
-
-	// Angular speed, in radians
-	particles8.minAngularSpeed = 0;
-	particles8.maxAngularSpeed = Math.PI;
-
-	// Speed
-	particles8.minEmitPower = .01;
-	particles8.maxEmitPower = 30;
-
-	// Start the particle system
-    particles8.start();
 
 
     // Moving Clouds
@@ -2354,7 +2303,7 @@ function coinON3(){
 
 function fireON(){
     fireIsOn = true;
-    checkpoint = new BABYLON.Vector3(-12,-14,0);
+    checkpoint = new BABYLON.Vector3(320,47,0.5);
     //Particles system Fire
     var particles2 = new BABYLON.GPUParticleSystem("particles2", 5000, scene);
     //Texture of each particle
@@ -2466,4 +2415,57 @@ function fireON2(){
 function trapActive(name){
     if(name == "spikes") trapON(spikes);
     if(name == "spikes2") trapON(spikes2);
+}
+
+function portalON(){
+    //Particles system Portal
+    var particles8 = new BABYLON.ParticleSystem("particles", 5, scene);
+
+    //Texture of each particle
+    particles8.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
+    
+
+    //Where the particles come from
+    particles8.emitter = new BABYLON.Vector3(400,61,0);
+    particles8.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
+    particles8.maxEmitBox = new BABYLON.Vector3(-0.1, -0.5, -2.5); // To...
+
+    // Colors of all particles
+    particles8.color1 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
+    particles8.color2 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
+    particles8.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+    // Size of each particle (random between...
+    particles8.minSize = 0.1;
+    particles8.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles8.minLifeTime = 0.1;
+    particles8.maxLifeTime = 0.1;
+
+    // Emission rate
+    particles8.emitRate = 1;
+
+    window.ps = particles8;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles8.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles8.gravity = new BABYLON.Vector3(0, 9.81, 0);
+
+    // Direction of each particle after it has been emitted
+    particles8.direction1 = new BABYLON.Vector3(-1, 2, 1);
+    particles8.direction2 = new BABYLON.Vector3(-1,-2, 1);
+
+    // Angular speed, in radians
+    particles8.minAngularSpeed = 0;
+    particles8.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles8.minEmitPower = .01;
+    particles8.maxEmitPower = 30;
+
+    // Start the particle system
+    particles8.start();
 }
