@@ -63,7 +63,7 @@ var createScene = function() {
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
-    // light.intensity = 0.5;
+    light.intensity = 0.5;
 
 
     // Clouds
@@ -78,7 +78,7 @@ var createScene = function() {
         var cloud = new BABYLON.MeshBuilder.CreatePlane("cloud", {size:500}, scene);
         cloud.material = cloudMaterial;
         cloud.position.set(
-            Math.random()*500-200,
+            Math.random()*600-100,
             Math.random()*200-100,
             Math.random()*200+100
             );
@@ -291,14 +291,10 @@ var createScene = function() {
     portalM.diffuseColor = new BABYLON.Color3(0, 0, 0);
     }
 
-    // Platforms, firplaces, coins, portal
+    // Platforms, fireplaces, coins, portal
     {
     // Left wall
     addPlatform(multimatPebblesB, platformWidthBig, -24, 26, true);
-    // var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:15}, scene);
-    // leftWall.checkCollisions = true;
-    // leftWall.position = new BABYLON.Vector3(-35, 0, 5);
-    // leftWall.material = ground;
 
     // Platform ground big
     addPlatform(multimatGroundB, platformWidthBig, 0, 0);
@@ -526,7 +522,7 @@ var createScene = function() {
 
     // Other models
     {
-
+    
 
     }
 
@@ -564,11 +560,16 @@ var createScene = function() {
 
 
     // Music
-    var musicl1 = new BABYLON.Sound("musicl2", "../sounds/songs/Celtic Music - Callirus .mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/songs/Celtic Music - Callirus .mp3", scene, soundReady, {loop:true, volume:0.2, useCustomAttenuation:false});
     function soundReady(){
         musicl1.play();
     }
     
+    // Rain sound
+    rainSound = new BABYLON.Sound("rainSound", "../sounds/rain.mp3", scene, function() {
+        rainSound.play();
+    }, {loop:true});
+
 
     // Lightning
     flash = new BABYLON.PointLight("flash", new BABYLON.Vector3(0, 0, 0), scene);
@@ -584,13 +585,11 @@ var createScene = function() {
     // Rain
     {
     //Particles system
-    var particles = new BABYLON.GPUParticleSystem("particles", 100000, scene);
+    var particles = new BABYLON.GPUParticleSystem("particles", 10000, scene);
 
     //Texture of each particle
     particles.particleTexture = new BABYLON.Texture("../textures/droplet.png", scene);
-    particles.color1 = new BABYLON.Color4(1,1,1,0.9);
-    particles.color2 = new BABYLON.Color4(1,1,1,1);
-    
+
     //Where the particles come from
     particles.emitter = camera;
 	particles.minEmitBox = new BABYLON.Vector3(-100, 40, 20); // Starting all from
@@ -598,14 +597,23 @@ var createScene = function() {
 
 	// Size of each particle
 	particles.minSize = .05;
-	particles.maxSize = .1;
+    particles.maxSize = .1;
+    
+    particles.minInitialRotation = deg2rad(-15);
+    particles.maxInitialRotation = deg2rad(-25);
+
+    particles.minScaleX = 0.5;
+    particles.maxScaleX = 1.5;
+
+    particles.minScaleY = 5;
+    particles.maxScaleY = 15;
 
 	// Life time of each particle
-	particles.minLifeTime = 1.5;
-	particles.maxLifeTime = 2.5;
+	particles.minLifeTime = 1.3;
+	particles.maxLifeTime = 1.6;
 
 	// Emission rate
-	particles.emitRate = 10000;
+	particles.emitRate = 2000;
 
     window.ps = particles;
 
@@ -620,13 +628,14 @@ var createScene = function() {
     particles.direction2 = new BABYLON.Vector3(-.5, -1, .1);
     
 	// Speed
-	particles.minEmitPower = 40;
-	particles.maxEmitPower = 50;
+	particles.minEmitPower = 50;
+	particles.maxEmitPower = 70;
 
     // Start the particle system
     particles.preWarmCycles = 100;
     particles.start();
     }
+
     
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
@@ -645,7 +654,6 @@ var createScene = function() {
 
     scene.executeWhenReady( function() {
         engine.hideLoadingUI();
-        updateCoins(); // remove
     });
 
     return scene;

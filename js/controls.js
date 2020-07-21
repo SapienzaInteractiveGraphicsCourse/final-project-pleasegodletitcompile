@@ -261,7 +261,6 @@ function checkFront() {
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
     if(obj.material.id == "fireM"){
-        player.grounded = true;
         dmg = false;
         if(obj.id == "fireBox" && fireIsOn == false){
             fireON();  
