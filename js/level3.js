@@ -196,15 +196,15 @@ var createScene = function() {
     portalM.diffuseColor = new BABYLON.Color3(0, 0, 0);
 
     //Set green apple material
-    var green_appleM = new BABYLON.StandardMaterial("green_appleM", scene);
+    var green_appleM = new BABYLON.StandardMaterial("multiGround", scene);
     green_appleM.diffuseColor = new BABYLON.Color3(0, 1, 0);
 
     //Set yellow apple material
-    var yellow_appleM = new BABYLON.StandardMaterial("yellow_appleM", scene);
+    var yellow_appleM = new BABYLON.StandardMaterial("multiGround", scene);
     yellow_appleM.diffuseColor = new BABYLON.Color3(1, 1, 0);
 
     //Set red apple material
-    var red_appleM = new BABYLON.StandardMaterial("red_appleM", scene);
+    var red_appleM = new BABYLON.StandardMaterial("multiGround", scene);
     red_appleM.diffuseColor = new BABYLON.Color3(1, 0, 0);
 
     /*
