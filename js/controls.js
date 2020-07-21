@@ -237,7 +237,7 @@ function checkSbattiTesta() {
     var headPoint = new BABYLON.Vector3(player.mesh.position.x, player.mesh.position.y + player.height/2 + 0.1, player.mesh.position.z);
     var intersectLine = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, headPoint]}, scene);
     for (obj of groundObjects) {
-        if (intersectLine.intersectsMesh(obj, false)) {
+        if (intersectLine.intersectsMesh(obj, false) && (obj.material.id == "multiIce" || obj.material.id == "multiGround" || obj.material.id == "multiGrass")) {
             player.acceleration.y = gravity;
         }
     }
@@ -261,6 +261,7 @@ function checkFront() {
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj) {
     if(obj.material.id == "fireM"){
+        player.grounded = true;
         dmg = false;
         if(obj.id == "fireBox" && fireIsOn == false){
             fireON();  
@@ -288,6 +289,7 @@ function checkMaterial(obj) {
         updateCoins();
     }
     if(obj.material.id == "spikesM"){
+        player.grounded = true;
         trapActive(obj.id);
         if(dmg == false){
             player.lives--;

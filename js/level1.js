@@ -23,6 +23,7 @@ var coin3;
 var spikes;
 var spikes2;
 var spikes3;
+var dmg = false;
 
 // Storm
 var flash;
@@ -31,7 +32,7 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
-checkpoint = new BABYLON.Vector3(374, 51, 0);
+checkpoint = new BABYLON.Vector3(245, 55, 0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -343,6 +344,7 @@ var createScene = function() {
 
     // Spikes collision box 
     var spikeBox = BABYLON.MeshBuilder.CreateBox('spikes', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
     spikeBox.material = spikesM;
     spikeBox.position = new BABYLON.Vector3(165, 21, 0.5);
@@ -364,6 +366,7 @@ var createScene = function() {
 
     // Spikes 2 collision box 
     spikeBox = BABYLON.MeshBuilder.CreateBox('spikes2', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
     spikeBox.material = spikesM;
     spikeBox.position = new BABYLON.Vector3(195, 16, 0.5);
@@ -409,10 +412,27 @@ var createScene = function() {
 
     // Spikes 3 collision box 
     spikeBox = BABYLON.MeshBuilder.CreateBox('spikes3', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
     spikeBox.material = spikesM;
     spikeBox.position = new BABYLON.Vector3(240, 51, 0.5);
     groundObjects.push(spikeBox);
+
+    // Coin 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+        coin2 = newMeshes[0];
+        coin2.position = new BABYLON.Vector3(236,54.5,0.5);
+        coin2.scaling = new BABYLON.Vector3(10,10,10);
+        coin2.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
+        Coin(coin2); // start animation
+    });
+
+    // Coin 2 collision box
+    var coinBox = BABYLON.MeshBuilder.CreateBox('coinBox2', {size:2}, scene);
+    coinBox.visibility = 0;
+    coinBox.material = coinM;
+    coinBox.position = new BABYLON.Vector3(236,54,0.5);
+    groundObjects.push(coinBox);
 
     // Platform pebbles medium
     addPlatform(multimatPebblesM, platformWidthMedium, 260, 0);
@@ -440,21 +460,21 @@ var createScene = function() {
     addPlatform(multimatPebblesS, platformWidthSmall, 366, 37);
     addPlatform(multimatPebblesS, platformWidthSmall, 353, 55);
 
-    // Coin 2
+    // Coin 3
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
-        coin2 = newMeshes[0];
-        coin2.position = new BABYLON.Vector3(136,44.5,0.5);
-        coin2.scaling = new BABYLON.Vector3(10,10,10);
-        coin2.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
-        Coin(coin2); // start animation
+        coin3 = newMeshes[0];
+        coin3.position = new BABYLON.Vector3(353,58.5,0.5);
+        coin3.scaling = new BABYLON.Vector3(10,10,10);
+        coin3.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
+        Coin(coin3); // start animation
     });
 
-    // Coin 2 collision box
-    var coinBox = BABYLON.MeshBuilder.CreateBox('coinBox', {size:2}, scene);
+    // Coin 3 collision box
+    var coinBox = BABYLON.MeshBuilder.CreateBox('coinBox3', {size:2}, scene);
     coinBox.visibility = 0;
     coinBox.material = coinM;
-    coinBox.position = new BABYLON.Vector3(136,44,0.5);
-    groundObjects.push(coinBox)
+    coinBox.position = new BABYLON.Vector3(353,58,0.5);
+    groundObjects.push(coinBox);
 
     // Platform for fireplace
     addFirePlatform(multimatPebblesM, 378.5, 46);
@@ -804,7 +824,7 @@ function coinON(){
     particles4.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
 
     // Where the particles come from
-    particles4.emitter = new BABYLON.Vector3(136,44.5,0.5);
+    particles4.emitter = new BABYLON.Vector3(136,44,0.5);
     
     particles4.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particles4.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -859,7 +879,7 @@ function coinON2(){
     particles5.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
 
     // Where the particles come from
-    particles5.emitter = new BABYLON.Vector3(224, 23, 0.5);
+    particles5.emitter = new BABYLON.Vector3(236, 54, 0.5);
     
     particles5.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particles5.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -914,7 +934,7 @@ function coinON3(){
     particles10.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
 
     // Where the particles come from    
-    particles10.emitter = new BABYLON.Vector3(415, 9, 0.5);
+    particles10.emitter = new BABYLON.Vector3(353, 58, 0.5);
     
     particles10.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particles10.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
