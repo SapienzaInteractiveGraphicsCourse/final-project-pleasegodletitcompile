@@ -58,7 +58,6 @@ var depth = 15;
 
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
-checkpoint = new BABYLON.Vector3(365, 50, 0);
 
 var platformHeight = 2;
 var knight;
