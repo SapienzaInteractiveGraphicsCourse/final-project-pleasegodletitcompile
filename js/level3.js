@@ -1983,7 +1983,7 @@ function portalON(){
     
 
     //Where the particles come from
-    particles8.emitter = new BABYLON.Vector3(630, 35, 0);
+    particles8.emitter = new BABYLON.Vector3(630, 39, 0);
     particles8.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
     particles8.maxEmitBox = new BABYLON.Vector3(-0.1, -0.5, -2.5); // To...
 
