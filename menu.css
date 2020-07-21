@@ -87,26 +87,30 @@
   
     position:relative;
     bottom:270px; /*bottom:330px;*/ 
-    right:650px;
+    right:550px;
     height:50px;
     width:200px;
-    background:black;
-    background-image: url("./img/sfondo tasti.jpg");
+    /*background:black;
+    background-image: url("./img/sfondo tasti.jpg");*/
     text-align:center;
-    font-size:40px;
+    font-size:70px;
     -webkit-transition:0.3s;
     transition:0.3s;
-    color:rgb(231, 182, 22);
+    color:rgb(236, 0, 197);
     font-family:PixelFont;
 
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
 
-    /*ombreggiature*/
+    -moz-text-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-text-shadow: -10px -5px 5px rgba(0,0,0,1);
+    text-shadow: -10px -5px 5px rgba(0,0,0,1);
+
+    /*ombreggiature
     -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
     -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);*/
     
     cursor:pointer;
   
@@ -115,40 +119,45 @@
 }
 
 #start:hover {
-    background:black;
-    background-image: url("./img/cerchio-flame_1160-750.jpg");
-    color:white;
-    -webkit-transform:rotate(-1deg);
-    transform:rotate(-2deg);
-  
+    /*background:black;
+    background-image: url("./img/cerchio-flame_1160-750.jpg");*/
+    color:rgb(145, 68, 190);
+    /*-webkit-transform:rotate(-1deg);
+    transform:rotate(-2deg);*/
+    transform:scale(1.25); 
   
 }
 
 #level {
+    position:relative;
     bottom:270px; /*bottom:330px;*/ 
-    right:700px;
+    right:600px;
     height:50px;
     width:300px;
-    position:relative;
-    background:black;
-    background-image: url("./img/sfondo tasti.jpg");
+    /*background:black;
+    background-image: url("./img/sfondo tasti.jpg");*/
     /*bottom:375px;*/
-    font-size:40px;
+    font-size:60px;
     /*right:150px;*/
     text-align:center;
     font-family:PixelFont;
-    color:rgb(231, 182, 22);
+    color:rgb(236, 0, 197);
     -webkit-transition:0.3s;
     transition:0.3s;
 
-    -moz-border-radius: 8px;
+    -moz-border-radius: 10px;
     -webkit-border-radius: 8px;
     border-radius: 8px;
 
-    /*ombreggiature*/
+    -moz-text-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-text-shadow: -10px -5px 5px rgba(0,0,0,1);
+    text-shadow: -10px -5px 5px rgba(0,0,0,1);
+
+/*    /*ombreggiature
     -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
     -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
     box-shadow: -10px -5px 5px rgba(0,0,0,1);
+*/
 
     cursor:pointer;
   
@@ -156,27 +165,28 @@
 
 
 #level:hover {
-    background:black;
-    background-image: url("./img/cerchio-flame_1160-750.jpg");
-    color:white;
+
+/*    background:black;
+    background-image: url("./img/cerchio-flame_1160-750.jpg");*/
+    color:rgb(145, 68, 190);
     
-    -webkit-transform:rotate(-2deg);
-    transform:rotate(-2deg);
-  
+    /*-webkit-transform:rotate(-2deg);
+    transform:rotate(-2deg);*/
+
+    transform:scale(1.25);  
   
 }
 
-
+/*
 #options {
-  
+    position:relative;
+    bottom:270px;
+    right:550px;
     height:50px;
     width:200px;
     background:black;
     background-image: url("./img/sfondo tasti.jpg");
-    position:relative;
-    bottom:270px;
-    right:650px;
-    font-size:40px;
+    font-size:50px;
     text-align:center;
     text-decoration-style: double;
     font-family:Pixelfont;
@@ -188,7 +198,7 @@
     -webkit-border-radius: 8px;
     border-radius: 8px;
 
-    /*ombreggiature*/
+    /*ombreggiature
     -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
     -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
     box-shadow: -10px -5px 5px rgba(0,0,0,1);
@@ -212,19 +222,20 @@
     transform:rotate(-2deg);
   
 }
+*/
 
 #credits {
+    position:relative;
+    bottom:270px;
+    right:550px;
     height:50px;
     width:200px;
-    position:relative;
-    background:black;
-    background-image: url("./img/sfondo tasti.jpg");
-    bottom:270px;
-    font-size:40px;
-    right:650px;
+    /*background:black;
+    background-image: url("./img/sfondo tasti.jpg");*/
+    font-size:60px;
     text-align:center;
     font-family:Pixelfont;
-    color:rgb(231, 182, 22);
+    color:rgb(236, 0, 197);
     -webkit-transition:0.3s;
     transition:0.3s;
 
@@ -233,10 +244,14 @@
     -webkit-border-radius: 8px;
     border-radius: 8px;
 
-    /*ombreggiature*/
+    -moz-text-shadow: -10px -5px 5px rgba(0,0,0,1);
+    -webkit-text-shadow: -10px -5px 5px rgba(0,0,0,1);
+    text-shadow: -10px -5px 5px rgba(0,0,0,1);
+
+    /*ombreggiature
     -moz-box-shadow: -10px -5px 5px rgba(0,0,0,1);
     -webkit-box-shadow: -10px -5px 5px rgba(0,0,0,1);
-    box-shadow: -10px -5px 5px rgba(0,0,0,1);
+    box-shadow: -10px -5px 5px rgba(0,0,0,1);*/
 
     cursor:pointer;
   
@@ -249,11 +264,13 @@
 }
 
 #credits:hover {
-    background:black;
-    background-image: url("./img/cerchio-flame_1160-750.jpg");
-    color:white;
-    -webkit-transform:rotate(-2deg);
-    transform:rotate(-2deg);
+    /*background:black;
+    background-image: url("./img/cerchio-flame_1160-750.jpg");*/
+    color:rgb(145, 68, 190);
+    /*-webkit-transform:rotate(-2deg);
+    transform:rotate(-2deg);*/
+
+    transform:scale(1.25); 
   
 }
 
