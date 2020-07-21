@@ -17,6 +17,9 @@ var gravity = -0.1;
 
 var coin;
 
+var spikes;
+var spikes2;
+
 // Storm
 var flash;
 var clouds = [];
@@ -24,6 +27,7 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
+checkpoint = new BABYLON.Vector3(269, 55, 0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -305,8 +309,81 @@ var createScene = function() {
     addPlatform(multimatPebblesS, platformWidthSmall, 120, 25);
     addPlatform(multimatPebblesS, platformWidthSmall, 130, 30);
 
-    addPlatform(multimatGroundM, platformWidthMedium,  150, 15);
+    // Platform ground medium
+    addPlatform(multimatGroundM, platformWidthMedium, 150, 15);
+
+    // Platform pebbles small
+    addPlatform(multimatPebblesS, platformWidthSmall, 165, 15);
+
+    // Spikes
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(165, 16, 5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.7,0.8,5);
+        spikes = spikeTrap._children[0];
+    });
+
+    // Spikes collision box 
+    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikes', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(165, 16, 0.5);
+    groundObjects.push(spikeBox);
+
+    // Platform ground medium
+    addPlatform(multimatGroundM, platformWidthMedium, 180, 15);
+
+    // Platform pebbles small
+    addPlatform(multimatPebblesS, platformWidthSmall, 195, 20);
+
+    // Spikes
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(195, 21, 5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.7,0.8,5);
+        spikes2 = spikeTrap._children[0];
+    });
+
+    // Spikes collision box 
+    spikeBox = BABYLON.MeshBuilder.CreateBox('spikes2', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(195, 21, 0.5);
+    groundObjects.push(spikeBox);
+
+    // Platform ground medium
+    addPlatform(multimatGroundM, platformWidthMedium, 210, 15);
+
+    // Platform pebbles big
+    addPlatform(multimatPebblesB, platformWidthBig, 265, 10);
     
+    // Platform ground medium
+    addPlatform(multimatGroundM, platformWidthMedium, 260, 20);
+
+    // Platform ground small
+    addPlatform(multimatGroundS, platformWidthSmall, 280, 30);
+    addPlatform(multimatGroundS, platformWidthSmall, 292.5, 40);
+
+    // Platform ground big
+    addPlatform(multimatGroundB, platformWidthBig, 260, 50);
+
+    // Spikes
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(240, 51, 5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.7,0.8,5);
+        spikes3 = spikeTrap._children[0];
+    });
+
+    // Spikes collision box 
+    spikeBox = BABYLON.MeshBuilder.CreateBox('spikes3', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(240, 51, 0.5);
+    groundObjects.push(spikeBox);
 
     }
 
@@ -491,4 +568,10 @@ function addPlatform(material, platformWidth, x, y) {
     new BABYLON.SubMesh(0, 0, verticesCount, 24, 6, mesh);
     new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, mesh);
     groundObjects.push(mesh);
+}
+
+
+function trapActive(name){
+    if(name == "spikes") trapON(spikes);
+    if(name == "spikes2") trapON(spikes2);
 }
