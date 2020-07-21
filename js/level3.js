@@ -162,19 +162,19 @@ var createScene = function() {
 
     //Ground multimaterial
     //Small Platform MultiMaterial
-    var multimatGrassS = new BABYLON.MultiMaterial("multiGrass", scene);
+    var multimatGrassS = new BABYLON.MultiMaterial("multiGround", scene);
     multimatGrassS.subMaterials.push(grassS);
     multimatGrassS.subMaterials.push(grassS1);
     multimatGrassS.subMaterials.push(grassS2);
 
     //Medium Platform MultiMaterial
-    var multimatGrassM = new BABYLON.MultiMaterial("multiGrass", scene);
+    var multimatGrassM = new BABYLON.MultiMaterial("multiGround", scene);
     multimatGrassM.subMaterials.push(grassM);
     multimatGrassM.subMaterials.push(grassM1);
     multimatGrassM.subMaterials.push(grassM2);
 
     //Big Platform MultiMaterial
-    var multimatGrassB = new BABYLON.MultiMaterial("multiGrass", scene);
+    var multimatGrassB = new BABYLON.MultiMaterial("multiGround", scene);
     multimatGrassB.subMaterials.push(grassB);
     multimatGrassB.subMaterials.push(grassB1);
     multimatGrassB.subMaterials.push(grassB2);
