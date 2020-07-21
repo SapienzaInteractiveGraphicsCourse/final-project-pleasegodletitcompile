@@ -16,7 +16,7 @@ var coinIsOn = false;
 var coinIsOn2 = false;
 var coinIsOn3 = false;
 var particles4;
-var end = false;
+var allCoinsCollected = false;
 
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
@@ -297,7 +297,7 @@ function checkMaterial(obj, resetDmg = true) {
             dmg = true;
         }
     }
-    if(obj.id == "portalBox" && end == true){
+    if(obj.id == "portalBox" && allCoinsCollected == true && endGame == false){
         endLevel();
         inputKeys = {};
         scene.actionManager = null;
@@ -320,8 +320,8 @@ function checkMaterial(obj, resetDmg = true) {
 }
 
 function checkPortal(){
-    if(player.coins == 3 && end == false){
+    if(player.coins == 3 && allCoinsCollected == false){
         portalON();
-        end = true;
+        allCoinsCollected = true;
     }
 }

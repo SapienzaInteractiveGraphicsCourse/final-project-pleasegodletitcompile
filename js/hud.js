@@ -160,7 +160,6 @@ function menu(gameOver = false) {
 }
 
 function endLevel(){
-
     endGame = true;
 
     endGamePanel = new BABYLON.GUI.StackPanel();
