@@ -223,7 +223,6 @@ function isGrounded() {
     var intersectLine3 = new BABYLON.MeshBuilder.CreateLines("intersectLine", {points: [player.mesh.position, groundPoint3]}, scene);
     for (obj of groundObjects) {
         if (intersectLine.intersectsMesh(obj, false) || intersectLine2.intersectsMesh(obj, false) || intersectLine3.intersectsMesh(obj, false)) {
-            player.grounded = true;
             checkMaterial(obj);
         }
     }
@@ -300,18 +299,21 @@ function checkMaterial(obj) {
         endLevel();
     }
     if(obj.material.id == "multiIce"){
+        player.grounded = true;
         dmg = false;
         ice = true;
         walk = 0.01;
         run = 0.015;
     }
     else if(obj.material.id == "multiGround" || obj.material.id == "ground"){
+        player.grounded = true;
         dmg = false;
         ice = false;
         walk = 0.03;
         run = 0.06;
     }
     if(obj.material.id == "multiGrass"){ 
+        player.grounded = true;
         walk = 0.03;
         run = 0.06;
     }
