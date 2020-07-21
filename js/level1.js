@@ -26,6 +26,9 @@ var thunder2;
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
 var platformHeight = 2;
+var platformWidthSmall = 5;
+var platformWidthMedium = 20;
+var platformWidthBig = 50;
 
 // List of objects that are considered ground
 var groundObjects = [];
@@ -52,14 +55,11 @@ var createScene = function() {
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
-    light.intensity = 0.5;
+    // light.intensity = 0.5;
 
-    // Fog
-    // scene.fogMode = BABYLON.Scene.FOGMODE_EXP2;
-    // scene.fogColor = new BABYLON.Color3(0.5, 0.5, 0.5);
-    // scene.fogDensity = 0.001;
 
     // Clouds
+    {
     cloudMaterial = new BABYLON.StandardMaterial("cloudMaterial", scene);
     cloudMaterial.diffuseTexture = new BABYLON.Texture("../Textures/cloud.png", scene);
     cloudMaterial.diffuseTexture.hasAlpha = true;
@@ -77,10 +77,12 @@ var createScene = function() {
         cloud.rotation.z = Math.random()*360;
         clouds.push(cloud);
     }
+    }
 
-    
+
+    // Materials
+    {
     //Set platforms materials
-
     // Ground Wet Small Platform
     var groundS1 = new BABYLON.StandardMaterial("groundS1", scene);
     groundS1.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
@@ -279,98 +281,71 @@ var createScene = function() {
     //Set portal material
     var portalM = new BABYLON.StandardMaterial("portalM", scene);
     portalM.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    }
 
 
+    // Platforms
+    {
     // Left wall
-    var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:10}, scene);
+    var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:15}, scene);
     leftWall.checkCollisions = true;
-    leftWall.position = new BABYLON.Vector3(-35, 0, 0);
+    leftWall.position = new BABYLON.Vector3(-35, 0, 5);
     leftWall.material = ground;
 
+    // Platform ground big
+    addPlatform(multimatGroundB, platformWidthBig, 0, 0);
 
-    // Platform 1 Snow
-    var mesh = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
-    mesh.position = new BABYLON.Vector3(0, 0, 5)
-    mesh.checkCollisions = true;
-    mesh.material = multimatGroundB;
-    mesh.subMeshes = [];
-    var verticesCount = mesh.getTotalVertices();
+    // Platform ground big
+    addPlatform(multimatGroundB, platformWidthBig, 55, 10);
 
-    new BABYLON.SubMesh(1, 0, verticesCount, 0, 6, mesh);
-    new BABYLON.SubMesh(1, 0, verticesCount, 6, 6, mesh);
-    new BABYLON.SubMesh(2, 0, verticesCount, 12, 6, mesh);
-    new BABYLON.SubMesh(2, 0, verticesCount, 18, 6, mesh);
-    new BABYLON.SubMesh(0, 0, verticesCount, 24, 6, mesh);
-    new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, mesh);
-    groundObjects.push(mesh);
+    // Platform pebbles small
+    addPlatform(multimatPebblesS, platformWidthSmall, 90, 10);
+    addPlatform(multimatPebblesS, platformWidthSmall, 100, 15);
+    addPlatform(multimatPebblesS, platformWidthSmall, 110, 20);
+    addPlatform(multimatPebblesS, platformWidthSmall, 120, 25);
+    addPlatform(multimatPebblesS, platformWidthSmall, 130, 30);
 
-    // // Platform 1
-    // var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:2, depth:10}, scene);
-    // platform1.checkCollisions = true;
-    // groundObjects.push(platform1);
-    // platform1.material = ground_wet_small_1;
+    addPlatform(multimatGroundM, platformWidthMedium,  150, 15);
+    
 
-    // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush1.gltf", scene, function(newMeshes) {
-        var bush = newMeshes[0];
-        bush.position = new BABYLON.Vector3(10,1,3);
-        bush.scaling = new BABYLON.Vector3(2,2,2);
-    });
-
-    // Platform 2
-    var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:10, depth:10}, scene);
-    platform2.position = new BABYLON.Vector3(35, 4, 0);
-    platform2.checkCollisions = true;
-    groundObjects.push(platform2);
-    platform2.material = ground;
-
-    // Bush 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush2.gltf", scene, function(newMeshes) {
-        newMeshes[0].position = new BABYLON.Vector3(20,5,3);
-        newMeshes[0].scaling = new BABYLON.Vector3(2,2,2);
-    });
-
-    // Platform 3
-    var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:20, height:2, depth:10}, scene);
-    platform3.position = new BABYLON.Vector3(60, 0, 0);
-    platform3.checkCollisions = true;
-    groundObjects.push(platform3);
-    platform3.material = ground;
-
-    // Platform 4
-    var platform4 = BABYLON.MeshBuilder.CreateBox('platform4', {width:4, height:2, depth:10}, scene);
-    platform4.position = new BABYLON.Vector3(72, 10, 0);
-    platform4.checkCollisions = true;
-    groundObjects.push(platform4);
-    platform4.material = ground;
-
-    // Stairs 1
-    for (var i=0; i<4; i++) {
-        var step = BABYLON.MeshBuilder.CreateBox(`step1_${i}`, {width:2, height:2, depth:10}, scene);
-        step.position = new BABYLON.Vector3(78+5*i, 8-2*i, 0);
-        step.checkCollisions = true;
-        groundObjects.push(step);
-        step.material = ground;
     }
 
-    // Platform 5
-    var platform9 = BABYLON.MeshBuilder.CreateBox('platform3', {width:20, height:2, depth:10}, scene);
-    platform9.position = new BABYLON.Vector3(107, 0, 0);
-    platform9.checkCollisions = true;
-    groundObjects.push(platform9);
-    platform9.material = ground;
 
-    // Stairs 2
-    for (var i=0; i<5; i++) {
-        var step = BABYLON.MeshBuilder.CreateBox(`step2_${i}`, {width:2, height:3+2*i, depth:10}, scene);
-        step.position = new BABYLON.Vector3(119+3*i, 0.5+i, 0);
-        step.checkCollisions = true;
-        groundObjects.push(step);
-        step.material = ground;
-    }
+    // // Bush
+    // BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush1.gltf", scene, function(newMeshes) {
+    //     var bush = newMeshes[0];
+    //     bush.position = new BABYLON.Vector3(10,1,3);
+    //     bush.scaling = new BABYLON.Vector3(2,2,2);
+    // });
 
+    // // Bush 2
+    // BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush2.gltf", scene, function(newMeshes) {
+    //     newMeshes[0].position = new BABYLON.Vector3(20,5,3);
+    //     newMeshes[0].scaling = new BABYLON.Vector3(2,2,2);
+    // });
+
+
+    // // Stairs 1
+    // for (var i=0; i<4; i++) {
+    //     var step = BABYLON.MeshBuilder.CreateBox(`step1_${i}`, {width:2, height:2, depth:10}, scene);
+    //     step.position = new BABYLON.Vector3(78+5*i, 8-2*i, 0);
+    //     step.checkCollisions = true;
+    //     groundObjects.push(step);
+    //     step.material = ground;
+    // }
+
+    // // Stairs 2
+    // for (var i=0; i<5; i++) {
+    //     var step = BABYLON.MeshBuilder.CreateBox(`step2_${i}`, {width:2, height:3+2*i, depth:10}, scene);
+    //     step.position = new BABYLON.Vector3(119+3*i, 0.5+i, 0);
+    //     step.checkCollisions = true;
+    //     groundObjects.push(step);
+    //     step.material = ground;
+    // }
+
+
+    // Music
     var musicl1 = new BABYLON.Sound("musicl2", "../sounds/songs/Celtic Music - Callirus .mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
-
     function soundReady(){
         musicl1.play();
     }
@@ -388,6 +363,7 @@ var createScene = function() {
     
 
     // Rain
+    {
     //Particles system
     var particles = new BABYLON.GPUParticleSystem("particles", 100000, scene);
 
@@ -431,7 +407,7 @@ var createScene = function() {
     // Start the particle system
     particles.preWarmCycles = 100;
     particles.start();
-    
+    }
 
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
@@ -491,3 +467,28 @@ scene.registerBeforeRender( function() {
         p.rotation.z -= 0.001;
     });
 });
+
+
+/**
+ * Add platform to the scene with specified material, width and position
+ * @param {*} material - Material to apply to the platform
+ * @param {*} platformWidth - platformWidthSmall, platformWidthMedium or platformWidthBig
+ * @param {*} x - x position of the platform
+ * @param {*} y - y position of the platform
+ * @param {*} z - z position of the platform
+ */
+function addPlatform(material, platformWidth, x, y) {
+    var mesh = BABYLON.MeshBuilder.CreateBox('mesh', {width:platformWidth, height:platformHeight, depth:15}, scene);
+    mesh.position = new BABYLON.Vector3(x, y, 5)
+    mesh.checkCollisions = true;
+    mesh.material = material;
+    mesh.subMeshes = [];
+    var verticesCount = mesh.getTotalVertices();
+    new BABYLON.SubMesh(1, 0, verticesCount, 0, 6, mesh);
+    new BABYLON.SubMesh(1, 0, verticesCount, 6, 6, mesh);
+    new BABYLON.SubMesh(2, 0, verticesCount, 12, 6, mesh);
+    new BABYLON.SubMesh(2, 0, verticesCount, 18, 6, mesh);
+    new BABYLON.SubMesh(0, 0, verticesCount, 24, 6, mesh);
+    new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, mesh);
+    groundObjects.push(mesh);
+}
