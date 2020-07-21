@@ -1660,10 +1660,10 @@ var createScene = function() {
     player.mesh.visibility = 0;
     
     //Per non ricominciare ogni volta
-    player.mesh.position.x = 610;
-    player.mesh.position.y = 39;
+    //player.mesh.position.x = 610;
+    //player.mesh.position.y = 39;
 
-    //player.mesh.position.y = (player.height + platformHeight)/2.0;
+    player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
