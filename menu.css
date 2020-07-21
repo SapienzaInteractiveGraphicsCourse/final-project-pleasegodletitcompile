@@ -277,10 +277,10 @@
 #l1 {
   
     position:relative;
-    bottom:300px; /*bottom:330px;*/ 
-    left:0px;
-    height:60px;
-    width:100px;
+    bottom:250px; /*bottom:330px;*/ 
+    left:-400px;
+    height:80px;
+    width:50px;
     /*background:white;
     background-image: url("./img/ghiaccio.jpg");*/
     /*text-align:center;*/
@@ -319,10 +319,10 @@
 #l2 {
   
     position:relative;
-    bottom:300px; /*bottom:330px;*/ 
-    right:0px;
-    height:60px;
-    width:100px;
+    bottom:250px; /*bottom:330px;*/ 
+    left:-400px;
+    height:80px;
+    width:50px;
     background:white;
     background-image: url("./img/ghiaccio.jpg");
     text-align:center;
@@ -360,10 +360,10 @@
 #l3 {
   
     position:relative;
-    bottom:300px; /*bottom:330px;*/ 
-    left:0px;
-    height:60px;
-    width:100px;
+    bottom:400px; /*bottom:330px;*/ 
+    left:50px;
+    height:80px;
+    width:50px;
     background:white;
     background-image: url("./img/ghiaccio.jpg");
     text-align:center;
@@ -401,10 +401,10 @@
 #l4 {
   
     position:relative;
-    bottom:300px; /*bottom:330px;*/ 
-    left:0px;
-    height:60px;
-    width:100px;
+    bottom:400px; /*bottom:330px;*/ 
+    left:50px;
+    height:80px;
+    width:50px;
     background:white;
     background-image: url("./img/ghiaccio.jpg");
     text-align:center;
@@ -442,7 +442,7 @@
 #backmenu {
   
     position:relative;
-    bottom:250px; /*bottom:330px;*/ 
+    bottom:50px; /*bottom:330px;*/ 
     left:-600px;
     height:50px;
     width:100px;
