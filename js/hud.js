@@ -193,7 +193,7 @@ function endLevel(){
         window.location.href = "../level3.html";
     });
 
-    var mainMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("mainMenuButton", "Ionut è ncojo(Main menu)");
+    var mainMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("mainMenuButton", "Leo è ncojo(Main menu)");
     mainMenuButton.height = "40px";
     endGamePanel.addControl(mainMenuButton);
     mainMenuButton.onPointerClickObservable.add(function() {

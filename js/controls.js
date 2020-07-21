@@ -299,6 +299,9 @@ function checkMaterial(obj) {
     }
     if(obj.id == "portalBox" && end == true){
         endLevel();
+        inputKeys = {};
+        scene.actionManager = null;
+        player.position.x = 0;
     }
     if(obj.material.id == "multiIce"){
         player.grounded = true;

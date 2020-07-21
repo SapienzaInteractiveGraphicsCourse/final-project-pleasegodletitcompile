@@ -32,7 +32,7 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
-checkpoint = new BABYLON.Vector3(385, 55, 0);
+checkpoint = new BABYLON.Vector3(430, 55, 0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -292,7 +292,8 @@ var createScene = function() {
     portalM.diffuseColor = new BABYLON.Color3(0, 0, 0);
     }
 
-
+    // Platforms, firplaces, coins, portal
+    {
     // Left wall
     var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:15}, scene);
     leftWall.checkCollisions = true;
@@ -491,7 +492,7 @@ var createScene = function() {
     fireBox.visibility = 0;
     fireBox.material = fireM;
     fireBox.position = new BABYLON.Vector3(378.5, 48, 0.5);
-    groundObjects.push(fireBox);
+    groundObjects.push(fireBox);    
 
     // Platform pebbles small
     addPlatform(multimatPebblesS, platformWidthSmall, 400, 40);
@@ -507,7 +508,27 @@ var createScene = function() {
     // Platform ground medium
     addPlatform(multimatGroundM, platformWidthMedium, 435, 50);
 
-    
+    // Portal
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
+        var portal = newMeshes[0];
+        portal.position = new BABYLON.Vector3(435,50,1);
+        portal.scaling = new BABYLON.Vector3(2,2,2);
+        portal.rotate(new BABYLON.Vector3(0,1,0), deg2rad(30));
+    });
+
+    // Portal collision box
+    var portalBox = BABYLON.MeshBuilder.CreateBox('portalBox', {width:2, height:6, depth:5}, scene);
+    portalBox.visibility = 0;
+    portalBox.material = portalM;
+    portalBox.position = new BABYLON.Vector3(435,55,0);
+    groundObjects.push(portalBox);
+    }
+
+    // Other models
+    {
+
+
+    }
 
     // // Bush
     // BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush1.gltf", scene, function(newMeshes) {
@@ -624,6 +645,7 @@ var createScene = function() {
 
     scene.executeWhenReady( function() {
         engine.hideLoadingUI();
+        updateCoins(); // remove
     });
 
     return scene;
@@ -696,6 +718,7 @@ function addPlatform(material, platformWidth, x, y, rotate=false) {
     groundObjects.push(mesh);
 }
 
+// Add special platform that should contain the fireplace
 function addFirePlatform(mat, x, y) {
     addPlatform(mat, platformWidthMedium, x, y);
     addPlatform(mat, platformWidthMedium, x, y+17);
@@ -715,6 +738,7 @@ function addFirePlatform(mat, x, y) {
 }
 
 
+// Select active trap
 function trapActive(name){
     if(name == "spikes") trapON(spikes);
     else if(name == "spikes2") trapON(spikes2);
@@ -830,6 +854,7 @@ function fireON2(){
     // Start the particle system
     particles3.start();
 }
+
 
 // Coin animations
 function coinON(){
@@ -997,17 +1022,18 @@ function coinON3(){
     particles10.start();
 }
 
+// Portal animation
 function portalON(){
     //Particles system Portal
-    var particles8 = new BABYLON.ParticleSystem("particles", 5, scene);
+    var particles8 = new BABYLON.ParticleSystem("particles", 10, scene);
 
     //Texture of each particle
     particles8.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
     
     //Where the particles come from
-    particles8.emitter = new BABYLON.Vector3(400,61,0);
+    particles8.emitter = new BABYLON.Vector3(435,55,0);
     particles8.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
-    particles8.maxEmitBox = new BABYLON.Vector3(-0.1, -0.5, -2.5); // To...
+    particles8.maxEmitBox = new BABYLON.Vector3(-0.1, -2.5, -2.5); // To...
 
     // Colors of all particles
     particles8.color1 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
@@ -1034,8 +1060,8 @@ function portalON(){
     particles8.gravity = new BABYLON.Vector3(0, 9.81, 0);
 
     // Direction of each particle after it has been emitted
-    particles8.direction1 = new BABYLON.Vector3(-1, 2, 1);
-    particles8.direction2 = new BABYLON.Vector3(-1,-2, 1);
+    particles8.direction1 = new BABYLON.Vector3(1, 2, 2);
+    particles8.direction2 = new BABYLON.Vector3(1,-2, -2);
 
     // Angular speed, in radians
     particles8.minAngularSpeed = 0;
