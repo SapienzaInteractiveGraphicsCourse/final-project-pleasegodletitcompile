@@ -17,9 +17,12 @@ var timeCoin3 = 0;
 var gravity = -0.1;
 
 var coin;
+var coin2;
+var coin3;
 
 var spikes;
 var spikes2;
+var spikes3;
 
 // Storm
 var flash;
@@ -28,7 +31,7 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
-checkpoint = new BABYLON.Vector3(269, 55, 0);
+// checkpoint = new BABYLON.Vector3(375, 49, 0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -289,8 +292,6 @@ var createScene = function() {
     }
 
 
-    // Platforms
-    {
     // Left wall
     var leftWall = BABYLON.MeshBuilder.CreateBox('platform1', {width:20, height:300, depth:15}, scene);
     leftWall.checkCollisions = true;
@@ -309,6 +310,22 @@ var createScene = function() {
     addPlatform(multimatPebblesS, platformWidthSmall, 110, 20);
     addPlatform(multimatPebblesS, platformWidthSmall, 120, 25);
     addPlatform(multimatPebblesS, platformWidthSmall, 130, 30);
+
+    // Coin 1
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+        coin1 = newMeshes[0];
+        coin1.position = new BABYLON.Vector3(136,44.5,0.5);
+        coin1.scaling = new BABYLON.Vector3(10,10,10);
+        coin1.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
+        Coin(coin1); // start animation
+    });
+
+    // Coin 1 collision box
+    var coinBox = BABYLON.MeshBuilder.CreateBox('coinBox', {size:2}, scene);
+    coinBox.visibility = 0;
+    coinBox.material = coinM;
+    coinBox.position = new BABYLON.Vector3(136,44,0.5);
+    groundObjects.push(coinBox);
 
     // Platform ground medium
     addPlatform(multimatGroundM, platformWidthMedium, 150, 15);
@@ -338,7 +355,7 @@ var createScene = function() {
     // Platform pebbles small
     addPlatform(multimatPebblesS, platformWidthSmall, 195, 20);
 
-    // Spikes
+    // Spikes 2
     BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(195, 21, 5);
@@ -346,7 +363,7 @@ var createScene = function() {
         spikes2 = spikeTrap._children[0];
     });
 
-    // Spikes collision box 
+    // Spikes 2 collision box 
     spikeBox = BABYLON.MeshBuilder.CreateBox('spikes2', {width:5, height:1, depth:5}, scene);
     spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
@@ -354,8 +371,22 @@ var createScene = function() {
     spikeBox.position = new BABYLON.Vector3(195, 21, 0.5);
     groundObjects.push(spikeBox);
 
-    // Platform ground medium
-    addPlatform(multimatGroundM, platformWidthMedium, 210, 15);
+    // Platform for fireplace
+    addFirePlatform(multimatPebblesM, 210, 15);
+
+    // Fire Log
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+        var FireLog = newMeshes[0];
+        FireLog.position = new BABYLON.Vector3(210, 15.5, 3);
+        FireLog.scaling = new BABYLON.Vector3(2,2,2);
+    });
+
+    // Fire collision box
+    var fireBox = BABYLON.MeshBuilder.CreateBox('fireBox', {width:2.5, height:2, depth:2}, scene);
+    fireBox.visibility = 0;
+    fireBox.material = fireM;
+    fireBox.position = new BABYLON.Vector3(210, 17, 0.5);
+    groundObjects.push(fireBox);    
 
     // Platform pebbles big
     addPlatform(multimatPebblesB, platformWidthBig, 265, 10);
@@ -370,7 +401,7 @@ var createScene = function() {
     // Platform ground big
     addPlatform(multimatGroundB, platformWidthBig, 260, 50);
 
-    // Spikes
+    // Spikes 3
     BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(240, 51, 5);
@@ -378,7 +409,7 @@ var createScene = function() {
         spikes3 = spikeTrap._children[0];
     });
 
-    // Spikes collision box 
+    // Spikes 3 collision box 
     spikeBox = BABYLON.MeshBuilder.CreateBox('spikes3', {width:5, height:1, depth:5}, scene);
     spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
@@ -386,7 +417,37 @@ var createScene = function() {
     spikeBox.position = new BABYLON.Vector3(240, 51, 0.5);
     groundObjects.push(spikeBox);
 
-    }
+    // Platform ground big
+    addPlatform(multimatGroundB, platformWidthBig, 330, -5);
+
+    // Platform pebbles big
+    addPlatform(multimatPebblesB, platformWidthBig, 369.5, 20, true);
+    addPlatform(multimatPebblesB, platformWidthBig, 349.5, 37, true);
+
+    // Platform pebbles small
+    addPlatform(multimatPebblesS, platformWidthSmall, 366, 5);
+    addPlatform(multimatPebblesS, platformWidthSmall, 353, 13);
+    addPlatform(multimatPebblesS, platformWidthSmall, 366, 21);
+    addPlatform(multimatPebblesS, platformWidthSmall, 353, 29);
+    addPlatform(multimatPebblesS, platformWidthSmall, 366, 37);
+    addPlatform(multimatPebblesS, platformWidthSmall, 353, 45);
+
+    // Platform for fireplace
+    addFirePlatform(multimatPebblesM, 378.5, 46);
+
+    // Fire Log 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+        var FireLog = newMeshes[0];
+        FireLog.position = new BABYLON.Vector3(378.5, 46.5, 3);
+        FireLog.scaling = new BABYLON.Vector3(2,2,2);
+    });
+
+    // Fire 2 collision box
+    var fireBox = BABYLON.MeshBuilder.CreateBox('fireBox2', {width:2.5, height:2, depth:2}, scene);
+    fireBox.visibility = 0;
+    fireBox.material = fireM;
+    fireBox.position = new BABYLON.Vector3(378.5, 48, 0.5);
+    groundObjects.push(fireBox); 
 
 
     // // Bush
@@ -486,7 +547,7 @@ var createScene = function() {
     particles.preWarmCycles = 100;
     particles.start();
     }
-
+    
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
     player.mesh.visibility =  0;
@@ -549,17 +610,37 @@ scene.registerBeforeRender( function() {
 
 /**
  * Add platform to the scene with specified material, width and position
- * @param {*} material - Material to apply to the platform
- * @param {*} platformWidth - platformWidthSmall, platformWidthMedium or platformWidthBig
- * @param {*} x - x position of the platform
- * @param {*} y - y position of the platform
- * @param {*} z - z position of the platform
+ * @param {BABYLON.MultiMaterial} material - Material to apply to the platform
+ * @param {number} platformWidth - platformWidthSmall, platformWidthMedium or platformWidthBig
+ * @param {number} x - x position of the platform
+ * @param {number} y - y position of the platform
+ * @param {number} z - z position of the platform
+ * @param {boolean} [rotate = false] - if true rotate the platform by 90 degrees
  */
-function addPlatform(material, platformWidth, x, y) {
+function addPlatform(material, platformWidth, x, y, rotate=false) {
     var mesh = BABYLON.MeshBuilder.CreateBox('mesh', {width:platformWidth, height:platformHeight, depth:15}, scene);
-    mesh.position = new BABYLON.Vector3(x, y, 5)
+    mesh.position = new BABYLON.Vector3(x, y, 5);
+    if(rotate) mesh.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     mesh.checkCollisions = true;
     mesh.material = material;
+    mesh.subMeshes = [];
+    var verticesCount = mesh.getTotalVertices();
+    new BABYLON.SubMesh(1, 0, verticesCount, 0, 6, mesh);
+    new BABYLON.SubMesh(1, 0, verticesCount, 6, 6, mesh);
+    new BABYLON.SubMesh(2, 0, verticesCount, 12, 6, mesh);
+    new BABYLON.SubMesh(2, 0, verticesCount, 18, 6, mesh);
+    new BABYLON.SubMesh(0, 0, verticesCount, 24, 6, mesh);
+    new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, mesh);
+    groundObjects.push(mesh);
+}
+
+function addFirePlatform(mat, x, y) {
+    addPlatform(mat, platformWidthMedium, x, y);
+    addPlatform(mat, platformWidthMedium, x, y+17);
+    var mesh = BABYLON.MeshBuilder.CreateBox('mesh', {width:platformWidthMedium, height:platformHeight, depth:15}, scene);
+    mesh.position = new BABYLON.Vector3(x, y+8.5, 11.5);
+    mesh.rotate(new BABYLON.Vector3(1,0,0), Math.PI/2);
+    mesh.material = mat;
     mesh.subMeshes = [];
     var verticesCount = mesh.getTotalVertices();
     new BABYLON.SubMesh(1, 0, verticesCount, 0, 6, mesh);
@@ -574,5 +655,282 @@ function addPlatform(material, platformWidth, x, y) {
 
 function trapActive(name){
     if(name == "spikes") trapON(spikes);
-    if(name == "spikes2") trapON(spikes2);
+    else if(name == "spikes2") trapON(spikes2);
+    else if(name == "spikes3") trapON(spikes3);
+}
+
+
+// Fireplace animations
+function fireON(){
+    fireIsOn = true;
+    checkpoint = new BABYLON.Vector3(210,18,0.5);
+    // Particles system Fire
+    var particles2 = new BABYLON.GPUParticleSystem("particles2", 5000, scene);
+    // Texture of each particle
+    particles2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+
+    // Where the particles come from
+    particles2.emitter = new BABYLON.Vector3(210,15.5,3);
+    
+    particles2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles2.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
+    particles2.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
+    particles2.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles2.minSize = 0.1;
+    particles2.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles2.minLifeTime = 0.05;
+    particles2.maxLifeTime = 0.1;
+
+    // Emission rate
+    particles2.emitRate = 600;
+
+    window.ps = particles2;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles2.gravity = new BABYLON.Vector3(0, 0, -2);
+
+    // Direction of each particle after it has been emitted
+    particles2.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
+    particles2.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
+    
+    // Angular speed, in radians
+    particles2.minAngularSpeed = 0;
+    particles2.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles2.minEmitPower = .01;
+    particles2.maxEmitPower = 30;
+
+    // Start the particle system
+    particles2.start();
+}
+
+function fireON2(){
+    fireIsOn2 = true;
+    checkpoint = new BABYLON.Vector3(378.5,49,0.5);
+    // Particles system Fire
+    var particles3 = new BABYLON.GPUParticleSystem("particles3", 5000, scene);
+    // Texture of each particle
+    particles3.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+  
+    // Where the particles come from
+    particles3.emitter = new BABYLON.Vector3(378.5, 46.5, 3);
+    
+    particles3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles3.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
+    particles3.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
+    particles3.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles3.minSize = 0.1;
+    particles3.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles3.minLifeTime = 0.05;
+    particles3.maxLifeTime = 0.1;
+
+    // Emission rate
+    particles3.emitRate = 600;
+
+    window.ps = particles3;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles3.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles3.gravity = new BABYLON.Vector3(0, 0, -2);
+
+    // Direction of each particle after it has been emitted
+    particles3.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
+    particles3.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
+    
+    // Angular speed, in radians
+    particles3.minAngularSpeed = 0;
+    particles3.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles3.minEmitPower = .01;
+    particles3.maxEmitPower = 30;
+
+    // Start the particle system
+    particles3.start();
+}
+
+// Coin animations
+function coinON(){
+    CoinDisappear(coin1);
+
+    coinIsOn = true;
+    // Particles system Fire
+    particles4 = new BABYLON.GPUParticleSystem("particles4", 100, scene);
+    // Texture of each particle
+    particles4.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+
+    // Where the particles come from
+    particles4.emitter = new BABYLON.Vector3(136,44.5,0.5);
+    
+    particles4.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles4.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles4.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles4.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles4.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles4.minSize = 0.1;
+    particles4.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles4.minLifeTime = 0.01;
+    particles4.maxLifeTime = 0.01;
+
+    // Emission rate
+    particles4.emitRate = 100;
+
+    window.ps = particles4;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles4.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles4.gravity = new BABYLON.Vector3(0, 0, 0);
+
+    // Direction of each particle after it has been emitted
+    particles4.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particles4.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
+
+    // Angular speed, in radians
+    particles4.minAngularSpeed = 0;
+    particles4.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles4.minEmitPower = 10;
+    particles4.maxEmitPower = 10;
+
+    // Start the particle system
+    particles4.start();
+}
+
+function coinON2(){
+    CoinDisappear(coin2);
+    
+    coinIsOn2 = true;
+    // Particles system Fire
+    particles5 = new BABYLON.GPUParticleSystem("particles5", 100, scene);
+    // Texture of each particle
+    particles5.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+
+    // Where the particles come from
+    particles5.emitter = new BABYLON.Vector3(224, 23, 0.5);
+    
+    particles5.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles5.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles5.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles5.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles5.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles5.minSize = 0.1;
+    particles5.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles5.minLifeTime = 0.01;
+    particles5.maxLifeTime = 0.01;
+
+    // Emission rate
+    particles5.emitRate = 100;
+
+    window.ps = particles5;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles5.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles5.gravity = new BABYLON.Vector3(0, 0, 0);
+
+    // Direction of each particle after it has been emitted
+    particles5.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particles5.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
+
+    // Angular speed, in radians
+    particles5.minAngularSpeed = 0;
+    particles5.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles5.minEmitPower = 10;
+    particles5.maxEmitPower = 10;
+
+    // Start the particle system
+    particles5.start();
+}
+
+function coinON3(){
+    CoinDisappear(coin3);
+    
+    coinIsOn3 = true;
+    // Particles system Fire
+    particles10 = new BABYLON.GPUParticleSystem("particles5", 100, scene);
+    // Texture of each particle
+    particles10.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+
+    // Where the particles come from    
+    particles10.emitter = new BABYLON.Vector3(415, 9, 0.5);
+    
+    particles10.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particles10.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+
+    // Colors of all particles
+    particles10.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles10.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particles10.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+
+    // Size of each particle (random between...
+    particles10.minSize = 0.1;
+    particles10.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particles10.minLifeTime = 0.01;
+    particles10.maxLifeTime = 0.01;
+
+    // Emission rate
+    particles10.emitRate = 100;
+
+    window.ps = particles10;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particles10.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particles10.gravity = new BABYLON.Vector3(0, 0, 0);
+
+    // Direction of each particle after it has been emitted
+    particles10.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particles10.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
+
+    // Angular speed, in radians
+    particles10.minAngularSpeed = 0;
+    particles10.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particles10.minEmitPower = 10;
+    particles10.maxEmitPower = 10;
+
+    // Start the particle system
+    particles10.start();
 }
