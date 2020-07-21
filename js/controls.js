@@ -252,7 +252,7 @@ function checkFront() {
     var intersectLine3 = new BABYLON.MeshBuilder.CreateLines("intersectLine3", {points: [player.mesh.position, halfPoint2]}, scene);
     for (obj of groundObjects) {
         if (intersectLine2.intersectsMesh(obj, false) || intersectLine3.intersectsMesh(obj, false)) {
-            checkMaterial(obj);
+            checkMaterial(obj, false);
         }
     }
     intersectLine2.dispose();
@@ -260,9 +260,9 @@ function checkFront() {
 }
 
 // Manage the velocities, it might not be elegant, but works for sure!
-function checkMaterial(obj) {
+function checkMaterial(obj, resetDmg = true) {
     if(obj.material.id == "fireM"){
-        dmg = false;
+        if(resetDmg) dmg = false;
         if(obj.id == "fireBox" && fireIsOn == false){
             fireON();  
         }
@@ -271,19 +271,19 @@ function checkMaterial(obj) {
         }
     }
     if(obj.id == "coinBox" && coinIsOn == false){
-        dmg = false;
+        if(resetDmg) dmg = false;
         coinON();
         player.coins++;
         updateCoins();
     }
     if(obj.id == "coinBox2" && coinIsOn2 == false){
-        dmg = false;
+        if(resetDmg) dmg = false;
         coinON2();
         player.coins++;
         updateCoins();
     }
     if(obj.id == "coinBox3" && coinIsOn3 == false){
-        dmg = false;
+        if(resetDmg) dmg = false;
         coinON3();
         player.coins++;
         updateCoins();
@@ -305,14 +305,14 @@ function checkMaterial(obj) {
     }
     if(obj.material.id == "multiIce"){
         player.grounded = true;
-        dmg = false;
+        if(resetDmg) dmg = false;
         ice = true;
         walk = 0.01;
         run = 0.015;
     }
     else if(obj.material.id == "multiGround"){
         player.grounded = true;
-        dmg = false;
+        if(resetDmg) dmg = false;
         ice = false;
         walk = 0.03;
         run = 0.06;
