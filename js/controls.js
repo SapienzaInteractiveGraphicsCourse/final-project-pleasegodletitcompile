@@ -309,22 +309,17 @@ function checkMaterial(obj) {
         walk = 0.01;
         run = 0.015;
     }
-    else if(obj.material.id == "multiGround" || obj.material.id == "ground"){
+    else if(obj.material.id == "multiGround"){
         player.grounded = true;
         dmg = false;
         ice = false;
         walk = 0.03;
         run = 0.06;
     }
-    if(obj.material.id == "multiGrass"){ 
-        player.grounded = true;
-        walk = 0.03;
-        run = 0.06;
-    }
 }
 
 function checkPortal(){
-    if(player.coins == 3){
+    if(player.coins == 3 && end == false){
         portalON();
         end = true;
     }
