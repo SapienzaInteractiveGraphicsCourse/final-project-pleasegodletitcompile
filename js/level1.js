@@ -41,6 +41,8 @@ var platformWidthBig = 50;
 // List of objects that are considered ground
 var groundObjects = [];
 
+var nextLevel = "../level2.html";
+
 var createScene = function() {
     // Loading UI
     engine.displayLoadingUI();
@@ -63,7 +65,7 @@ var createScene = function() {
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
-    light.intensity = 0.5;
+    // light.intensity = 0.5;
 
 
     // Clouds

@@ -5,7 +5,6 @@ var engine = new BABYLON.Engine(canvas, true);
 
 var camera;
 
-//Time to try to implement gravity and run
 var timeWalk = 0;
 var timeJump = 0;
 var timeSlide = 0;
@@ -38,13 +37,11 @@ var spikes4;
 var spikes5;
 var spikes6;
 
-
 var dmg = false;
 
 var snowAnim = false;
 
 var isReady = false;
-
 
 var widthS = 5;
 var widthM = 20;
@@ -54,9 +51,6 @@ var height = 2;
 
 var depth = 15;
 
-
-
-
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
 var platformHeight = 2;
@@ -65,6 +59,8 @@ var helmet;
 
 // List of objects that are considered ground
 var groundObjects = [];
+
+var nextLevel = null;
 
 var createScene = function() {
     // Loading UI

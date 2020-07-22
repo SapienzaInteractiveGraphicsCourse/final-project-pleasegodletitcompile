@@ -53,6 +53,8 @@ var helmet;
 // List of objects that are considered ground
 var groundObjects = [];
 
+var nextLevel = "../level3.html";
+
 var createScene = function() {
     // Loading UI
     engine.displayLoadingUI();
