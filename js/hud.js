@@ -194,7 +194,7 @@ function endLevel(){
         });
     }
 
-    var mainMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("mainMenuButton", "Leo è ncojo(Main menu)");
+    var mainMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("mainMenuButton", "Main menu");
     mainMenuButton.height = "40px";
     endGamePanel.addControl(mainMenuButton);
     mainMenuButton.onPointerClickObservable.add(function() {
