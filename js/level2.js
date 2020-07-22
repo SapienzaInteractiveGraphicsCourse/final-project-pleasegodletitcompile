@@ -534,7 +534,7 @@ var createScene = function() {
 
     // Platform 2 Snow
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
-    platform2.position = new BABYLON.Vector3(230, 20, 5)
+    platform2.position = new BABYLON.Vector3(230, 15, 5)
     platform2.checkCollisions = true;
     platform2.material = multimatSnowM;
     platform2.subMeshes = [];
@@ -1777,7 +1777,7 @@ var createScene = function() {
     // Tux model 1
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
-        tux.position = new BABYLON.Vector3(225,21,10);
+        tux.position = new BABYLON.Vector3(225,16,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
         tux.rotate(new BABYLON.Vector3(0,2,0), -5.5);
     });
@@ -1785,7 +1785,7 @@ var createScene = function() {
     // Tux model 2
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
-        tux.position = new BABYLON.Vector3(223,21,10);
+        tux.position = new BABYLON.Vector3(223,16,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
         tux.rotate(new BABYLON.Vector3(0,2,0), 5.5);
     });
@@ -1793,7 +1793,7 @@ var createScene = function() {
     // Tux model 3
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
-        tux.position = new BABYLON.Vector3(224,21,8);
+        tux.position = new BABYLON.Vector3(224,16,8);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
         tux.rotate(new BABYLON.Vector3(0,2,0), 9.5);
     });
@@ -1801,7 +1801,7 @@ var createScene = function() {
     // Bush
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
-        WinterBush.position = new BABYLON.Vector3(234,20,9);
+        WinterBush.position = new BABYLON.Vector3(234,15,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
     });
 
@@ -1835,7 +1835,7 @@ var createScene = function() {
     // COIN 2
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
         coin2 = newMeshes[0];
-        coin2.position = new BABYLON.Vector3(224, 23.5, 0.5);
+        coin2.position = new BABYLON.Vector3(224, 18.5, 0.5);
         coin2.scaling = new BABYLON.Vector3(10,10,10);
         coin2.rotate(new BABYLON.Vector3(1,0,0), 1.6)
         coin2.checkCollisions = false;
@@ -1847,7 +1847,7 @@ var createScene = function() {
     coinBox.checkCollisions = false;
     coinBox.visibility = 0;
     coinBox.material = coinM;
-    coinBox.position = new BABYLON.Vector3(224, 23, 0.5);
+    coinBox.position = new BABYLON.Vector3(224, 18, 0.5);
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
@@ -1924,7 +1924,7 @@ var createScene = function() {
 
     BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
-        spikeTrap.position = new BABYLON.Vector3(230, 21, 0.5);
+        spikeTrap.position = new BABYLON.Vector3(230, 16, 0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
         spikeTrap.checkCollisions = true;
         spikes2 = spikeTrap._children[0];
@@ -1936,7 +1936,7 @@ var createScene = function() {
     spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
     spikeBox.material = spikesM;
-    spikeBox.position = new BABYLON.Vector3(230, 21, 0.5);
+    spikeBox.position = new BABYLON.Vector3(230, 16, 0.5);
     groundObjects.push(spikeBox);
 
     // Ending Portal
@@ -2200,7 +2200,7 @@ function coinON2(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles5.emitter = new BABYLON.Vector3(224, 23, 0.5);
+    particles5.emitter = new BABYLON.Vector3(224, 18, 0.5);
     
     particles5.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particles5.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -2311,7 +2311,7 @@ function fireON(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles2.emitter = new BABYLON.Vector3(320,46,0.5);
+    particles2.emitter = new BABYLON.Vector3(320,49,0.5);
     
     
     particles2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
@@ -2418,8 +2418,10 @@ function trapActive(name){
 }
 
 function portalON(){
+
+    console.log("gigi")
     //Particles system Portal
-    var particles8 = new BABYLON.ParticleSystem("particles", 5, scene);
+    var particles8 = new BABYLON.ParticleSystem("particles", 500, scene);
 
     //Texture of each particle
     particles8.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
@@ -2441,10 +2443,10 @@ function portalON(){
 
     // Life time of each particle (random between...
     particles8.minLifeTime = 0.1;
-    particles8.maxLifeTime = 0.1;
+    particles8.maxLifeTime = 0.3;
 
     // Emission rate
-    particles8.emitRate = 1;
+    particles8.emitRate = 500;
 
     window.ps = particles8;
 

@@ -1,6 +1,5 @@
 var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("HUD");
 
-
 // Coins
 var panelCoins = new BABYLON.GUI.StackPanel();
 panelCoins.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
@@ -85,6 +84,7 @@ var menuIsOpen = false;
 var endGame = false;
 var menuPanel;
 var endGamePanel;
+var tutorialPanel;
 // Menu button
 menuButton = new BABYLON.GUI.Button.CreateImageOnlyButton("menuButton", "textures/menu.png");
 menuButton.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
@@ -199,4 +199,27 @@ function endLevel(){
         window.location.href = "../index.html";
     });
 
+};
+
+function tutorial(obj){
+    
+    tutorialPanel = new BABYLON.GUI.StackPanel();
+    tutorialPanel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+        tutorialPanel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+        tutorialPanel.isVertical = true;
+        tutorialPanel.width = 0.8;
+        tutorialPanel.background = "yellow";
+        tutorialPanel.color = "blue";
+        advancedTexture.addControl(tutorialPanel);
+
+    if(obj.id == "tutorial1"){
+        tutorial1 = true;
+        var tutorial11 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton1", "Welcome to the tutorial");
+        tutorial11.fontSize = "10px"
+        tutorial11.height = "40px";
+        tutorialPanel.addControl(tutorial11);
+        tutorial11.onPointerClickObservable.add(function() {
+            tutorialPanel.isVisible = false;
+        });
+    }
 };

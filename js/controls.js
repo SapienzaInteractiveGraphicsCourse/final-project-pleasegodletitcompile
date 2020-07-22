@@ -297,6 +297,9 @@ function checkMaterial(obj, resetDmg = true) {
             dmg = true;
         }
     }
+    if(obj.material.id == "tutorialM" && tutorial1 == false){
+        tutorial(obj);
+    }
     if(obj.id == "portalBox" && allCoinsCollected == true && endGame == false){
         endLevel();
         inputKeys = {};
