@@ -759,7 +759,7 @@ function trapActive(name){
 // Fireplace animations
 function fireON(){
     fireIsOn = true;
-    checkpoint = new BABYLON.Vector3(210,18,0.5);
+    checkpoint = new BABYLON.Vector3(210,19,0.5);
     // Particles system Fire
     var particlesFire = new BABYLON.GPUParticleSystem("particlesFire", 5000, scene);
     // Texture of each particle
@@ -813,7 +813,7 @@ function fireON(){
 
 function fireON2(){
     fireIsOn2 = true;
-    checkpoint = new BABYLON.Vector3(378.5,49,0.5);
+    checkpoint = new BABYLON.Vector3(378.5,50,0.5);
     // Particles system Fire
     var particlesFire2 = new BABYLON.GPUParticleSystem("particlesFire2", 5000, scene);
     // Texture of each particle
