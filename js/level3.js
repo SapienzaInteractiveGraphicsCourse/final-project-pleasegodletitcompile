@@ -235,9 +235,8 @@ var createScene = function() {
 
     // Platform 1 ground
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:widthB, height:height, depth:depth}, scene);     //{width:65, height:2, depth:10}, scene);
-    platform1.position = new BABYLON.Vector3(0, 0, 5);     //(7.5, 0, 0);
+    platform1.position = new BABYLON.Vector3(0, 0, 5);
     platform1.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform1.material = multimatGrassB;
     platform1.subMeshes = [];
     var verticesCount = platform1.getTotalVertices();
@@ -264,7 +263,7 @@ var createScene = function() {
         treeBall2.position = new BABYLON.Vector3(-20,1.5,9);
         treeBall2.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
-
+/*
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "red_apple.gltf", scene, function(newMeshes) {
         var redApple = newMeshes[0];
         //flowers.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
@@ -285,18 +284,32 @@ var createScene = function() {
         yellowApple.position = new BABYLON.Vector3(11,6.5,4);
         yellowApple.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
+*/
+
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "longTree.gltf", scene, function(newMeshes) {
+        var longTree = newMeshes[0];
+        longTree.position = new BABYLON.Vector3(0,1.5,9);
+        longTree.scaling = new BABYLON.Vector3(0.05, 0.05, 0.05);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "longTree.gltf", scene, function(newMeshes) {
+        var longTree = newMeshes[0];
+        longTree.position = new BABYLON.Vector3(18,1.5,9);
+        longTree.scaling = new BABYLON.Vector3(0.05, 0.05, 0.05);
+    });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "woodColored.gltf", scene, function(newMeshes) {
         var wood = newMeshes[0];
         wood.rotate( BABYLON.Axis.Y, -Math.PI/4 , BABYLON.Space.WORLD);
-        wood.position = new BABYLON.Vector3(0,1.5,9);
+        wood.position = new BABYLON.Vector3(-7,1.5,9);
         wood.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "woodColored.gltf", scene, function(newMeshes) {
         var wood = newMeshes[0];
         wood.rotate( BABYLON.Axis.Y, -Math.PI/4 , BABYLON.Space.WORLD);
-        wood.position = new BABYLON.Vector3(-10,1.5,9);
+        wood.position = new BABYLON.Vector3(-12,1.5,9);
         wood.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
 
@@ -304,7 +317,7 @@ var createScene = function() {
         var butterfly = newMeshes[0];
         butterfly.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
         butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(-0.5,3.5,8);
+        butterfly.position = new BABYLON.Vector3(-6,3.5,8);
         butterfly.scaling = new BABYLON.Vector3(25, 25, 25);
     });
 
@@ -319,7 +332,6 @@ var createScene = function() {
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Animals/", "Deer.gltf", scene, function(newMeshes) {
         var deer = newMeshes[0];
         deer.rotate( BABYLON.Axis.Y, Math.PI/3 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
         deer.position = new BABYLON.Vector3(16, 0.99, 8);
         deer.scaling = new BABYLON.Vector3(1, 1, 1);
         
@@ -331,9 +343,8 @@ var createScene = function() {
 
     //Platform2 
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:widthM, height:height, depth:depth}, scene);
-    platform2.position = new BABYLON.Vector3(45, -15, 5);     //(7.5, 0, 0);
+    platform2.position = new BABYLON.Vector3(45, -15, 5);
     platform2.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform2.material = multimatGrassM;
     platform2.subMeshes = [];
     var verticesCount = platform2.getTotalVertices();
@@ -357,9 +368,8 @@ var createScene = function() {
 
     //Platform3 
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:widthS, height:height, depth:depth}, scene);
-    platform3.position = new BABYLON.Vector3(35, 10, 5);     //(7.5, 0, 0);
+    platform3.position = new BABYLON.Vector3(35, 10, 5);
     platform3.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform3.material = multimatGrassS;
     platform3.subMeshes = [];
     var verticesCount = platform3.getTotalVertices();
@@ -373,37 +383,30 @@ var createScene = function() {
 
     groundObjects.push(platform3);
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "fleur.gltf", scene, function(newMeshes) {
-        var butterfly = newMeshes[0];
-        //butterfly.rotate( BABYLON.Axis.Y, Math.PI/2 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(35, 10, 9);
-        butterfly.scaling = new BABYLON.Vector3(2, 2, 2);
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "fleur.gltf", scene, function(newMeshes) {
+        var fleur = newMeshes[0];
+        fleur.position = new BABYLON.Vector3(35, 10, 9);
+        fleur.scaling = new BABYLON.Vector3(2, 2, 2);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "fleur.gltf", scene, function(newMeshes) {
-        var butterfly = newMeshes[0];
-        //butterfly.rotate( BABYLON.Axis.Y, Math.PI/2 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(34, 10, 10);
-        butterfly.scaling = new BABYLON.Vector3(2, 2, 2);
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "fleur.gltf", scene, function(newMeshes) {
+        var fleur = newMeshes[0];
+        fleur.position = new BABYLON.Vector3(34, 10, 10);
+        fleur.scaling = new BABYLON.Vector3(2, 2, 2);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "fleur.gltf", scene, function(newMeshes) {
-        var butterfly = newMeshes[0];
-        //butterfly.rotate( BABYLON.Axis.Y, Math.PI/2 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(36, 10, 10);
-        butterfly.scaling = new BABYLON.Vector3(2, 2, 2);
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "fleur.gltf", scene, function(newMeshes) {
+        var fleur = newMeshes[0];
+        fleur.position = new BABYLON.Vector3(36, 10, 10);
+        fleur.scaling = new BABYLON.Vector3(2, 2, 2);
     });
 
 
 
     //Platform4 
     var platform4 = BABYLON.MeshBuilder.CreateBox('platform4', {width:widthM, height:height, depth:depth}, scene);
-    platform4.position = new BABYLON.Vector3(50, 20, 5);     //(7.5, 0, 0);
+    platform4.position = new BABYLON.Vector3(50, 20, 5);
     platform4.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform4.material = multimatGrassM;
     platform4.subMeshes = [];
     var verticesCount = platform4.getTotalVertices();
@@ -424,11 +427,56 @@ var createScene = function() {
         lowTree.scaling = new BABYLON.Vector3(10, 10, 10);
     });
 
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "staccionata.gltf", scene, function(newMeshes) {
+        var staccionata = newMeshes[0];
+        staccionata.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        staccionata.position = new BABYLON.Vector3(45, 20.5, 8);
+        staccionata.scaling = new BABYLON.Vector3(1, 1, 1);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "staccionata.gltf", scene, function(newMeshes) {
+        var staccionata = newMeshes[0];
+        staccionata.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        staccionata.position = new BABYLON.Vector3(50, 20.5, 8);
+        staccionata.scaling = new BABYLON.Vector3(1, 1, 1);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "staccionata.gltf", scene, function(newMeshes) {
+        var staccionata = newMeshes[0];
+        staccionata.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        staccionata.position = new BABYLON.Vector3(55, 20.5, 8);
+        staccionata.scaling = new BABYLON.Vector3(1, 1, 1);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(45, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(48, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(55, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(58, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+
     //Platform5 
     var platform5 = BABYLON.MeshBuilder.CreateBox('platform5', {width:widthS, height:height, depth:depth}, scene);
-    platform5.position = new BABYLON.Vector3(72, 10, 5);     //(7.5, 0, 0);
+    platform5.position = new BABYLON.Vector3(72, 10, 5);
     platform5.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform5.material = multimatGrassS;
     platform5.subMeshes = [];
     var verticesCount = platform5.getTotalVertices();
@@ -445,9 +493,8 @@ var createScene = function() {
 
     //Platform6 
     var platform6 = BABYLON.MeshBuilder.CreateBox('platform6', {width:widthS, height:height, depth:depth}, scene);
-    platform6.position = new BABYLON.Vector3(72, 10, 5);     //(7.5, 0, 0);
+    platform6.position = new BABYLON.Vector3(72, 10, 5);
     platform6.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform6.material = multimatGrassS;
     platform6.subMeshes = [];
     var verticesCount = platform6.getTotalVertices();
@@ -463,9 +510,8 @@ var createScene = function() {
 
     //Platform7 
     var platform7 = BABYLON.MeshBuilder.CreateBox('platform7', {width:widthB, height:height, depth:depth}, scene);
-    platform7.position = new BABYLON.Vector3(90, -5, 5);     //(7.5, 0, 0);
+    platform7.position = new BABYLON.Vector3(90, -5, 5);
     platform7.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform7.material = multimatGrassB;
     platform7.subMeshes = [];
     var verticesCount = platform7.getTotalVertices();
@@ -481,35 +527,75 @@ var createScene = function() {
  
 
     //object Platform 7
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "stone.gltf", scene, function(newMeshes) {
+        var stone = newMeshes[0];
+        stone.position = new BABYLON.Vector3(68, -3.8, 0);
+        stone.scaling = new BABYLON.Vector3(2, 2, 2);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "stone_moss.gltf", scene, function(newMeshes) {
+        var stone = newMeshes[0];
+        stone.position = new BABYLON.Vector3(72, -3.8, 9);
+        stone.scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree = newMeshes[0];
-        lowPolyTree.position = new BABYLON.Vector3(70, -4, 14);
+        lowPolyTree.position = new BABYLON.Vector3(70, -4.5, 14);
         lowPolyTree.scaling = new BABYLON.Vector3(5, 5, 5);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "flowers.gltf", scene, function(newMeshes) {
+        var flowers = newMeshes[0];
+        flowers.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        flowers.position = new BABYLON.Vector3(76, -4, 9);
+        flowers.scaling = new BABYLON.Vector3(7, 7, 7);
     });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree2 = newMeshes[0];
-        lowPolyTree2.position = new BABYLON.Vector3(80, -4, 14);
+        lowPolyTree2.position = new BABYLON.Vector3(80, -4.5, 15);
         lowPolyTree2.scaling = new BABYLON.Vector3(5, 5, 5);
     }); 
 
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "stone_moss.gltf", scene, function(newMeshes) {
+        var stone = newMeshes[0];
+        stone.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        stone.position = new BABYLON.Vector3(92, -3.8, 9);
+        stone.scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Animals/", "butterfly.gltf", scene, function(newMeshes) {
+        var butterfly = newMeshes[0];
+        butterfly.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
+        butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
+        butterfly.position = new BABYLON.Vector3(90, -0.5, 8);
+        butterfly.scaling = new BABYLON.Vector3(26, 26, 26);
+    });
+
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree3 = newMeshes[0];
-        lowPolyTree3.position = new BABYLON.Vector3(90, -4, 14);
+        lowPolyTree3.position = new BABYLON.Vector3(90, -4.5, 15);
         lowPolyTree3.scaling = new BABYLON.Vector3(5, 5, 5);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "flowers.gltf", scene, function(newMeshes) {
+        var flowers = newMeshes[0];
+        flowers.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        flowers.position = new BABYLON.Vector3(96, -4, 9);
+        flowers.scaling = new BABYLON.Vector3(7, 7, 7);
     });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree4 = newMeshes[0];
-        lowPolyTree4.position = new BABYLON.Vector3(100, -4, 14);
+        lowPolyTree4.position = new BABYLON.Vector3(100, -4.5, 15);
         lowPolyTree4.scaling = new BABYLON.Vector3(5, 5, 5);
     });
 
     //Platform 8
     var platform8 = BABYLON.MeshBuilder.CreateBox('platform8', {width:widthS, height:height, depth:depth}, scene);
-    platform8.position = new BABYLON.Vector3(120, 5, 5);     //(7.5, 0, 0);
+    platform8.position = new BABYLON.Vector3(120, 5, 5);
     platform8.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform8.material = multimatGrassS;
     platform8.subMeshes = [];
     var verticesCount = platform8.getTotalVertices();
@@ -522,6 +608,21 @@ var createScene = function() {
     new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, platform8);
 
     groundObjects.push(platform8);
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "woodColored.gltf", scene, function(newMeshes) {
+        var wood = newMeshes[0];
+        wood.rotate( BABYLON.Axis.Y, -Math.PI/4 , BABYLON.Space.WORLD);
+        wood.position = new BABYLON.Vector3(120, 6.5, 9);
+        wood.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Animals/", "butterfly.gltf", scene, function(newMeshes) {
+        var butterfly = newMeshes[0];
+        butterfly.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
+        butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
+        butterfly.position = new BABYLON.Vector3(120, 8.5, 8);
+        butterfly.scaling = new BABYLON.Vector3(25, 25, 25);
+    });
 
     //Platform 9
     var platform9 = BABYLON.MeshBuilder.CreateBox('platform9', {width:widthS, height:height, depth:depth}, scene);
@@ -1661,10 +1762,10 @@ var createScene = function() {
     player.mesh.visibility = 0;
     
     //Per non ricominciare ogni volta
-    //player.mesh.position.x = 610;
-    //player.mesh.position.y = 39;
+    player.mesh.position.x = 90;
+    player.mesh.position.y = -1;
 
-    player.mesh.position.y = (player.height + platformHeight)/2.0;
+    //player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
