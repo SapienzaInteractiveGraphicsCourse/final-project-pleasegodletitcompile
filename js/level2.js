@@ -1346,6 +1346,9 @@ var createScene = function() {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(210,35.5, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
+        var root = snowman._children[0];
+        snowRA3 = root._children[1];
+        snowRA3._position.x = 0.4;
     });
 
     // igloo
@@ -1590,6 +1593,9 @@ var createScene = function() {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(397.5,87, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
+        var root = snowman._children[0];
+        snowRA4 = root._children[1];
+        snowRA4._position.x = 0.4;
     });
 
     // Winter bridge
@@ -1634,6 +1640,9 @@ var createScene = function() {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(444,96.8, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
+        var root = snowman._children[0];
+        snowRA5 = root._children[1];
+        snowRA5._position.x = 0.4;
     });
 
     //Small Rock
@@ -1725,6 +1734,9 @@ var createScene = function() {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(350,26.5, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
+        var root = snowman._children[0];
+        snowRA6 = root._children[1];
+        snowRA6._position.x = 0.4;
     });
 
     // Eskimo model
@@ -2421,7 +2433,6 @@ function trapActive(name){
 
 function portalON(){
 
-    console.log("gigi")
     //Particles system Portal
     var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 1000, scene);
 
