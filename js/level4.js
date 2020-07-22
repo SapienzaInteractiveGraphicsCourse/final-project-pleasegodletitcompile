@@ -88,7 +88,7 @@ var createScene = function() {
     groundObjects.push(platform3);
 
     //music
-    var musicl4 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+    var musicl4 = new BABYLON.Sound("musicl2", "../sounds/levels/level4/POL-battle-march-short.wav", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
 
     function soundReady(){
         musicl4.play();

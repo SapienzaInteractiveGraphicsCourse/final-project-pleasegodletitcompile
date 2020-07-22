@@ -551,7 +551,7 @@ var createScene = function() {
 
 
     // Music
-    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/levels/level1.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/levels/level1/POL-perfect-engineering-short.wav", scene, soundReady, {loop:true, volume:0.4, autoplay:true, useCustomAttenuation:true});
     function soundReady(){
         musicl1.play();
     }
@@ -559,7 +559,7 @@ var createScene = function() {
     // Rain sound
     rainSound = new BABYLON.Sound("rainSound", "../sounds/rain.mp3", scene, function() {
         rainSound.play();
-    }, {loop:true});
+    }, {loop:true,volume:4.0});
 
 
     // Lightning

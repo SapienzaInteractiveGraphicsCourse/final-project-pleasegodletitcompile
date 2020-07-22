@@ -2103,7 +2103,7 @@ var createScene = function() {
 
 
     // Music
-    var musicl2 = new BABYLON.Sound("musicl2", "../sounds/levels/level2.mp3", scene, soundReady, {loop:true, volume:0.5});
+    var musicl2 = new BABYLON.Sound("musicl2", "../sounds/levels/level2/POL-battle-is-coming-short.wav", scene, soundReady, {loop:true, volume:0.4, autoplay:true, useCustomAttenuation:true});
 
     function soundReady(){
         musicl2.play();

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-
     <head>
         <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
         <title>Main menu - PleaseGodLetItCompile</title>
@@ -17,7 +16,6 @@
                 background-size: 100% 100%;
             }
 
-
             @font-face{
 	            font-family: 'PixelFont';
 	            src: url('./font/Ranchers/Ranchers-Regular.ttf') format('truetype');
@@ -25,29 +23,25 @@
 	            font-style: normal;
             }
 
-       
-
         </style>
-
-        <!-- <iframe src="./sounds/sound.mp3" width="0" height="0" allow></iframe> -->
-
-        
 
     </head>
 
     <body>
 
+        <audio autoplay loop>
+
+            <source src="./sounds/menu/POL-the-journey-begins-short.mp3">
+
+        </audio>
 
         <audio id = "player" src = "./sounds/knob.mp3"></audio>
 
 
-
         <div id="allthethings">
-
 
             <div id="start" onclick="window.location.href = './level1.html';" onmouseover="document.getElementById('player').play();"><p>START</p></div>
             <div id="level" onclick="window.location.href = './selectLevel.html';" onmouseover="document.getElementById('player').play();"><p>SELECT LEVEL</p></div>
-            <!--<div id="options" onclick="window.location.href = './options.html';"><p>OPTIONS</p></div>-->
             <div id="credits" onclick="window.location.href = './credits.html';" onmouseover="document.getElementById('player').play();"><p>CREDITS</p></div>
 
         </div>
@@ -56,22 +50,8 @@
             <img src="../img/title.png" width="800" height="400" style="vertical-align:left;margin:5px 600px">
         </div>
 
-
-
         <link rel="stylesheet" href="./menu.css" type="text/css" />
 
-        <iframe id="sound" src="./sounds/GOTsoundtrack.mp3" width="0%" height="0%" style="border:none;" allowfullscreen=true></iframe>
-        
-        <!--
-        <div align="left">
-            <button id="start" onclick="window.location.href = './level1.html';">START GAME</button></div>
-        </div> 
-
-        <div align="left">
-            <button onclick="window.location.href = './level1.html';">SELECT LEVEL</button></div>
-            url('./font/pangolin-v5-latin-regular.eot') format('embedded-opentype'),
-	            url('./font/pangolin-v5-latin-regular.woff') format('woff'),
-        </div> -->
     </body>
 
 </html
