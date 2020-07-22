@@ -32,6 +32,7 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
+// checkpoint = new BABYLON.Vector3(150,21,0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -524,15 +525,25 @@ var createScene = function() {
 
     // Other models
     {
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp1_B.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(3,1,6);
         newMeshes[0].scaling = new BABYLON.Vector3(-3,3,3);
         newMeshes[0].rotate(new BABYLON.Vector3(0,1,0), deg2rad(90));
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2_B.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(57,11,9);
         newMeshes[0].scaling = new BABYLON.Vector3(3,3,3);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp1_M.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(148.5,16,9);
+        newMeshes[0].scaling = new BABYLON.Vector3(3,3,-3);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2_M.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(179.5,16,9);
+        newMeshes[0].scaling = new BABYLON.Vector3(3,3,-3);
     });
 
 
