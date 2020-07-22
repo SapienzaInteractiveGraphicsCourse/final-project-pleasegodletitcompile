@@ -562,7 +562,7 @@ var createScene = function() {
 
 
     // Music
-    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/songs/Celtic Music - Callirus .mp3", scene, soundReady, {loop:true, volume:0.2, useCustomAttenuation:false});
+    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/levels/level1.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
     function soundReady(){
         musicl1.play();
     }

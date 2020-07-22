@@ -1642,11 +1642,16 @@ var createScene = function() {
 
 
     //music
-    var musicl3 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+    var musicl3 = new BABYLON.Sound("musicl2", "../sounds/levels/level3.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
 
     function soundReady(){
         musicl3.play();
     }
+
+    // bird sound
+    rainSound = new BABYLON.Sound("rainSound", "../sounds/level3/meadowlark_daniel-simion.mp3", scene, function() {
+        rainSound.play();
+    }, {loop:true, volume:0.2});
 
 
 
