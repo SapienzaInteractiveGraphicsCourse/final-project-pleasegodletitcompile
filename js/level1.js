@@ -551,7 +551,7 @@ var createScene = function() {
 
 
     // Music
-    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/levels/level1/POL-perfect-engineering-short.wav", scene, soundReady, {loop:true, volume:0.4, autoplay:true, useCustomAttenuation:true});
+    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/levels/level1/POL-perfect-engineering-short.wav", scene, soundReady, {loop:true, volume:0.2, autoplay:true, useCustomAttenuation:true});
     function soundReady(){
         musicl1.play();
     }
@@ -568,9 +568,9 @@ var createScene = function() {
     flash.specular = new BABYLON.Color3(0.02, 0.18, 0.54);
 
     // Thunder
-    thunder1 = new BABYLON.Sound("thunder1", "../sounds/thunder1.mp3", scene);
-    thunder2 = new BABYLON.Sound("thunder2", "../sounds/thunder2.mp3", scene);
-    thunder3 = new BABYLON.Sound("thunder3", "../sounds/thunder3.mp3", scene);
+    thunder1 = new BABYLON.Sound("thunder1", "../sounds/thunder1.mp3", scene, {volume:4.0});
+    thunder2 = new BABYLON.Sound("thunder2", "../sounds/thunder2.mp3", scene, {volume:4.0});
+    thunder3 = new BABYLON.Sound("thunder3", "../sounds/thunder3.mp3", scene, {volume:4.0});
     
 
     // Rain

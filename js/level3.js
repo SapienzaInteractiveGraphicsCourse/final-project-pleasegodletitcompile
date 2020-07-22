@@ -1642,7 +1642,7 @@ var createScene = function() {
 
 
     //music
-    var musicl3 = new BABYLON.Sound("musicl2", "../sounds/levels/level3/POL-unbeatable-guild-short.wav", scene, soundReady, {loop:true, volume:0.4, autoplay:true, useCustomAttenuation:true});
+    var musicl3 = new BABYLON.Sound("musicl2", "../sounds/levels/level3/POL-unbeatable-guild-short.wav", scene, soundReady, {loop:true, volume:0.2, autoplay:true, useCustomAttenuation:true});
 
     function soundReady(){
         musicl3.play();
