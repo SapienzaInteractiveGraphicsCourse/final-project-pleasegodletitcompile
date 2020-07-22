@@ -1909,7 +1909,7 @@ function coinON3(){
     
     coinIsOn3 = true;
     //Particles system Fire
-    particlesCoin3 = new BABYLON.GPUParticleSystem("particlesCoin3", 100, scene);
+    particlesCoin3 = new BABYLON.GPUParticleSystem("particlesCoin3", 1000, scene);
     //Texture of each particle
     particlesCoin3.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
@@ -1934,7 +1934,7 @@ function coinON3(){
     particlesCoin3.maxLifeTime = 0.01;
 
     // Emission rate
-    particlesCoin3.emitRate = 100;
+    particlesCoin3.emitRate = 250;
 
     window.ps = particlesCoin3;
 

@@ -2421,7 +2421,7 @@ function trapActive(name){
 
 function portalON(){
     //Particles system Portal
-    var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 5, scene);
+    var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 1000, scene);
 
     //Texture of each particle
     particlesPortal.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
@@ -2446,7 +2446,7 @@ function portalON(){
     particlesPortal.maxLifeTime = 0.1;
 
     // Emission rate
-    particlesPortal.emitRate = 1;
+    particlesPortal.emitRate = 250;
 
     window.ps = particlesPortal;
 
