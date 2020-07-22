@@ -15,8 +15,10 @@ var fireIsOn2 = false;
 var coinIsOn = false;
 var coinIsOn2 = false;
 var coinIsOn3 = false;
-var particles4;
-var end = false;
+var particlesCoin;
+var particlesCoin2;
+var particlesCoin3;
+var allCoinsCollected = false;
 
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
@@ -44,21 +46,21 @@ scene.registerAfterRender(function () {
     isGrounded();
 
     if(timeCoin > 1){
-        particles4.stop();
+        particlesCoin.stop();
         if(timeCoin >3){
-            particles4.dispose();
+            particlesCoin.dispose();
         }
     }
     if(timeCoin2 > 1){
-        particles5.stop();
+        particlesCoin2.stop();
         if(timeCoin2 >3){
-            particles5.dispose();
+            particlesCoin2.dispose();
         }
     }
     if(timeCoin3 > 1){
-        particles10.stop();
+        particlesCoin3.stop();
         if(timeCoin3 >3){
-            particles10.dispose();
+            particlesCoin3.dispose();
         }
     }
     
@@ -133,6 +135,7 @@ scene.registerAfterRender(function () {
     }
 
     if (inputKeys[" "] && player.grounded) {
+        dmg = false;
         player.grounded = false;
         timeJump = 1;
         player.acceleration.y = 2.2 + gravity;
@@ -251,7 +254,7 @@ function checkFront() {
     var intersectLine3 = new BABYLON.MeshBuilder.CreateLines("intersectLine3", {points: [player.mesh.position, halfPoint2]}, scene);
     for (obj of groundObjects) {
         if (intersectLine2.intersectsMesh(obj, false) || intersectLine3.intersectsMesh(obj, false)) {
-            checkMaterial(obj);
+            checkMaterial(obj, false);
         }
     }
     intersectLine2.dispose();
@@ -259,9 +262,9 @@ function checkFront() {
 }
 
 // Manage the velocities, it might not be elegant, but works for sure!
-function checkMaterial(obj) {
+function checkMaterial(obj, resetDmg = true) {
     if(obj.material.id == "fireM"){
-        dmg = false;
+        if(resetDmg) dmg = false;
         if(obj.id == "fireBox" && fireIsOn == false){
             fireON();  
         }
@@ -270,19 +273,19 @@ function checkMaterial(obj) {
         }
     }
     if(obj.id == "coinBox" && coinIsOn == false){
-        dmg = false;
+        if(resetDmg) dmg = false;
         coinON();
         player.coins++;
         updateCoins();
     }
     if(obj.id == "coinBox2" && coinIsOn2 == false){
-        dmg = false;
+        if(resetDmg) dmg = false;
         coinON2();
         player.coins++;
         updateCoins();
     }
     if(obj.id == "coinBox3" && coinIsOn3 == false){
-        dmg = false;
+        if(resetDmg) dmg = false;
         coinON3();
         player.coins++;
         updateCoins();
@@ -296,7 +299,7 @@ function checkMaterial(obj) {
             dmg = true;
         }
     }
-    if(obj.id == "portalBox" && end == true){
+    if(obj.id == "portalBox" && allCoinsCollected == true && endGame == false){
         endLevel();
         inputKeys = {};
         scene.actionManager = null;
@@ -304,14 +307,14 @@ function checkMaterial(obj) {
     }
     if(obj.material.id == "multiIce"){
         player.grounded = true;
-        dmg = false;
+        if(resetDmg) dmg = false;
         ice = true;
         walk = 0.01;
         run = 0.015;
     }
     else if(obj.material.id == "multiGround"){
         player.grounded = true;
-        dmg = false;
+        if(resetDmg) dmg = false;
         ice = false;
         walk = 0.03;
         run = 0.06;
@@ -319,8 +322,8 @@ function checkMaterial(obj) {
 }
 
 function checkPortal(){
-    if(player.coins == 3 && end == false){
+    if(player.coins == 3 && allCoinsCollected == false){
         portalON();
-        end = true;
+        allCoinsCollected = true;
     }
 }

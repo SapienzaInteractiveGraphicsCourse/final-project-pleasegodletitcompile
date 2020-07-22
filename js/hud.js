@@ -160,7 +160,6 @@ function menu(gameOver = false) {
 }
 
 function endLevel(){
-
     endGame = true;
 
     endGamePanel = new BABYLON.GUI.StackPanel();
@@ -173,7 +172,7 @@ function endLevel(){
     advancedTexture.addControl(endGamePanel);
     
     var endText = new BABYLON.GUI.TextBlock("endtext", "Congratulations!!!");
-    endText.text = "Congratulations!!!";
+    if(nextLevel == null) endText.text = "The End"; // Last level case
     
     endText.fontSize = "30px";
     endText.height = "60px";
@@ -186,12 +185,14 @@ function endLevel(){
         location.reload();
     });
 
-    var nextLevelButton = new BABYLON.GUI.Button.CreateSimpleButton("nextLevelButton", "Next Level");
-    nextLevelButton.height = "40px";
-    endGamePanel.addControl(nextLevelButton);
-    nextLevelButton.onPointerClickObservable.add(function() {
-        window.location.href = "../level3.html";
-    });
+    if(nextLevel != null) { // If it is not the last level
+        var nextLevelButton = new BABYLON.GUI.Button.CreateSimpleButton("nextLevelButton", "Next Level");
+        nextLevelButton.height = "40px";
+        endGamePanel.addControl(nextLevelButton);
+        nextLevelButton.onPointerClickObservable.add(function() {
+            window.location.href = nextLevel;
+        });
+    }
 
     var mainMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("mainMenuButton", "Leo è ncojo(Main menu)");
     mainMenuButton.height = "40px";
