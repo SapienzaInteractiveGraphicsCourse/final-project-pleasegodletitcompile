@@ -32,6 +32,7 @@ var thunder1;
 var thunder2;
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
+// checkpoint = new BABYLON.Vector3(150,21,0);
 
 var platformHeight = 2;
 var platformWidthSmall = 5;
@@ -65,7 +66,7 @@ var createScene = function() {
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
-    // light.intensity = 0.5;
+    light.intensity = 0.5;
 
 
     // Clouds
@@ -524,41 +525,29 @@ var createScene = function() {
 
     // Other models
     {
-    
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp1_B.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(3,1,6);
+        newMeshes[0].scaling = new BABYLON.Vector3(-3,3,3);
+        newMeshes[0].rotate(new BABYLON.Vector3(0,1,0), deg2rad(90));
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2_B.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(57,11,9);
+        newMeshes[0].scaling = new BABYLON.Vector3(3,3,3);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp1_M.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(148.5,16,9);
+        newMeshes[0].scaling = new BABYLON.Vector3(3,3,-3);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2_M.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(179.5,16,9);
+        newMeshes[0].scaling = new BABYLON.Vector3(3,3,-3);
+    });
+
 
     }
-
-    // // Bush
-    // BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush1.gltf", scene, function(newMeshes) {
-    //     var bush = newMeshes[0];
-    //     bush.position = new BABYLON.Vector3(10,1,3);
-    //     bush.scaling = new BABYLON.Vector3(2,2,2);
-    // });
-
-    // // Bush 2
-    // BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "bush2.gltf", scene, function(newMeshes) {
-    //     newMeshes[0].position = new BABYLON.Vector3(20,5,3);
-    //     newMeshes[0].scaling = new BABYLON.Vector3(2,2,2);
-    // });
-
-
-    // // Stairs 1
-    // for (var i=0; i<4; i++) {
-    //     var step = BABYLON.MeshBuilder.CreateBox(`step1_${i}`, {width:2, height:2, depth:10}, scene);
-    //     step.position = new BABYLON.Vector3(78+5*i, 8-2*i, 0);
-    //     step.checkCollisions = true;
-    //     groundObjects.push(step);
-    //     step.material = ground;
-    // }
-
-    // // Stairs 2
-    // for (var i=0; i<5; i++) {
-    //     var step = BABYLON.MeshBuilder.CreateBox(`step2_${i}`, {width:2, height:3+2*i, depth:10}, scene);
-    //     step.position = new BABYLON.Vector3(119+3*i, 0.5+i, 0);
-    //     step.checkCollisions = true;
-    //     groundObjects.push(step);
-    //     step.material = ground;
-    // }
 
 
     // Music
