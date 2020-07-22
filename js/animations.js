@@ -150,6 +150,14 @@ function snowMan(){
     scene.beginAnimation(snowRA, 0, framerate, true, 1);
     snowRA2.animations.push(RotateRightArm)
     scene.beginAnimation(snowRA2, 0, framerate, true, 1);
+    snowRA3.animations.push(RotateRightArm)
+    scene.beginAnimation(snowRA3, 0, framerate, true, 1);
+    snowRA4.animations.push(RotateRightArm)
+    scene.beginAnimation(snowRA4, 0, framerate, true, 1);
+    snowRA5.animations.push(RotateRightArm)
+    scene.beginAnimation(snowRA5, 0, framerate, true, 1);
+    snowRA6.animations.push(RotateRightArm)
+    scene.beginAnimation(snowRA6, 0, framerate, true, 1);
 }
 
 
