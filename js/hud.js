@@ -141,7 +141,7 @@ function menu(gameOver = false) {
         window.location.href = "../index.html";
     });
 
-    var levelMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("levelMenuButton", "Select Level");
+    var levelMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("levelMenuButton", "Level Select");
     levelMenuButton.height = "40px";
     menuPanel.addControl(levelMenuButton);
     levelMenuButton.onPointerClickObservable.add(function() {
