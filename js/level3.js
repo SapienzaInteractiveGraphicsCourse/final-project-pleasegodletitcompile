@@ -5,7 +5,6 @@ var engine = new BABYLON.Engine(canvas, true);
 
 var camera;
 
-//Time to try to implement gravity and run
 var timeWalk = 0;
 var timeJump = 0;
 var timeSlide = 0;
@@ -38,13 +37,11 @@ var spikes4;
 var spikes5;
 var spikes6;
 
-
 var dmg = false;
 
 var snowAnim = false;
 
 var isReady = false;
-
 
 var widthS = 5;
 var widthM = 20;
@@ -54,9 +51,6 @@ var height = 2;
 
 var depth = 15;
 
-
-
-
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
 var platformHeight = 2;
@@ -65,6 +59,8 @@ var helmet;
 
 // List of objects that are considered ground
 var groundObjects = [];
+
+var nextLevel = null;
 
 var createScene = function() {
     // Loading UI
@@ -239,9 +235,8 @@ var createScene = function() {
 
     // Platform 1 ground
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:widthB, height:height, depth:depth}, scene);     //{width:65, height:2, depth:10}, scene);
-    platform1.position = new BABYLON.Vector3(0, 0, 5);     //(7.5, 0, 0);
+    platform1.position = new BABYLON.Vector3(0, 0, 5);
     platform1.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform1.material = multimatGrassB;
     platform1.subMeshes = [];
     var verticesCount = platform1.getTotalVertices();
@@ -268,7 +263,7 @@ var createScene = function() {
         treeBall2.position = new BABYLON.Vector3(-20,1.5,9);
         treeBall2.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
-
+/*
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "red_apple.gltf", scene, function(newMeshes) {
         var redApple = newMeshes[0];
         //flowers.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
@@ -289,18 +284,32 @@ var createScene = function() {
         yellowApple.position = new BABYLON.Vector3(11,6.5,4);
         yellowApple.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
+*/
+
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "longTree.gltf", scene, function(newMeshes) {
+        var longTree = newMeshes[0];
+        longTree.position = new BABYLON.Vector3(0,1.5,9);
+        longTree.scaling = new BABYLON.Vector3(0.05, 0.05, 0.05);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "longTree.gltf", scene, function(newMeshes) {
+        var longTree = newMeshes[0];
+        longTree.position = new BABYLON.Vector3(18,1.5,9);
+        longTree.scaling = new BABYLON.Vector3(0.05, 0.05, 0.05);
+    });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "woodColored.gltf", scene, function(newMeshes) {
         var wood = newMeshes[0];
         wood.rotate( BABYLON.Axis.Y, -Math.PI/4 , BABYLON.Space.WORLD);
-        wood.position = new BABYLON.Vector3(0,1.5,9);
+        wood.position = new BABYLON.Vector3(-7,1.5,9);
         wood.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "woodColored.gltf", scene, function(newMeshes) {
         var wood = newMeshes[0];
         wood.rotate( BABYLON.Axis.Y, -Math.PI/4 , BABYLON.Space.WORLD);
-        wood.position = new BABYLON.Vector3(-10,1.5,9);
+        wood.position = new BABYLON.Vector3(-12,1.5,9);
         wood.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
 
@@ -308,7 +317,7 @@ var createScene = function() {
         var butterfly = newMeshes[0];
         butterfly.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
         butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(-0.5,3.5,8);
+        butterfly.position = new BABYLON.Vector3(-6,3.5,8);
         butterfly.scaling = new BABYLON.Vector3(25, 25, 25);
     });
 
@@ -323,7 +332,6 @@ var createScene = function() {
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Animals/", "Deer.gltf", scene, function(newMeshes) {
         var deer = newMeshes[0];
         deer.rotate( BABYLON.Axis.Y, Math.PI/3 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
         deer.position = new BABYLON.Vector3(16, 0.99, 8);
         deer.scaling = new BABYLON.Vector3(1, 1, 1);
         
@@ -335,9 +343,8 @@ var createScene = function() {
 
     //Platform2 
     var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:widthM, height:height, depth:depth}, scene);
-    platform2.position = new BABYLON.Vector3(45, -15, 5);     //(7.5, 0, 0);
+    platform2.position = new BABYLON.Vector3(45, -15, 5);
     platform2.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform2.material = multimatGrassM;
     platform2.subMeshes = [];
     var verticesCount = platform2.getTotalVertices();
@@ -361,9 +368,8 @@ var createScene = function() {
 
     //Platform3 
     var platform3 = BABYLON.MeshBuilder.CreateBox('platform3', {width:widthS, height:height, depth:depth}, scene);
-    platform3.position = new BABYLON.Vector3(35, 10, 5);     //(7.5, 0, 0);
+    platform3.position = new BABYLON.Vector3(35, 10, 5);
     platform3.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform3.material = multimatGrassS;
     platform3.subMeshes = [];
     var verticesCount = platform3.getTotalVertices();
@@ -377,37 +383,30 @@ var createScene = function() {
 
     groundObjects.push(platform3);
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "fleur.gltf", scene, function(newMeshes) {
-        var butterfly = newMeshes[0];
-        //butterfly.rotate( BABYLON.Axis.Y, Math.PI/2 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(35, 10, 9);
-        butterfly.scaling = new BABYLON.Vector3(2, 2, 2);
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "fleur.gltf", scene, function(newMeshes) {
+        var fleur = newMeshes[0];
+        fleur.position = new BABYLON.Vector3(35, 10, 9);
+        fleur.scaling = new BABYLON.Vector3(2, 2, 2);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "fleur.gltf", scene, function(newMeshes) {
-        var butterfly = newMeshes[0];
-        //butterfly.rotate( BABYLON.Axis.Y, Math.PI/2 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(34, 10, 10);
-        butterfly.scaling = new BABYLON.Vector3(2, 2, 2);
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "fleur.gltf", scene, function(newMeshes) {
+        var fleur = newMeshes[0];
+        fleur.position = new BABYLON.Vector3(34, 10, 10);
+        fleur.scaling = new BABYLON.Vector3(2, 2, 2);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "fleur.gltf", scene, function(newMeshes) {
-        var butterfly = newMeshes[0];
-        //butterfly.rotate( BABYLON.Axis.Y, Math.PI/2 , BABYLON.Space.WORLD);
-        //butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
-        butterfly.position = new BABYLON.Vector3(36, 10, 10);
-        butterfly.scaling = new BABYLON.Vector3(2, 2, 2);
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "fleur.gltf", scene, function(newMeshes) {
+        var fleur = newMeshes[0];
+        fleur.position = new BABYLON.Vector3(36, 10, 10);
+        fleur.scaling = new BABYLON.Vector3(2, 2, 2);
     });
 
 
 
     //Platform4 
     var platform4 = BABYLON.MeshBuilder.CreateBox('platform4', {width:widthM, height:height, depth:depth}, scene);
-    platform4.position = new BABYLON.Vector3(50, 20, 5);     //(7.5, 0, 0);
+    platform4.position = new BABYLON.Vector3(50, 20, 5);
     platform4.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform4.material = multimatGrassM;
     platform4.subMeshes = [];
     var verticesCount = platform4.getTotalVertices();
@@ -428,11 +427,56 @@ var createScene = function() {
         lowTree.scaling = new BABYLON.Vector3(10, 10, 10);
     });
 
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "staccionata.gltf", scene, function(newMeshes) {
+        var staccionata = newMeshes[0];
+        staccionata.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        staccionata.position = new BABYLON.Vector3(45, 20.5, 8);
+        staccionata.scaling = new BABYLON.Vector3(1, 1, 1);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "staccionata.gltf", scene, function(newMeshes) {
+        var staccionata = newMeshes[0];
+        staccionata.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        staccionata.position = new BABYLON.Vector3(50, 20.5, 8);
+        staccionata.scaling = new BABYLON.Vector3(1, 1, 1);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "staccionata.gltf", scene, function(newMeshes) {
+        var staccionata = newMeshes[0];
+        staccionata.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        staccionata.position = new BABYLON.Vector3(55, 20.5, 8);
+        staccionata.scaling = new BABYLON.Vector3(1, 1, 1);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(45, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(48, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(55, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "plant.gltf", scene, function(newMeshes) {
+        var plant = newMeshes[0];
+        plant.position = new BABYLON.Vector3(58, 21, 9);
+        plant.scaling = new BABYLON.Vector3(0.005, 0.005, 0.005);
+    });
+
+
     //Platform5 
     var platform5 = BABYLON.MeshBuilder.CreateBox('platform5', {width:widthS, height:height, depth:depth}, scene);
-    platform5.position = new BABYLON.Vector3(72, 10, 5);     //(7.5, 0, 0);
+    platform5.position = new BABYLON.Vector3(72, 10, 5);
     platform5.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform5.material = multimatGrassS;
     platform5.subMeshes = [];
     var verticesCount = platform5.getTotalVertices();
@@ -449,9 +493,8 @@ var createScene = function() {
 
     //Platform6 
     var platform6 = BABYLON.MeshBuilder.CreateBox('platform6', {width:widthS, height:height, depth:depth}, scene);
-    platform6.position = new BABYLON.Vector3(72, 10, 5);     //(7.5, 0, 0);
+    platform6.position = new BABYLON.Vector3(72, 10, 5);
     platform6.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform6.material = multimatGrassS;
     platform6.subMeshes = [];
     var verticesCount = platform6.getTotalVertices();
@@ -467,9 +510,8 @@ var createScene = function() {
 
     //Platform7 
     var platform7 = BABYLON.MeshBuilder.CreateBox('platform7', {width:widthB, height:height, depth:depth}, scene);
-    platform7.position = new BABYLON.Vector3(90, -5, 5);     //(7.5, 0, 0);
+    platform7.position = new BABYLON.Vector3(90, -5, 5);
     platform7.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform7.material = multimatGrassB;
     platform7.subMeshes = [];
     var verticesCount = platform7.getTotalVertices();
@@ -485,35 +527,75 @@ var createScene = function() {
  
 
     //object Platform 7
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "stone.gltf", scene, function(newMeshes) {
+        var stone = newMeshes[0];
+        stone.position = new BABYLON.Vector3(68, -3.8, 0);
+        stone.scaling = new BABYLON.Vector3(2, 2, 2);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "stone_moss.gltf", scene, function(newMeshes) {
+        var stone = newMeshes[0];
+        stone.position = new BABYLON.Vector3(72, -3.8, 9);
+        stone.scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree = newMeshes[0];
-        lowPolyTree.position = new BABYLON.Vector3(70, -4, 14);
+        lowPolyTree.position = new BABYLON.Vector3(70, -4.5, 14);
         lowPolyTree.scaling = new BABYLON.Vector3(5, 5, 5);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "flowers.gltf", scene, function(newMeshes) {
+        var flowers = newMeshes[0];
+        flowers.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        flowers.position = new BABYLON.Vector3(76, -4, 9);
+        flowers.scaling = new BABYLON.Vector3(7, 7, 7);
     });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree2 = newMeshes[0];
-        lowPolyTree2.position = new BABYLON.Vector3(80, -4, 14);
+        lowPolyTree2.position = new BABYLON.Vector3(80, -4.5, 15);
         lowPolyTree2.scaling = new BABYLON.Vector3(5, 5, 5);
     }); 
 
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "stone_moss.gltf", scene, function(newMeshes) {
+        var stone = newMeshes[0];
+        stone.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        stone.position = new BABYLON.Vector3(92, -3.8, 9);
+        stone.scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Animals/", "butterfly.gltf", scene, function(newMeshes) {
+        var butterfly = newMeshes[0];
+        butterfly.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
+        butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
+        butterfly.position = new BABYLON.Vector3(90, -0.5, 8);
+        butterfly.scaling = new BABYLON.Vector3(26, 26, 26);
+    });
+
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree3 = newMeshes[0];
-        lowPolyTree3.position = new BABYLON.Vector3(90, -4, 14);
+        lowPolyTree3.position = new BABYLON.Vector3(90, -4.5, 15);
         lowPolyTree3.scaling = new BABYLON.Vector3(5, 5, 5);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "flowers.gltf", scene, function(newMeshes) {
+        var flowers = newMeshes[0];
+        flowers.rotate( BABYLON.Axis.Y, Math.PI/2, BABYLON.Space.WORLD);
+        flowers.position = new BABYLON.Vector3(96, -4, 9);
+        flowers.scaling = new BABYLON.Vector3(7, 7, 7);
     });
 
     BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Vegetables/", "LowPolyTree01.gltf", scene, function(newMeshes) {
         var lowPolyTree4 = newMeshes[0];
-        lowPolyTree4.position = new BABYLON.Vector3(100, -4, 14);
+        lowPolyTree4.position = new BABYLON.Vector3(100, -4.5, 15);
         lowPolyTree4.scaling = new BABYLON.Vector3(5, 5, 5);
     });
 
     //Platform 8
     var platform8 = BABYLON.MeshBuilder.CreateBox('platform8', {width:widthS, height:height, depth:depth}, scene);
-    platform8.position = new BABYLON.Vector3(120, 5, 5);     //(7.5, 0, 0);
+    platform8.position = new BABYLON.Vector3(120, 5, 5);
     platform8.checkCollisions = true;
-    //groundObjects.push(platform1);
     platform8.material = multimatGrassS;
     platform8.subMeshes = [];
     var verticesCount = platform8.getTotalVertices();
@@ -526,6 +608,21 @@ var createScene = function() {
     new BABYLON.SubMesh(0, 0, verticesCount, 30, 6, platform8);
 
     groundObjects.push(platform8);
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/", "woodColored.gltf", scene, function(newMeshes) {
+        var wood = newMeshes[0];
+        wood.rotate( BABYLON.Axis.Y, -Math.PI/4 , BABYLON.Space.WORLD);
+        wood.position = new BABYLON.Vector3(120, 6.5, 9);
+        wood.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/SpringModels/Animals/", "butterfly.gltf", scene, function(newMeshes) {
+        var butterfly = newMeshes[0];
+        butterfly.rotate( BABYLON.Axis.Y, -Math.PI/2 , BABYLON.Space.WORLD);
+        butterfly.rotate( BABYLON.Axis.Z, Math.PI/4 , BABYLON.Space.WORLD);
+        butterfly.position = new BABYLON.Vector3(120, 8.5, 8);
+        butterfly.scaling = new BABYLON.Vector3(25, 25, 25);
+    });
 
     //Platform 9
     var platform9 = BABYLON.MeshBuilder.CreateBox('platform9', {width:widthS, height:height, depth:depth}, scene);
@@ -1646,11 +1743,16 @@ var createScene = function() {
 
 
     //music
-    var musicl3 = new BABYLON.Sound("musicl2", "../sounds/songs/dance with the trees.mp3", scene, soundReady, {loop:true, volume:0.5, useCustomAttenuation:false});
+    var musicl3 = new BABYLON.Sound("musicl2", "../sounds/levels/level3/POL-unbeatable-guild-short.wav", scene, soundReady, {loop:true, volume:0.2, autoplay:true, useCustomAttenuation:true});
 
     function soundReady(){
         musicl3.play();
     }
+
+    // bird sound
+    rainSound = new BABYLON.Sound("rainSound", "../sounds/level3/meadowlark_daniel-simion.wav", scene, function() {
+        rainSound.play();
+    }, {loop:true, volume:0.1});
 
 
 
@@ -1660,10 +1762,10 @@ var createScene = function() {
     player.mesh.visibility = 0;
     
     //Per non ricominciare ogni volta
-    //player.mesh.position.x = 610;
-    //player.mesh.position.y = 39;
+    player.mesh.position.x = 90;
+    player.mesh.position.y = -1;
 
-    player.mesh.position.y = (player.height + platformHeight)/2.0;
+    //player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
@@ -1688,112 +1790,112 @@ function fireON(){
     fireIsOn = true;
     checkpoint = new BABYLON.Vector3(155, 41, 0);
     //Particles system Fire
-    var particles2 = new BABYLON.GPUParticleSystem("particles2", 5000, scene);
+    var particlesFire = new BABYLON.GPUParticleSystem("particlesFire", 5000, scene);
     //Texture of each particle
-    particles2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles2.emitter = new BABYLON.Vector3(155, 36, 0);
+    particlesFire.emitter = new BABYLON.Vector3(155, 36, 0);
     
     
-    particles2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+    particlesFire.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particlesFire.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
 
     // Colors of all particles
-    particles2.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
-    particles2.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
-    particles2.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
+    particlesFire.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
+    particlesFire.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
+    particlesFire.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
 
     // Size of each particle (random between...
-    particles2.minSize = 0.1;
-    particles2.maxSize = 0.5;
+    particlesFire.minSize = 0.1;
+    particlesFire.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particles2.minLifeTime = 0.05;
-    particles2.maxLifeTime = 0.1;
+    particlesFire.minLifeTime = 0.05;
+    particlesFire.maxLifeTime = 0.1;
 
     // Emission rate
-    particles2.emitRate = 600;
+    particlesFire.emitRate = 600;
 
-    window.ps = particles2;
+    window.ps = particlesFire;
 
     // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+    particlesFire.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles2.gravity = new BABYLON.Vector3(0, 0, -2);
+    particlesFire.gravity = new BABYLON.Vector3(0, 0, -2);
 
     // Direction of each particle after it has been emitted
-    particles2.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
-    particles2.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
+    particlesFire.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
+    particlesFire.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
     
     // Angular speed, in radians
-    particles2.minAngularSpeed = 0;
-    particles2.maxAngularSpeed = Math.PI;
+    particlesFire.minAngularSpeed = 0;
+    particlesFire.maxAngularSpeed = Math.PI;
 
     // Speed
-    particles2.minEmitPower = .01;
-    particles2.maxEmitPower = 30;
+    particlesFire.minEmitPower = .01;
+    particlesFire.maxEmitPower = 30;
 
     // Start the particle system
-    particles2.start();
+    particlesFire.start();
 }
 
 function fireON2(){
     fireIsOn2 = true;
     checkpoint = new BABYLON.Vector3(315,51,0);
     //Particles system Fire
-    var particles3 = new BABYLON.GPUParticleSystem("particles3", 5000, scene);
+    var particlesFire2 = new BABYLON.GPUParticleSystem("particlesFire2", 5000, scene);
     //Texture of each particle
-    particles3.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles3.emitter = new BABYLON.Vector3(315,46,0);
+    particlesFire2.emitter = new BABYLON.Vector3(315,46,0);
     
     
-    particles3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+    particlesFire2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particlesFire2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
 
     // Colors of all particles
-    particles3.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
-    particles3.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
-    particles3.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
+    particlesFire2.color1 = new BABYLON.Color4(1, 0, 0, 1.0);
+    particlesFire2.color2 = new BABYLON.Color4(1, 1, 0, 1.0);
+    particlesFire2.colorDead = new BABYLON.Color4(1, 0, 0, 0.0);
 
     // Size of each particle (random between...
-    particles3.minSize = 0.1;
-    particles3.maxSize = 0.5;
+    particlesFire2.minSize = 0.1;
+    particlesFire2.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particles3.minLifeTime = 0.05;
-    particles3.maxLifeTime = 0.1;
+    particlesFire2.minLifeTime = 0.05;
+    particlesFire2.maxLifeTime = 0.1;
 
     // Emission rate
-    particles3.emitRate = 600;
+    particlesFire2.emitRate = 600;
 
-    window.ps = particles3;
+    window.ps = particlesFire2;
 
     // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles3.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+    particlesFire2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles3.gravity = new BABYLON.Vector3(0, 0, -2);
+    particlesFire2.gravity = new BABYLON.Vector3(0, 0, -2);
 
     // Direction of each particle after it has been emitted
-    particles3.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
-    particles3.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
+    particlesFire2.direction1 = new BABYLON.Vector3(0.2, 1, 0.2);
+    particlesFire2.direction2 = new BABYLON.Vector3(-0.2, 1, -0.2);
     
     // Angular speed, in radians
-    particles3.minAngularSpeed = 0;
-    particles3.maxAngularSpeed = Math.PI;
+    particlesFire2.minAngularSpeed = 0;
+    particlesFire2.maxAngularSpeed = Math.PI;
 
     // Speed
-    particles3.minEmitPower = .01;
-    particles3.maxEmitPower = 30;
+    particlesFire2.minEmitPower = .01;
+    particlesFire2.maxEmitPower = 30;
 
     // Start the particle system
-    particles3.start();
+    particlesFire2.start();
 }
 
 function coinON(){
@@ -1801,55 +1903,55 @@ function coinON(){
     
     coinIsOn = true;
     //Particles system Fire
-    particles4 = new BABYLON.GPUParticleSystem("particles4", 100, scene);
+    particlesCoin = new BABYLON.GPUParticleSystem("particlesCoin", 100, scene);
     //Texture of each particle
-    particles4.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles4.emitter = new BABYLON.Vector3(165, 36, 0);
+    particlesCoin.emitter = new BABYLON.Vector3(165, 36, 0);
     
-    particles4.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles4.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+    particlesCoin.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particlesCoin.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
 
     // Colors of all particles
-    particles4.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles4.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles4.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+    particlesCoin.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particlesCoin.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particlesCoin.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
 
     // Size of each particle (random between...
-    particles4.minSize = 0.1;
-    particles4.maxSize = 0.5;
+    particlesCoin.minSize = 0.1;
+    particlesCoin.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particles4.minLifeTime = 0.01;
-    particles4.maxLifeTime = 0.01;
+    particlesCoin.minLifeTime = 0.01;
+    particlesCoin.maxLifeTime = 0.01;
 
     // Emission rate
-    particles4.emitRate = 100;
+    particlesCoin.emitRate = 100;
 
-    window.ps = particles4;
+    window.ps = particlesCoin;
 
     // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles4.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+    particlesCoin.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles4.gravity = new BABYLON.Vector3(0, 0, 0);
+    particlesCoin.gravity = new BABYLON.Vector3(0, 0, 0);
 
     // Direction of each particle after it has been emitted
-    particles4.direction1 = new BABYLON.Vector3(1, 1, 0.2);
-    particles4.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
+    particlesCoin.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particlesCoin.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
 
     // Angular speed, in radians
-    particles4.minAngularSpeed = 0;
-    particles4.maxAngularSpeed = Math.PI;
+    particlesCoin.minAngularSpeed = 0;
+    particlesCoin.maxAngularSpeed = Math.PI;
 
     // Speed
-    particles4.minEmitPower = 10;
-    particles4.maxEmitPower = 10;
+    particlesCoin.minEmitPower = 10;
+    particlesCoin.maxEmitPower = 10;
 
     // Start the particle system
-    particles4.start();
+    particlesCoin.start();
 }
 
 function coinON2(){
@@ -1857,55 +1959,55 @@ function coinON2(){
     
     coinIsOn2 = true;
     //Particles system Fire
-    particles5 = new BABYLON.GPUParticleSystem("particles5", 100, scene);
+    particlesCoin2 = new BABYLON.GPUParticleSystem("particlesCoin2", 100, scene);
     //Texture of each particle
-    particles5.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin2.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles5.emitter = new BABYLON.Vector3(257, 65, 0);
+    particlesCoin2.emitter = new BABYLON.Vector3(257, 65, 0);
     
-    particles5.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles5.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+    particlesCoin2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particlesCoin2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
 
     // Colors of all particles
-    particles5.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles5.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles5.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+    particlesCoin2.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particlesCoin2.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particlesCoin2.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
 
     // Size of each particle (random between...
-    particles5.minSize = 0.1;
-    particles5.maxSize = 0.5;
+    particlesCoin2.minSize = 0.1;
+    particlesCoin2.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particles4.minLifeTime = 0.01;
-    particles4.maxLifeTime = 0.01;
+    particlesCoin.minLifeTime = 0.01;
+    particlesCoin.maxLifeTime = 0.01;
 
     // Emission rate
-    particles5.emitRate = 100;
+    particlesCoin2.emitRate = 100;
 
-    window.ps = particles5;
+    window.ps = particlesCoin2;
 
     // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles5.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+    particlesCoin2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles5.gravity = new BABYLON.Vector3(0, 0, 0);
+    particlesCoin2.gravity = new BABYLON.Vector3(0, 0, 0);
 
     // Direction of each particle after it has been emitted
-    particles5.direction1 = new BABYLON.Vector3(1, 1, 0.2);
-    particles5.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
+    particlesCoin2.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particlesCoin2.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
 
     // Angular speed, in radians
-    particles5.minAngularSpeed = 0;
-    particles5.maxAngularSpeed = Math.PI;
+    particlesCoin2.minAngularSpeed = 0;
+    particlesCoin2.maxAngularSpeed = Math.PI;
 
     // Speed
-    particles5.minEmitPower = 10;
-    particles5.maxEmitPower = 10;
+    particlesCoin2.minEmitPower = 10;
+    particlesCoin2.maxEmitPower = 10;
 
     // Start the particle system
-    particles5.start();
+    particlesCoin2.start();
 }
 
 function coinON3(){
@@ -1913,55 +2015,55 @@ function coinON3(){
     
     coinIsOn3 = true;
     //Particles system Fire
-    particles6 = new BABYLON.GPUParticleSystem("particles6", 100, scene);
+    particlesCoin3 = new BABYLON.GPUParticleSystem("particlesCoin3", 1000, scene);
     //Texture of each particle
-    particles6.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin3.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particles6.emitter = new BABYLON.Vector3(480, 80, 0);
+    particlesCoin3.emitter = new BABYLON.Vector3(480, 80, 0);
     
-    particles6.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
-    particles6.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
+    particlesCoin3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
+    particlesCoin3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
 
     // Colors of all particles
-    particles6.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles6.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
-    particles6.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
+    particlesCoin3.color1 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particlesCoin3.color2 = new BABYLON.Color4(1, 0.84, 0, 1.0);
+    particlesCoin3.colorDead = new BABYLON.Color4(1, 0.84, 0, 0.0);
 
     // Size of each particle (random between...
-    particles6.minSize = 0.1;
-    particles6.maxSize = 0.5;
+    particlesCoin3.minSize = 0.1;
+    particlesCoin3.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particles6.minLifeTime = 0.01;
-    particles6.maxLifeTime = 0.01;
+    particlesCoin3.minLifeTime = 0.01;
+    particlesCoin3.maxLifeTime = 0.01;
 
     // Emission rate
-    particles6.emitRate = 100;
+    particlesCoin3.emitRate = 250;
 
-    window.ps = particles6;
+    window.ps = particlesCoin3;
 
     // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles6.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+    particlesCoin3.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles6.gravity = new BABYLON.Vector3(0, 0, 0);
+    particlesCoin3.gravity = new BABYLON.Vector3(0, 0, 0);
 
     // Direction of each particle after it has been emitted
-    particles6.direction1 = new BABYLON.Vector3(1, 1, 0.2);
-    particles6.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
+    particlesCoin3.direction1 = new BABYLON.Vector3(1, 1, 0.2);
+    particlesCoin3.direction2 = new BABYLON.Vector3(-1, 1, -0.2);
 
     // Angular speed, in radians
-    particles6.minAngularSpeed = 0;
-    particles6.maxAngularSpeed = Math.PI;
+    particlesCoin3.minAngularSpeed = 0;
+    particlesCoin3.maxAngularSpeed = Math.PI;
 
     // Speed
-    particles6.minEmitPower = 10;
-    particles6.maxEmitPower = 10;
+    particlesCoin3.minEmitPower = 10;
+    particlesCoin3.maxEmitPower = 10;
 
     // Start the particle system
-    particles6.start();
+    particlesCoin3.start();
 }
 
 function trapActive(name){
@@ -1976,53 +2078,53 @@ function trapActive(name){
 
 function portalON(){
     //Particles system Portal
-    var particles8 = new BABYLON.ParticleSystem("particles", 5, scene);
+    var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 5, scene);
 
     //Texture of each particle
-    particles8.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
+    particlesPortal.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
     
 
     //Where the particles come from
-    particles8.emitter = new BABYLON.Vector3(630, 39, 0);
-    particles8.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
-    particles8.maxEmitBox = new BABYLON.Vector3(-0.1, -0.5, -2.5); // To...
+    particlesPortal.emitter = new BABYLON.Vector3(630, 39, 0);
+    particlesPortal.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
+    particlesPortal.maxEmitBox = new BABYLON.Vector3(-0.1, -0.5, -2.5); // To...
 
     // Colors of all particles
-    particles8.color1 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
-    particles8.color2 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
-    particles8.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+    particlesPortal.color1 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
+    particlesPortal.color2 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
+    particlesPortal.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
 
     // Size of each particle (random between...
-    particles8.minSize = 0.1;
-    particles8.maxSize = 0.5;
+    particlesPortal.minSize = 0.1;
+    particlesPortal.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particles8.minLifeTime = 0.1;
-    particles8.maxLifeTime = 0.1;
+    particlesPortal.minLifeTime = 0.1;
+    particlesPortal.maxLifeTime = 0.1;
 
     // Emission rate
-    particles8.emitRate = 1;
+    particlesPortal.emitRate = 1;
 
-    window.ps = particles8;
+    window.ps = particlesPortal;
 
     // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
-    particles8.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+    particlesPortal.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
 
     // Set the gravity of all particles
-    particles8.gravity = new BABYLON.Vector3(0, 9.81, 0);
+    particlesPortal.gravity = new BABYLON.Vector3(0, 9.81, 0);
 
     // Direction of each particle after it has been emitted
-    particles8.direction1 = new BABYLON.Vector3(-1, 2, 1);
-    particles8.direction2 = new BABYLON.Vector3(-1,-2, 1);
+    particlesPortal.direction1 = new BABYLON.Vector3(-1, 2, 1);
+    particlesPortal.direction2 = new BABYLON.Vector3(-1,-2, 1);
 
     // Angular speed, in radians
-    particles8.minAngularSpeed = 0;
-    particles8.maxAngularSpeed = Math.PI;
+    particlesPortal.minAngularSpeed = 0;
+    particlesPortal.maxAngularSpeed = Math.PI;
 
     // Speed
-    particles8.minEmitPower = .01;
-    particles8.maxEmitPower = 30;
+    particlesPortal.minEmitPower = .01;
+    particlesPortal.maxEmitPower = 30;
 
     // Start the particle system
-    particles8.start();
+    particlesPortal.start();
 }

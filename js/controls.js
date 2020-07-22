@@ -15,7 +15,9 @@ var fireIsOn2 = false;
 var coinIsOn = false;
 var coinIsOn2 = false;
 var coinIsOn3 = false;
-var particles4;
+var particlesCoin;
+var particlesCoin2;
+var particlesCoin3;
 var allCoinsCollected = false;
 
 
@@ -44,21 +46,21 @@ scene.registerAfterRender(function () {
     isGrounded();
 
     if(timeCoin > 1){
-        particles4.stop();
+        particlesCoin.stop();
         if(timeCoin >3){
-            particles4.dispose();
+            particlesCoin.dispose();
         }
     }
     if(timeCoin2 > 1){
-        particles5.stop();
+        particlesCoin2.stop();
         if(timeCoin2 >3){
-            particles5.dispose();
+            particlesCoin2.dispose();
         }
     }
     if(timeCoin3 > 1){
-        particles10.stop();
+        particlesCoin3.stop();
         if(timeCoin3 >3){
-            particles10.dispose();
+            particlesCoin3.dispose();
         }
     }
     
