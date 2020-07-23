@@ -707,6 +707,8 @@ var createScene = function() {
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
+    var portalSound = new BABYLON.Sound("portalSound", "../sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
+
     // Ending Portal
     BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
         var portal = newMeshes[0];
@@ -714,6 +716,7 @@ var createScene = function() {
         portal.scaling = new BABYLON.Vector3(2,2,2);
         portal.rotate(new BABYLON.Vector3(0,1,0), 3.6);
         portal.checkCollisions = true;
+        portalSound.attachToMesh(portal);
     });
 
     // Ending Portal collision box

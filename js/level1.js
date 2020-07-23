@@ -507,12 +507,15 @@ var createScene = function() {
     // Platform ground medium
     addPlatform(multimatGroundM, platformWidthMedium, 435, 50);
 
+    var portalSound = new BABYLON.Sound("portalSound", "../sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
+
     // Portal
     BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
         var portal = newMeshes[0];
         portal.position = new BABYLON.Vector3(435,50,1);
         portal.scaling = new BABYLON.Vector3(2,2,2);
         portal.rotate(new BABYLON.Vector3(0,1,0), deg2rad(30));
+        portalSound.attachToMesh(portal);
     });
 
     // Portal collision box
