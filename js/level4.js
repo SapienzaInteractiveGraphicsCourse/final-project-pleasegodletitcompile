@@ -509,7 +509,7 @@ var createScene = function() {
     sunMaterial.emissiveColor = BABYLON.Color3.Yellow();
     //Sun
     BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "sun.gltf", scene, function(newMeshes) {
-        var sun = newMeshes[0];
+        sun = newMeshes[0];
         newMeshes.forEach(element => {
             element.material = sunMaterial;
         });
@@ -571,6 +571,14 @@ var createScene = function() {
         umbrellaSdraioTable.position = new BABYLON.Vector3(195,0,8);
         umbrellaSdraioTable.scaling = new BABYLON.Vector3(2.8,2.8,2.8);
         umbrellaSdraioTable.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Double palmas
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palmeDoppie.gltf", scene, function(newMeshes) {
+        var palmeDoppie = newMeshes[0];
+        palmeDoppie.position = new BABYLON.Vector3(90,-4,-4);
+        palmeDoppie.scaling = new BABYLON.Vector3(2.8,2.8,2.8);
+        palmeDoppie.rotate(new BABYLON.Vector3(0,1,0), 3*Math.PI/2);
     });
 
 
