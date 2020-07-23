@@ -29,7 +29,6 @@ var snowLA2;
 
 var coin;
 
-var sun;
 
 var tutorial1 = false;
 var tutorial2 = false;
@@ -40,6 +39,7 @@ var tutorial6 = false;
 
 var snowAnim = true;
 
+var nextLevel = "../level1.html"
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
@@ -509,14 +509,12 @@ var createScene = function() {
     sunMaterial.emissiveColor = BABYLON.Color3.Yellow();
     //Sun
     BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "sun.gltf", scene, function(newMeshes) {
-        var sun = newMeshes[0];
+        sun = newMeshes[0];
         newMeshes.forEach(element => {
             element.material = sunMaterial;
         });
         sun.scaling = new BABYLON.Vector3(5,5,5);
-        sun.parent = camera.x;
-        sun.position = new BABYLON.Vector3(10,30,100);
-
+        sun.position = new BABYLON.Vector3(10, 20, 75);
     });
 
     // Palm 1
@@ -557,6 +555,30 @@ var createScene = function() {
         ball.position = new BABYLON.Vector3(-2,1,9);
         ball.scaling = new BABYLON.Vector3(3,3,3);
         ball.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Beach ball
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
+        var ball = newMeshes[0];
+        ball.position = new BABYLON.Vector3(-2,1,9);
+        ball.scaling = new BABYLON.Vector3(3,3,3);
+        ball.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Umbrella sdraio table
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "umbrellaSdraioTable.gltf", scene, function(newMeshes) {
+        var umbrellaSdraioTable = newMeshes[0];
+        umbrellaSdraioTable.position = new BABYLON.Vector3(195,0,8);
+        umbrellaSdraioTable.scaling = new BABYLON.Vector3(2.8,2.8,2.8);
+        umbrellaSdraioTable.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Double palmas
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palmeDoppie.gltf", scene, function(newMeshes) {
+        var palmeDoppie = newMeshes[0];
+        palmeDoppie.position = new BABYLON.Vector3(90,-4,-4);
+        palmeDoppie.scaling = new BABYLON.Vector3(2.8,2.8,2.8);
+        palmeDoppie.rotate(new BABYLON.Vector3(0,1,0), 3*Math.PI/2);
     });
 
 
@@ -749,16 +771,18 @@ var createScene = function() {
 
     scene.executeWhenReady( function() {
         engine.hideLoadingUI();
+        scene.registerAfterRender(function () {
+            sun.position.x = player.mesh.position.x;
+        });
     });
-
-    scene.registerAfterRender(function () {
-        //sun.position.x = 0.4;
-    });
-
+    
+    
     return scene;
 }
 
+
 var scene = createScene();
+
 
 function coinON(){
     CoinDisappear(coin1);

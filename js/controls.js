@@ -23,6 +23,8 @@ var allCoinsCollected = false;
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
+//var cashRecover = new BABYLON.Sound("cashRecover", "../sounds/money/cashRegister.mp3", scene, {volume:0.5});
+
 //var runsound = new BABYLON.Sound("runsound", "../sounds/net.wav", scene, {volume:0.8, });
 
 scene.actionManager = new BABYLON.ActionManager(scene);
