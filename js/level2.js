@@ -122,7 +122,8 @@ var createScene = function() {
     var iceM1 = new BABYLON.StandardMaterial("ice1", scene);
     iceM1.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
     iceM1.bumpTexture.uScale = 0.133;
-    iceM1.bumpTexture.vScale = 0.06;
+    iceM1.bumpTexture.vScale = 0.06; 
+    
     iceM1.diffuseColor = new BABYLON.Color3(0, 1, 1);
 
     var iceM2 = new BABYLON.StandardMaterial("ice2", scene);
