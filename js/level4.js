@@ -502,9 +502,17 @@ var createScene = function() {
     groundObjects.push(platform1);
     
 
+    var sunMaterial = new BABYLON.StandardMaterial("sunMaterial", scene);
+    sunMaterial.diffuseColor = new BABYLON.Color3(0,0,0);
+    sunMaterial.specularColor = new BABYLON.Color3(0,0,0);
+    sunMaterial.ambientColor = new BABYLON.Color3(0,0,0);
+    sunMaterial.emissiveColor = BABYLON.Color3.Yellow();
     //Sun
     BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "sun.gltf", scene, function(newMeshes) {
         var sun = newMeshes[0];
+        newMeshes.forEach(element => {
+            element.material = sunMaterial;
+        });
         sun.scaling = new BABYLON.Vector3(5,5,5);
         sun.parent = camera.x;
         sun.position = new BABYLON.Vector3(10,30,100);
