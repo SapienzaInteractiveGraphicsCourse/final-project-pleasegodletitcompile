@@ -23,7 +23,7 @@ var allCoinsCollected = false;
 
 var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
-var cashRecover = new BABYLON.Sound("cashRecover", "../sounds/money/cashRegister.mp3", scene, {volume:0.5});
+//var cashRecover = new BABYLON.Sound("cashRecover", "../sounds/money/cashRegister.mp3", scene, {volume:0.5});
 
 //var runsound = new BABYLON.Sound("runsound", "../sounds/net.wav", scene, {volume:0.8, });
 
@@ -277,7 +277,6 @@ function checkMaterial(obj, resetDmg = true) {
     if(obj.id == "coinBox" && coinIsOn == false){
         if(resetDmg) dmg = false;
         coinON();
-        cashRecover.play();
         player.coins++;
         updateCoins();
     }
