@@ -307,21 +307,27 @@ function checkMaterial(obj, resetDmg = true) {
     }
     if(obj.id == "tutorial1" && tutorial1 == false){
         tutorialfunc(obj);
+        tutorialIsOpen = true;
     }
-    if(obj.id == "tutorial2" && tutorial2 == false){
+    else if(obj.id == "tutorial2" && tutorial2 == false){
         tutorial2func(obj);
+        tutorialIsOpen = true;
     }
-    if(obj.id == "tutorial3" && tutorial3 == false){
+    else if(obj.id == "tutorial3" && tutorial3 == false){
         tutorial3func(obj);
+        tutorialIsOpen = true;
     }
-    if(obj.id == "tutorial4" && tutorial4 == false){
+    else if(obj.id == "tutorial4" && tutorial4 == false){
         tutorial4func(obj);
+        tutorialIsOpen = true;
     }
-    if(obj.id == "tutorial5" && tutorial5 == false){
+    else if(obj.id == "tutorial5" && tutorial5 == false){
         tutorial5func(obj);
+        tutorialIsOpen = true;
     }
-    if(obj.id == "tutorial6" && tutorial6 == false){
+    else if(obj.id == "tutorial6" && tutorial6 == false){
         tutorial6func(obj);
+        tutorialIsOpen = true;
     }
     if(obj.id == "portalBox" && allCoinsCollected == true && endGame == false){
         endLevel();

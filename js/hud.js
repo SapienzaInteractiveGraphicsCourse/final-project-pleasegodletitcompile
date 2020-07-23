@@ -227,6 +227,7 @@ function tutorialfunc(obj){
     tutorialPanel.addControl(tutorial11);
     tutorial11.onPointerClickObservable.add(function() {
         tutorialPanel.isVisible = false;
+        tutorialIsOpen = false;
     });
 };
     
@@ -248,6 +249,7 @@ function tutorial2func(){
     tutorialPanel2.addControl(tutorial22);
     tutorial22.onPointerClickObservable.add(function() {
         tutorialPanel2.isVisible = false;
+        tutorialIsOpen = false;
     });
 };
 
@@ -269,6 +271,7 @@ function tutorial3func(obj){
     tutorialPanel3.addControl(tutorial33);
     tutorial33.onPointerClickObservable.add(function() {
         tutorialPanel3.isVisible = false;
+        tutorialIsOpen = false;
     });
 };
 
@@ -290,6 +293,7 @@ function tutorial4func(obj){
     tutorialPanel4.addControl(tutorial44);
     tutorial44.onPointerClickObservable.add(function() {
         tutorialPanel4.isVisible = false;
+        tutorialIsOpen = false;
     });
 };
 
@@ -310,6 +314,7 @@ function tutorial5func(obj){
     tutorialPanel5.addControl(tutorial55);
     tutorial55.onPointerClickObservable.add(function() {
         tutorialPanel5.isVisible = false;
+        tutorialIsOpen = false;
     });
 };
 
@@ -330,5 +335,6 @@ function tutorial6func(obj){
     tutorialPanel6.addControl(tutorial66);
     tutorial66.onPointerClickObservable.add(function() {
         tutorialPanel6.isVisible = false;
+        tutorialIsOpen = false;
     });
 };
