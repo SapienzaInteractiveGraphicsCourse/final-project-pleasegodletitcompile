@@ -317,6 +317,9 @@ function checkMaterial(obj, resetDmg = true) {
     if(obj.id == "tutorial5" && tutorial5 == false){
         tutorial5func(obj);
     }
+    if(obj.id == "tutorial6" && tutorial6 == false){
+        tutorial6func(obj);
+    }
     if(obj.id == "portalBox" && allCoinsCollected == true && endGame == false){
         endLevel();
         inputKeys = {};
@@ -329,6 +332,13 @@ function checkMaterial(obj, resetDmg = true) {
         ice = true;
         walk = 0.01;
         run = 0.015;
+    }
+    else if(obj.material.id == "multiSand"){
+        player.grounded = true;
+        if(resetDmg) dmg = false;
+        ice = false;
+        walk = 0.005;
+        run = 0.01;
     }
     else if(obj.material.id == "multiGround"){
         player.grounded = true;

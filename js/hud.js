@@ -89,6 +89,7 @@ var tutorialPanel2;
 var tutorialPanel3;
 var tutorialPanel4;
 var tutorialPanel5;
+var tutorialPanel6;
 
 // Menu button
 menuButton = new BABYLON.GUI.Button.CreateImageOnlyButton("menuButton", "textures/menu.png");
@@ -221,7 +222,7 @@ function tutorialfunc(obj){
 
     tutorial1 = true;
     var tutorial11 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton1", "Hi, welcome to the tutorial, here you will learn the basis of the game. Go head. (click to continue)");
-    tutorial11.fontSize = "12px"
+    tutorial11.fontSize = "15px"
     tutorial11.height = "50px";
     tutorialPanel.addControl(tutorial11);
     tutorial11.onPointerClickObservable.add(function() {
@@ -242,7 +243,7 @@ function tutorial2func(){
 
     tutorial2 = true;
     var tutorial22 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton2", "In the levels there are campfires, that are activated when you pass on them. Those are checkpoints, \n from where you will restart when fall off the platforms. (click to continue)");
-    tutorial22.fontSize = "12px"
+    tutorial22.fontSize = "15px"
     tutorial22.height = "50px";
     tutorialPanel2.addControl(tutorial22);
     tutorial22.onPointerClickObservable.add(function() {
@@ -263,7 +264,7 @@ function tutorial3func(obj){
 
     tutorial3 = true;
     var tutorial33 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton3", "Be aware, there are traps placed in the level, if you go on them you will lose one heart. If all the \n hearts are lost, you have to start the level from the beginning. (click to continue)");
-    tutorial33.fontSize = "12px"
+    tutorial33.fontSize = "15px"
     tutorial33.height = "50px";
     tutorialPanel3.addControl(tutorial33);
     tutorial33.onPointerClickObservable.add(function() {
@@ -284,7 +285,7 @@ function tutorial4func(obj){
 
     tutorial4 = true;
     var tutorial44 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton4", "There are some jumps that require to run (pressing button p), in order to overcome them. So go back, \n take a run and try to jump to the next platform. Remember, the run is really important to overcome obstacles. (click to continue)");
-    tutorial44.fontSize = "10px"
+    tutorial44.fontSize = "15px"
     tutorial44.height = "40px";
     tutorialPanel4.addControl(tutorial44);
     tutorial44.onPointerClickObservable.add(function() {
@@ -304,10 +305,30 @@ function tutorial5func(obj){
 
     tutorial5 = true;
     var tutorial55 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton5", "tutorial coins");
-    tutorial55.fontSize = "10px"
+    tutorial55.fontSize = "15px"
     tutorial55.height = "40px";
     tutorialPanel5.addControl(tutorial55);
     tutorial55.onPointerClickObservable.add(function() {
         tutorialPanel5.isVisible = false;
+    });
+};
+
+function tutorial6func(obj){
+    tutorialPanel6 = new BABYLON.GUI.StackPanel();
+    tutorialPanel6.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
+    tutorialPanel6.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+    tutorialPanel6.isVertical = true;
+    tutorialPanel6.width = 0.8;
+    tutorialPanel6.background = "yellow";
+    tutorialPanel6.color = "blue";
+    advancedTexture.addControl(tutorialPanel6);
+
+    tutorial6 = true;
+    var tutorial66 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton6", "tutorial materials");
+    tutorial66.fontSize = "15px"
+    tutorial66.height = "40px";
+    tutorialPanel6.addControl(tutorial66);
+    tutorial66.onPointerClickObservable.add(function() {
+        tutorialPanel6.isVisible = false;
     });
 };

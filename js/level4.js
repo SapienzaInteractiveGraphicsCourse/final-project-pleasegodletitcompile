@@ -29,14 +29,17 @@ var snowLA2;
 
 var coin;
 
+
 var tutorial1 = false;
 var tutorial2 = false;
 var tutorial3 = false;
 var tutorial4 = false;
 var tutorial5 = false;
+var tutorial6 = false;
 
 var snowAnim = true;
 
+var nextLevel = "../level1.html"
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
@@ -56,7 +59,7 @@ var createScene = function() {
     scene.collisionsEnabled = true;
 
     // Materials
-    {
+    {  
         //Set platforms materials
         // Ground Small Platform
         var groundS1 = new BABYLON.StandardMaterial("groundS1", scene);
@@ -226,17 +229,17 @@ var createScene = function() {
         multimatGroundB.subMaterials.push(groundB3);
     
         // Sand multimaterial
-        var multimatSandS = new BABYLON.MultiMaterial("multiGround", scene);
+        var multimatSandS = new BABYLON.MultiMaterial("multiSand", scene);
         multimatSandS.subMaterials.push(sandS1);
         multimatSandS.subMaterials.push(sandS2);
         multimatSandS.subMaterials.push(sandS3);
     
-        var multimatSandM = new BABYLON.MultiMaterial("multiGround", scene);
+        var multimatSandM = new BABYLON.MultiMaterial("multiSand", scene);
         multimatSandM.subMaterials.push(sandM1);
         multimatSandM.subMaterials.push(sandM2);
         multimatSandM.subMaterials.push(sandM3);
     
-        var multimatSandB = new BABYLON.MultiMaterial("multiGround", scene);
+        var multimatSandB = new BABYLON.MultiMaterial("multiSand", scene);
         multimatSandB.subMaterials.push(sandB1);
         multimatSandB.subMaterials.push(sandB2);
         multimatSandB.subMaterials.push(sandB3);
@@ -256,6 +259,26 @@ var createScene = function() {
         //Set portal material
         var portalM = new BABYLON.StandardMaterial("portalM", scene);
         portalM.diffuseColor = new BABYLON.Color3(0, 0, 0);
+
+        // Skybox
+        var skybox = BABYLON.MeshBuilder.CreateBox("waves", {size:2000.0}, scene);
+        skybox.addRotation(0.0, deg2rad(180), 0.0);
+        var skyboxMaterial = new BABYLON.StandardMaterial("waves", scene);
+        skyboxMaterial.backFaceCulling = false;
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Textures/waves/waves", scene);
+        skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+        skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+        skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+        skyboxMaterial.disableLighting = true;
+        skybox.infiniteDistance = true;
+        skybox.material = skyboxMaterial;
+
+        var rot = 0;
+        scene.registerBeforeRender(function () {
+            skybox.rotation.y = rot;
+            rot += 0.001;
+        });
+
         
 
         //Set tutorial material
@@ -278,7 +301,7 @@ var createScene = function() {
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = true;
-    platform1.material = multimatSandB;
+    platform1.material = multimatGroundB;
 
     platform1.subMeshes = [];
     var verticesCount = platform1.getTotalVertices();
@@ -362,9 +385,26 @@ var createScene = function() {
     new BABYLON.SubMesh(0, 0, verticesCount3, 30, 6, platform3);
     groundObjects.push(platform3);
 
+    // Platform 2
+    var platform2 = BABYLON.MeshBuilder.CreateBox('platform2', {width:20, height:platformHeight, depth:15}, scene);
+    platform2.position = new BABYLON.Vector3(100, -5, 5)
+    platform2.checkCollisions = true;
+    platform2.material = multimatSandM;
+
+    platform2.subMeshes = [];
+    var verticesCount2 = platform2.getTotalVertices();
+
+    new BABYLON.SubMesh(1, 0, verticesCount2, 0, 6, platform2);
+    new BABYLON.SubMesh(1, 0, verticesCount2, 6, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 12, 6, platform2);
+    new BABYLON.SubMesh(2, 0, verticesCount2, 18, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 24, 6, platform2);
+    new BABYLON.SubMesh(0, 0, verticesCount2, 30, 6, platform2);
+    groundObjects.push(platform2);
+
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
-    platform1.position = new BABYLON.Vector3(115, -5, 5)
+    platform1.position = new BABYLON.Vector3(140, -5, 5)
     platform1.checkCollisions = true;
     platform1.material = multimatGroundB;
 
@@ -381,9 +421,9 @@ var createScene = function() {
 
     // Platform 1
     var platform1 = BABYLON.MeshBuilder.CreateBox('platform1', {width:50, height:platformHeight, depth:15}, scene);
-    platform1.position = new BABYLON.Vector3(180, 0, 5)
+    platform1.position = new BABYLON.Vector3(205, 0, 5)
     platform1.checkCollisions = true;
-    platform1.material = multimatGroundB;
+    platform1.material = multimatSandB;
 
     platform1.subMeshes = [];
     var verticesCount = platform1.getTotalVertices();
@@ -403,7 +443,7 @@ var createScene = function() {
     // Platform 1 Tutorial Intro
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial1', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
-    platform1.visibility = 1;
+    platform1.visibility = 0;
     platform1.position.x = 5;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
@@ -413,7 +453,7 @@ var createScene = function() {
     // Platform 1 Tutorial checkpoints
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial2', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
-    platform1.visibility = 1;
+    platform1.visibility = 0;
     platform1.position.x = 22;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
@@ -423,18 +463,29 @@ var createScene = function() {
     // Platform 1 Tutorial traps
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial3', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
-    platform1.visibility = 1;
+    platform1.visibility = 0;
     platform1.position.x = 47;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;
     groundObjects.push(platform1);
 
+    // Platform 1 Tutorial materials
+    var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial6', {width:50, height:platformHeight, depth:15}, scene);
+    platform1.checkCollisions = false;
+    platform1.visibility = 0;
+    platform1.position.x = 92.5;
+    platform1.position.z = 5;
+    platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
+    platform1.material = tutorialM;
+    groundObjects.push(platform1);
+
+
     // Platform 1 Tutorial jumps
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial4', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
-    platform1.visibility = 1;
-    platform1.position.x = 130;
+    platform1.visibility = 0;
+    platform1.position.x = 150;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;
@@ -443,12 +494,84 @@ var createScene = function() {
     // Platform 1 Tutorial coins 
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial5', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
-    platform1.visibility = 1;
-    platform1.position.x = 160;
+    platform1.visibility = 0;
+    platform1.position.x = 175;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;
     groundObjects.push(platform1);
+    
+
+    var sunMaterial = new BABYLON.StandardMaterial("sunMaterial", scene);
+    sunMaterial.diffuseColor = new BABYLON.Color3(0,0,0);
+    sunMaterial.specularColor = new BABYLON.Color3(0,0,0);
+    sunMaterial.ambientColor = new BABYLON.Color3(0,0,0);
+    sunMaterial.emissiveColor = BABYLON.Color3.Yellow();
+    //Sun
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "sun.gltf", scene, function(newMeshes) {
+        var sun = newMeshes[0];
+        newMeshes.forEach(element => {
+            element.material = sunMaterial;
+        });
+        sun.scaling = new BABYLON.Vector3(5,5,5);
+        sun.position = new BABYLON.Vector3(10, 20, 75);
+    });
+
+    // Palm 1
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma1.gltf", scene, function(newMeshes) {
+        var palma1 = newMeshes[0];
+        palma1.position = new BABYLON.Vector3(0,0,35);
+        palma1.scaling = new BABYLON.Vector3(5,5,5);
+        palma1.rotate(new BABYLON.Vector3(0,1,0), Math.PI/2);
+    });
+
+    // Palm 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma2.gltf", scene, function(newMeshes) {
+        var palma2 = newMeshes[0];
+        palma2.position = new BABYLON.Vector3(-15,-1.4,-16);
+        palma2.scaling = new BABYLON.Vector3(5,5,5);
+        palma2.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Palm 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "Sdraio.gltf", scene, function(newMeshes) {
+        var sdraio = newMeshes[0];
+        sdraio.position = new BABYLON.Vector3(-5,1,9);
+        sdraio.scaling = new BABYLON.Vector3(2,2,2);
+        sdraio.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Umbrella
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "Umbrella.gltf", scene, function(newMeshes) {
+        var Umbrella = newMeshes[0];
+        Umbrella.position = new BABYLON.Vector3(-7,0,8);
+        Umbrella.scaling = new BABYLON.Vector3(2,2,2);
+        Umbrella.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Beach ball
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
+        var ball = newMeshes[0];
+        ball.position = new BABYLON.Vector3(-2,1,9);
+        ball.scaling = new BABYLON.Vector3(3,3,3);
+        ball.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Beach ball
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
+        var ball = newMeshes[0];
+        ball.position = new BABYLON.Vector3(-2,1,9);
+        ball.scaling = new BABYLON.Vector3(3,3,3);
+        ball.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Umbrella sdraio table
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "umbrellaSdraioTable.gltf", scene, function(newMeshes) {
+        var umbrellaSdraioTable = newMeshes[0];
+        umbrellaSdraioTable.position = new BABYLON.Vector3(195,0,8);
+        umbrellaSdraioTable.scaling = new BABYLON.Vector3(2.8,2.8,2.8);
+        umbrellaSdraioTable.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
 
 
 
@@ -458,7 +581,7 @@ var createScene = function() {
     // COIN 1
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
         coin1 = newMeshes[0];
-        coin1.position = new BABYLON.Vector3(165,3,0.5);
+        coin1.position = new BABYLON.Vector3(190,3,0.5);
         coin1.scaling = new BABYLON.Vector3(10,10,10);
         coin1.rotation = new BABYLON.Vector3(deg2rad(-90),0,0);
         Coin(coin1); // start animation
@@ -468,14 +591,14 @@ var createScene = function() {
     var coinBox = BABYLON.MeshBuilder.CreateCylinder('coinBox', {height: 2, diameterTop: 2.3, diameterBottom: 2.3, tessellation: 100, subdivisons: 10}, scene);
     coinBox.visibility = 0;
     coinBox.material = coinM;
-    coinBox.position = new BABYLON.Vector3(165,3,0.5);
+    coinBox.position = new BABYLON.Vector3(190,3,0.5);
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
     // COIN 2
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
         coin2 = newMeshes[0];
-        coin2.position = new BABYLON.Vector3(170, 3, 0.5);
+        coin2.position = new BABYLON.Vector3(195, 3, 0.5);
         coin2.scaling = new BABYLON.Vector3(10,10,10);
         coin2.rotate(new BABYLON.Vector3(1,0,0), 1.6)
         coin2.checkCollisions = false;
@@ -487,14 +610,14 @@ var createScene = function() {
     coinBox.checkCollisions = false;
     coinBox.visibility = 0;
     coinBox.material = coinM;
-    coinBox.position = new BABYLON.Vector3(170, 3, 0.5);
+    coinBox.position = new BABYLON.Vector3(195, 3, 0.5);
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
     // COIN 3
     BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
         coin3 = newMeshes[0];
-        coin3.position = new BABYLON.Vector3(185, 3, 0.5);
+        coin3.position = new BABYLON.Vector3(210, 3, 0.5);
         coin3.scaling = new BABYLON.Vector3(10,10,10);
         coin3.rotate(new BABYLON.Vector3(1,0,0), 1.6)
         coin3.checkCollisions = false;
@@ -506,14 +629,14 @@ var createScene = function() {
     coinBox.checkCollisions = false;
     coinBox.visibility = 0;
     coinBox.material = coinM;
-    coinBox.position = new BABYLON.Vector3(185, 3, 0.5);
+    coinBox.position = new BABYLON.Vector3(210, 3, 0.5);
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
     // Ending Portal
     BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
         var portal = newMeshes[0];
-        portal.position = new BABYLON.Vector3(200,1,0);
+        portal.position = new BABYLON.Vector3(225,1,0);
         portal.scaling = new BABYLON.Vector3(2,2,2);
         portal.rotate(new BABYLON.Vector3(0,1,0), 3.6);
         portal.checkCollisions = true;
@@ -524,7 +647,7 @@ var createScene = function() {
     portalBox.checkCollisions = true;
     portalBox.visibility = 0;
     portalBox.material = portalM;
-    portalBox.position = new BABYLON.Vector3(200,1,0);
+    portalBox.position = new BABYLON.Vector3(225,1,0);
     groundObjects.push(portalBox);
 
     // Fire Log
@@ -546,7 +669,7 @@ var createScene = function() {
     // Fire Log 2
     BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
-        FireLog.position = new BABYLON.Vector3(120,-4,0.5);
+        FireLog.position = new BABYLON.Vector3(140,-4,0.5);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
         FireLog.checkCollisions = true;
     });
@@ -556,7 +679,7 @@ var createScene = function() {
     fireBox.checkCollisions = true;
     fireBox.visibility = 0;
     fireBox.material = fireM;
-    fireBox.position = new BABYLON.Vector3(120,-4,0.5);
+    fireBox.position = new BABYLON.Vector3(140,-4,0.5);
     groundObjects.push(fireBox);
 
     // Spikes
@@ -580,7 +703,7 @@ var createScene = function() {
     // Spikes 2
     BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
-        spikeTrap.position = new BABYLON.Vector3(105,-4,0.5);
+        spikeTrap.position = new BABYLON.Vector3(100,-4,0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
         spikeTrap.checkCollisions = true;
         spikes2 = spikeTrap._children[0];
@@ -592,13 +715,13 @@ var createScene = function() {
     spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
     spikeBox.material = spikesM;
-    spikeBox.position = new BABYLON.Vector3(105,-4,0.5);
+    spikeBox.position = new BABYLON.Vector3(100,-4,0.5);
     groundObjects.push(spikeBox);
 
     // Spikes 3
     BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
-        spikeTrap.position = new BABYLON.Vector3(177.5,1,0.5);
+        spikeTrap.position = new BABYLON.Vector3(202.5,1,0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
         spikeTrap.checkCollisions = true;
         spikes3 = spikeTrap._children[0];
@@ -610,7 +733,7 @@ var createScene = function() {
     spikeBox.checkCollisions = true;
     spikeBox.visibility = 0;
     spikeBox.material = spikesM;
-    spikeBox.position = new BABYLON.Vector3(177.5,1,0.5);
+    spikeBox.position = new BABYLON.Vector3(202.5,1,0.5);
     groundObjects.push(spikeBox);
 
 
@@ -640,12 +763,18 @@ var createScene = function() {
 
     scene.executeWhenReady( function() {
         engine.hideLoadingUI();
+        scene.registerAfterRender(function () {
+            sun.position.x = player.mesh.position.x;
+        });
     });
-
+    
+    
     return scene;
 }
 
+
 var scene = createScene();
+
 
 function coinON(){
     CoinDisappear(coin1);
@@ -658,7 +787,7 @@ function coinON(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particlesCoin.emitter = new BABYLON.Vector3(440,99,0.5);
+    particlesCoin.emitter = new BABYLON.Vector3(190,3,0.5);
     
     particlesCoin.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particlesCoin.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -714,7 +843,7 @@ function coinON2(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particlesCoin2.emitter = new BABYLON.Vector3(224, 23, 0.5);
+    particlesCoin2.emitter = new BABYLON.Vector3(195, 3, 0.5);
     
     particlesCoin2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particlesCoin2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -770,7 +899,7 @@ function coinON3(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particlesCoin3.emitter = new BABYLON.Vector3(415, 9, 0.5);
+    particlesCoin3.emitter = new BABYLON.Vector3(210, 3, 0.5);
     
     particlesCoin3.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particlesCoin3.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -881,7 +1010,7 @@ function fireON2(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particlesFire2.emitter = new BABYLON.Vector3(120,-5,0.5);
+    particlesFire2.emitter = new BABYLON.Vector3(140,-5,0.5);
     
     particlesFire2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particlesFire2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -936,11 +1065,12 @@ function portalON(){
     
 
     //Where the particles come from
-    particlesPortal.emitter = new BABYLON.Vector3(200,5,0);
+    particlesPortal.emitter = new BABYLON.Vector3(225,5,0);
     particlesPortal.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
     particlesPortal.maxEmitBox = new BABYLON.Vector3(-0.1, -0.5, -2.5); // To...
 
     // Colors of all particles
+
     particlesPortal.color1 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
     particlesPortal.color2 = new BABYLON.Color4(0.5, 0, 0.5, 1.0);
     particlesPortal.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
