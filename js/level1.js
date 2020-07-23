@@ -494,15 +494,15 @@ var createScene = function() {
     groundObjects.push(fireBox);    
 
     // Platform pebbles small
-    addPlatform(multimatPebblesS, platformWidthSmall, 400, 40);
-    addPlatform(multimatPebblesS, platformWidthSmall, 415, 25);
-    addPlatform(multimatPebblesS, platformWidthSmall, 430, 10);
-    addPlatform(multimatPebblesS, platformWidthSmall, 445, 10);
-    addPlatform(multimatPebblesS, platformWidthSmall, 460, 20);
-    addPlatform(multimatPebblesS, platformWidthSmall, 475, 30);
-    addPlatform(multimatPebblesS, platformWidthSmall, 490, 40);
-    addPlatform(multimatPebblesS, platformWidthSmall, 475, 50);
-    addPlatform(multimatPebblesS, platformWidthSmall, 460, 45);
+    addPlatform(multimatPebblesS, platformWidthSmall, 400, 39);
+    addPlatform(multimatPebblesS, platformWidthSmall, 415, 24);
+    addPlatform(multimatPebblesS, platformWidthSmall, 430, 8);
+    addPlatform(multimatPebblesS, platformWidthSmall, 445, 15);
+    addPlatform(multimatPebblesS, platformWidthSmall, 460, 22);
+    addPlatform(multimatPebblesS, platformWidthSmall, 475, 29);
+    addPlatform(multimatPebblesS, platformWidthSmall, 490, 36);
+    addPlatform(multimatPebblesS, platformWidthSmall, 475, 43);
+    addPlatform(multimatPebblesS, platformWidthSmall, 460, 50);
 
     // Platform ground medium
     addPlatform(multimatGroundM, platformWidthMedium, 435, 50);
