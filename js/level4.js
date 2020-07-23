@@ -444,7 +444,7 @@ var createScene = function() {
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial1', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
     platform1.visibility = 0;
-    platform1.position.x = 5;
+    platform1.position.x = 0;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;
@@ -454,7 +454,7 @@ var createScene = function() {
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial2', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
     platform1.visibility = 0;
-    platform1.position.x = 22;
+    platform1.position.x = 25;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;
@@ -464,7 +464,7 @@ var createScene = function() {
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial3', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
     platform1.visibility = 0;
-    platform1.position.x = 47;
+    platform1.position.x = 50;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;
@@ -474,7 +474,7 @@ var createScene = function() {
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial6', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
     platform1.visibility = 0;
-    platform1.position.x = 92.5;
+    platform1.position.x = 95;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;
@@ -495,7 +495,7 @@ var createScene = function() {
     var platform1 = BABYLON.MeshBuilder.CreateBox('tutorial5', {width:50, height:platformHeight, depth:15}, scene);
     platform1.checkCollisions = false;
     platform1.visibility = 0;
-    platform1.position.x = 175;
+    platform1.position.x = 190;
     platform1.position.z = 5;
     platform1.rotate(new BABYLON.Vector3(0,0,1), Math.PI/2);
     platform1.material = tutorialM;

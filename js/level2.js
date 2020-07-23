@@ -1954,6 +1954,82 @@ var createScene = function() {
     spikeBox.position = new BABYLON.Vector3(230, 16, 0.5);
     groundObjects.push(spikeBox);
 
+    // Spikes 3
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(95, 11, 0.5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
+        spikeTrap.checkCollisions = true;
+        spikes3 = spikeTrap._children[0];
+        //spikes.position.y = -1;
+    });
+
+    // Spikes collision box 3
+    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikes3', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(95, 11, 0.5);
+    groundObjects.push(spikeBox);
+
+    // Spikes 4
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(210, 36, 0.5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
+        spikeTrap.checkCollisions = true;
+        spikes4 = spikeTrap._children[0];
+        //spikes.position.y = -1;
+    });
+
+    // Spikes collision box 4
+    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikes4', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(210, 36, 0.5);
+    groundObjects.push(spikeBox);
+
+    // Spikes 5
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(280, 77, 0.5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
+        spikeTrap.checkCollisions = true;
+        spikes5 = spikeTrap._children[0];
+        //spikes.position.y = -1;
+    });
+
+    // Spikes collision box 5
+    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikes5', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(280, 77, 0.5);
+    groundObjects.push(spikeBox);
+
+    // Spikes 6
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+        var spikeTrap = newMeshes[0];
+        spikeTrap.position = new BABYLON.Vector3(360, 47, 0.5);
+        spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
+        spikeTrap.checkCollisions = true;
+        spikes6 = spikeTrap._children[0];
+        //spikes.position.y = -1;
+    });
+
+    // Spikes collision box 6
+    var spikeBox = BABYLON.MeshBuilder.CreateBox('spikes6', {width:5, height:1, depth:5}, scene);
+    spikeBox.checkCollisions = true;
+    spikeBox.visibility = 0;
+    spikeBox.material = spikesM;
+    spikeBox.position = new BABYLON.Vector3(360, 47, 0.5);
+    groundObjects.push(spikeBox);
+
     var portalSound = new BABYLON.Sound("portalSound", "../sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
 
     // Ending Portal
@@ -2218,7 +2294,7 @@ function coinON2(){
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
-    particlesCoin2.emitter = new BABYLON.Vector3(224, 23, 0.5);
+    particlesCoin2.emitter = new BABYLON.Vector3(224, 18, 0.5);
     
     particlesCoin2.minEmitBox = new BABYLON.Vector3(-0.5, 0, 0); // Starting all from
     particlesCoin2.maxEmitBox = new BABYLON.Vector3(0.5, 0, 0); // To...
@@ -2433,6 +2509,10 @@ function fireON2(){
 function trapActive(name){
     if(name == "spikes") trapON(spikes);
     if(name == "spikes2") trapON(spikes2);
+    if(name == "spikes3") trapON(spikes3);
+    if(name == "spikes4") trapON(spikes4);
+    if(name == "spikes5") trapON(spikes5);
+    if(name == "spikes6") trapON(spikes6);
 }
 
 function portalON(){

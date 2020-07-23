@@ -221,7 +221,7 @@ function tutorialfunc(obj){
     advancedTexture.addControl(tutorialPanel);
 
     tutorial1 = true;
-    var tutorial11 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton1", "Hi, welcome to the tutorial, here you will learn the basis of the game. Go head. (click to continue)");
+    var tutorial11 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton1", "Hi, welcome to the tutorial, here you will learn the basis of the game. Move with (a) and (d), jump \n with (spacebar). Go head. (click to continue)");
     tutorial11.fontSize = "15px"
     tutorial11.height = "50px";
     tutorialPanel.addControl(tutorial11);
@@ -308,8 +308,8 @@ function tutorial5func(obj){
     advancedTexture.addControl(tutorialPanel5);
 
     tutorial5 = true;
-    var tutorial55 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton5", "tutorial coins");
-    tutorial55.fontSize = "15px"
+    var tutorial55 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton5", "To complete the level, is necessary to collect all the three coins, and to go inside the active \n portal. (click to continue)");
+    tutorial55.fontSize = "15px";
     tutorial55.height = "40px";
     tutorialPanel5.addControl(tutorial55);
     tutorial55.onPointerClickObservable.add(function() {
@@ -329,7 +329,7 @@ function tutorial6func(obj){
     advancedTexture.addControl(tutorialPanel6);
 
     tutorial6 = true;
-    var tutorial66 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton6", "tutorial materials");
+    var tutorial66 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton6", "Some platforms have specific materials, like sand and ice, that modify the way the player moves.\n So be careful on these plaforms. (click to continue)");
     tutorial66.fontSize = "15px"
     tutorial66.height = "40px";
     tutorialPanel6.addControl(tutorial66);
