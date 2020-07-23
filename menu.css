@@ -305,9 +305,9 @@
     -webkit-border-radius: 8px;
     border-radius: 8px;
 
-    -moz-text-shadow: -10px -5px 5px rgb(46, 43, 43, 1);
-    -webkit-text-shadow: -10px -5px 5px rgba(46, 43, 43, 1);
-    text-shadow: -10px -5px 5px rgba(46, 43, 43, 1);
+    -moz-text-shadow: -10px -5px 5px rgb(90, 88, 88);
+    -webkit-text-shadow: -10px -5px 5px rgb(90, 88, 88);
+    text-shadow: -10px -5px 5px rgba(90, 88, 88);
 
     cursor:pointer;
 }
