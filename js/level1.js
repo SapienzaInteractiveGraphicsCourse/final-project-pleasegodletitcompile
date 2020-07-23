@@ -556,9 +556,14 @@ var createScene = function() {
         newMeshes[0].scaling = new BABYLON.Vector3(-3,3,3);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "cabin.gltf", scene, function(newMeshes) {
-        newMeshes[0].position = new BABYLON.Vector3(346,-3,8);
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "well.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(345,-3,8);
         newMeshes[0].scaling = new BABYLON.Vector3(-3,3,3);
+    });
+
+    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "barrel.gltf", scene, function(newMeshes) {
+        newMeshes[0].position = new BABYLON.Vector3(353,30,8);
+        // newMeshes[0].scaling = new BABYLON.Vector3(1,1,1);
     });
 
 
