@@ -581,6 +581,72 @@ var createScene = function() {
         palmeDoppie.rotate(new BABYLON.Vector3(0,1,0), 3*Math.PI/2);
     });
 
+    // Umbrella sdraio 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "umbrellaSdraio2.gltf", scene, function(newMeshes) {
+        var umbrellaSdraio2 = newMeshes[0];
+        umbrellaSdraio2.position = new BABYLON.Vector3(87,-50,-80);
+        umbrellaSdraio2.scaling = new BABYLON.Vector3(0.7,0.7,0.7);
+        umbrellaSdraio2.rotate(new BABYLON.Vector3(0,1,0), Math.PI/2);
+    });
+
+    // Casottino
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "casottino.gltf", scene, function(newMeshes) {
+        var casottino = newMeshes[0];
+        casottino.position = new BABYLON.Vector3(105,-25,24);
+        casottino.scaling = new BABYLON.Vector3(0.4,0.4,0.4);
+        casottino.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Net
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "net.gltf", scene, function(newMeshes) {
+        var net = newMeshes[0];
+        net.position = new BABYLON.Vector3(280,-81,60);
+        net.scaling = new BABYLON.Vector3(1,1,1);
+        net.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Ball
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
+        var ball = newMeshes[0];
+        ball.position = new BABYLON.Vector3(140,-4,8);
+        ball.scaling = new BABYLON.Vector3(2,2,2);
+        ball.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Sdraio
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "Sdraio.gltf", scene, function(newMeshes) {
+        var sdraio = newMeshes[0];
+        sdraio.position = new BABYLON.Vector3(155,-4,9);
+        sdraio.scaling = new BABYLON.Vector3(2,2,2);
+        sdraio.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+    // Palm 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma2.gltf", scene, function(newMeshes) {
+        var palma2 = newMeshes[0];
+        palma2.position = new BABYLON.Vector3(165,-6.4,-16);
+        palma2.scaling = new BABYLON.Vector3(5,5,5);
+        palma2.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+    
+    // Palm 1
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma1.gltf", scene, function(newMeshes) {
+        var palma1 = newMeshes[0];
+        palma1.position = new BABYLON.Vector3(205,0,35);
+        palma1.scaling = new BABYLON.Vector3(5,5,5);
+        palma1.rotate(new BABYLON.Vector3(0,1,0), Math.PI/2);
+    });
+
+    // Sdraio 2
+    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "sdraio2.gltf", scene, function(newMeshes) {
+        var sdraio2 = newMeshes[0];
+        sdraio2.position = new BABYLON.Vector3(90,-4,9);
+        sdraio2.scaling = new BABYLON.Vector3(2,2,2);
+        sdraio2.rotate(new BABYLON.Vector3(0,1,0), 0);
+    });
+
+
+
 
 
 
