@@ -1999,7 +1999,6 @@ var createScene = function() {
     // Player
     player.mesh = new BABYLON.MeshBuilder.CreateSphere("player", {diameterX: player.width, diameterY:player.height, diameterZ:player.depth}, scene);
     player.mesh.visibility = 0;
-
     player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
@@ -2321,7 +2320,7 @@ function portalON(){
     
 
     //Where the particles come from
-    particlesPortal.emitter = new BABYLON.Vector3(630, 39, 0);
+    particlesPortal.emitter = new BABYLON.Vector3(629, 40, 0);
     particlesPortal.minEmitBox = new BABYLON.Vector3(0.1, 2.5 , 2.5); // Starting all from
     particlesPortal.maxEmitBox = new BABYLON.Vector3(-0.1, -0.5, -2.5); // To...
 
@@ -2339,7 +2338,7 @@ function portalON(){
     particlesPortal.maxLifeTime = 0.1;
 
     // Emission rate
-    particlesPortal.emitRate = 1;
+    particlesPortal.emitRate = 250;
 
     window.ps = particlesPortal;
 
