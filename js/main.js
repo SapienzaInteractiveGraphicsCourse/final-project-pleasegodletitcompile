@@ -9,6 +9,7 @@
 //    musicl1.play();
 //});
 var timeStart =0;
+var tutorialIsOpen = false;
 
 // Render loop
 engine.runRenderLoop(function() {
@@ -54,6 +55,12 @@ engine.runRenderLoop(function() {
         inputKeys = {};
         scene.actionManager = null;
         player.position.x = 0;
+    }
+
+    if(tutorialIsOpen == true) {
+        inputKeys = {};
+        player.position.x = 0;
+        player.walking = false;
     }
 });
 

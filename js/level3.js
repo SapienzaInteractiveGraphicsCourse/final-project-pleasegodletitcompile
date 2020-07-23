@@ -57,6 +57,8 @@ var platformHeight = 2;
 var knight;
 var helmet;
 
+var portalS;
+
 // List of objects that are considered ground
 var groundObjects = [];
 
@@ -2014,6 +2016,9 @@ var createScene = function() {
         
     });
 
+    var portalSound = new BABYLON.Sound("portalSound", "../sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
+
+
     // Ending Portal
     BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
         var portal = newMeshes[0];
@@ -2021,7 +2026,10 @@ var createScene = function() {
         portal.scaling = new BABYLON.Vector3(2, 2, 2);
         portal.rotate(new BABYLON.Vector3(0, 1, 0), 3.6);
         portal.checkCollisions = true;
+        portalSound.attachToMesh(portal);
     });
+    
+    
 
     // Ending Portal collision box
     var portalBox = BABYLON.MeshBuilder.CreateBox('portalBox', {width:3, height:5, depth:5}, scene);
@@ -2041,8 +2049,8 @@ var createScene = function() {
     }
 
     // bird sound
-    rainSound = new BABYLON.Sound("rainSound", "../sounds/level3/meadowlark_daniel-simion.wav", scene, function() {
-        rainSound.play();
+    birdSound = new BABYLON.Sound("rainSound", "../sounds/level3/meadowlark_daniel-simion.wav", scene, function() {
+        birdSound.play();
     }, {loop:true, volume:0.1});
 
 
@@ -2053,10 +2061,10 @@ var createScene = function() {
     player.mesh.visibility = 0;
     
     //Per non ricominciare ogni volta
-    player.mesh.position.x = 279;
-    player.mesh.position.y = 58;
+    //player.mesh.position.x = 440;
+    //player.mesh.position.y = 38;
 
-    //player.mesh.position.y = (player.height + platformHeight)/2.0;
+    player.mesh.position.y = (player.height + platformHeight)/2.0;
     player.mesh.ellipsoid = new BABYLON.Vector3(player.width/2, player.height/2, player.depth/2);
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
@@ -2271,8 +2279,8 @@ function coinON2(){
     particlesCoin2.maxSize = 0.5;
 
     // Life time of each particle (random between...
-    particlesCoin.minLifeTime = 0.01;
-    particlesCoin.maxLifeTime = 0.01;
+    particlesCoin2.minLifeTime = 0.01;
+    particlesCoin2.maxLifeTime = 0.01;
 
     // Emission rate
     particlesCoin2.emitRate = 100;
@@ -2368,6 +2376,7 @@ function trapActive(name){
 
 
 function portalON(){
+
     //Particles system Portal
     var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 5, scene);
 
