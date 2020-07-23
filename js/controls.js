@@ -21,13 +21,13 @@ var particlesCoin3;
 var allCoinsCollected = false;
 
 
-var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, {volume:0.5});
 
-//var cashRecover = new BABYLON.Sound("cashRecover", "../sounds/money/cashRegister.mp3", scene, {volume:0.5});
-
-//var runsound = new BABYLON.Sound("runsound", "../sounds/net.wav", scene, {volume:0.8, });
+var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, null, {volume:0.5});
+var cashRecover = new BABYLON.Sound("cashRecover", "../sounds/money/chimes-glassy.mp3", scene, null, {volume:0.6});
+var trapSound = new BABYLON.Sound("trapSound", "../sounds/trap/sucked-into-the-dark-side.wav", scene, null, {volume:0.5});
 
 scene.actionManager = new BABYLON.ActionManager(scene);
+
 
 // Set the key to true on keyDown
 scene.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnKeyDownTrigger, function (event) {
@@ -277,18 +277,21 @@ function checkMaterial(obj, resetDmg = true) {
     if(obj.id == "coinBox" && coinIsOn == false){
         if(resetDmg) dmg = false;
         coinON();
+        cashRecover.play();
         player.coins++;
         updateCoins();
     }
     if(obj.id == "coinBox2" && coinIsOn2 == false){
         if(resetDmg) dmg = false;
         coinON2();
+        cashRecover.play();
         player.coins++;
         updateCoins();
     }
     if(obj.id == "coinBox3" && coinIsOn3 == false){
         if(resetDmg) dmg = false;
         coinON3();
+        cashRecover.play();
         player.coins++;
         updateCoins();
     }
@@ -296,6 +299,7 @@ function checkMaterial(obj, resetDmg = true) {
         player.grounded = true;
         trapActive(obj.id);
         if(dmg == false){
+            trapSound.play();
             player.lives--;
             updateHealth();
             dmg = true;
@@ -349,7 +353,7 @@ function checkMaterial(obj, resetDmg = true) {
 }
 
 function checkPortal(){
-    if(player.coins == 3 && allCoinsCollected == false){
+    if(player.coins == 3 && allCoinsCollected == false){    
         portalON();
         allCoinsCollected = true;
     }
