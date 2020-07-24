@@ -1079,7 +1079,7 @@ function fireON(){
 
 function fireON2(){
     fireIsOn2 = true;
-    checkpoint = new BABYLON.Vector3(120,-1,0.5);
+    checkpoint = new BABYLON.Vector3(140,-1,0.5);
     //Particles system Fire
     var particlesFire2 = new BABYLON.GPUParticleSystem("particlesFire2", 5000, scene);
     //Texture of each particle

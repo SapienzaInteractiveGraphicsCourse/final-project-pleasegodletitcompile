@@ -248,7 +248,7 @@ function tutorial2func(){
     tutorial22.height = "50px";
     tutorialPanel2.addControl(tutorial22);
     tutorial22.onPointerClickObservable.add(function() {
-        tutorialPanel2.isVisible = false;
+        tutorialPanel2.removeControl(tutorial22);
         tutorialIsOpen = false;
     });
 };
@@ -270,7 +270,7 @@ function tutorial3func(obj){
     tutorial33.height = "50px";
     tutorialPanel3.addControl(tutorial33);
     tutorial33.onPointerClickObservable.add(function() {
-        tutorialPanel3.isVisible = false;
+        tutorialPanel3.removeControl(tutorial33);
         tutorialIsOpen = false;
     });
 };
@@ -292,7 +292,7 @@ function tutorial4func(obj){
     tutorial44.height = "40px";
     tutorialPanel4.addControl(tutorial44);
     tutorial44.onPointerClickObservable.add(function() {
-        tutorialPanel4.isVisible = false;
+        tutorialPanel4.removeControl(tutorial44);
         tutorialIsOpen = false;
     });
 };
@@ -313,7 +313,7 @@ function tutorial5func(obj){
     tutorial55.height = "40px";
     tutorialPanel5.addControl(tutorial55);
     tutorial55.onPointerClickObservable.add(function() {
-        tutorialPanel5.isVisible = false;
+        tutorialPanel5.removeControl(tutorial55);
         tutorialIsOpen = false;
     });
 };
@@ -334,7 +334,7 @@ function tutorial6func(obj){
     tutorial66.height = "40px";
     tutorialPanel6.addControl(tutorial66);
     tutorial66.onPointerClickObservable.add(function() {
-        tutorialPanel6.isVisible = false;
+        tutorialPanel6.removeControl(tutorial66);
         tutorialIsOpen = false;
     });
 };
