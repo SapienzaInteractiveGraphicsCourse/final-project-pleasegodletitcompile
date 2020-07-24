@@ -221,12 +221,12 @@ function tutorialfunc(obj){
     advancedTexture.addControl(tutorialPanel);
 
     tutorial1 = true;
-    var tutorial11 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton1", "Hi, welcome to the tutorial, here you will learn the basis of the game. Move with (a) and (d), jump \n with (spacebar). Go head. (click to continue)");
+    var tutorial11 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton1", "Hi, welcome to the tutorial, here you will learn the basics of the game.\nMove with (a) and (d), jump with (spacebar). Go head. (click to continue)");
     tutorial11.fontSize = "15px"
     tutorial11.height = "50px";
     tutorialPanel.addControl(tutorial11);
     tutorial11.onPointerClickObservable.add(function() {
-        tutorialPanel.isVisible = false;
+        tutorialPanel.removeControl(tutorial11);
         tutorialIsOpen = false;
     });
 };
@@ -243,7 +243,7 @@ function tutorial2func(){
     advancedTexture.addControl(tutorialPanel2);
 
     tutorial2 = true;
-    var tutorial22 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton2", "In the levels there are campfires, that are activated when you pass on them. Those are checkpoints, \n from where you will restart when fall off the platforms. (click to continue)");
+    var tutorial22 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton2", "In the levels there are campfires that are lit when you pass on them. Those are checkpoints, \n from where you will respawn in case you fall off the platforms. (click to continue)");
     tutorial22.fontSize = "15px"
     tutorial22.height = "50px";
     tutorialPanel2.addControl(tutorial22);
@@ -265,7 +265,7 @@ function tutorial3func(obj){
     advancedTexture.addControl(tutorialPanel3);
 
     tutorial3 = true;
-    var tutorial33 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton3", "Be aware, there are traps placed in the level, if you go on them you will lose one heart. If all the \n hearts are lost, you have to start the level from the beginning. (click to continue)");
+    var tutorial33 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton3", "Be aware, there are traps placed in the level. If you step on them you will lose one heart.\nIf all the hearts are lost, you have to start the level from the beginning. (click to continue)");
     tutorial33.fontSize = "15px"
     tutorial33.height = "50px";
     tutorialPanel3.addControl(tutorial33);
@@ -287,7 +287,7 @@ function tutorial4func(obj){
     advancedTexture.addControl(tutorialPanel4);
 
     tutorial4 = true;
-    var tutorial44 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton4", "There are some jumps that require to run (pressing button p), in order to overcome them. So go back, \n take a run and try to jump to the next platform. Remember, the run is really important to overcome obstacles. (click to continue)");
+    var tutorial44 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton4", "There are some jumps that require to run (pressing button p), in order to overcome them. So go back, \n run and try to jump to the next platform. Remember, the run is really important to overcome some obstacles. (click to continue)");
     tutorial44.fontSize = "15px"
     tutorial44.height = "40px";
     tutorialPanel4.addControl(tutorial44);
@@ -308,7 +308,7 @@ function tutorial5func(obj){
     advancedTexture.addControl(tutorialPanel5);
 
     tutorial5 = true;
-    var tutorial55 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton5", "To complete the level, is necessary to collect all the three coins, and to go inside the active \n portal. (click to continue)");
+    var tutorial55 = new BABYLON.GUI.Button.CreateSimpleButton("tutorialButton5", "To complete the level, you need to collect all the three coins and then go inside the active portal. (click to continue)");
     tutorial55.fontSize = "15px";
     tutorial55.height = "40px";
     tutorialPanel5.addControl(tutorial55);
