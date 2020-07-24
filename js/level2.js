@@ -69,7 +69,7 @@ var createScene = function() {
     camera.radius = 40;
     camera.heightOffset = 10;
     camera.rotationOffset = 180;
-    camera.attachControl(canvas, true);
+    // camera.attachControl(canvas, true);
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(-1,1,1), scene);
@@ -2397,7 +2397,7 @@ function coinON3(){
 
 function fireON(){
     fireIsOn = true;
-    checkpoint = new BABYLON.Vector3(320,47,0.5);
+    checkpoint = new BABYLON.Vector3(320,52,0.5);
     //Particles system Fire
     var particlesFire = new BABYLON.GPUParticleSystem("particlesFire", 5000, scene);
     //Texture of each particle

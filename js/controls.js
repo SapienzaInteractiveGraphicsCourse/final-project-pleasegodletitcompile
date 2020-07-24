@@ -155,18 +155,18 @@ scene.registerAfterRender(function () {
 
     player.mesh.moveWithCollisions(new BABYLON.Vector3(player.position.x, player.position.y , 0));
 
-    // Only for developing
-    if (inputKeys["e"]) {
-        checkpoint.copyFrom(player.mesh.position);
-        timeWalk = 0;
-        player.position.x = 0;
-        player.acceleration.x = 0;
-        console.log(player.mesh.position);
-    }
-    if (inputKeys["r"]) {
-        player.lives = 3;
-        console.log(player.lives);
-    }
+    // // Only for developing
+    // if (inputKeys["e"]) {
+    //     checkpoint.copyFrom(player.mesh.position);
+    //     timeWalk = 0;
+    //     player.position.x = 0;
+    //     player.acceleration.x = 0;
+    //     console.log(player.mesh.position);
+    // }
+    // if (inputKeys["r"]) {
+    //     player.lives = 3;
+    //     console.log(player.lives);
+    // }
     checkFront();
 });
 
@@ -266,6 +266,7 @@ function checkFront() {
 // Manage the velocities, it might not be elegant, but works for sure!
 function checkMaterial(obj, resetDmg = true) {
     if(obj.material.id == "fireM"){
+        player.grounded = true;
         if(resetDmg) dmg = false;
         if(obj.id == "fireBox" && fireIsOn == false){
             fireON();  

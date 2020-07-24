@@ -293,7 +293,7 @@ var createScene = function() {
     camera.radius = 40;
     camera.heightOffset = 10;
     camera.rotationOffset = 180;
-    camera.attachControl(canvas, true);
+    // camera.attachControl(canvas, true);
 
     // Light
     var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
