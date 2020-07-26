@@ -39,7 +39,7 @@ var tutorial6 = false;
 
 var snowAnim = true;
 
-var nextLevel = "../level1.html"
+var nextLevel = "level1.html"
 
 var checkpoint = new BABYLON.Vector3(0, 10, 0);
 
@@ -63,151 +63,151 @@ var createScene = function() {
         //Set platforms materials
         // Ground Small Platform
         var groundS1 = new BABYLON.StandardMaterial("groundS1", scene);
-        groundS1.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundS1.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundS1.diffuseTexture.uScale = 1;
         groundS1.diffuseTexture.vScale = 0.33;
-        groundS1.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundS1.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundS1.bumpTexture.uScale = 1;
         groundS1.bumpTexture.vScale = 0.33;
         
         var groundS2 = new BABYLON.StandardMaterial("groundS2", scene);
-        groundS2.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundS2.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundS2.diffuseTexture.uScale = 0.33;
         groundS2.diffuseTexture.vScale = 0.13;
-        groundS2.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundS2.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundS2.bumpTexture.uScale = 0.33;
         groundS2.bumpTexture.vScale = 0.13;
     
         var groundS3 = new BABYLON.StandardMaterial("groundS3", scene);
-        groundS3.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundS3.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundS3.diffuseTexture.uScale = 0.13;
         groundS3.diffuseTexture.vScale = 1;
-        groundS3.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundS3.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundS3.bumpTexture.uScale = 0.13;
         groundS3.bumpTexture.vScale = 1;
     
         // Ground Medium Platform
         var groundM1 = new BABYLON.StandardMaterial("groundM1", scene);
-        groundM1.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundM1.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundM1.diffuseTexture.uScale = 1;
         groundM1.diffuseTexture.vScale = 1.33;
-        groundM1.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundM1.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundM1.bumpTexture.uScale = 1;
         groundM1.bumpTexture.vScale = 1.33;
         
         var groundM2 = new BABYLON.StandardMaterial("groundM2", scene);
-        groundM2.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundM2.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundM2.diffuseTexture.uScale = 0.133;
         groundM2.diffuseTexture.vScale = 0.06;
-        groundM2.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundM2.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundM2.bumpTexture.uScale = 0.133;
         groundM2.bumpTexture.vScale = 0.06;
     
         var groundM3 = new BABYLON.StandardMaterial("groundM3", scene);
-        groundM3.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundM3.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundM3.diffuseTexture.uScale = 0.06;
         groundM3.diffuseTexture.vScale = 0.133;
-        groundM3.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundM3.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundM3.bumpTexture.uScale = 0.06;
         groundM3.bumpTexture.vScale = 0.133;
     
         // Ground Big Platform
         var groundB1 = new BABYLON.StandardMaterial("groundB1", scene);
-        groundB1.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundB1.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundB1.diffuseTexture.uScale = 2;
         groundB1.diffuseTexture.vScale = 3;
-        groundB1.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundB1.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundB1.bumpTexture.uScale = 2;
         groundB1.bumpTexture.vScale = 3;
         
         var groundB2 = new BABYLON.StandardMaterial("groundB2", scene);
-        groundB2.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundB2.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundB2.diffuseTexture.uScale = 3;
         groundB2.diffuseTexture.vScale = 2;
-        groundB2.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundB2.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundB2.bumpTexture.uScale = 3;
         groundB2.bumpTexture.vScale = 2;
     
         var groundB3 = new BABYLON.StandardMaterial("groundB3", scene);
-        groundB3.diffuseTexture = new BABYLON.Texture("../textures/soil.jpg", scene)
+        groundB3.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
         groundB3.diffuseTexture.uScale = 1;
         groundB3.diffuseTexture.vScale = 2;
-        groundB3.bumpTexture = new BABYLON.Texture("../textures/soilBump.jpg", scene)
+        groundB3.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
         groundB3.bumpTexture.uScale = 1;
         groundB3.bumpTexture.vScale = 2;
     
         // Sand Small Platform
         var sandS1 = new BABYLON.StandardMaterial("sandS1", scene);
-        sandS1.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandS1.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandS1.diffuseTexture.uScale = 1;
         sandS1.diffuseTexture.vScale = 0.33;
-        sandS1.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandS1.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandS1.bumpTexture.uScale = 1;
         sandS1.bumpTexture.vScale = 0.33;
         
         var sandS2 = new BABYLON.StandardMaterial("sandS2", scene);
-        sandS2.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandS2.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandS2.diffuseTexture.uScale = 0.33;
         sandS2.diffuseTexture.vScale = 0.13;
-        sandS2.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandS2.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandS2.bumpTexture.uScale = 0.33;
         sandS2.bumpTexture.vScale = 0.13;
     
         var sandS3 = new BABYLON.StandardMaterial("sandS3", scene);
-        sandS3.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandS3.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandS3.diffuseTexture.uScale = 0.13;
         sandS3.diffuseTexture.vScale = 1;
-        sandS3.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandS3.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandS3.bumpTexture.uScale = 0.13;
         sandS3.bumpTexture.vScale = 1;
     
         // Sand Medium Platform
         var sandM1 = new BABYLON.StandardMaterial("sandM1", scene);
-        sandM1.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandM1.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandM1.diffuseTexture.uScale = 1;
         sandM1.diffuseTexture.vScale = 1.33;
-        sandM1.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandM1.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandM1.bumpTexture.uScale = 1;
         sandM1.bumpTexture.vScale = 1.33;
         
         var sandM2 = new BABYLON.StandardMaterial("sandM2", scene);
-        sandM2.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandM2.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandM2.diffuseTexture.uScale = 0.133;
         sandM2.diffuseTexture.vScale = 0.06;
-        sandM2.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandM2.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandM2.bumpTexture.uScale = 0.133;
         sandM2.bumpTexture.vScale = 0.06;
     
         var sandM3 = new BABYLON.StandardMaterial("sandM3", scene);
-        sandM3.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandM3.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandM3.diffuseTexture.uScale = 0.06;
         sandM3.diffuseTexture.vScale = 0.133;
-        sandM3.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandM3.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandM3.bumpTexture.uScale = 0.06;
         sandM3.bumpTexture.vScale = 0.133;
     
         // Sand Big Platform
         var sandB1 = new BABYLON.StandardMaterial("sandB1", scene);
-        sandB1.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandB1.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandB1.diffuseTexture.uScale = 1;
         sandB1.diffuseTexture.vScale = 3;
-        sandB1.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandB1.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandB1.bumpTexture.uScale = 1;
         sandB1.bumpTexture.vScale = 3;
         
         var sandB2 = new BABYLON.StandardMaterial("sandB2", scene);
-        sandB2.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandB2.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandB2.diffuseTexture.uScale = 5;
         sandB2.diffuseTexture.vScale = 0.3;
-        sandB2.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandB2.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandB2.bumpTexture.uScale = 5;
         sandB2.bumpTexture.vScale = 0.3;
     
         var sandB3 = new BABYLON.StandardMaterial("sandB3", scene);
-        sandB3.diffuseTexture = new BABYLON.Texture("../textures/sand.jpg", scene)
+        sandB3.diffuseTexture = new BABYLON.Texture("textures/sand.jpg", scene)
         sandB3.diffuseTexture.uScale = 0.1;
         sandB3.diffuseTexture.vScale = 0.8;
-        sandB3.bumpTexture = new BABYLON.Texture("../textures/sandBump.jpg", scene)
+        sandB3.bumpTexture = new BABYLON.Texture("textures/sandBump.jpg", scene)
         sandB3.bumpTexture.uScale = 0.1;
         sandB3.bumpTexture.vScale = 0.8;
         
@@ -265,7 +265,7 @@ var createScene = function() {
         skybox.addRotation(0.0, deg2rad(180), 0.0);
         var skyboxMaterial = new BABYLON.StandardMaterial("waves", scene);
         skyboxMaterial.backFaceCulling = false;
-        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Textures/waves/waves", scene);
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("Textures/waves/waves", scene);
         skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
         skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -508,7 +508,7 @@ var createScene = function() {
     sunMaterial.ambientColor = new BABYLON.Color3(0,0,0);
     sunMaterial.emissiveColor = BABYLON.Color3.Yellow();
     //Sun
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "sun.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "sun.gltf", scene, function(newMeshes) {
         sun = newMeshes[0];
         newMeshes.forEach(element => {
             element.material = sunMaterial;
@@ -518,7 +518,7 @@ var createScene = function() {
     });
 
     // Palm 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "palma1.gltf", scene, function(newMeshes) {
         var palma1 = newMeshes[0];
         palma1.position = new BABYLON.Vector3(0,0,35);
         palma1.scaling = new BABYLON.Vector3(5,5,5);
@@ -526,7 +526,7 @@ var createScene = function() {
     });
 
     // Palm 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "palma2.gltf", scene, function(newMeshes) {
         var palma2 = newMeshes[0];
         palma2.position = new BABYLON.Vector3(-15,-1.4,-16);
         palma2.scaling = new BABYLON.Vector3(5,5,5);
@@ -534,7 +534,7 @@ var createScene = function() {
     });
 
     // Palm 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "Sdraio.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "Sdraio.gltf", scene, function(newMeshes) {
         var sdraio = newMeshes[0];
         sdraio.position = new BABYLON.Vector3(-5,1,9);
         sdraio.scaling = new BABYLON.Vector3(2,2,2);
@@ -542,7 +542,7 @@ var createScene = function() {
     });
 
     // Umbrella
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "Umbrella.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "Umbrella.gltf", scene, function(newMeshes) {
         var Umbrella = newMeshes[0];
         Umbrella.position = new BABYLON.Vector3(-7,0,8);
         Umbrella.scaling = new BABYLON.Vector3(2,2,2);
@@ -550,7 +550,7 @@ var createScene = function() {
     });
 
     // Beach ball
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
         var ball = newMeshes[0];
         ball.position = new BABYLON.Vector3(-2,1,9);
         ball.scaling = new BABYLON.Vector3(3,3,3);
@@ -558,7 +558,7 @@ var createScene = function() {
     });
 
     // Beach ball
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
         var ball = newMeshes[0];
         ball.position = new BABYLON.Vector3(-2,1,9);
         ball.scaling = new BABYLON.Vector3(3,3,3);
@@ -566,7 +566,7 @@ var createScene = function() {
     });
 
     // Umbrella sdraio table
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "umbrellaSdraioTable.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "umbrellaSdraioTable.gltf", scene, function(newMeshes) {
         var umbrellaSdraioTable = newMeshes[0];
         umbrellaSdraioTable.position = new BABYLON.Vector3(195,0,8);
         umbrellaSdraioTable.scaling = new BABYLON.Vector3(2.8,2.8,2.8);
@@ -574,7 +574,7 @@ var createScene = function() {
     });
 
     // Double palmas
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palmeDoppie.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "palmeDoppie.gltf", scene, function(newMeshes) {
         var palmeDoppie = newMeshes[0];
         palmeDoppie.position = new BABYLON.Vector3(90,-4,-4);
         palmeDoppie.scaling = new BABYLON.Vector3(2.8,2.8,2.8);
@@ -582,7 +582,7 @@ var createScene = function() {
     });
 
     // Umbrella sdraio 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "umbrellaSdraio2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "umbrellaSdraio2.gltf", scene, function(newMeshes) {
         var umbrellaSdraio2 = newMeshes[0];
         umbrellaSdraio2.position = new BABYLON.Vector3(87,-50,-80);
         umbrellaSdraio2.scaling = new BABYLON.Vector3(0.7,0.7,0.7);
@@ -590,7 +590,7 @@ var createScene = function() {
     });
 
     // Casottino
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "casottino.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "casottino.gltf", scene, function(newMeshes) {
         var casottino = newMeshes[0];
         casottino.position = new BABYLON.Vector3(105,-25,24);
         casottino.scaling = new BABYLON.Vector3(0.4,0.4,0.4);
@@ -598,7 +598,7 @@ var createScene = function() {
     });
 
     // Net
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "net.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "net.gltf", scene, function(newMeshes) {
         var net = newMeshes[0];
         net.position = new BABYLON.Vector3(280,-81,60);
         net.scaling = new BABYLON.Vector3(1,1,1);
@@ -606,7 +606,7 @@ var createScene = function() {
     });
 
     // Ball
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "ball.gltf", scene, function(newMeshes) {
         var ball = newMeshes[0];
         ball.position = new BABYLON.Vector3(140,-4,8);
         ball.scaling = new BABYLON.Vector3(2,2,2);
@@ -614,7 +614,7 @@ var createScene = function() {
     });
 
     // Sdraio
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "Sdraio.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "Sdraio.gltf", scene, function(newMeshes) {
         var sdraio = newMeshes[0];
         sdraio.position = new BABYLON.Vector3(155,-4,9);
         sdraio.scaling = new BABYLON.Vector3(2,2,2);
@@ -622,7 +622,7 @@ var createScene = function() {
     });
 
     // Palm 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "palma2.gltf", scene, function(newMeshes) {
         var palma2 = newMeshes[0];
         palma2.position = new BABYLON.Vector3(165,-6.4,-16);
         palma2.scaling = new BABYLON.Vector3(5,5,5);
@@ -630,7 +630,7 @@ var createScene = function() {
     });
     
     // Palm 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "palma1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "palma1.gltf", scene, function(newMeshes) {
         var palma1 = newMeshes[0];
         palma1.position = new BABYLON.Vector3(205,0,35);
         palma1.scaling = new BABYLON.Vector3(5,5,5);
@@ -638,7 +638,7 @@ var createScene = function() {
     });
 
     // Sdraio 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/SummerModels/", "sdraio2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "sdraio2.gltf", scene, function(newMeshes) {
         var sdraio2 = newMeshes[0];
         sdraio2.position = new BABYLON.Vector3(90,-4,9);
         sdraio2.scaling = new BABYLON.Vector3(2,2,2);
@@ -653,7 +653,7 @@ var createScene = function() {
 
 
     // COIN 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin1 = newMeshes[0];
         coin1.position = new BABYLON.Vector3(190,3,0.5);
         coin1.scaling = new BABYLON.Vector3(10,10,10);
@@ -670,7 +670,7 @@ var createScene = function() {
     groundObjects.push(coinBox);
 
     // COIN 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin2 = newMeshes[0];
         coin2.position = new BABYLON.Vector3(195, 3, 0.5);
         coin2.scaling = new BABYLON.Vector3(10,10,10);
@@ -689,7 +689,7 @@ var createScene = function() {
     groundObjects.push(coinBox);
 
     // COIN 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin3 = newMeshes[0];
         coin3.position = new BABYLON.Vector3(210, 3, 0.5);
         coin3.scaling = new BABYLON.Vector3(10,10,10);
@@ -707,10 +707,10 @@ var createScene = function() {
     coinBox.rotate(new BABYLON.Vector3(1,0,0), 1.6)
     groundObjects.push(coinBox);
 
-    var portalSound = new BABYLON.Sound("portalSound", "../sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
+    var portalSound = new BABYLON.Sound("portalSound", "sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
 
     // Ending Portal
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "portal.gltf", scene, function(newMeshes) {
         var portal = newMeshes[0];
         portal.position = new BABYLON.Vector3(225,1,0);
         portal.scaling = new BABYLON.Vector3(2,2,2);
@@ -728,7 +728,7 @@ var createScene = function() {
     groundObjects.push(portalBox);
 
     // Fire Log
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
         FireLog.position = new BABYLON.Vector3(30,6,0.5);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
@@ -744,7 +744,7 @@ var createScene = function() {
     groundObjects.push(fireBox);
 
     // Fire Log 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
         FireLog.position = new BABYLON.Vector3(140,-4,0.5);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
@@ -760,7 +760,7 @@ var createScene = function() {
     groundObjects.push(fireBox);
 
     // Spikes
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(55,6,0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -778,7 +778,7 @@ var createScene = function() {
     groundObjects.push(spikeBox);
 
     // Spikes 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(100,-4,0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -796,7 +796,7 @@ var createScene = function() {
     groundObjects.push(spikeBox);
 
     // Spikes 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(202.5,1,0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -817,7 +817,7 @@ var createScene = function() {
 
 
     //music
-    var musicl4 = new BABYLON.Sound("musicl2", "../sounds/levels/level4/POL-battle-march-short.wav", scene, soundReady, {loop:true, volume:0.2, useCustomAttenuation:false});
+    var musicl4 = new BABYLON.Sound("musicl2", "sounds/levels/level4/POL-battle-march-short.wav", scene, soundReady, {loop:true, volume:0.2, useCustomAttenuation:false});
 
     function soundReady(){
         musicl4.play();
@@ -831,7 +831,7 @@ var createScene = function() {
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
     
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "knight.gltf", scene, function(newMeshes) {
         player.initializeRoot(newMeshes[0]);
         player.initializeBody();
         player.initializeAnimations();
@@ -860,7 +860,7 @@ function coinON(){
     //Particles system Fire
     particlesCoin = new BABYLON.GPUParticleSystem("particlesCoin", 100, scene);
     //Texture of each particle
-    particlesCoin.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -916,7 +916,7 @@ function coinON2(){
     //Particles system Fire
     particlesCoin2 = new BABYLON.GPUParticleSystem("particlesCoin2", 100, scene);
     //Texture of each particle
-    particlesCoin2.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin2.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -972,7 +972,7 @@ function coinON3(){
     //Particles system Fire
     particlesCoin3 = new BABYLON.GPUParticleSystem("particlesCoin3", 100, scene);
     //Texture of each particle
-    particlesCoin3.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin3.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -1027,7 +1027,7 @@ function fireON(){
     //Particles system Fire
     var particlesFire = new BABYLON.GPUParticleSystem("particlesFire", 5000, scene);
     //Texture of each particle
-    particlesFire.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire.particleTexture = new BABYLON.Texture("textures/fireParticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -1083,7 +1083,7 @@ function fireON2(){
     //Particles system Fire
     var particlesFire2 = new BABYLON.GPUParticleSystem("particlesFire2", 5000, scene);
     //Texture of each particle
-    particlesFire2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire2.particleTexture = new BABYLON.Texture("textures/fireParticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -1138,7 +1138,7 @@ function portalON(){
     var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 1000, scene);
 
     //Texture of each particle
-    particlesPortal.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
+    particlesPortal.particleTexture = new BABYLON.Texture("textures/portalParticles.png", scene);
     
 
     //Where the particles come from

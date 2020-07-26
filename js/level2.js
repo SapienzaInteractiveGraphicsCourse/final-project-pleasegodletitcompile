@@ -53,7 +53,7 @@ var helmet;
 // List of objects that are considered ground
 var groundObjects = [];
 
-var nextLevel = "../level3.html";
+var nextLevel = "level3.html";
 
 var createScene = function() {
     // Loading UI
@@ -79,7 +79,7 @@ var createScene = function() {
     skybox.addRotation(0.0, deg2rad(180), 0.0);
     var skyboxMaterial = new BABYLON.StandardMaterial("snowbox", scene);
     skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../Textures/skybox_winter/snowbox", scene);
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox_winter/snowbox", scene);
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -95,115 +95,115 @@ var createScene = function() {
     //Set platforms materials
     //Ice Small Platform
     var iceS = new BABYLON.StandardMaterial("ice", scene);
-    iceS.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene)
+    iceS.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene)
     iceS.bumpTexture.uScale = 1;
     iceS.bumpTexture.vScale = 0.33;
     iceS.diffuseColor = new BABYLON.Color3(0, 1, 1);
     
     var iceS1 = new BABYLON.StandardMaterial("ice1", scene);
-    iceS1.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceS1.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene);
     iceS1.bumpTexture.uScale = 0.33;
     iceS1.bumpTexture.vScale = 0.13;
     iceS1.diffuseColor = new BABYLON.Color3(0, 1, 1);
 
     var iceS2 = new BABYLON.StandardMaterial("ice2", scene);
-    iceS2.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceS2.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene);
     iceS2.bumpTexture.uScale = 0.13;
     iceS2.bumpTexture.vScale = 1;
     iceS2.diffuseColor = new BABYLON.Color3(0, 1, 1);
 
     //Ice Medium Platform
     var iceM = new BABYLON.StandardMaterial("ice", scene);
-    iceM.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene)
+    iceM.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene)
     iceM.bumpTexture.uScale = 1;
     iceM.bumpTexture.vScale = 1.33;
     iceM.diffuseColor = new BABYLON.Color3(0, 1, 1);
     
     var iceM1 = new BABYLON.StandardMaterial("ice1", scene);
-    iceM1.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceM1.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene);
     iceM1.bumpTexture.uScale = 0.133;
     iceM1.bumpTexture.vScale = 0.06; 
     
     iceM1.diffuseColor = new BABYLON.Color3(0, 1, 1);
 
     var iceM2 = new BABYLON.StandardMaterial("ice2", scene);
-    iceM2.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceM2.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene);
     iceM2.bumpTexture.uScale = 0.06;
     iceM2.bumpTexture.vScale = 0.133;
     iceM2.diffuseColor = new BABYLON.Color3(0, 1, 1);
 
     //Ice Big Platform
     var iceB = new BABYLON.StandardMaterial("ice", scene);
-    iceB.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene)
+    iceB.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene)
     iceB.bumpTexture.uScale = 0.3;
     iceB.bumpTexture.vScale = 3;
     iceB.diffuseColor = new BABYLON.Color3(0, 1, 1);
     
     var iceB1 = new BABYLON.StandardMaterial("ice1", scene);
-    iceB1.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceB1.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene);
     iceB1.bumpTexture.uScale = 3;
     iceB1.bumpTexture.vScale = 0.08;
     iceB1.diffuseColor = new BABYLON.Color3(0, 1, 1);
 
     var iceB2 = new BABYLON.StandardMaterial("ice2", scene);
-    iceB2.bumpTexture = new BABYLON.Texture("../Textures/IceBump.jpg", scene);
+    iceB2.bumpTexture = new BABYLON.Texture("textures/IceBump.jpg", scene);
     iceB2.bumpTexture.uScale = 0.08;
     iceB2.bumpTexture.vScale = 0.3;
     iceB2.diffuseColor = new BABYLON.Color3(0, 1, 1);
     
     //Snow Small Platform
     var snowS = new BABYLON.StandardMaterial("snow", scene);
-    snowS.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowS.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowS.bumpTexture.uScale = 0.3;
     snowS.bumpTexture.vScale = 2;
     snowS.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowS1 = new BABYLON.StandardMaterial("snow1", scene);
-    snowS1.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowS1.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowS1.bumpTexture.uScale = 2;
     snowS1.bumpTexture.vScale = 0.08;
     snowS1.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowS2 = new BABYLON.StandardMaterial("snow2", scene);
-    snowS2.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowS2.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowS2.bumpTexture.uScale = 0.08;
     snowS2.bumpTexture.vScale = 0.3;
     snowS2.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     //Snow Medium Platform
     var snowM = new BABYLON.StandardMaterial("snow", scene);
-    snowM.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowM.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowM.bumpTexture.uScale = 0.3;
     snowM.bumpTexture.vScale = 2;
     snowM.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowM1 = new BABYLON.StandardMaterial("snow1", scene);
-    snowM1.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowM1.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowM1.bumpTexture.uScale = 2;
     snowM1.bumpTexture.vScale = 0.08;
     snowM1.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowM2 = new BABYLON.StandardMaterial("snow2", scene);
-    snowM2.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowM2.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowM2.bumpTexture.uScale = 0.08;
     snowM2.bumpTexture.vScale = 0.3;
     snowM2.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     //Snow Big Platform
     var snowB = new BABYLON.StandardMaterial("snow", scene);
-    snowB.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowB.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowB.bumpTexture.uScale = 0.3;
     snowB.bumpTexture.vScale = 2;
     snowB.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowB1 = new BABYLON.StandardMaterial("snow1", scene);
-    snowB1.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowB1.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowB1.bumpTexture.uScale = 2;
     snowB1.bumpTexture.vScale = 0.08;
     snowB1.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowB2 = new BABYLON.StandardMaterial("snow2", scene);
-    snowB2.bumpTexture = new BABYLON.Texture("../Textures/SnowBump.jpg", scene);
+    snowB2.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
     snowB2.bumpTexture.uScale = 0.08;
     snowB2.bumpTexture.vScale = 0.3;
     snowB2.diffuseColor = new BABYLON.Color3(1, 1, 1);
@@ -936,122 +936,122 @@ var createScene = function() {
 
     //Loading clouds
     //Clouds 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud1 = newMeshes[0];
         Cloud1.scaling = new BABYLON.Vector3(30,30,30)
         Cloud1.position = new BABYLON.Vector3(0,-100,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud2 = newMeshes[0];
         Cloud2.scaling = new BABYLON.Vector3(30,30,30)
         Cloud2.position = new BABYLON.Vector3(200,-50,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud3 = newMeshes[0];
         Cloud3.scaling = new BABYLON.Vector3(30,30,30)
         Cloud3.position = new BABYLON.Vector3(400,-100,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud4 = newMeshes[0];
         Cloud4.scaling = new BABYLON.Vector3(30,30,30)
         Cloud4.position = new BABYLON.Vector3(600,-50,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud5 = newMeshes[0];
         Cloud5.scaling = new BABYLON.Vector3(30,30,30)
         Cloud5.position = new BABYLON.Vector3(800,-100,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud6 = newMeshes[0];
         Cloud6.scaling = new BABYLON.Vector3(30,30,30)
         Cloud6.position = new BABYLON.Vector3(1000, -50,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud7 = newMeshes[0];
         Cloud7.scaling = new BABYLON.Vector3(30,30,30)
         Cloud7.position = new BABYLON.Vector3(1200,-100,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud8 = newMeshes[0];
         Cloud8.scaling = new BABYLON.Vector3(30,30,30)
         Cloud8.position = new BABYLON.Vector3(1400,-50,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud9 = newMeshes[0];
         Cloud9.scaling = new BABYLON.Vector3(30,30,30)
         Cloud9.position = new BABYLON.Vector3(1600,-100,-350);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud1.gltf", scene, function(newMeshes) {
         Cloud10 = newMeshes[0];
         Cloud10.scaling = new BABYLON.Vector3(30,30,30)
         Cloud10.position = new BABYLON.Vector3(1800,-50,-350);
     });
 
     //Clouds 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud11 = newMeshes[0];
         Cloud11.scaling = new BABYLON.Vector3(30,30,30)
         Cloud11.position = new BABYLON.Vector3(100,50,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud12 = newMeshes[0];
         Cloud12.scaling = new BABYLON.Vector3(30,30,30)
         Cloud12.position = new BABYLON.Vector3(300,-200,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud13 = newMeshes[0];
         Cloud13.scaling = new BABYLON.Vector3(30,30,30)
         Cloud13.position = new BABYLON.Vector3(500,50,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud14 = newMeshes[0];
         Cloud14.scaling = new BABYLON.Vector3(30,30,30)
         Cloud14.position = new BABYLON.Vector3(700,-200,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud15 = newMeshes[0];
         Cloud15.scaling = new BABYLON.Vector3(30,30,30)
         Cloud15.position = new BABYLON.Vector3(900,50,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud16 = newMeshes[0];
         Cloud16.scaling = new BABYLON.Vector3(30,30,30)
         Cloud16.position = new BABYLON.Vector3(1100, -200,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud17 = newMeshes[0];
         Cloud17.scaling = new BABYLON.Vector3(30,30,30)
         Cloud17.position = new BABYLON.Vector3(1300,50,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud18 = newMeshes[0];
         Cloud18.scaling = new BABYLON.Vector3(30,30,30)
         Cloud18.position = new BABYLON.Vector3(1500,-200,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud19 = newMeshes[0];
         Cloud19.scaling = new BABYLON.Vector3(30,30,30)
         Cloud19.position = new BABYLON.Vector3(1700,50,10);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "cloud2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "cloud2.gltf", scene, function(newMeshes) {
         Cloud20 = newMeshes[0];
         Cloud20.scaling = new BABYLON.Vector3(30,30,30)
         Cloud20.position = new BABYLON.Vector3(1900,-200,10);
@@ -1065,7 +1065,7 @@ var createScene = function() {
 
 
     // Snowman 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(6.5,0.9,10);
         snowman.scaling = new BABYLON.Vector3(2,2,2);
@@ -1079,7 +1079,7 @@ var createScene = function() {
     
 
     // Snowman 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(95.5,10.9,10);
         snowman.scaling = new BABYLON.Vector3(2,2,2);
@@ -1092,105 +1092,105 @@ var createScene = function() {
     });
 
     // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
         WinterBush.position = new BABYLON.Vector3(-1,0.3,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Winter tree
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree.gltf", scene, function(newMeshes) {
         var WinterTree = newMeshes[0];
         WinterTree.position = new BABYLON.Vector3(0,2,-7);
         WinterTree.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Winter tree 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(-20,5,-20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(76,15, -20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(101,15, -20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(23,5, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(91,15, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(116,15, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree3.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree3.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(83,15, 29);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree3.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree3.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(108,15, 29);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     //Small Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockSmall.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockSmall.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(41,-9.5, 6);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Medium Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockMedium.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockMedium.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(35,-9.5, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Big Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(10,2, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Big Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(31,-8, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Big Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(23,-8, 4);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
@@ -1198,7 +1198,7 @@ var createScene = function() {
 
 
     // Winter bridge
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
         var WinterBridge = newMeshes[0];
         WinterBridge.position = new BABYLON.Vector3(-12,1.1,10.5);
         WinterBridge.scaling = new BABYLON.Vector3(5,5,5);
@@ -1206,7 +1206,7 @@ var createScene = function() {
 
 
     // Winter wolf
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
         var Wolf = newMeshes[0];
         Wolf.position = new BABYLON.Vector3(-12,1.1,10.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
@@ -1214,7 +1214,7 @@ var createScene = function() {
     });
 
     // Winter bridge Platform3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
         var WinterBridge = newMeshes[0];
         WinterBridge.position = new BABYLON.Vector3(16,-19,10.5);
         WinterBridge.scaling = new BABYLON.Vector3(5,5,5);
@@ -1222,7 +1222,7 @@ var createScene = function() {
 
 
     // Winter wolf Platform3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
         var Wolf = newMeshes[0];
         Wolf.position = new BABYLON.Vector3(16,-19,10.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
@@ -1230,7 +1230,7 @@ var createScene = function() {
     });
 
     // Eskimo model
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
         var eskimo = newMeshes[0];
         eskimo.position = new BABYLON.Vector3(5,-15,10.5);
         eskimo.scaling = new BABYLON.Vector3(1,1,1);
@@ -1238,7 +1238,7 @@ var createScene = function() {
     });
 
     // Bear model
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "bear.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "bear.gltf", scene, function(newMeshes) {
         var bear = newMeshes[0];
         bear.position = new BABYLON.Vector3(-5,-15,14);
         bear.scaling = new BABYLON.Vector3(1,1,1);
@@ -1246,7 +1246,7 @@ var createScene = function() {
     });
 
     // Tux model 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(-18,-19,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1254,7 +1254,7 @@ var createScene = function() {
     });
 
     // Tux model 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(-20,-19,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1262,7 +1262,7 @@ var createScene = function() {
     });
 
     // Tux model 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(-19,-19,8);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1270,7 +1270,7 @@ var createScene = function() {
     });
 
     // Penguin with children
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguinwithchildren.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguinwithchildren.gltf", scene, function(newMeshes) {
         var peng = newMeshes[0];
         peng.position = new BABYLON.Vector3(140,11.5, 17);
         peng.scaling = new BABYLON.Vector3(2,2,2);
@@ -1279,7 +1279,7 @@ var createScene = function() {
     
     // Penguins community
     // Penguin igloo
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "igloopenguin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "igloopenguin.gltf", scene, function(newMeshes) {
         var igloopenguin = newMeshes[0];
         igloopenguin.position = new BABYLON.Vector3(54,-8.2,11);
         igloopenguin.scaling = new BABYLON.Vector3(2,2,2);
@@ -1287,7 +1287,7 @@ var createScene = function() {
     });
 
     // Fish bucket
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "fishbucket.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "fishbucket.gltf", scene, function(newMeshes) {
         var fishbucket = newMeshes[0];
         fishbucket.position = new BABYLON.Vector3(48,-12.8,13);
         fishbucket.scaling = new BABYLON.Vector3(3,3,3);
@@ -1295,7 +1295,7 @@ var createScene = function() {
     });
 
     // Eskimo model
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
         var eskimo = newMeshes[0];
         eskimo.position = new BABYLON.Vector3(140,25, 9);
         eskimo.scaling = new BABYLON.Vector3(1,1,1);
@@ -1303,7 +1303,7 @@ var createScene = function() {
     });
 
     // Penguin 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguin1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguin1.gltf", scene, function(newMeshes) {
         var peng = newMeshes[0];
         peng.position = new BABYLON.Vector3(165,4.2, 5.5);
         peng.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1311,7 +1311,7 @@ var createScene = function() {
     });
 
     // Penguin 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
         var peng2 = newMeshes[0];
         peng2.position = new BABYLON.Vector3(164,9, 8.5);
         peng2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1319,7 +1319,7 @@ var createScene = function() {
     });
 
     // Penguin 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "downpenguin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "downpenguin.gltf", scene, function(newMeshes) {
         var peng2 = newMeshes[0];
         peng2.position = new BABYLON.Vector3(172,19.5, 8.5);
         peng2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1327,7 +1327,7 @@ var createScene = function() {
     });
 
     // Big Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var polarbear2 = newMeshes[0];
         polarbear2.position = new BABYLON.Vector3(181,36.5, 5);
         polarbear2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1335,7 +1335,7 @@ var createScene = function() {
     });
 
     // Polar bear 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "polarbear2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "polarbear2.gltf", scene, function(newMeshes) {
         var polarbear2 = newMeshes[0];
         polarbear2.position = new BABYLON.Vector3(210,24, 5.5);
         polarbear2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1343,7 +1343,7 @@ var createScene = function() {
     });
 
     // snowman
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(210,35.5, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1353,7 +1353,7 @@ var createScene = function() {
     });
 
     // igloo
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "igloo.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "igloo.gltf", scene, function(newMeshes) {
         var igloo = newMeshes[0];
         igloo.position = new BABYLON.Vector3(230,24.5, 12);
         igloo.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1361,7 +1361,7 @@ var createScene = function() {
     });
 
     // fish bucket
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "fishbucket.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "fishbucket.gltf", scene, function(newMeshes) {
         var fishbucket = newMeshes[0];
         fishbucket.position = new BABYLON.Vector3(220,24.5, 11.5);
         fishbucket.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1369,28 +1369,28 @@ var createScene = function() {
     });
 
     // wolf
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
         var Wolf = newMeshes[0];
         Wolf.position = new BABYLON.Vector3(215,36, 8.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
         WinterBush.position = new BABYLON.Vector3(250,45,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Winter tree
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree.gltf", scene, function(newMeshes) {
         var WinterTree = newMeshes[0];
         WinterTree.position = new BABYLON.Vector3(232,57,-7);
         WinterTree.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // North pole 
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "northpole.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "northpole.gltf", scene, function(newMeshes) {
         var northpole = newMeshes[0];
         northpole.position = new BABYLON.Vector3(252,65,9);
         northpole.scaling = new BABYLON.Vector3(3,3,-3);
@@ -1399,7 +1399,7 @@ var createScene = function() {
     });
 
     // South pole 
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "southpole.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "southpole.gltf", scene, function(newMeshes) {
         var southpole = newMeshes[0];
         southpole.position = new BABYLON.Vector3(247,17,0);
         southpole.scaling = new BABYLON.Vector3(3,3,-3);
@@ -1408,28 +1408,28 @@ var createScene = function() {
     });
 
     // Winter tree 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(270, 81, -20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(290, 81, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter bridge
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
         var WinterBridge = newMeshes[0];
         WinterBridge.position = new BABYLON.Vector3(280,77.1,10.5);
         WinterBridge.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Tux model 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(297,77,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1437,7 +1437,7 @@ var createScene = function() {
     });
 
     // Tux model 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(295,77,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1445,7 +1445,7 @@ var createScene = function() {
     });
 
     // Tux model 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(296,77,8);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1453,28 +1453,28 @@ var createScene = function() {
     });
 
     // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
         WinterBush.position = new BABYLON.Vector3(260,76,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Winter tree 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(315, 71, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
         WinterBush.position = new BABYLON.Vector3(330,76,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Eskimo model
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
         var eskimo = newMeshes[0];
         eskimo.position = new BABYLON.Vector3(320,71, 9);
         eskimo.scaling = new BABYLON.Vector3(1,1,1);
@@ -1482,7 +1482,7 @@ var createScene = function() {
     });
 
     // wolf
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
         var Wolf = newMeshes[0];
         Wolf.position = new BABYLON.Vector3(324,67, 8.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
@@ -1491,7 +1491,7 @@ var createScene = function() {
 
 
     // Polar bear 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "polarbear2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "polarbear2.gltf", scene, function(newMeshes) {
         var polarbear2 = newMeshes[0];
         polarbear2.position = new BABYLON.Vector3(355,35, 5.5);
         polarbear2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1500,7 +1500,7 @@ var createScene = function() {
 
 
     // Penguin 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguin1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguin1.gltf", scene, function(newMeshes) {
         var peng = newMeshes[0];
         peng.position = new BABYLON.Vector3(350,65, 5.5);
         peng.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1508,7 +1508,7 @@ var createScene = function() {
     });
 
     // Penguin 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
         var peng2 = newMeshes[0];
         peng2.position = new BABYLON.Vector3(350,65, 8.5);
         peng2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1516,21 +1516,21 @@ var createScene = function() {
     });
 
     // Penguin with children
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguinwithchildren.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguinwithchildren.gltf", scene, function(newMeshes) {
         var peng = newMeshes[0];
         peng.position = new BABYLON.Vector3(365,78, 17);
         peng.scaling = new BABYLON.Vector3(2,2,2);
     });
 
     //Small Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockSmall.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockSmall.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(368,46, 6);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Medium Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockMedium.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockMedium.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(362,46, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
@@ -1538,28 +1538,28 @@ var createScene = function() {
 
 
     //Big Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(358,47.5, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Big Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(350,47.5, 4);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     // Penguin with children
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguinwithchildren.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguinwithchildren.gltf", scene, function(newMeshes) {
         var peng = newMeshes[0];
         peng.position = new BABYLON.Vector3(380,37.5, 17);
         peng.scaling = new BABYLON.Vector3(2,2,2);
     });
 
     // Eskimo model
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
         var eskimo = newMeshes[0];
         eskimo.position = new BABYLON.Vector3(380,51, 9);
         eskimo.scaling = new BABYLON.Vector3(1,1,1);
@@ -1567,7 +1567,7 @@ var createScene = function() {
     });
 
     // South pole 
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "southpole.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "southpole.gltf", scene, function(newMeshes) {
         var southpole = newMeshes[0];
         southpole.position = new BABYLON.Vector3(362,63,0);
         southpole.scaling = new BABYLON.Vector3(3,3,-3);
@@ -1576,21 +1576,21 @@ var createScene = function() {
     });
 
     // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
         WinterBush.position = new BABYLON.Vector3(376.5,86,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Winter tree 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree3.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree3.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(386.5,81, 29);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // snowman
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(397.5,87, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1600,14 +1600,14 @@ var createScene = function() {
     });
 
     // Winter bridge
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBridge.gltf", scene, function(newMeshes) {
         var WinterBridge = newMeshes[0];
         WinterBridge.position = new BABYLON.Vector3(418,97.1,10.5);
         WinterBridge.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // Penguin 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguin1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguin1.gltf", scene, function(newMeshes) {
         var peng = newMeshes[0];
         peng.position = new BABYLON.Vector3(420,85, 5.5);
         peng.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1615,7 +1615,7 @@ var createScene = function() {
     });
 
     // Penguin 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
         var peng2 = newMeshes[0];
         peng2.position = new BABYLON.Vector3(420,85, 8.5);
         peng2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1623,21 +1623,21 @@ var createScene = function() {
     });
 
     // Winter tree 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree2.gltf", scene, function(newMeshes) {
         var WinterTree2 = newMeshes[0];
         WinterTree2.position = new BABYLON.Vector3(427, 101, 7);
         WinterTree2.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // Winter tree 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree1.gltf", scene, function(newMeshes) {
         var WinterTree1 = newMeshes[0];
         WinterTree1.position = new BABYLON.Vector3(437, 101, -20);
         WinterTree1.scaling = new BABYLON.Vector3(1,1,1);
     });
 
     // snowman
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(444,96.8, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1647,35 +1647,35 @@ var createScene = function() {
     });
 
     //Small Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockSmall.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockSmall.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(453,96, 6);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Medium Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockMedium.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockMedium.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(447,96, 5);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     //Big Rock
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterRockBig.gltf", scene, function(newMeshes) {
         var WinterRockSmall = newMeshes[0];
         WinterRockSmall.position = new BABYLON.Vector3(443,98, 4);
         WinterRockSmall.scaling = new BABYLON.Vector3(3,3,3);
     });
 
     // Winter tree
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterTree.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterTree.gltf", scene, function(newMeshes) {
         var WinterTree = newMeshes[0];
         WinterTree.position = new BABYLON.Vector3(292,59,-7);
         WinterTree.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // South pole 
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "southpole.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "southpole.gltf", scene, function(newMeshes) {
         var southpole = newMeshes[0];
         southpole.position = new BABYLON.Vector3(330,42,0);
         southpole.scaling = new BABYLON.Vector3(3,3,-3);
@@ -1684,7 +1684,7 @@ var createScene = function() {
     });
 
     // Tux model 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(315,47,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1692,7 +1692,7 @@ var createScene = function() {
     });
 
     // Tux model 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(313,47,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1700,7 +1700,7 @@ var createScene = function() {
     });
 
     // Tux model 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(314,47,8);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1708,7 +1708,7 @@ var createScene = function() {
     });
 
     // wolf
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
         var Wolf = newMeshes[0];
         Wolf.position = new BABYLON.Vector3(320,47, 8.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
@@ -1716,7 +1716,7 @@ var createScene = function() {
     });
 
     // Penguin 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "downpenguin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "downpenguin.gltf", scene, function(newMeshes) {
         var peng2 = newMeshes[0];
         peng2.position = new BABYLON.Vector3(321.5,35, 8.5);
         peng2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1724,14 +1724,14 @@ var createScene = function() {
     });
 
     // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
         WinterBush.position = new BABYLON.Vector3(334,36,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
     });
 
     // snowman
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "snowman.gltf", scene, function(newMeshes) {
         var snowman = newMeshes[0];
         snowman.position = new BABYLON.Vector3(350,26.5, 8.5);
         snowman.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1741,7 +1741,7 @@ var createScene = function() {
     });
 
     // Eskimo model
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "eskimo.gltf", scene, function(newMeshes) {
         var eskimo = newMeshes[0];
         eskimo.position = new BABYLON.Vector3(357,31, 9);
         eskimo.scaling = new BABYLON.Vector3(1,1,1);
@@ -1749,7 +1749,7 @@ var createScene = function() {
     });
 
     // Penguin 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "penguin2.gltf", scene, function(newMeshes) {
         var peng2 = newMeshes[0];
         peng2.position = new BABYLON.Vector3(344,15, 8.5);
         peng2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1757,7 +1757,7 @@ var createScene = function() {
     });
 
     // North pole 
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "northpole.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "northpole.gltf", scene, function(newMeshes) {
         var northpole = newMeshes[0];
         northpole.position = new BABYLON.Vector3(368,17,9);
         northpole.scaling = new BABYLON.Vector3(3,3,-3);
@@ -1766,7 +1766,7 @@ var createScene = function() {
     });
 
     // Fish bucket
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "fishbucket.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "fishbucket.gltf", scene, function(newMeshes) {
         var fishbucket = newMeshes[0];
         fishbucket.position = new BABYLON.Vector3(375,-7,13);
         fishbucket.scaling = new BABYLON.Vector3(3,3,3);
@@ -1774,7 +1774,7 @@ var createScene = function() {
     });
 
     // wolf
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "Wolf.gltf", scene, function(newMeshes) {
         var Wolf = newMeshes[0];
         Wolf.position = new BABYLON.Vector3(382,-3, 8.5);
         Wolf.scaling = new BABYLON.Vector3(1,1,1);
@@ -1782,7 +1782,7 @@ var createScene = function() {
     });
 
     // Penguin 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "downpenguin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "downpenguin.gltf", scene, function(newMeshes) {
         var peng2 = newMeshes[0];
         peng2.position = new BABYLON.Vector3(385,-4.5, 8.5);
         peng2.scaling = new BABYLON.Vector3(2.5,2.5,2.5);
@@ -1790,7 +1790,7 @@ var createScene = function() {
     });
 
     // Tux model 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(225,16,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1798,7 +1798,7 @@ var createScene = function() {
     });
 
     // Tux model 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(223,16,10);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1806,7 +1806,7 @@ var createScene = function() {
     });
 
     // Tux model 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "tux.gltf", scene, function(newMeshes) {
         var tux = newMeshes[0];
         tux.position = new BABYLON.Vector3(224,16,8);
         tux.scaling = new BABYLON.Vector3(0.03,0.03,0.03);
@@ -1814,7 +1814,7 @@ var createScene = function() {
     });
 
     // Bush
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "WinterBush.gltf", scene, function(newMeshes) {
         var WinterBush = newMeshes[0];
         WinterBush.position = new BABYLON.Vector3(234,15,9);
         WinterBush.scaling = new BABYLON.Vector3(5,5,5);
@@ -1831,7 +1831,7 @@ var createScene = function() {
 
 
     // COIN 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin1 = newMeshes[0];
         coin1.position = new BABYLON.Vector3(440,99,0.5);
         coin1.scaling = new BABYLON.Vector3(10,10,10);
@@ -1848,7 +1848,7 @@ var createScene = function() {
     groundObjects.push(coinBox);
 
     // COIN 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin2 = newMeshes[0];
         coin2.position = new BABYLON.Vector3(224, 18.5, 0.5);
         coin2.scaling = new BABYLON.Vector3(10,10,10);
@@ -1867,7 +1867,7 @@ var createScene = function() {
     groundObjects.push(coinBox);
 
     // COIN 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin3 = newMeshes[0];
         coin3.position = new BABYLON.Vector3(415, 9, 0.5);
         coin3.scaling = new BABYLON.Vector3(10,10,10);
@@ -1886,7 +1886,7 @@ var createScene = function() {
     groundObjects.push(coinBox);
 
     // Fire Log
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
         FireLog.position = new BABYLON.Vector3(320,47,0.5);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
@@ -1902,7 +1902,7 @@ var createScene = function() {
     groundObjects.push(fireBox);
 
     // Fire Log 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
         FireLog.position = new BABYLON.Vector3(220,36.1,0.5);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
@@ -1918,7 +1918,7 @@ var createScene = function() {
     groundObjects.push(fireBox);
 
     // Spikes
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(5,1,0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -1937,7 +1937,7 @@ var createScene = function() {
 
     // Spikes 2
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(230, 16, 0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -1956,7 +1956,7 @@ var createScene = function() {
 
     // Spikes 3
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(95, 11, 0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -1975,7 +1975,7 @@ var createScene = function() {
 
     // Spikes 4
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(210, 36, 0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -1994,7 +1994,7 @@ var createScene = function() {
 
     // Spikes 5
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(280, 77, 0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -2013,7 +2013,7 @@ var createScene = function() {
 
     // Spikes 6
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(360, 47, 0.5);
         spikeTrap.scaling = new BABYLON.Vector3(1.8,0.8,1.8);
@@ -2030,10 +2030,10 @@ var createScene = function() {
     spikeBox.position = new BABYLON.Vector3(360, 47, 0.5);
     groundObjects.push(spikeBox);
 
-    var portalSound = new BABYLON.Sound("portalSound", "../sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
+    var portalSound = new BABYLON.Sound("portalSound", "sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
 
     // Ending Portal
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "portal.gltf", scene, function(newMeshes) {
         var portal = newMeshes[0];
         portal.position = new BABYLON.Vector3(400,56,0);
         portal.scaling = new BABYLON.Vector3(2,2,2);
@@ -2055,7 +2055,7 @@ var createScene = function() {
     var particles = new BABYLON.GPUParticleSystem("particles", 20000, scene);
 
     //Texture of each particle
-	particles.particleTexture = new BABYLON.Texture("../textures/snowflake.jpg", scene);
+	particles.particleTexture = new BABYLON.Texture("textures/snowflake.jpg", scene);
     particles.translationPivot = new BABYLON.Vector3(0, 100,30);
 
     //Where the particles come from
@@ -2195,7 +2195,7 @@ var createScene = function() {
 
 
     // Music
-    var musicl2 = new BABYLON.Sound("musicl2", "../sounds/levels/level2/POL-battle-is-coming-short.wav", scene, soundReady, {loop:true, volume:0.2, autoplay:true, useCustomAttenuation:true});
+    var musicl2 = new BABYLON.Sound("musicl2", "sounds/levels/level2/POL-battle-is-coming-short.wav", scene, soundReady, {loop:true, volume:0.2, autoplay:true, useCustomAttenuation:true});
 
     function soundReady(){
         musicl2.play();
@@ -2209,7 +2209,7 @@ var createScene = function() {
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
     
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "knight.gltf", scene, function(newMeshes) {
         player.initializeRoot(newMeshes[0]);
         player.initializeBody();
         player.initializeAnimations();
@@ -2234,7 +2234,7 @@ function coinON(){
     //Particles system Fire
     particlesCoin = new BABYLON.GPUParticleSystem("particlesCoin", 100, scene);
     //Texture of each particle
-    particlesCoin.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -2290,7 +2290,7 @@ function coinON2(){
     //Particles system Fire
     particlesCoin2 = new BABYLON.GPUParticleSystem("particlesCoin2", 100, scene);
     //Texture of each particle
-    particlesCoin2.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin2.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -2346,7 +2346,7 @@ function coinON3(){
     //Particles system Fire
     particlesCoin3 = new BABYLON.GPUParticleSystem("particlesCoin3", 100, scene);
     //Texture of each particle
-    particlesCoin3.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin3.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -2401,7 +2401,7 @@ function fireON(){
     //Particles system Fire
     var particlesFire = new BABYLON.GPUParticleSystem("particlesFire", 5000, scene);
     //Texture of each particle
-    particlesFire.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire.particleTexture = new BABYLON.Texture("textures/fireParticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -2457,7 +2457,7 @@ function fireON2(){
     //Particles system Fire
     var particlesFire2 = new BABYLON.GPUParticleSystem("particlesFire2", 5000, scene);
     //Texture of each particle
-    particlesFire2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire2.particleTexture = new BABYLON.Texture("textures/fireParticle.png", scene);
     //particles2.translationPivot = new BABYLON.Vector3(0, 0,0);
     //Where the particles come from
     
@@ -2521,7 +2521,7 @@ function portalON(){
     var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 1000, scene);
 
     //Texture of each particle
-    particlesPortal.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
+    particlesPortal.particleTexture = new BABYLON.Texture("textures/portalParticles.png", scene);
     
 
     //Where the particles come from
