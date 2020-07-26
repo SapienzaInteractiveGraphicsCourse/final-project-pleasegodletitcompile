@@ -130,19 +130,19 @@ var createScene = function() {
     
     var groundM2 = new BABYLON.StandardMaterial("groundM2", scene);
     groundM2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
-    groundM2.diffuseTexture.uScale = 0.133;
-    groundM2.diffuseTexture.vScale = 0.06;
+    groundM2.diffuseTexture.uScale = 1;
+    groundM2.diffuseTexture.vScale = 0.4;
     groundM2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
-    groundM2.bumpTexture.uScale = 0.133;
-    groundM2.bumpTexture.vScale = 0.06;
+    groundM2.bumpTexture.uScale = 1;
+    groundM2.bumpTexture.vScale = 0.4;
 
     var groundM3 = new BABYLON.StandardMaterial("groundM3", scene);
     groundM3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
-    groundM3.diffuseTexture.uScale = 0.06;
-    groundM3.diffuseTexture.vScale = 0.133;
+    groundM3.diffuseTexture.uScale = 0.35;
+    groundM3.diffuseTexture.vScale = 0.7;
     groundM3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
-    groundM3.bumpTexture.uScale = 0.06;
-    groundM3.bumpTexture.vScale = 0.133;
+    groundM3.bumpTexture.uScale = 0.35;
+    groundM3.bumpTexture.vScale = 0.7;
 
     // Ground Wet Big Platform
     var groundB1 = new BABYLON.StandardMaterial("groundB1", scene);
@@ -205,19 +205,19 @@ var createScene = function() {
     
     var pebblesM2 = new BABYLON.StandardMaterial("pebblesM2", scene);
     pebblesM2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
-    pebblesM2.diffuseTexture.uScale = 0.133;
-    pebblesM2.diffuseTexture.vScale = 0.06;
+    pebblesM2.diffuseTexture.uScale = 1;
+    pebblesM2.diffuseTexture.vScale = 0.3;
     pebblesM2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
-    pebblesM2.bumpTexture.uScale = 0.133;
-    pebblesM2.bumpTexture.vScale = 0.06;
+    pebblesM2.bumpTexture.uScale = 1;
+    pebblesM2.bumpTexture.vScale = 0.3;
 
     var pebblesM3 = new BABYLON.StandardMaterial("pebblesM3", scene);
     pebblesM3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
-    pebblesM3.diffuseTexture.uScale = 0.06;
-    pebblesM3.diffuseTexture.vScale = 0.133;
+    pebblesM3.diffuseTexture.uScale = 0.35;
+    pebblesM3.diffuseTexture.vScale = 0.5;
     pebblesM3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
-    pebblesM3.bumpTexture.uScale = 0.06;
-    pebblesM3.bumpTexture.vScale = 0.133;
+    pebblesM3.bumpTexture.uScale = 0.35;
+    pebblesM3.bumpTexture.vScale = 0.5;
 
     // Ground Wet Pebbles Big Platform
     var pebblesB1 = new BABYLON.StandardMaterial("pebblesB1", scene);
