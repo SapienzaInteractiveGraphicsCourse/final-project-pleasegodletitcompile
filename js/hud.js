@@ -144,14 +144,14 @@ function menu(gameOver = false) {
     mainMenuButton.height = "40px";
     menuPanel.addControl(mainMenuButton);
     mainMenuButton.onPointerClickObservable.add(function() {
-        window.location.href = "../index.html";
+        window.location.href = "index.html";
     });
 
     var levelMenuButton = new BABYLON.GUI.Button.CreateSimpleButton("levelMenuButton", "Level Select");
     levelMenuButton.height = "40px";
     menuPanel.addControl(levelMenuButton);
     levelMenuButton.onPointerClickObservable.add(function() {
-        window.location.href = "../selectLevel.html";
+        window.location.href = "selectLevel.html";
     });
 
     if(gameOver == false){
@@ -204,7 +204,7 @@ function endLevel(){
     mainMenuButton.height = "40px";
     endGamePanel.addControl(mainMenuButton);
     mainMenuButton.onPointerClickObservable.add(function() {
-        window.location.href = "../index.html";
+        window.location.href = "index.html";
     });
 
 };

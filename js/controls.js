@@ -22,9 +22,9 @@ var allCoinsCollected = false;
 
 
 
-var jumpsound = new BABYLON.Sound("jumpsound", "../sounds/hollow.wav", scene, null, {volume:0.5});
-var cashRecover = new BABYLON.Sound("cashRecover", "../sounds/money/chimes-glassy.mp3", scene, null, {volume:0.6});
-var trapSound = new BABYLON.Sound("trapSound", "../sounds/trap/sucked-into-the-dark-side.wav", scene, null, {volume:0.5});
+var jumpsound = new BABYLON.Sound("jumpsound", "sounds/hollow.wav", scene, null, {volume:0.5});
+var cashRecover = new BABYLON.Sound("cashRecover", "sounds/money/chimes-glassy.mp3", scene, null, {volume:0.6});
+var trapSound = new BABYLON.Sound("trapSound", "sounds/trap/sucked-into-the-dark-side.wav", scene, null, {volume:0.5});
 
 scene.actionManager = new BABYLON.ActionManager(scene);
 

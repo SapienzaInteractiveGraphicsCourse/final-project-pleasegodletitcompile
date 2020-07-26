@@ -42,7 +42,7 @@ var platformWidthBig = 50;
 // List of objects that are considered ground
 var groundObjects = [];
 
-var nextLevel = "../level2.html";
+var nextLevel = "level2.html";
 
 var createScene = function() {
     // Loading UI
@@ -72,7 +72,7 @@ var createScene = function() {
     // Clouds
     {
     cloudMaterial = new BABYLON.StandardMaterial("cloudMaterial", scene);
-    cloudMaterial.diffuseTexture = new BABYLON.Texture("../Textures/cloud.png", scene);
+    cloudMaterial.diffuseTexture = new BABYLON.Texture("textures/cloud.png", scene);
     cloudMaterial.diffuseTexture.hasAlpha = true;
     cloudMaterial.useAlphaFromDiffuseTexture = true;
     cloudMaterial.alpha = 0.6;
@@ -96,151 +96,151 @@ var createScene = function() {
     //Set platforms materials
     // Ground Wet Small Platform
     var groundS1 = new BABYLON.StandardMaterial("groundS1", scene);
-    groundS1.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundS1.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundS1.diffuseTexture.uScale = 1;
     groundS1.diffuseTexture.vScale = 0.33;
-    groundS1.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundS1.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundS1.bumpTexture.uScale = 1;
     groundS1.bumpTexture.vScale = 0.33;
     
     var groundS2 = new BABYLON.StandardMaterial("groundS2", scene);
-    groundS2.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundS2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundS2.diffuseTexture.uScale = 0.33;
     groundS2.diffuseTexture.vScale = 0.13;
-    groundS2.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundS2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundS2.bumpTexture.uScale = 0.33;
     groundS2.bumpTexture.vScale = 0.13;
 
     var groundS3 = new BABYLON.StandardMaterial("groundS3", scene);
-    groundS3.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundS3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundS3.diffuseTexture.uScale = 0.13;
     groundS3.diffuseTexture.vScale = 1;
-    groundS3.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundS3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundS3.bumpTexture.uScale = 0.13;
     groundS3.bumpTexture.vScale = 1;
 
     // Ground Wet Medium Platform
     var groundM1 = new BABYLON.StandardMaterial("groundM1", scene);
-    groundM1.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundM1.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundM1.diffuseTexture.uScale = 1;
     groundM1.diffuseTexture.vScale = 1.33;
-    groundM1.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundM1.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundM1.bumpTexture.uScale = 1;
     groundM1.bumpTexture.vScale = 1.33;
     
     var groundM2 = new BABYLON.StandardMaterial("groundM2", scene);
-    groundM2.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundM2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundM2.diffuseTexture.uScale = 0.133;
     groundM2.diffuseTexture.vScale = 0.06;
-    groundM2.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundM2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundM2.bumpTexture.uScale = 0.133;
     groundM2.bumpTexture.vScale = 0.06;
 
     var groundM3 = new BABYLON.StandardMaterial("groundM3", scene);
-    groundM3.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundM3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundM3.diffuseTexture.uScale = 0.06;
     groundM3.diffuseTexture.vScale = 0.133;
-    groundM3.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundM3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundM3.bumpTexture.uScale = 0.06;
     groundM3.bumpTexture.vScale = 0.133;
 
     // Ground Wet Big Platform
     var groundB1 = new BABYLON.StandardMaterial("groundB1", scene);
-    groundB1.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundB1.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundB1.diffuseTexture.uScale = 0.3;
     groundB1.diffuseTexture.vScale = 3;
-    groundB1.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundB1.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundB1.bumpTexture.uScale = 0.3;
     groundB1.bumpTexture.vScale = 3;
     
     var groundB2 = new BABYLON.StandardMaterial("groundB2", scene);
-    groundB2.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundB2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundB2.diffuseTexture.uScale = 3;
     groundB2.diffuseTexture.vScale = 0.08;
-    groundB2.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundB2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundB2.bumpTexture.uScale = 3;
     groundB2.bumpTexture.vScale = 0.08;
 
     var groundB3 = new BABYLON.StandardMaterial("groundB3", scene);
-    groundB3.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet.jpg", scene)
+    groundB3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet.jpg", scene)
     groundB3.diffuseTexture.uScale = 0.08;
     groundB3.diffuseTexture.vScale = 0.3;
-    groundB3.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_normal.jpg", scene)
+    groundB3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_normal.jpg", scene)
     groundB3.bumpTexture.uScale = 0.08;
     groundB3.bumpTexture.vScale = 0.3;
 
     // Ground Wet Pebbles Small Platform
     var pebblesS1 = new BABYLON.StandardMaterial("ground_wet_pebbles_small_1", scene);
-    pebblesS1.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesS1.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesS1.diffuseTexture.uScale = 1;
     pebblesS1.diffuseTexture.vScale = 0.33;
-    pebblesS1.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesS1.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesS1.bumpTexture.uScale = 1;
     pebblesS1.bumpTexture.vScale = 0.33;
     
     var pebblesS2 = new BABYLON.StandardMaterial("pebblesS2", scene);
-    pebblesS2.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesS2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesS2.diffuseTexture.uScale = 0.33;
     pebblesS2.diffuseTexture.vScale = 0.13;
-    pebblesS2.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesS2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesS2.bumpTexture.uScale = 0.33;
     pebblesS2.bumpTexture.vScale = 0.13;
 
     var pebblesS3 = new BABYLON.StandardMaterial("pebblesS3", scene);
-    pebblesS3.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesS3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesS3.diffuseTexture.uScale = 0.13;
     pebblesS3.diffuseTexture.vScale = 1;
-    pebblesS3.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesS3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesS3.bumpTexture.uScale = 0.13;
     pebblesS3.bumpTexture.vScale = 1;
 
     // Ground Wet Pebbles Medium Platform
     var pebblesM1 = new BABYLON.StandardMaterial("pebblesM1", scene);
-    pebblesM1.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesM1.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesM1.diffuseTexture.uScale = 1;
     pebblesM1.diffuseTexture.vScale = 1.33;
-    pebblesM1.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesM1.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesM1.bumpTexture.uScale = 1;
     pebblesM1.bumpTexture.vScale = 1.33;
     
     var pebblesM2 = new BABYLON.StandardMaterial("pebblesM2", scene);
-    pebblesM2.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesM2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesM2.diffuseTexture.uScale = 0.133;
     pebblesM2.diffuseTexture.vScale = 0.06;
-    pebblesM2.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesM2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesM2.bumpTexture.uScale = 0.133;
     pebblesM2.bumpTexture.vScale = 0.06;
 
     var pebblesM3 = new BABYLON.StandardMaterial("pebblesM3", scene);
-    pebblesM3.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesM3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesM3.diffuseTexture.uScale = 0.06;
     pebblesM3.diffuseTexture.vScale = 0.133;
-    pebblesM3.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesM3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesM3.bumpTexture.uScale = 0.06;
     pebblesM3.bumpTexture.vScale = 0.133;
 
     // Ground Wet Pebbles Big Platform
     var pebblesB1 = new BABYLON.StandardMaterial("pebblesB1", scene);
-    pebblesB1.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesB1.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesB1.diffuseTexture.uScale = 0.3;
     pebblesB1.diffuseTexture.vScale = 3;
-    pebblesB1.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesB1.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesB1.bumpTexture.uScale = 0.3;
     pebblesB1.bumpTexture.vScale = 3;
     
     var pebblesB2 = new BABYLON.StandardMaterial("pebblesB2", scene);
-    pebblesB2.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesB2.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesB2.diffuseTexture.uScale = 3;
     pebblesB2.diffuseTexture.vScale = 0.08;
-    pebblesB2.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesB2.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesB2.bumpTexture.uScale = 3;
     pebblesB2.bumpTexture.vScale = 0.08;
 
     var pebblesB3 = new BABYLON.StandardMaterial("pebblesB3", scene);
-    pebblesB3.diffuseTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
+    pebblesB3.diffuseTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles.jpg", scene)
     pebblesB3.diffuseTexture.uScale = 0.08;
     pebblesB3.diffuseTexture.vScale = 0.3;
-    pebblesB3.bumpTexture = new BABYLON.Texture("../textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
+    pebblesB3.bumpTexture = new BABYLON.Texture("textures/AutumnTextures/ground_wet_pebbles_normal.jpg", scene)
     pebblesB3.bumpTexture.uScale = 0.08;
     pebblesB3.bumpTexture.vScale = 0.3;
     
@@ -313,7 +313,7 @@ var createScene = function() {
     addPlatform(multimatPebblesS, platformWidthSmall, 130, 30);
 
     // Coin 1
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin1 = newMeshes[0];
         coin1.position = new BABYLON.Vector3(136,44.5,0.5);
         coin1.scaling = new BABYLON.Vector3(10,10,10);
@@ -335,7 +335,7 @@ var createScene = function() {
     addPlatform(multimatPebblesS, platformWidthSmall, 165, 20);
 
     // Spikes
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(165, 21, 5);
         spikeTrap.scaling = new BABYLON.Vector3(1.7,0.8,5);
@@ -357,7 +357,7 @@ var createScene = function() {
     addPlatform(multimatPebblesS, platformWidthSmall, 195, 15);
 
     // Spikes 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(195, 16, 5);
         spikeTrap.scaling = new BABYLON.Vector3(1.7,0.8,5);
@@ -376,7 +376,7 @@ var createScene = function() {
     addFirePlatform(multimatGroundM, 210, 15);
 
     // Fire Log
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
         FireLog.position = new BABYLON.Vector3(210, 15.5, 3);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
@@ -403,7 +403,7 @@ var createScene = function() {
     addPlatform(multimatGroundB, platformWidthBig, 260, 50);
 
     // Spikes 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "spikeTrap.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "spikeTrap.gltf", scene, function(newMeshes) {
         var spikeTrap = newMeshes[0];
         spikeTrap.position = new BABYLON.Vector3(241, 51, 5);
         spikeTrap.scaling = new BABYLON.Vector3(1.7,0.8,5);
@@ -419,7 +419,7 @@ var createScene = function() {
     groundObjects.push(spikeBox);
 
     // Coin 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin2 = newMeshes[0];
         coin2.position = new BABYLON.Vector3(237,54.5,0.5);
         coin2.scaling = new BABYLON.Vector3(10,10,10);
@@ -461,7 +461,7 @@ var createScene = function() {
     addPlatform(multimatPebblesS, platformWidthSmall, 353, 55);
 
     // Coin 3
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "coin.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "coin.gltf", scene, function(newMeshes) {
         coin3 = newMeshes[0];
         coin3.position = new BABYLON.Vector3(353,58.5,0.5);
         coin3.scaling = new BABYLON.Vector3(10,10,10);
@@ -480,7 +480,7 @@ var createScene = function() {
     addFirePlatform(multimatPebblesM, 378.5, 46);
 
     // Fire Log 2
-    BABYLON.SceneLoader.ImportMesh("", "../models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/WinterModels/", "FireLog.gltf", scene, function(newMeshes) {
         var FireLog = newMeshes[0];
         FireLog.position = new BABYLON.Vector3(378.5, 46.5, 3);
         FireLog.scaling = new BABYLON.Vector3(2,2,2);
@@ -507,10 +507,10 @@ var createScene = function() {
     // Platform ground medium
     addPlatform(multimatGroundM, platformWidthMedium, 435, 50);
 
-    var portalSound = new BABYLON.Sound("portalSound", "../sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
+    var portalSound = new BABYLON.Sound("portalSound", "sounds/portal/unexpected.wav", scene, null, {volume:0.8, loop:true, autoplay:true });
 
     // Portal
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "portal.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "portal.gltf", scene, function(newMeshes) {
         var portal = newMeshes[0];
         portal.position = new BABYLON.Vector3(435,50,1);
         portal.scaling = new BABYLON.Vector3(2,2,2);
@@ -528,43 +528,43 @@ var createScene = function() {
 
     // Other models
     {
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp1_B.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "comp1_B.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(3,1,6);
         newMeshes[0].scaling = new BABYLON.Vector3(-3,3,3);
         newMeshes[0].rotate(new BABYLON.Vector3(0,1,0), deg2rad(90));
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2_B.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "comp2_B.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(57,11,9);
         newMeshes[0].scaling = new BABYLON.Vector3(3,3,3);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp1_M.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "comp1_M.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(148.5,16,9);
         newMeshes[0].scaling = new BABYLON.Vector3(3,3,-3);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2_M.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "comp2_M.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(179.5,16,9);
         newMeshes[0].scaling = new BABYLON.Vector3(3,3,-3);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp3_M.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "comp3_M.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(258,21,9);
         newMeshes[0].scaling = new BABYLON.Vector3(3,3,-3);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "comp2_B.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "comp2_B.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(262,51,8);
         newMeshes[0].scaling = new BABYLON.Vector3(-3,3,3);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "well.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "well.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(345,-3,8);
         newMeshes[0].scaling = new BABYLON.Vector3(-3,3,3);
     });
 
-    BABYLON.SceneLoader.ImportMesh("", "../models/AutumnModels/", "barrel.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/AutumnModels/", "barrel.gltf", scene, function(newMeshes) {
         newMeshes[0].position = new BABYLON.Vector3(353,30,8);
         // newMeshes[0].scaling = new BABYLON.Vector3(1,1,1);
     });
@@ -574,13 +574,13 @@ var createScene = function() {
 
 
     // Music
-    var musicl1 = new BABYLON.Sound("musicl1", "../sounds/levels/level1/POL-perfect-engineering-short.wav", scene, soundReady, {loop:true, volume:0.2, autoplay:true, useCustomAttenuation:true});
+    var musicl1 = new BABYLON.Sound("musicl1", "sounds/levels/level1/POL-perfect-engineering-short.wav", scene, soundReady, {loop:true, volume:0.2, autoplay:true, useCustomAttenuation:true});
     function soundReady(){
         musicl1.play();
     }
     
     // Rain sound
-    rainSound = new BABYLON.Sound("rainSound", "../sounds/rain.mp3", scene, function() {
+    rainSound = new BABYLON.Sound("rainSound", "sounds/rain.mp3", scene, function() {
         rainSound.play();
     }, {loop:true,volume:4.0});
 
@@ -591,9 +591,9 @@ var createScene = function() {
     flash.specular = new BABYLON.Color3(0.02, 0.18, 0.54);
 
     // Thunder
-    thunder1 = new BABYLON.Sound("thunder1", "../sounds/thunder1.mp3", scene, {volume:4.0});
-    thunder2 = new BABYLON.Sound("thunder2", "../sounds/thunder2.mp3", scene, {volume:4.0});
-    thunder3 = new BABYLON.Sound("thunder3", "../sounds/thunder3.mp3", scene, {volume:4.0});
+    thunder1 = new BABYLON.Sound("thunder1", "sounds/thunder1.mp3", scene, {volume:4.0});
+    thunder2 = new BABYLON.Sound("thunder2", "sounds/thunder2.mp3", scene, {volume:4.0});
+    thunder3 = new BABYLON.Sound("thunder3", "sounds/thunder3.mp3", scene, {volume:4.0});
     
 
     // Rain
@@ -602,7 +602,7 @@ var createScene = function() {
     var particles = new BABYLON.GPUParticleSystem("particles", 10000, scene);
 
     //Texture of each particle
-    particles.particleTexture = new BABYLON.Texture("../textures/droplet.png", scene);
+    particles.particleTexture = new BABYLON.Texture("textures/droplet.png", scene);
 
     //Where the particles come from
     particles.emitter = camera;
@@ -659,7 +659,7 @@ var createScene = function() {
     player.mesh.checkCollisions = true;
     camera.lockedTarget = player.mesh;
     
-    BABYLON.SceneLoader.ImportMesh("", "../models/", "knight.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/", "knight.gltf", scene, function(newMeshes) {
         player.initializeRoot(newMeshes[0]);
         player.initializeBody();
         player.initializeAnimations();
@@ -775,7 +775,7 @@ function fireON(){
     // Particles system Fire
     var particlesFire = new BABYLON.GPUParticleSystem("particlesFire", 5000, scene);
     // Texture of each particle
-    particlesFire.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire.particleTexture = new BABYLON.Texture("textures/fireParticle.png", scene);
 
     // Where the particles come from
     particlesFire.emitter = new BABYLON.Vector3(210,15.5,3);
@@ -829,7 +829,7 @@ function fireON2(){
     // Particles system Fire
     var particlesFire2 = new BABYLON.GPUParticleSystem("particlesFire2", 5000, scene);
     // Texture of each particle
-    particlesFire2.particleTexture = new BABYLON.Texture("../textures/fireParticle.png", scene);
+    particlesFire2.particleTexture = new BABYLON.Texture("textures/fireParticle.png", scene);
   
     // Where the particles come from
     particlesFire2.emitter = new BABYLON.Vector3(378.5, 46.5, 3);
@@ -886,7 +886,7 @@ function coinON(){
     // Particles system Fire
     particlesCoin = new BABYLON.GPUParticleSystem("particlesCoin", 100, scene);
     // Texture of each particle
-    particlesCoin.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
 
     // Where the particles come from
     particlesCoin.emitter = new BABYLON.Vector3(136,44,0.5);
@@ -941,7 +941,7 @@ function coinON2(){
     // Particles system Fire
     particlesCoin2 = new BABYLON.GPUParticleSystem("particlesCoin2", 100, scene);
     // Texture of each particle
-    particlesCoin2.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin2.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
 
     // Where the particles come from
     particlesCoin2.emitter = new BABYLON.Vector3(237, 54, 0.5);
@@ -996,7 +996,7 @@ function coinON3(){
     // Particles system Fire
     particlesCoin3 = new BABYLON.GPUParticleSystem("particlesCoin3", 100, scene);
     // Texture of each particle
-    particlesCoin3.particleTexture = new BABYLON.Texture("../textures/goldparticle.png", scene);
+    particlesCoin3.particleTexture = new BABYLON.Texture("textures/goldparticle.png", scene);
 
     // Where the particles come from    
     particlesCoin3.emitter = new BABYLON.Vector3(353, 58, 0.5);
@@ -1050,7 +1050,7 @@ function portalON(){
     var particlesPortal = new BABYLON.ParticleSystem("particlesPortal", 1000, scene);
 
     //Texture of each particle
-    particlesPortal.particleTexture = new BABYLON.Texture("../textures/portalParticles.png", scene);
+    particlesPortal.particleTexture = new BABYLON.Texture("textures/portalParticles.png", scene);
     
     //Where the particles come from
     particlesPortal.emitter = new BABYLON.Vector3(435,55,0);
