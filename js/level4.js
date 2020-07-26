@@ -265,7 +265,7 @@ var createScene = function() {
         skybox.addRotation(0.0, deg2rad(180), 0.0);
         var skyboxMaterial = new BABYLON.StandardMaterial("waves", scene);
         skyboxMaterial.backFaceCulling = false;
-        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("Textures/waves/waves", scene);
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/waves/waves", scene);
         skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
         skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -638,7 +638,7 @@ var createScene = function() {
     });
 
     // Sdraio 2
-    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "sdraio2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "Sdraio2.gltf", scene, function(newMeshes) {
         var sdraio2 = newMeshes[0];
         sdraio2.position = new BABYLON.Vector3(90,-4,9);
         sdraio2.scaling = new BABYLON.Vector3(2,2,2);
