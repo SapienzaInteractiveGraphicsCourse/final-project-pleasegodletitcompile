@@ -154,20 +154,20 @@ var createScene = function() {
     //Snow Small Platform
     var snowS = new BABYLON.StandardMaterial("snow", scene);
     snowS.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
-    snowS.bumpTexture.uScale = 0.3;
-    snowS.bumpTexture.vScale = 2;
+    snowS.bumpTexture.uScale = 0.5;
+    snowS.bumpTexture.vScale = 0.5;
     snowS.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowS1 = new BABYLON.StandardMaterial("snow1", scene);
     snowS1.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
-    snowS1.bumpTexture.uScale = 2;
-    snowS1.bumpTexture.vScale = 0.08;
+    snowS1.bumpTexture.uScale = 1;
+    snowS1.bumpTexture.vScale = 0.5;
     snowS1.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     var snowS2 = new BABYLON.StandardMaterial("snow2", scene);
     snowS2.bumpTexture = new BABYLON.Texture("textures/SnowBump.jpg", scene);
-    snowS2.bumpTexture.uScale = 0.08;
-    snowS2.bumpTexture.vScale = 0.3;
+    snowS2.bumpTexture.uScale = 0.3;
+    snowS2.bumpTexture.vScale = 0.5;
     snowS2.diffuseColor = new BABYLON.Color3(1, 1, 1);
 
     //Snow Medium Platform

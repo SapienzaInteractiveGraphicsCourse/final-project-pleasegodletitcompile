@@ -122,19 +122,19 @@ var createScene = function() {
         
         var groundB2 = new BABYLON.StandardMaterial("groundB2", scene);
         groundB2.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
-        groundB2.diffuseTexture.uScale = 3;
-        groundB2.diffuseTexture.vScale = 2;
+        groundB2.diffuseTexture.uScale = 2;
+        groundB2.diffuseTexture.vScale = 0.2;
         groundB2.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
-        groundB2.bumpTexture.uScale = 3;
-        groundB2.bumpTexture.vScale = 2;
+        groundB2.bumpTexture.uScale = 2;
+        groundB2.bumpTexture.vScale = 0.2;
     
         var groundB3 = new BABYLON.StandardMaterial("groundB3", scene);
         groundB3.diffuseTexture = new BABYLON.Texture("textures/soil.jpg", scene)
-        groundB3.diffuseTexture.uScale = 1;
-        groundB3.diffuseTexture.vScale = 2;
+        groundB3.diffuseTexture.uScale = 0.2;
+        groundB3.diffuseTexture.vScale = 1;
         groundB3.bumpTexture = new BABYLON.Texture("textures/soilBump.jpg", scene)
-        groundB3.bumpTexture.uScale = 1;
-        groundB3.bumpTexture.vScale = 2;
+        groundB3.bumpTexture.uScale = 0.2;
+        groundB3.bumpTexture.vScale = 1;
     
         // Sand Small Platform
         var sandS1 = new BABYLON.StandardMaterial("sandS1", scene);
