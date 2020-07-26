@@ -265,7 +265,7 @@ var createScene = function() {
         skybox.addRotation(0.0, deg2rad(180), 0.0);
         var skyboxMaterial = new BABYLON.StandardMaterial("waves", scene);
         skyboxMaterial.backFaceCulling = false;
-        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("Textures/waves/waves", scene);
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/waves/waves", scene);
         skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
         skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
