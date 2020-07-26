@@ -9,4 +9,4 @@ Interactive Graphics 2019/2020
 # Documentation
 Go to this [LINK](./report.pdf) for details on the project together with a user manual
 
-# [Click here to play the game](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-pleasegodletitcompile/)
+# [Click here to play the game](https://sapienzainteractivegraphicscourse.github.io/final-project-pleasegodletitcompile/)
