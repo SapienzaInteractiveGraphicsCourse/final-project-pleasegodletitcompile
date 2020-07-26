@@ -3,7 +3,7 @@ Interactive Graphics 2019/2020
 
 # Group pleasegodletitcompile
 - Ionut Marian Motoi
-- Veronica Vulcano
+- Veronica Romano
 - Leonardo Saraceni
 
 # Documentation
