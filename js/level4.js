@@ -638,7 +638,7 @@ var createScene = function() {
     });
 
     // Sdraio 2
-    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "sdraio2.gltf", scene, function(newMeshes) {
+    BABYLON.SceneLoader.ImportMesh("", "models/SummerModels/", "Sdraio2.gltf", scene, function(newMeshes) {
         var sdraio2 = newMeshes[0];
         sdraio2.position = new BABYLON.Vector3(90,-4,9);
         sdraio2.scaling = new BABYLON.Vector3(2,2,2);
